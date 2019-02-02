@@ -107,18 +107,18 @@
 
 
 
-  <meta name="description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为label1234567891011# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile(pat)img_path =&amp;apos;\\data\\dog.12247.jpg&amp;apos;print(pat.search(img_path).group(">
+  <meta name="description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile">
 <meta name="keywords" content="fastai">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fastai lesson 1">
 <meta property="og:url" content="https://TianHongZXY.github.io/2019/02/02/fastai lesson 1/index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为label1234567891011# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile(pat)img_path =&amp;apos;\\data\\dog.12247.jpg&amp;apos;print(pat.search(img_path).group(">
+<meta property="og:description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-02T15:14:30.628Z">
+<meta property="og:updated_time" content="2019-02-02T15:20:53.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="fastai lesson 1">
-<meta name="twitter:description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为label1234567891011# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile(pat)img_path =&amp;apos;\\data\\dog.12247.jpg&amp;apos;print(pat.search(img_path).group(">
+<meta name="twitter:description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile">
 
 
 
@@ -398,7 +398,7 @@
                 
               
 
-              <time title="Created: 2019-02-02 23:12:42 / Modified: 23:14:30" itemprop="dateCreated datePublished" datetime="2019-02-02T23:12:42+08:00">2019-02-02</time>
+              <time title="Created: 2019-02-02 23:12:42 / Modified: 23:20:53" itemprop="dateCreated datePublished" datetime="2019-02-02T23:12:42+08:00">2019-02-02</time>
             
 
             
@@ -453,7 +453,7 @@
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
             <span class="post-meta-divider">|</span>
-            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 416</span>
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 439</span>
             <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：1 分钟
           
 
@@ -474,19 +474,18 @@
       
 
       
-        <h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><h2 id="利用正则表达式"><a href="#利用正则表达式" class="headerlink" title="利用正则表达式"></a>利用正则表达式</h2><p>利用正则表达式从路径中提取文件名，文件名就作为label<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 举一个正则表达式的例子</span><br><span class="line">pat = r&apos;\\([a-z]+).\d+.jpg$&apos;</span><br><span class="line">pat = re.compile(pat)</span><br><span class="line">img_path =&apos;\\data\\dog.12247.jpg&apos;</span><br><span class="line">print(pat.search(img_path).group(1))</span><br><span class="line"></span><br><span class="line"># 实际使用时</span><br><span class="line">path_img = &apos;C:\\Users\\hp\\.fastai\\data\\images&apos;</span><br><span class="line">fnames = get_image_files(path_img)</span><br><span class="line">data = ImageDataBunch.from_name_re(path_img, fnames, pat, ds_tfms=get_transforms(), size=224,bs=bs)</span><br><span class="line">data.normalize(imagenet_stats)</span><br></pre></td></tr></table></figure></p>
-<p>output: ‘dog’</p>
-<h2 id="从文件夹中读取文件"><a href="#从文件夹中读取文件" class="headerlink" title="从文件夹中读取文件"></a>从文件夹中读取文件</h2><p>要求文件夹的层次为path下有三个文件夹，分别命名为<em>train</em>，<em>valid</em>，<em>test</em>，且 <em>train</em> 和 <em>valid</em> 内文件夹每个类别的文件都存在以类别命名的文件夹内。</p>
+        <h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><h2 id="利用正则表达式"><a href="#利用正则表达式" class="headerlink" title="利用正则表达式"></a>利用正则表达式</h2><p>利用正则表达式从路径中提取文件名，文件名就作为label<br>get_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 举一个正则表达式的例子</span><br><span class="line">pat = r&apos;\\([a-z]+).\d+.jpg$&apos;</span><br><span class="line">pat = re.compile(pat)</span><br><span class="line">img_path =&apos;\\data\\dog.12247.jpg&apos;</span><br><span class="line">print(pat.search(img_path).group(1))</span><br><span class="line"># output: &apos;dog&apos;</span><br><span class="line"></span><br><span class="line"># 实际使用时</span><br><span class="line">path_img = &apos;C:\\Users\\hp\\.fastai\\data\\images&apos;</span><br><span class="line">fnames = get_image_files(path_img)</span><br><span class="line">data = ImageDataBunch.from_name_re(path_img, fnames, pat, ds_tfms=get_transforms(), size=224,bs=bs)</span><br><span class="line">data.normalize(imagenet_stats)</span><br></pre></td></tr></table></figure></p>
+<h2 id="从文件夹中读取文件"><a href="#从文件夹中读取文件" class="headerlink" title="从文件夹中读取文件"></a>从文件夹中读取文件</h2><p>要求文件夹的层次为path下有三个文件夹，分别命名为<em>train</em>，<em>valid</em>，<em>test</em>，且 <em>train</em> 和 <em>valid</em> 内文件夹有每个类别的文件夹，里面存着该类别的图片。</p>
 <ul>
 <li>path<ul>
 <li>train<ul>
-<li>clas1</li>
-<li>clas2<ul>
+<li>class1</li>
+<li>class2<ul>
 <li>valid</li>
 </ul>
 </li>
-<li>clas1</li>
-<li>clas2<ul>
+<li>class1</li>
+<li>class2<ul>
 <li>test</li>
 </ul>
 </li>
