@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="TianHongZXY">
 <meta property="og:description" content="定义模型Flask-SQLAlchemy是Flask的一个数据库框架。 创建一个SQLAlchemy类的实例，表示应用使用的数据库，通过它可以获得Flask-SQLAlchemy提供的所有功能。1234from flask_sqlalchemy import SQLAlchemyapp = Flask(__name__)app.config.from_object(config[config_na">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-17T15:36:28.464Z">
+<meta property="og:updated_time" content="2019-02-17T15:38:37.064Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flask数据库篇">
 <meta name="twitter:description" content="定义模型Flask-SQLAlchemy是Flask的一个数据库框架。 创建一个SQLAlchemy类的实例，表示应用使用的数据库，通过它可以获得Flask-SQLAlchemy提供的所有功能。1234from flask_sqlalchemy import SQLAlchemyapp = Flask(__name__)app.config.from_object(config[config_na">
@@ -398,7 +398,7 @@
                 
               
 
-              <time title="Created: 2019-02-17 23:27:30 / Modified: 23:36:28" itemprop="dateCreated datePublished" datetime="2019-02-17T23:27:30+08:00">2019-02-17</time>
+              <time title="Created: 2019-02-17 23:27:30 / Modified: 23:38:37" itemprop="dateCreated datePublished" datetime="2019-02-17T23:27:30+08:00">2019-02-17</time>
             
 
             
@@ -514,9 +514,11 @@
 </ol>
 </li>
 </ul>
+<hr>
 <h1 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h1><p>这一步就比较简单了，直接执行下面的命令</p>
 <p><code>(venv) $ flask db upgrade</code></p>
 <p>该命令就是把改动应用到数据库中，且不影响保存的数据。</p>
+<hr>
 <h1 id="添加几个迁移"><a href="#添加几个迁移" class="headerlink" title="添加几个迁移"></a>添加几个迁移</h1><p>在开发项目，往往需要多次修改数据库。如果前一个迁移还没提交，可以继续在哪个迁移中修改，以免创建大量无意义的小迁移脚本。在前一个迁移脚本的基础上修改的步骤如下：</p>
 <ol>
 <li>执行<code>flask db downgrade</code>命令，还原前一个脚本对数据库的改动（注意，这可能导致部分数据丢失）。</li>
