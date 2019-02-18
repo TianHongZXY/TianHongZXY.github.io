@@ -107,24 +107,25 @@
 
 
 
-  <meta name="description" content="浪漫骑士 行吟诗人 自由思想者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://TianHongZXY.github.io/categories/index.html">
+  <meta name="description" content="项目结构一般结构有四个顶级文件夹：  Flask应用一般保存在名为app的包中； 数据库迁移脚本在migrations文件夹中； 单元测试在tests包中； python虚拟环境在venv中。  除此之外还有config.py存储配置。 requirements.txt列出所有依赖包。 flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。 应用包应用包存放应用的所">
+<meta name="keywords" content="flask">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Flask大型应用结构">
+<meta property="og:url" content="https://TianHongZXY.github.io/2019/02/18/Flask大型应用结构/index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta property="og:description" content="项目结构一般结构有四个顶级文件夹：  Flask应用一般保存在名为app的包中； 数据库迁移脚本在migrations文件夹中； 单元测试在tests包中； python虚拟环境在venv中。  除此之外还有config.py存储配置。 requirements.txt列出所有依赖包。 flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。 应用包应用包存放应用的所">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-01T02:23:38.507Z">
+<meta property="og:updated_time" content="2019-02-18T12:59:11.482Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类">
-<meta name="twitter:description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta name="twitter:title" content="Flask大型应用结构">
+<meta name="twitter:description" content="项目结构一般结构有四个顶级文件夹：  Flask应用一般保存在名为app的包中； 数据库迁移脚本在migrations文件夹中； 单元测试在tests包中； python虚拟环境在venv中。  除此之外还有config.py存储配置。 requirements.txt列出所有依赖包。 flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。 应用包应用包存放应用的所">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/categories/">
+  <link rel="canonical" href="https://TianHongZXY.github.io/2019/02/18/Flask大型应用结构/">
 
 
 
@@ -134,7 +135,7 @@
   };
 </script>
 
-  <title>分类 | TianHongZXY</title>
+  <title>Flask大型应用结构 | TianHongZXY</title>
   
 
 
@@ -275,7 +276,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -314,28 +315,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -362,70 +341,221 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/18/Flask大型应用结构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY">
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">分类
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
+          <h1 class="post-title" itemprop="name headline">Flask大型应用结构
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              4 categories in total
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Markdown/">Markdown</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/deep-learning/">deep learning</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/python/">python</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/随笔/">随笔</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-02-18 20:59:49 / Modified: 20:59:11" itemprop="dateCreated datePublished" datetime="2019-02-18T20:59:49+08:00">2019-02-18</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/02/18/Flask大型应用结构/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/Flask大型应用结构/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 692</span>
+            <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：2 分钟
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p>一般结构有四个顶级文件夹：</p>
+<ul>
+<li>Flask应用一般保存在名为app的包中；</li>
+<li>数据库迁移脚本在migrations文件夹中；</li>
+<li>单元测试在tests包中；</li>
+<li>python虚拟环境在venv中。</li>
+</ul>
+<p>除此之外还有config.py存储配置。</p>
+<p>requirements.txt列出所有依赖包。</p>
+<p>flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。</p>
+<h1 id="应用包"><a href="#应用包" class="headerlink" title="应用包"></a>应用包</h1><p>应用包存放应用的所有代码、模板和静态文件。templates和static现在在app包中。数据库模型和电子邮件支持函数也在app包中。</p>
+<h1 id="蓝本"><a href="#蓝本" class="headerlink" title="蓝本"></a>蓝本</h1><p>蓝本和应用类似，也可以定义路由和错误处理程序。不同的是，在蓝本中定义的路由和错误处理程序处于休眠状态，直到蓝本注册到应用上之后，它才真正成为应用的一部分。下面是app/main/__init__.py的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line"></span><br><span class="line">main = Blueprint(<span class="string">'main'</span>, __name__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views, errors</span><br></pre></td></tr></table></figure>
+<p>蓝本通过实例化一个Blueprint类对象创建。两个参数：蓝本的名称和蓝本所在的包或模块。</p>
+<p>应用的路由保存在app/main/views.py中，错误处理程序保存在app/main/errors.py中。导入这连个模块就能把路由和错误处理程序与蓝本联系起来。因为在views和errors中也要导入main蓝本，为了避免循环导入依赖，导入views和errors要在</p>
+<p>__init__.py的末尾。</p>
+<hr>
+<p>在蓝本中编写错误处理程序稍有不同，如果使用errorhandler装饰器，那么只有蓝本中的错误才能触发处理程序。要想注册全局的错误处理程序，必须使用app_errorhandler装饰器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> main</span><br><span class="line"></span><br><span class="line"><span class="meta">@main.app_errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span><span class="params">(e)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'404.html'</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>在蓝本中编写视图函数主要有两点不同：第一，路由装饰器由蓝本提供，因此使用main.route而非app.route。第二，url_for()函数的用法不同。在蓝本中，Flask会为所有蓝本中的全部端点加上一个命名空间，这样就可以在不同的蓝本中使用相同的端点名定义视图函数，而不冲突。命名空间是蓝本的名称(Blueprint构造函数的第一个参数)，而且与端点名之间以一个点号分隔。因此视图函数index()注册的端点名是main.index，其URL用<code>url_for(&#39;main.index&#39;)</code>获取。</p>
+<p>在蓝本中可以省略蓝本名，例如<code>url_for(&#39;.index&#39;)</code>这种写法，使用当前请求的蓝本名补足端点名。这意味着，同一蓝本的重定向可以使用简写，但跨蓝本的重定向必须使用带有蓝本名的完全限定端点名。</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/flask/" rel="tag"><i class="fa fa-tag"></i> flask</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/17/Flask数据库篇/" rel="next" title="Flask数据库篇">
+                <i class="fa fa-chevron-left"></i> Flask数据库篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -459,8 +589,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -576,6 +715,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用包"><span class="nav-number">2.</span> <span class="nav-text">应用包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蓝本"><span class="nav-number">3.</span> <span class="nav-text">蓝本</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
