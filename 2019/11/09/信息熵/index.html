@@ -108,16 +108,17 @@
 
 
   <meta name="description" content="信息熵信息量事件发生的概率越小，信息量越大。 假设$$X$$是一个离散型随机变量，取值集合为$$\chi$$，概率分布函数为$$p(x)=\operatorname{Pr}(X=x), x \in \chi$$则定义事件$$X=x_{0}$$的信息量为：$$I\left(x_{0}\right)=-\log \left(p\left(x_{0}\right)\right)$$ 熵信息量的期望就是熵">
+<meta name="keywords" content="machine learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="TianHongZXY">
+<meta property="og:title" content="信息熵">
 <meta property="og:url" content="https://TianHongZXY.github.io/2019/11/09/信息熵/index.html">
 <meta property="og:site_name" content="TianHongZXY">
 <meta property="og:description" content="信息熵信息量事件发生的概率越小，信息量越大。 假设$$X$$是一个离散型随机变量，取值集合为$$\chi$$，概率分布函数为$$p(x)=\operatorname{Pr}(X=x), x \in \chi$$则定义事件$$X=x_{0}$$的信息量为：$$I\left(x_{0}\right)=-\log \left(p\left(x_{0}\right)\right)$$ 熵信息量的期望就是熵">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://tianhongzxy.github.io/Users/tianhongzxy/Downloads/v2-c9cc9f8c879e7fe93d6e3bfafd41bd8a_hd.jpg">
-<meta property="og:updated_time" content="2019-11-09T15:50:26.413Z">
+<meta property="og:updated_time" content="2019-11-14T15:14:33.689Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="TianHongZXY">
+<meta name="twitter:title" content="信息熵">
 <meta name="twitter:description" content="信息熵信息量事件发生的概率越小，信息量越大。 假设$$X$$是一个离散型随机变量，取值集合为$$\chi$$，概率分布函数为$$p(x)=\operatorname{Pr}(X=x), x \in \chi$$则定义事件$$X=x_{0}$$的信息量为：$$I\left(x_{0}\right)=-\log \left(p\left(x_{0}\right)\right)$$ 熵信息量的期望就是熵">
 <meta name="twitter:image" content="https://tianhongzxy.github.io/Users/tianhongzxy/Downloads/v2-c9cc9f8c879e7fe93d6e3bfafd41bd8a_hd.jpg">
 
@@ -136,7 +137,7 @@
   };
 </script>
 
-  <title> | TianHongZXY</title>
+  <title>信息熵 | TianHongZXY</title>
   
 
 
@@ -373,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">信息熵
 
               
             
@@ -399,16 +400,46 @@
                 
               
 
-              <time title="Created: 2019-11-09 22:29:38 / Modified: 23:50:26" itemprop="dateCreated datePublished" datetime="2019-11-09T22:29:38+08:00">2019-11-09</time>
+              <time title="Created: 2019-11-09 22:29:38" itemprop="dateCreated datePublished" datetime="2019-11-09T22:29:38+08:00">2019-11-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-14 23:14:33" itemprop="dateModified" datetime="2019-11-14T23:14:33+08:00">2019-11-14</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -506,6 +537,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+          
+        </div>
+      
 
       
       
@@ -515,8 +552,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/06/DL中的Normalization/" rel="next" title="">
-                <i class="fa fa-chevron-left"></i> 
+              <a href="/2019/11/06/DL中的Normalization/" rel="next" title="Normalization">
+                <i class="fa fa-chevron-left"></i> Normalization
               </a>
             
           </div>
@@ -525,8 +562,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/10/评价指标/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/10/评价指标/" rel="prev" title="评价指标">
+                评价指标 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -624,7 +661,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -649,7 +688,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
