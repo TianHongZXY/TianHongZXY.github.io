@@ -107,24 +107,24 @@
 
 
 
-  <meta name="description" content="浪漫骑士 行吟诗人 自由思想者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="https://TianHongZXY.github.io/tags/index.html">
+  <meta name="description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为$$z_{i}$$其中$$T$$是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度$$T$$趋向0时，softmax输出将收敛为one-hot向量，温度$$T$$趋向无穷时，输出更「软」。$$q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TianHongZXY">
+<meta property="og:url" content="https://TianHongZXY.github.io/2019/11/10/Loss函数/index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta property="og:description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为$$z_{i}$$其中$$T$$是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度$$T$$趋向0时，softmax输出将收敛为one-hot向量，温度$$T$$趋向无穷时，输出更「软」。$$q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-01T02:21:00.000Z">
+<meta property="og:updated_time" content="2019-11-11T03:34:00.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta name="twitter:title" content="TianHongZXY">
+<meta name="twitter:description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为$$z_{i}$$其中$$T$$是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度$$T$$趋向0时，softmax输出将收敛为one-hot向量，温度$$T$$趋向无穷时，输出更「软」。$$q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/tags/">
+  <link rel="canonical" href="https://TianHongZXY.github.io/2019/11/10/Loss函数/">
 
 
 
@@ -134,7 +134,7 @@
   };
 </script>
 
-  <title>标签 | TianHongZXY</title>
+  <title> | TianHongZXY</title>
   
 
 
@@ -258,7 +258,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -314,28 +314,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -362,78 +340,194 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/11/10/Loss函数/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY">
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">标签
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              6 tags in total
-            </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/Flask/" style="font-size: 30px; color: #111">Flask</a> <a href="/tags/Markdown/" style="font-size: 12px; color: #ccc">Markdown</a> <a href="/tags/deep-learning/" style="font-size: 12px; color: #ccc">deep learning</a> <a href="/tags/fastai/" style="font-size: 12px; color: #ccc">fastai</a> <a href="/tags/python/" style="font-size: 12px; color: #ccc">python</a> <a href="/tags/随笔/" style="font-size: 12px; color: #ccc">随笔</a>
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-10 22:17:27" itemprop="dateCreated datePublished" datetime="2019-11-10T22:17:27+08:00">2019-11-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-11 11:34:00" itemprop="dateModified" datetime="2019-11-11T11:34:00+08:00">2019-11-11</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/10/Loss函数/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/10/Loss函数/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k</span>
+            <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：6 分钟
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h1 id="Softmax-交叉熵"><a href="#Softmax-交叉熵" class="headerlink" title="Softmax + 交叉熵"></a>Softmax + 交叉熵</h1><p>考虑一个广义的Softmax函数，q的logits为$$z_{i}$$其中$$T$$是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度$$T$$趋向0时，softmax输出将收敛为one-hot向量，温度$$T$$趋向无穷时，输出更「软」。<br>$$<br>q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \left(z_{j} / T\right)}<br>$$<br>因此，在知识蒸馏中，训练新模型的时候，可以使用较高的T，使得softmax产生的分布足够软，这时让新模型的softmax输出近似原模型；在训练结束以后再使用正常的温度$$T=1$$来预测。记新模型产生的分布为q，原模型产生的分布为p，p的logits为$$v_{i}$$(下面的推导只需要把T设为1，p设为one-hot向量，就是平时用数据集从头训练模型时的softmax+交叉熵得到的损失函数)</p>
+<p>需要最小化的损失函数为C：<br>$$<br>C=-p^{\top} \log q<br>$$<br>下面求C关于z的偏导数，由链式法则得：<br>$$<br>\frac{\partial C}{\partial z}=\frac{\partial q}{\partial z} \frac{\partial C}{\partial q}<br>$$<br>p是原模型产生的softmax输出，与q无关。</p>
+<p>$$<br>\frac{\partial C}{\partial q_{i}}=-\frac{p_{i}}{q_{i}}<br>$$<br>$$\frac{\partial C}{\partial q}$$是一个n维向量：<br>$$<br>\frac{\partial C}{\partial q}=\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \ {-\frac{p_{2}}{q_{2}}} \ {\vdots} \ {-\frac{p_{n}}{q_{n}}}\end{array}\right]<br>$$<br>$$\frac{\partial q}{\partial z}$$是一个$$n \times n$$的方阵，记$$Z=\sum_{k} \exp \left(z_{k} / T\right)$$，可以求得$$q_{i}$$关于$$z_{j}$$的偏导为：<br>$$<br>\frac{\partial q_{i}}{\partial z_{j}}=\frac{1}{Z^{2}}\left(Z \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\exp \left(z_{i} / T\right)\left[\frac{\partial Z}{\partial z_{j}}\right]\right)<br>$$<br>右侧方框部分可以展开为<br>$$<br>\frac{\partial Z}{\partial z_{j}}=\frac{1}{T} \exp \left(z_{j} / T\right)<br>$$<br>代入上式将括号展开，可以得到：</p>
+<p>$$<br>\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &amp;=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T Z^{2}} \exp \left(z_{i} / T\right) \exp \left(z_{j} / T\right) \ &amp;=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T} \frac{\exp \left(z_{i} / T\right)}{Z} \frac{\exp \left(z_{j} / T\right)}{Z} \ &amp;=\frac{1}{Z}\left[\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}\right]-\frac{1}{T} q_{i} q_{j} \end{aligned}<br>$$<br>左侧方框分类讨论得：<br>$$<br>\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}=\left{\begin{array}{ll}{\frac{1}{T} \exp \left(z_{i} / T\right),} &amp; {\text { if } i=j} \ {0,} &amp; {\text { if } i \neq j}\end{array}\right.<br>$$<br>代入上式得：<br>$$<br>\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &amp;=\left{\begin{array}{ll}{\frac{1}{T}\left(\frac{\exp \left(z_{i} / T\right)}{Z}-q_{i} q_{j}\right),} &amp; {\text { if } i=j} \ {-\frac{1}{T} q_{i} q_{j},} &amp; {\text { if } i \neq j} \ {\frac{1}{T}\left(q_{i}-q_{i} q_{j}\right),} &amp; {\text { if } i=j} \ {-\frac{1}{T} q_{i} q_{j},} &amp; {\text { if } i \neq j}\end{array}\right.\end{aligned}<br>$$</p>
+<p>所以$$<br>\partial q / \partial z<br>$$等于：<br>$$<br>\frac{\partial q}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} &amp; {-q_{1} q_{2}} &amp; {\cdots} &amp; {-q_{1} q_{n}} \ {-q_{2} q_{1}} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {-q_{n} q_{1}} &amp; {-q_{n} q_{2}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right]<br>$$<br>这里就是为什么softmax函数对其输入的偏导是下列形式的原因，$$g(·)$$函数为softmax函数，$$x$$为输入向量，维度为$$d$$。<br>$$<br>\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\operatorname{diag}(\hat{\mathbf{y}})-\hat{\mathbf{y}} \hat{\mathbf{y}}^{\top} \quad \in \mathbb{R}^{d \times d}<br>$$</p>
+<p>$$<br>\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\left[\begin{array}{cccc}{\hat{y}<em>{1}} &amp; {0} &amp; {\cdots} &amp; {0} \ {0} &amp; {\hat{y}</em>{2}} &amp; {\cdots} &amp; {0} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {0} &amp; {0} &amp; {\cdots} &amp; {\hat{y}<em>{d}}\end{array}\right]-\left[\begin{array}{cccc}{\hat{y}</em>{1}^{2}} &amp; {\hat{y}<em>{1} \hat{y}</em>{2}} &amp; {\cdots} &amp; {\hat{y}<em>{1} \hat{y}</em>{d}} \ {\hat{y}<em>{2} \hat{y}</em>{1}} &amp; {\hat{y}<em>{2}^{2}} &amp; {\cdots} &amp; {\hat{y}</em>{2} \hat{y}<em>{d}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {\hat{y}</em>{d} \hat{y}<em>{1}} &amp; {\hat{y}</em>{d} \hat{y}<em>{2}} &amp; {\cdots} &amp; {\hat{y}</em>{d}^{2}}\end{array}\right]<br>$$</p>
+<p>回到我们的问题，继续推导，可以得到：<br>$$<br>\begin{aligned} \frac{\partial C}{\partial z}=&amp; \frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} &amp; {-q_{1} q_{2}} &amp; {\cdots} &amp; {-q_{1} q_{n}} \ {-q_{2} q_{1}} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {-q_{n} q_{1}} &amp; {-q_{n} q_{2}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right]\left[\begin{array}{c}{-\frac{p_{1}}{q_{2}}} \ {-\frac{p_{2}}{q_{2}}} \ {\vdots} \ {-\frac{p_{n}}{q_{n}}}\end{array}\right] \ &amp;=\frac{1}{T}\left[\begin{array}{ccc}{-p_{1}+\sum_{k} p_{k} q_{1}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right] \ &amp;=\frac{1}{T}\left[\begin{array}{c}{-p_{2}+} &amp; {p_{k} q_{2}} \ {-p_{2}} &amp; {+q_{2}} \ {-p_{2}} &amp; {+q_{2}} \ {-p_{2}} &amp; {+q_{2}} \ {-p_{n}+q_{n}}\end{array}\right] \ &amp;=\frac{1}{T}(q-p) \end{aligned}<br>$$<br>所以：<br>$$<br>\frac{\partial C}{\partial z_{i}}=\frac{1}{T}\left(q_{i}-p_{i}\right)<br>$$</p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/10/评价指标/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -467,8 +561,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -582,6 +685,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax-交叉熵"><span class="nav-number">1.</span> <span class="nav-text">Softmax + 交叉熵</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
