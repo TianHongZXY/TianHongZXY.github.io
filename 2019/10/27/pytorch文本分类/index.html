@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论review，例">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用pytorch和torchtext进行文本分类">
+<meta property="og:url" content="https://TianHongZXY.github.io/2019/10/27/pytorch文本分类/index.html">
+<meta property="og:site_name" content="TianHongZXY">
+<meta property="og:description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论review，例">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-14T15:52:39.461Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用pytorch和torchtext进行文本分类">
+<meta name="twitter:description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论review，例">
+
+
+
+
+
+
+  <link rel="canonical" href="https://TianHongZXY.github.io/2019/10/27/pytorch文本分类/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>使用pytorch和torchtext进行文本分类 | TianHongZXY</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TianHongZXY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">那时我们一无所有，也没有什么能妨碍我们享受静夜</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/10/27/pytorch文本分类/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY">
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用pytorch和torchtext进行文本分类
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-10-27 19:17:16" itemprop="dateCreated datePublished" datetime="2019-10-27T19:17:16+08:00">2019-10-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-14 23:52:39" itemprop="dateModified" datetime="2019-11-14T23:52:39+08:00">2019-11-14</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/10/27/pytorch文本分类/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/10/27/pytorch文本分类/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+            <span class="post-meta-divider">|</span>
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 2.4k</span>
+            <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：9 分钟
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="使用pytorch和torchtext进行文本分类"><a href="#使用pytorch和torchtext进行文本分类" class="headerlink" title="使用pytorch和torchtext进行文本分类"></a>使用pytorch和torchtext进行文本分类</h1><p>文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了<em>torch</em>和<em>torchtext</em>两个库。</p>
+<h2 id="1-文本数据预处理"><a href="#1-文本数据预处理" class="headerlink" title="1. 文本数据预处理"></a>1. 文本数据预处理</h2><p>首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论<strong>review</strong>，例如imdb或者amazon数据集。第二列是情感极性<strong>polarity</strong>，N分类问题的话就有N个值，假设值得范围是0~N-1。</p>
+<p>下面是很常见的文本预处理流程，英文文本的话不需要分词，直接按空格split就行了，这里只会主要说说第4点。</p>
+<ol>
+<li><p>去除非文本部分</p>
+</li>
+<li><p>分词</p>
+</li>
+<li><p>去除停用词</p>
+</li>
+<li><p>对英文单词进行<strong>词干提取</strong>(stemming)和<strong>词型还原</strong>(lemmatization)</p>
+</li>
+<li><p>转为小写</p>
+</li>
+<li><p>特征处理</p>
+<ul>
+<li><p>Bag of Words</p>
+</li>
+<li><p>Tf-idf</p>
+</li>
+<li><p>N-gram</p>
+</li>
+<li><p>Word2vec</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="词干提取和词型还原"><a href="#词干提取和词型还原" class="headerlink" title="词干提取和词型还原"></a>词干提取和词型还原</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> SnowballStemmer</span><br><span class="line">stemmer = SnowballStemmer(<span class="string">"english"</span>) <span class="comment"># 选择语言</span></span><br><span class="line"><span class="keyword">from</span> nltk.stem <span class="keyword">import</span> WordNetLemmatizer </span><br><span class="line">wnl = WordNetLemmatizer()</span><br></pre></td></tr></table></figure>
+<p><code>SnowballStemmer</code>较为激进，转换有可能出现错误，这里较为推荐使用<code>WordNetLemmatizer</code>，它一般只在非常肯定的情况下才进行转换，否则会返回原来的单词。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">stemmer.stem(<span class="string">'knives'</span>)</span><br><span class="line"><span class="comment"># knive</span></span><br><span class="line">wnl.lemmatize(<span class="string">'knives'</span>)</span><br><span class="line"><span class="comment"># knife</span></span><br></pre></td></tr></table></figure>
+<p>因为我没有系统学习和研究过NLTK的代码，所以就不在这里展开说了，有兴趣的可以自己去看NLTK源代码。</p>
+<h2 id="2-使用torchtext加载文本数据"><a href="#2-使用torchtext加载文本数据" class="headerlink" title="2. 使用torchtext加载文本数据"></a>2. 使用torchtext加载文本数据</h2><p>本节主要是用的模块是<em>torchtext</em>里的<em>data</em>模块，处理的数据同上一节所描述。</p>
+<p>首先定义一个<strong>tokenizer</strong>用来处理文本，比如分词，小写化，如果你已经根据上一节的词干提取和词型还原的方法处理过文本里的每一个单词后可以直接分词就够了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tokenize = <span class="keyword">lambda</span> x: x.split()</span><br></pre></td></tr></table></figure>
+<p>或者也可以更保险点，使用<em>spacy</em>库，不过就肯定更耗费时间了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> spacy</span><br><span class="line"></span><br><span class="line">spacy_en = spacy.load(<span class="string">'en'</span>)</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">tokenizer</span><span class="params">(text)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> [toke.text <span class="keyword">for</span> toke <span class="keyword">in</span> spacy_en.tokenizer(text)]</span><br></pre></td></tr></table></figure>
+<p>然后要定义<strong>Field</strong>，至于<strong>Field</strong>是啥，你可以简单地把它理解为一个能够加载、预处理和存储文本数据和标签的对象。我们可以用它根据训练数据来建立词表，加载预训练的Glove词向量等等。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">DataLoader</span><span class="params">()</span>:</span></span><br><span class="line">    tokenize = <span class="keyword">lambda</span> x: x.split()</span><br><span class="line">		<span class="comment"># 用户评论，include_lengths设为True是为了方便之后使用torch的pack_padded_sequence</span></span><br><span class="line">    REVIEW = data.Field(sequential=<span class="keyword">True</span>,tokenize=tokenize, include_lengths=<span class="keyword">True</span>)</span><br><span class="line">    <span class="comment"># 情感极性</span></span><br><span class="line">    POLARITY = data.LabelField(sequential=<span class="keyword">False</span>, use_vocab=<span class="keyword">False</span>, dtype = torch.long)</span><br><span class="line">		<span class="comment"># 假如train.csv文件并不是只有两列，比如1、3列是review和polarity，2列是我们不需要的数据，</span></span><br><span class="line">    <span class="comment"># 那么就要添加一个全是None的元组， fields列表存储的Field的顺序必须和csv文件中每一列的顺序对应，</span></span><br><span class="line">    <span class="comment"># 否则review可能就加载到polarity Field里去了</span></span><br><span class="line">    fields = [(<span class="string">'review'</span>, REVIEW), (<span class="keyword">None</span>, <span class="keyword">None</span>), (<span class="string">'polarity'</span>, POLARITY)]</span><br><span class="line">		</span><br><span class="line">    <span class="comment"># 加载train,valid,test数据</span></span><br><span class="line">    train_data, valid_data, test_data = data.TabularDataset.splits(</span><br><span class="line">                                    path = <span class="string">'amazon'</span>,</span><br><span class="line">                                    train = <span class="string">'train.csv'</span>,</span><br><span class="line">      															validation = <span class="string">'valid.csv'</span>,</span><br><span class="line">      															test = <span class="string">'test.csv'</span>,</span><br><span class="line">                                    format = <span class="string">'csv'</span>,</span><br><span class="line">                                    fields = fields,</span><br><span class="line">                                    skip_header = <span class="keyword">False</span> <span class="comment"># 是否跳过文件的第一行</span></span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> REVIEW, POLARITY, train_data</span><br></pre></td></tr></table></figure>
+<p>加载完数据可以开始建词表。如果本地没有预训练的词向量文件，在运行下面的代码时会自动下载到当前文件夹下的’.vector_cache’文件夹内，如果本地已经下好了，可以用Vectors指定文件名name，路径cache，还可以使用Glove。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torchtext.vocab <span class="keyword">import</span> Vectors, Glove</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line">REVIEW, POLARITY, train_data = DataLoader()</span><br><span class="line"><span class="comment"># vectors = Vectors(name='glove.6B.300d.txt', cache='.vector_cache')</span></span><br><span class="line">REVIEW.build_vocab(train_data, <span class="comment"># 建词表是用训练集建，不要用验证集和测试集</span></span><br><span class="line">                  max_size=<span class="number">400000</span>, <span class="comment"># 单词表容量</span></span><br><span class="line">                  vectors=<span class="string">'glove.6B.300d'</span>, <span class="comment"># 还有'glove.840B.300d'已经很多可以选</span></span><br><span class="line">                  unk_init=torch.Tensor.normal_ <span class="comment"># 初始化train_data中不存在预训练词向量词表中的单词</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(REVIEW.vocab.freqs.most_common(20)) 数据集里最常出现的20个单词</span></span><br><span class="line"><span class="comment"># print(REVIEW.vocab.itos[:10])   					列表 index to word</span></span><br><span class="line"><span class="comment"># print(REVIEW.vocab.stoi)       						字典 word to index</span></span><br></pre></td></tr></table></figure>
+<p>接着就是把预训练词向量加载到model的embedding weight里去了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">pretrained_embeddings = REVIEW.vocab.vectors</span><br><span class="line">model.embedding.weight.data.copy_(pretrained_embeddings)</span><br><span class="line">UNK_IDX = REVIEW.vocab.stoi[REVIEW.unk_token]</span><br><span class="line">PAD_IDX = REVIEW.vocab.stoi[REVIEW.pad_token]</span><br><span class="line"><span class="comment"># 因为预训练的权重的unk和pad的词向量不是在我们的数据集语料上训练得到的，所以最好置零</span></span><br><span class="line">model.embedding.weight.data[UNK_IDX] = torch.zeros(EMBEDDING_DIM)</span><br><span class="line">model.embedding.weight.data[PAD_IDX] = torch.zeros(EMBEDDING_DIM)</span><br></pre></td></tr></table></figure>
+<p>然后用torchtext的迭代器来批量加载数据，torchtext.data里的BucketIterator非常好用，它可以把长度相近的文本数据尽量都放到一个batch里，这样最大程度地减少padding，数据就少了很多无意义的0，也减少了矩阵计算量，也许还能对最终准确度有帮助(误)？我凭直觉猜的，没有做实验对比过，但是至少能加速训练迭代应该是没有疑问的，如果哪天我有钱了买了台好点的服务器做完实验再来补充。</p>
+<p><strong>sort_within_batch</strong>设为True的话，一个batch内的数据就会按<strong>sort_key</strong>的排列规则降序排列，<strong>sort_key</strong>是排列的规则，这里使用的是review的长度，即每条用户评论所包含的单词数量。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">train_iterator, valid_iterator, test_iterator = data.BucketIterator.splits(</span><br><span class="line">                                                (train_data, valid_data, test_data),</span><br><span class="line">                                                batch_size=<span class="number">32</span>,</span><br><span class="line">                                                sort_within_batch=<span class="keyword">True</span>,</span><br><span class="line">                                                sort_key = <span class="keyword">lambda</span> x:len(x.review),</span><br><span class="line">                                                device=torch.device(<span class="string">'cpu'</span>))</span><br></pre></td></tr></table></figure>
+<p>最后就是加载数据喂给模型了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> batch <span class="keyword">in</span> train_iterator:</span><br><span class="line">  <span class="comment"># 因为REVIEW Field的inclue_lengths为True，所以还会包含一个句子长度的Tensor</span></span><br><span class="line">  review, review_len = batch.review  </span><br><span class="line">  <span class="comment"># review.size = (seq_length, batch_size) , review_len.size = (batch_size, )</span></span><br><span class="line">  polarity = batch.polarity</span><br><span class="line">  <span class="comment"># polarity.size = (batch_size, )</span></span><br><span class="line">  predictions = model(review, review_lengths)</span><br><span class="line">  loss = criterion(predictions, polarity) <span class="comment"># criterion = nn.CrossEntropyLoss()</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-使用pytorch写一个LSTM情感分类器"><a href="#3-使用pytorch写一个LSTM情感分类器" class="headerlink" title="3. 使用pytorch写一个LSTM情感分类器"></a>3. 使用pytorch写一个LSTM情感分类器</h2><p>下面是我简略写的一个模型，仅供参考</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line"><span class="keyword">import</span> torch.nn.functional <span class="keyword">as</span> F</span><br><span class="line"><span class="keyword">from</span> torch.nn.utils.rnn <span class="keyword">import</span> pack_padded_sequence</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LSTM</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, vocab_size, embedding_dim, hidden_dim, output_dim,</span></span></span><br><span class="line"><span class="function"><span class="params">                 n_layers, bidirectional, dropout, pad_idx)</span>:</span></span><br><span class="line">        super(LSTM, self).__init__()</span><br><span class="line">        self.embedding = nn.Embedding(vocab_size, embedding_dim, padding_idx=pad_idx)</span><br><span class="line">        self.lstm = nn.LSTM(embedding_dim, hidden_dim, num_layers=n_layers,</span><br><span class="line">                            bidirectional=bidirectional, dropout=dropout)</span><br><span class="line">        self.Ws = nn.Parameter(torch.Tensor(hidden_dim, output_dim))</span><br><span class="line">        self.bs = nn.Parameter(torch.zeros((output_dim, )))</span><br><span class="line">        nn.init.uniform_(self.Ws, <span class="number">-0.1</span>, <span class="number">0.1</span>)</span><br><span class="line">        nn.init.uniform_(self.bs, <span class="number">-0.1</span>, <span class="number">0.1</span>)</span><br><span class="line">        self.dropout = nn.Dropout(p=<span class="number">0.5</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, x_len)</span>:</span></span><br><span class="line">        x = self.embedding(x)</span><br><span class="line">        x = pack_padded_sequence(x, x_len)</span><br><span class="line">        H, (h_n, c_n) = self.lstm(x)</span><br><span class="line">        h_n = self.dropout(h_n)</span><br><span class="line">        h_n = torch.squeeze(h_n)</span><br><span class="line">        res = torch.matmul(h_n, self.Ws) + self.bs</span><br><span class="line">        y = F.softmax(res, dim=<span class="number">1</span>)</span><br><span class="line">        <span class="comment"># y.size(batch_size, output_dim)</span></span><br><span class="line">        <span class="keyword">return</span> y</span><br></pre></td></tr></table></figure>
+<p>训练函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(model, iterator, optimizer, criterion)</span>:</span></span><br><span class="line">    epoch_loss = <span class="number">0</span></span><br><span class="line">    num_sample = <span class="number">0</span></span><br><span class="line">    correct = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    model.train()</span><br><span class="line">    <span class="keyword">for</span> batch <span class="keyword">in</span> iterator:</span><br><span class="line">        optimizer.zero_grad()</span><br><span class="line">        review, review_lengths = batch.review</span><br><span class="line">        polarity = batch.polarity</span><br><span class="line">        predictions = model(review, review_lengths)</span><br><span class="line">        correct += torch.sum(torch.argmax(preds, dim=<span class="number">1</span>) == polarity)</span><br><span class="line">        loss = criterion(predictions, polarity)</span><br><span class="line">        loss.backward()</span><br><span class="line">        epoch_loss += loss.item()</span><br><span class="line">        num_sample += len(batch)</span><br><span class="line">        optimizer.step()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> epoch_loss / num_sample, correct.float() / num_sample</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">	<span class="keyword">for</span> epoch <span class="keyword">in</span> range(N_EPOCHS):</span><br><span class="line">    train_loss, acc = train(model, train_iter, optimizer, criterion)</span><br><span class="line">    print(<span class="string">f'\tTrain Loss: <span class="subst">&#123;train_loss:<span class="number">.3</span>f&#125;</span> | Train Acc: <span class="subst">&#123;acc* <span class="number">100</span>:<span class="number">.2</span>f&#125;</span>%'</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项和遇到的一些坑"><a href="#注意事项和遇到的一些坑" class="headerlink" title="注意事项和遇到的一些坑"></a>注意事项和遇到的一些坑</h3><ol>
+<li>文本情感分类需不需要去除停用词？</li>
+</ol>
+<ul>
+<li>应该是不用的，否则acc有可能下降。</li>
+</ul>
+<ol start="2">
+<li><p><code>data.TabularDataset.splits</code>虽然好用，但是如果你只想加载训练集，这时候如果直接不给validation和test参数赋值，那么其他代码和原来一样，比如这样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">train_data = data.TabularDataset.splits(</span><br><span class="line">                                    path = <span class="string">''</span>,</span><br><span class="line">                                    train = <span class="string">'train.csv'</span>,</span><br><span class="line">                                    format = <span class="string">'csv'</span>,</span><br><span class="line">                                    fields = fields,</span><br><span class="line">                                    skip_header = <span class="keyword">False</span> <span class="comment"># 是否跳过文件的第一行</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>那么底下你一定会报错，因为<code>data.TabularDataset.splits</code>返回的是一个元组，也就是如果是训练验证测试三个文件都给了函数，就返回<code>(train_data, valid_data, test_data)</code>，这时候你用三个变量去接受函数返回值当然没问题，元组会自动拆包。</p>
+<p>当只给函数一个文件<em>train.csv</em>时，函数返回的是<code>(train_data)</code>而非<code>train_data</code>，因此正确的写法应该如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">train_data = data.TabularDataset.splits(</span><br><span class="line">                                    path = <span class="string">''</span>,</span><br><span class="line">                                    train = <span class="string">'train.csv'</span>,</span><br><span class="line">                                    format = <span class="string">'csv'</span>,</span><br><span class="line">                                    fields = fields,</span><br><span class="line">                                    skip_header = <span class="keyword">False</span> <span class="comment"># 是否跳过文件的第一行</span></span><br><span class="line">)[<span class="number">0</span>] <span class="comment"># 注意这里的切片，选择元组的第一个也是唯一一个元素赋给train_data</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同理<code>data.BucketIterator.splits</code>也有相同的问题，它不但返回的是元组，它的参数datasets要求也是以元组形式，即<code>(train_data, valid_data, test_data)</code>进行赋值，否则在下面的运行中也会出现各种各样奇怪的问题。</p>
+<p>如果你要生成两个及以上的迭代器，那么没问题，直接照上面写就完事了。</p>
+<p>如果你只要生成<code>train_iterator</code>，那么正确的写法应该是下面这样</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">train_iter = data.BucketIterator(</span><br><span class="line">            train_data,</span><br><span class="line">            batch_size=<span class="number">32</span>,</span><br><span class="line">            sort_key=<span class="keyword">lambda</span> x:len(x.review),</span><br><span class="line">            sort_within_batch=<span class="keyword">True</span>,</span><br><span class="line">            shuffle=<span class="keyword">True</span> <span class="comment"># 训练集需要shuffle，但因为验证测试集不需要</span></span><br><span class="line">  											 <span class="comment"># 可以生成验证和测试集的迭代器直接用data.iterator.Iterator类就足够了</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="4">
+<li><p>出现的问题 <code>x = pack_padded_sequence(x, x_len)</code> 当数据集有长度为0的句子时, 就会后面报错</p>
+</li>
+<li><p>Adagrad效果比Adam好的多</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4. 总结"></a>4. 总结</h2></li>
+</ol>
+<p>不仅仅是NLP领域，在各大顶会中，越来越多的学者选择使用Pytorch而非TensorFlow，主要原因就是因为它的易用性，torchtext和pytorch搭配起来是非常方便的NLP工具，可以大大缩短文本预处理，加载数据的时间。</p>
+<p>我本人之前用过tf 1.x以及keras，最终拥抱了Pytorch，也是因为它与Numpy极其类似的用法，更Pythonic的代码，清晰的源码让我在遇到bug时能一步一步找到问题所在，动态图让人能随时看到输出的Tensor的全部信息，这些都是Pytorch的优势。</p>
+<p>现在tf 2.0也在不断改进，有人笑称tf越来越像pytorch了，其实pytorch也在不断向tf学习，在工业界，tf仍然处于王者地位，不知道未来pytorch能不能在工业界也与tf平分秋色，甚至更胜一筹呢？</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/18/Flask ˝æ›ø‚∆™/" rel="next" title="Flask数据库篇">
+                <i class="fa fa-chevron-left"></i> Flask数据库篇
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/06/DL中的Normalization/" rel="prev" title="Normalization">
+                Normalization <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="TianHongZXY">
+            
+              <p class="site-author-name" itemprop="name">TianHongZXY</p>
+              <p class="site-description motion-element" itemprop="description">浪漫骑士 行吟诗人 自由思想者</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/TianHongZXY" title="GitHub &rarr; https://github.com/TianHongZXY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:zhuxinyu886@outlook.com" title="E-Mail &rarr; mailto:zhuxinyu886@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#使用pytorch和torchtext进行文本分类"><span class="nav-number">1.</span> <span class="nav-text">使用pytorch和torchtext进行文本分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-文本数据预处理"><span class="nav-number">1.1.</span> <span class="nav-text">1. 文本数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#词干提取和词型还原"><span class="nav-number">1.1.1.</span> <span class="nav-text">词干提取和词型还原</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-使用torchtext加载文本数据"><span class="nav-number">1.2.</span> <span class="nav-text">2. 使用torchtext加载文本数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用pytorch写一个LSTM情感分类器"><span class="nav-number">1.3.</span> <span class="nav-text">3. 使用pytorch写一个LSTM情感分类器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项和遇到的一些坑"><span class="nav-number">1.3.1.</span> <span class="nav-text">注意事项和遇到的一些坑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-总结"><span class="nav-number">1.4.</span> <span class="nav-text">4. 总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <!-- <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span> -->
+  <span class="author" itemprop="copyrightHolder"><span class="with-love"><i class="fa fa-heart-o"></i></span>TianHongZXY</span>
+
+  
+
+  
+</div>
+<!--
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+-->
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'fNjvG519rNMQCRTez4XP1aGe-gzGzoHsz',
+      appKey: 'DY0fa7oCKanbyW5J4UoxG9ug',
+      placeholder: 'Say something',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/click.js"></script>
+</body>
+</html>
