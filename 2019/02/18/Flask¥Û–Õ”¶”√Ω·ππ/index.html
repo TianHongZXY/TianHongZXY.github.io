@@ -107,25 +107,25 @@
 
 
 
-  <meta name="description" content="dbdb学习记录关于__all__的用法 在__init__.py文件中，__all__=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
-<meta name="keywords" content="python">
+  <meta name="description" content="项目结构一般结构有四个顶级文件夹：  Flask应用一般保存在名为app的包中； 数据库迁移脚本在migrations文件夹中； 单元测试在tests包中； python虚拟环境在venv中。  除此之外还有config.py存储配置。 requirements.txt列出所有依赖包。 flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。 应用包应用包存放应用的所">
+<meta name="keywords" content="Flask">
 <meta property="og:type" content="article">
-<meta property="og:title" content="dbdb学习记录">
-<meta property="og:url" content="https://TianHongZXY.github.io/2019/02/14/dbdb学习记录/index.html">
+<meta property="og:title" content="Flask大型应用结构">
+<meta property="og:url" content="https://TianHongZXY.github.io/2019/02/18/Flask¥Û–Õ”¶”√Ω·ππ/index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="dbdb学习记录关于__all__的用法 在__init__.py文件中，__all__=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
+<meta property="og:description" content="项目结构一般结构有四个顶级文件夹：  Flask应用一般保存在名为app的包中； 数据库迁移脚本在migrations文件夹中； 单元测试在tests包中； python虚拟环境在venv中。  除此之外还有config.py存储配置。 requirements.txt列出所有依赖包。 flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。 应用包应用包存放应用的所">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-14T13:17:20.827Z">
+<meta property="og:updated_time" content="2019-02-18T13:18:44.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="dbdb学习记录">
-<meta name="twitter:description" content="dbdb学习记录关于__all__的用法 在__init__.py文件中，__all__=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
+<meta name="twitter:title" content="Flask大型应用结构">
+<meta name="twitter:description" content="项目结构一般结构有四个顶级文件夹：  Flask应用一般保存在名为app的包中； 数据库迁移脚本在migrations文件夹中； 单元测试在tests包中； python虚拟环境在venv中。  除此之外还有config.py存储配置。 requirements.txt列出所有依赖包。 flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。 应用包应用包存放应用的所">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/02/14/dbdb学习记录/">
+  <link rel="canonical" href="https://TianHongZXY.github.io/2019/02/18/Flask¥Û–Õ”¶”√Ω·ππ/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>dbdb学习记录 | TianHongZXY</title>
+  <title>Flask大型应用结构 | TianHongZXY</title>
   
 
 
@@ -355,7 +355,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/14/dbdb学习记录/">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/18/Flask¥Û–Õ”¶”√Ω·ππ/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY">
@@ -372,7 +372,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">dbdb学习记录
+          <h1 class="post-title" itemprop="name headline">Flask大型应用结构
 
               
             
@@ -398,13 +398,9 @@
                 
               
 
-              <time title="Created: 2019-02-14 21:08:38 / Modified: 21:17:20" itemprop="dateCreated datePublished" datetime="2019-02-14T21:08:38+08:00">2019-02-14</time>
+              <time title="Created: 2019-02-18 21:18:44" itemprop="dateCreated datePublished" datetime="2019-02-18T21:18:44+08:00">2019-02-18</time>
             
 
-            
-              
-
-              
             
           </span>
 
@@ -435,8 +431,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/14/dbdb学习记录/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/14/dbdb学习记录/" itemprop="commentCount"></span>
+                <a href="/2019/02/18/Flask¥Û–Õ”¶”√Ω·ππ/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/Flask¥Û–Õ”¶”√Ω·ππ/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -453,8 +449,8 @@
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
             <span class="post-meta-divider">|</span>
-            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.1k</span>
-            <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：4 分钟
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 692</span>
+            <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：2 分钟
           
 
           
@@ -474,79 +470,28 @@
       
 
       
-        <h1 id="dbdb学习记录"><a href="#dbdb学习记录" class="headerlink" title="dbdb学习记录"></a>dbdb学习记录</h1><h2 id="关于-all-的用法"><a href="#关于-all-的用法" class="headerlink" title="关于__all__的用法"></a>关于__all__的用法</h2><ol>
-<li><p>在<em>__init__.py</em>文件中，__all__=[“module_a”,”module_b”] </p>
-<p>在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。</p>
-<a id="more"></a>
-</li>
-<li><p>在普通py文件中，__all__=[“class_name”,”function_name”] </p>
-<p>在使用 from module_name import * 时,表示import该module中的__all__中所列出的。</p>
-</li>
-</ol>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li><p>在普通的<em>.py中, 使用 </em>all<em> 时,可以使用</em>all*列出的 类、函数、变量等,不使用<em>all</em>时会使用module中的所有不以下划线开头的成员。</p>
-</li>
-<li><p>__all__只能影响到 from import * 这种import 方式, 对于from … import … 方式没有影响。</p>
-</li>
-<li><p>__all__ 的数据类型: <em>list</em></p>
-</li>
-</ol>
-<h2 id="文件打开方式"><a href="#文件打开方式" class="headerlink" title="文件打开方式"></a>文件打开方式</h2><blockquote>
-<h3 id="open"><a href="#open" class="headerlink" title="open()"></a>open()</h3><ul>
-<li>Built-in <strong>open()</strong> takes a file name and returns a new Python file object. This is what you need in the majority of cases.</li>
-</ul>
-<h3 id="os-open"><a href="#os-open" class="headerlink" title="os.open()"></a>os.open()</h3><ul>
-<li><strong>os.open()</strong> takes a file name and returns a new file descriptor. This file descriptor can be passed to other low-level functions, such as <code>os.read()</code> and <code>os.write()</code>, or to <code>os.fdopen()</code>, as described below. You only need this when writing code that depends on operating-system-dependent APIs, such as using the <code>O_EXCL</code> flag to <code>open(2)</code>.</li>
-<li><strong>os.O_RDWR :</strong> 以读写的方式打开</li>
-<li><strong>os.O_CREAT:</strong> 创建并打开一个新文件</li>
-<li><strong>os.O_RDONLY:</strong> 以只读的方式打开</li>
-<li><strong>os.O_WRONLY:</strong> 以只写的方式打开</li>
-</ul>
-<h3 id="os-fdopen"><a href="#os-fdopen" class="headerlink" title="os.fdopen()"></a>os.fdopen()</h3><ul>
-<li><strong>os.fdopen()</strong> takes an existing file descriptor — typically produced by Unix system calls such as <code>pipe()</code> or <code>dup()</code>, and builds a Python file object around it. Effectively it converts a file descriptor to a full file object, which is useful when interfacing with C code or with APIs that only create low-level file descriptors.</li>
-<li><strong>os.fdopen(fd, [, model[, bufsize]])</strong> 方法用于通过文件描述符 fd 创建一个文件对象，并返回这个文件对象。</li>
-<li><strong>mode</strong> 可选，mode参数可以指定『r,w,a,r+,w+,a+,b』等，表示文件的是只读的还是可以读写的，以及打开文件是以二进制还是文本形式打开。</li>
-</ul>
-<h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>Built-in <code>open</code> can be implemented using <code>os.open()</code> (to create a file descriptor(文件描述符)) and <code>os.fdopen()</code> (to wrap it in a file object(文件对象)):</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># equivalent to f = open(filename, "r")</span></span><br><span class="line">&gt;f = os.fdopen(os.open(filename, os.O_RDONLY))</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>摘自<a href="https://stackoverflow.com/questions/15039528/what-is-the-difference-between-os-open-and-os-fdopen-in-python" target="_blank" rel="noopener">stackoverflow</a></p>
-</blockquote>
-<h2 id="文件锁"><a href="#文件锁" class="headerlink" title="文件锁"></a>文件锁</h2><p>为了避免在多进程时同时操作文件，需要程序在操作文件前先上锁。</p>
+        <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p>一般结构有四个顶级文件夹：</p>
 <ul>
-<li>LOCK_SH：表示要创建一个共享锁，在任意时间内，一个文件的共享锁可以被多个进程拥有；</li>
-<li>LOCK_EX：表示创建一个排他锁，在任意时间内，一个文件的排他锁只能被一个进程拥有；</li>
+<li>Flask应用一般保存在名为app的包中；</li>
+<li>数据库迁移脚本在migrations文件夹中；</li>
+<li>单元测试在tests包中；</li>
+<li>python虚拟环境在venv中。</li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> portalocker</span><br><span class="line">portalocker.lock(file_descriptor, portalocker.LOCK_EX)</span><br></pre></td></tr></table></figure>
-<h2 id="定位文件位置"><a href="#定位文件位置" class="headerlink" title="定位文件位置"></a>定位文件位置</h2><h3 id="seek-offset-whence-：移动文件指针"><a href="#seek-offset-whence-：移动文件指针" class="headerlink" title="seek(offset,whence)：移动文件指针"></a>seek(offset,whence)：移动文件指针</h3><ul>
-<li>offset:偏移量,可以是负数代表往前移动指针</li>
-<li>whence:偏移相对位置</li>
-</ul>
-<h3 id="文件指针定位的whence有三种："><a href="#文件指针定位的whence有三种：" class="headerlink" title="文件指针定位的whence有三种："></a>文件指针定位的whence有三种：</h3><ul>
-<li>os.SEEK_SET:相对文件起始位置</li>
-<li>os.SEEK_CUR:相对文件当前位置</li>
-<li>os.SEEK_END:相对文件结尾位置</li>
-<li>f.seek(10, os.SEEK_SET) # 将文件指针指向文件开始的第10个位置</li>
-<li>f.seek(-10, os.SEEK_END) # 将文件指针指向文件末尾向前的第10个位置</li>
-<li>f.seek(10) # 将文件指针指向文件开始的第10个位置#</li>
-</ul>
-<h2 id="文件读写函数"><a href="#文件读写函数" class="headerlink" title="文件读写函数"></a>文件读写函数</h2><ul>
-<li>f.read(10)从文件指针当前指向的位置读取10位，没给参数代表读完。</li>
-<li>f.tell()查看文件指针当前指向的位置</li>
-<li>f.flush()：文件写入有个缓存机制，如果文件的长度小于这个文件的缓存的size,它会先放在缓存中，调用close或者flush函数才会写入到磁盘。当写入的文件大于这个文件的系统缓存，它会先把写满缓存的同时写入磁盘，这个时候查看文件已经写入了，不用调用close或者flush方法。</li>
-</ul>
-<h2 id="property使用方法"><a href="#property使用方法" class="headerlink" title="@property使用方法"></a>@property使用方法</h2><p>python内置的<code>@property</code>装饰器就是负责把一个方法变成属性调用，这样可以不把属性直接暴露出去，而是通过函数来返回或者设置属性的值。例如</p>
-<blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line">&gt;  @property</span><br><span class="line">&gt;  <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></span><br><span class="line">&gt;      <span class="keyword">return</span> self._score</span><br><span class="line">&gt; </span><br><span class="line">&gt; </span><br><span class="line">&gt;  @score.setter</span><br><span class="line">&gt;  <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, value)</span>:</span></span><br><span class="line">&gt;      <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value, int):</span><br><span class="line">&gt;          <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer!'</span>)</span><br><span class="line">&gt;      <span class="keyword">if</span> value &lt; <span class="number">0</span> <span class="keyword">or</span> value &gt; <span class="number">100</span>:</span><br><span class="line">&gt;          <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0 ~ 100!'</span>)</span><br><span class="line">&gt;      self._score = value</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>此时，<code>@property</code>本身又创建了另一个装饰器<a href="mailto:`@score.setter" target="_blank" rel="noopener">`@score.setter</a>`，负责把一个setter方法变成属性赋值，如果不设置setter方法就只是一个只读属性</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt;&gt;&gt; s = Student()</span><br><span class="line">&gt; &gt;&gt;&gt; s.score = <span class="number">60</span> <span class="comment"># 实际转化为s.set_score(60)</span></span><br><span class="line">&gt; &gt;&gt;&gt; s.score <span class="comment"># 实际转化为s.get_score()</span></span><br><span class="line">&gt; <span class="number">60</span></span><br><span class="line">&gt; &gt;&gt;&gt; s.score = <span class="number">9999</span></span><br><span class="line">&gt; Traceback (most recent call last):</span><br><span class="line">&gt;   ...</span><br><span class="line">&gt; ValueError: score must between <span class="number">0</span> ~ <span class="number">100</span>!</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-<blockquote>
-<p>摘自<a href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386820062641f3bcc60a4b164f8d91df476445697b9e000" target="_blank" rel="noopener">廖雪峰的官方网站</a></p>
-</blockquote>
+<p>除此之外还有config.py存储配置。</p>
+<p>requirements.txt列出所有依赖包。</p>
+<p>flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。</p>
+<h1 id="应用包"><a href="#应用包" class="headerlink" title="应用包"></a>应用包</h1><p>应用包存放应用的所有代码、模板和静态文件。templates和static现在在app包中。数据库模型和电子邮件支持函数也在app包中。</p>
+<h1 id="蓝本"><a href="#蓝本" class="headerlink" title="蓝本"></a>蓝本</h1><p>蓝本和应用类似，也可以定义路由和错误处理程序。不同的是，在蓝本中定义的路由和错误处理程序处于休眠状态，直到蓝本注册到应用上之后，它才真正成为应用的一部分。下面是app/main/__init__.py的代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line"></span><br><span class="line">main = Blueprint(<span class="string">'main'</span>, __name__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views, errors</span><br></pre></td></tr></table></figure>
+<p>蓝本通过实例化一个Blueprint类对象创建。两个参数：蓝本的名称和蓝本所在的包或模块。</p>
+<p>应用的路由保存在app/main/views.py中，错误处理程序保存在app/main/errors.py中。导入这连个模块就能把路由和错误处理程序与蓝本联系起来。因为在views和errors中也要导入main蓝本，为了避免循环导入依赖，导入views和errors要在</p>
+<p>__init__.py的末尾。</p>
+<hr>
+<p>在蓝本中编写错误处理程序稍有不同，如果使用errorhandler装饰器，那么只有蓝本中的错误才能触发处理程序。要想注册全局的错误处理程序，必须使用app_errorhandler装饰器。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> main</span><br><span class="line"></span><br><span class="line"><span class="meta">@main.app_errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span><span class="params">(e)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'404.html'</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>在蓝本中编写视图函数主要有两点不同：第一，路由装饰器由蓝本提供，因此使用main.route而非app.route。第二，url_for()函数的用法不同。在蓝本中，Flask会为所有蓝本中的全部端点加上一个命名空间，这样就可以在不同的蓝本中使用相同的端点名定义视图函数，而不冲突。命名空间是蓝本的名称(Blueprint构造函数的第一个参数)，而且与端点名之间以一个点号分隔。因此视图函数index()注册的端点名是main.index，其URL用<code>url_for(&#39;main.index&#39;)</code>获取。</p>
+<p>在蓝本中可以省略蓝本名，例如<code>url_for(&#39;.index&#39;)</code>这种写法，使用当前请求的蓝本名补足端点名。这意味着，同一蓝本的重定向可以使用简写，但跨蓝本的重定向必须使用带有蓝本名的完全限定端点名。</p>
 
       
     </div>
@@ -570,7 +515,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+            <a href="/tags/Flask/" rel="tag"><i class="fa fa-tag"></i> Flask</a>
           
         </div>
       
@@ -583,8 +528,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/02/学习率衰减/" rel="next" title="学习率衰减">
-                <i class="fa fa-chevron-left"></i> 学习率衰减
+              <a href="/2019/02/14/dbdb—ßœ∞º«¬º/" rel="next" title="dbdb学习记录">
+                <i class="fa fa-chevron-left"></i> dbdb学习记录
               </a>
             
           </div>
@@ -593,7 +538,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/02/17/Flask数据库篇/" rel="prev" title="Flask数据库篇">
+              <a href="/2019/02/18/Flask ˝æ›ø‚∆™/" rel="prev" title="Flask数据库篇">
                 Flask数据库篇 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -779,7 +724,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dbdb学习记录"><span class="nav-number">1.</span> <span class="nav-text">dbdb学习记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-all-的用法"><span class="nav-number">1.1.</span> <span class="nav-text">关于__all__的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.1.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件打开方式"><span class="nav-number">1.2.</span> <span class="nav-text">文件打开方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#open"><span class="nav-number">1.2.1.</span> <span class="nav-text">open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-open"><span class="nav-number">1.2.2.</span> <span class="nav-text">os.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-fdopen"><span class="nav-number">1.2.3.</span> <span class="nav-text">os.fdopen()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件锁"><span class="nav-number">1.4.</span> <span class="nav-text">文件锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定位文件位置"><span class="nav-number">1.5.</span> <span class="nav-text">定位文件位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#seek-offset-whence-：移动文件指针"><span class="nav-number">1.5.1.</span> <span class="nav-text">seek(offset,whence)：移动文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件指针定位的whence有三种："><span class="nav-number">1.5.2.</span> <span class="nav-text">文件指针定位的whence有三种：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件读写函数"><span class="nav-number">1.6.</span> <span class="nav-text">文件读写函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property使用方法"><span class="nav-number">1.7.</span> <span class="nav-text">@property使用方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用包"><span class="nav-number">2.</span> <span class="nav-text">应用包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蓝本"><span class="nav-number">3.</span> <span class="nav-text">蓝本</span></a></li></ol></div>
             
 
           </div>
