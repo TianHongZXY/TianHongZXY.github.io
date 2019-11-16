@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="TianHongZXY">
 <meta property="og:description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。  q_{i}=\frac{\exp \left(z_{i} &#x2F; T\right)}{\sum_{j} \exp \left(z_{j} &#x2F; T\r">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T02:55:52.985Z">
+<meta property="og:updated_time" content="2019-11-16T03:16:30.109Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 10:55:52" itemprop="dateModified" datetime="2019-11-16T10:55:52+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-16 11:16:30" itemprop="dateModified" datetime="2019-11-16T11:16:30+08:00">2019-11-16</time>
               
             
           </span>
@@ -494,20 +494,19 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
 <script type="math/tex; mode=display">
 \frac{\partial C}{\partial z}=\frac{\partial q}{\partial z} \frac{\partial C}{\partial q}</script><p>p是原模型产生的softmax输出，与q无关。</p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\partial q_{i}}=-\frac{p_{i}}{q_{i}}</script><script type="math/tex; mode=display">\frac{\partial C}{\partial q}$$是一个n维向量：</script><p>\frac{\partial C}{\partial q}=\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \ {-\frac{p_{2}}{q_{2}}} \ {\vdots} \ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</p>
+\frac{\partial C}{\partial q_{i}}=-\frac{p_{i}}{q_{i}}</script><p>$\frac{\partial C}{\partial q}$是一个n维向量：</p>
 <script type="math/tex; mode=display">
-$$\frac{\partial q}{\partial z}$$是一个$$n \times n$$的方阵，记$$Z=\sum_{k} \exp \left(z_{k} / T\right)$$，可以求得$$q_{i}$$关于$$z_{j}$$的偏导为：</script><p>\frac{\partial q_{i}}{\partial z_{j}}=\frac{1}{Z^{2}}\left(Z \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\exp \left(z_{i} / T\right)\left[\frac{\partial Z}{\partial z_{j}}\right]\right)</p>
+\frac{\partial C}{\partial q}=\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</script><p>$\frac{\partial q}{\partial z}$是一个$n \times n$的方阵，记$Z=\sum_{k} \exp \left(z_{k} / T\right)$，可以求得$q_{i}$关于$z_{j}$的偏导为：</p>
 <script type="math/tex; mode=display">
-右侧方框部分可以展开为</script><p>\frac{\partial Z}{\partial z_{j}}=\frac{1}{T} \exp \left(z_{j} / T\right)</p>
+\frac{\partial q_{i}}{\partial z_{j}}=\frac{1}{Z^{2}}\left(Z \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\exp \left(z_{i} / T\right)\left[\frac{\partial Z}{\partial z_{j}}\right]\right)</script><p>右侧方框部分可以展开为</p>
 <script type="math/tex; mode=display">
-代入上式将括号展开，可以得到：</script><p>\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &amp;=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T Z^{2}} \exp \left(z_{i} / T\right) \exp \left(z_{j} / T\right) \ &amp;=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T} \frac{\exp \left(z_{i} / T\right)}{Z} \frac{\exp \left(z_{j} / T\right)}{Z} \ &amp;=\frac{1}{Z}\left[\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}\right]-\frac{1}{T} q_{i} q_{j} \end{aligned}</p>
+\frac{\partial Z}{\partial z_{j}}=\frac{1}{T} \exp \left(z_{j} / T\right)</script><p>代入上式将括号展开，可以得到：</p>
 <script type="math/tex; mode=display">
-左侧方框分类讨论得：</script><p>\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}=\left{\begin{array}{ll}{\frac{1}{T} \exp \left(z_{i} / T\right),} &amp; {\text { if } i=j} \ {0,} &amp; {\text { if } i \neq j}\end{array}\right.</p>
+\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T Z^{2}} \exp \left(z_{i} / T\right) \exp \left(z_{j} / T\right) \\ &=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T} \frac{\exp \left(z_{i} / T\right)}{Z} \frac{\exp \left(z_{j} / T\right)}{Z} \\ &=\frac{1}{Z}\left[\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}\right]-\frac{1}{T} q_{i} q_{j} \end{aligned}</script><p>左侧方框分类讨论得：</p>
 <script type="math/tex; mode=display">
-代入上式得：</script><p>\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &amp;=\left{\begin{array}{ll}{\frac{1}{T}\left(\frac{\exp \left(z_{i} / T\right)}{Z}-q_{i} q_{j}\right),} &amp; {\text { if } i=j} \ {-\frac{1}{T} q_{i} q_{j},} &amp; {\text { if } i \neq j} \ {\frac{1}{T}\left(q_{i}-q_{i} q_{j}\right),} &amp; {\text { if } i=j} \ {-\frac{1}{T} q_{i} q_{j},} &amp; {\text { if } i \neq j}\end{array}\right.\end{aligned}</p>
+\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}=\left\{\begin{array}{ll}{\frac{1}{T} \exp \left(z_{i} / T\right),} & {\text { if } i=j} \\ {0,} & {\text { if } i \neq j}\end{array}\right.</script><p>代入上式得：</p>
 <script type="math/tex; mode=display">
-
-所以</script><p>\partial q / \partial z</p>
+\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &=\left\{\begin{array}{ll}{\frac{1}{T}\left(\frac{\exp \left(z_{i} / T\right)}{Z}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j} \\ {\frac{1}{T}\left(q_{i}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j}\end{array}\right.\end{aligned}</script><p>所以$$<br>\partial q / \partial z</p>
 <script type="math/tex; mode=display">等于：</script><p>\frac{\partial q}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} &amp; {-q_{1} q_{2}} &amp; {\cdots} &amp; {-q_{1} q_{n}} \ {-q_{2} q_{1}} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {-q_{n} q_{1}} &amp; {-q_{n} q_{2}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right]</p>
 <script type="math/tex; mode=display">
 这里就是为什么softmax函数对其输入的偏导是下列形式的原因，$$g(·)$$函数为softmax函数，$$x$$为输入向量，维度为$$d$$。</script><p>\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\operatorname{diag}(\hat{\mathbf{y}})-\hat{\mathbf{y}} \hat{\mathbf{y}}^{\top} \quad \in \mathbb{R}^{d \times d}</p>
