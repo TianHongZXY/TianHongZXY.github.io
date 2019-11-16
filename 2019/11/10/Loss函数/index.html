@@ -480,7 +480,7 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
 <script type="math/tex; mode=display">
 \frac{\partial C}{\partial q_{i}}=-\frac{p_{i}}{q_{i}}</script><p>$\frac{\partial C}{\partial q}$是一个n维向量：</p>
 <script type="math/tex; mode=display">
-\frac{\partial C}{\partial q}=\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</script><p>$\frac{\partial q}{\partial z}$是一个$n \times n$的方阵，记$Z=\sum<em>{k} \exp \left(z</em>{k} / T\right)$，可以求得$q<em>{i}$关于$z</em>{j}$的偏导为：</p>
+\frac{\partial C}{\partial q}=\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</script><p>$\frac{\partial q}{\partial z}$是一个$n \times n$的方阵，记$Z=\sum_{k} \exp \left(z_{k} / T\right)$，可以求得$q_{i}$关于$z_{j}$的偏导为：</p>
 <script type="math/tex; mode=display">
 \frac{\partial q_{i}}{\partial z_{j}}=\frac{1}{Z^{2}}\left(Z \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\exp \left(z_{i} / T\right)\left[\frac{\partial Z}{\partial z_{j}}\right]\right)</script><p>右侧方框部分可以展开为</p>
 <script type="math/tex; mode=display">
