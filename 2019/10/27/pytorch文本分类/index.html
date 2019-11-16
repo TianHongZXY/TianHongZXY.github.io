@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论review，例">
-<meta name="keywords" content="NLP">
+  <meta name="description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理">
+<meta name="keywords" content="deep learning,NLP,pytorch">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用pytorch和torchtext进行文本分类">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;10&#x2F;27&#x2F;pytorch%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论review，例">
+<meta property="og:description" content="使用pytorch和torchtext进行文本分类文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了torch和torchtext两个库。 1. 文本数据预处理">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T03:38:02.604Z">
+<meta property="og:updated_time" content="2019-11-16T04:21:30.235Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 11:38:02" itemprop="dateModified" datetime="2019-11-16T11:38:02+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-16 12:21:30" itemprop="dateModified" datetime="2019-11-16T12:21:30+08:00">2019-11-16</time>
               
             
           </span>
@@ -469,7 +469,8 @@
 
       
         <h1 id="使用pytorch和torchtext进行文本分类"><a href="#使用pytorch和torchtext进行文本分类" class="headerlink" title="使用pytorch和torchtext进行文本分类"></a>使用pytorch和torchtext进行文本分类</h1><p>文本分类是NLP领域的较为容易的入门问题，本文记录我自己在做文本分类任务以及复现相关论文时的基本流程，绝大部分操作都使用了<em>torch</em>和<em>torchtext</em>两个库。</p>
-<h2 id="1-文本数据预处理"><a href="#1-文本数据预处理" class="headerlink" title="1. 文本数据预处理"></a>1. 文本数据预处理</h2><p>首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论<strong>review</strong>，例如imdb或者amazon数据集。第二列是情感极性<strong>polarity</strong>，N分类问题的话就有N个值，假设值得范围是0~N-1。</p>
+<h2 id="1-文本数据预处理"><a href="#1-文本数据预处理" class="headerlink" title="1. 文本数据预处理"></a>1. 文本数据预处理</h2><a id="more"></a>
+<p>首先数据存储在三个csv文件中，分别是train.csv，valid.csv，test.csv，第一列存储的是文本数据，例如情感分类问题经常是用户的评论<strong>review</strong>，例如imdb或者amazon数据集。第二列是情感极性<strong>polarity</strong>，N分类问题的话就有N个值，假设值得范围是0~N-1。</p>
 <p>下面是很常见的文本预处理流程，英文文本的话不需要分词，直接按空格split就行了，这里只会主要说说第4点。</p>
 <ol>
 <li><p>去除非文本部分</p>
@@ -568,7 +569,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
             <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+            <a href="/tags/pytorch/" rel="tag"><i class="fa fa-tag"></i> pytorch</a>
           
         </div>
       
@@ -581,7 +586,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/18/Flask%C2%A0%CB%9D%C3%A6%E2%80%BA%C3%B8%E2%80%9A%E2%88%86%E2%84%A2/" rel="next" title="Flask数据库篇">
+              <a href="/2019/02/18/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AF%87/" rel="next" title="Flask数据库篇">
                 <i class="fa fa-chevron-left"></i> Flask数据库篇
               </a>
             
@@ -692,9 +697,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -721,9 +724,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>

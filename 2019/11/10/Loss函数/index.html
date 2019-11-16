@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="Softmax + 交叉熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;90049906 考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。  q_{i}=\frac{\exp \left(z_{i}">
+  <meta name="description" content="Softmax + 交叉熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;90049906 考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
 <meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Softmax + 交叉熵">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;Loss%E5%87%BD%E6%95%B0&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="Softmax + 交叉熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;90049906 考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。  q_{i}=\frac{\exp \left(z_{i}">
+<meta property="og:description" content="Softmax + 交叉熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;90049906 考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T03:21:54.515Z">
+<meta property="og:updated_time" content="2019-11-16T04:18:42.571Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 11:21:54" itemprop="dateModified" datetime="2019-11-16T11:21:54+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-16 12:18:42" itemprop="dateModified" datetime="2019-11-16T12:18:42+08:00">2019-11-16</time>
               
             
           </span>
@@ -470,6 +470,7 @@
       
         <h1 id="Softmax-交叉熵"><a href="#Softmax-交叉熵" class="headerlink" title="Softmax + 交叉熵"></a>Softmax + 交叉熵</h1><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/90049906" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/90049906</a></p>
 <p>考虑一个广义的Softmax函数，q的logits为<script type="math/tex">z_{i}</script>其中<script type="math/tex">T</script>是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度<script type="math/tex">T</script>趋向0时，softmax输出将收敛为one-hot向量，温度<script type="math/tex">T</script>趋向无穷时，输出更「软」。</p>
+<a id="more"></a>
 <script type="math/tex; mode=display">
 q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \left(z_{j} / T\right)}</script><p>因此，在知识蒸馏中，训练新模型的时候，可以使用较高的T，使得softmax产生的分布足够软，这时让新模型的softmax输出近似原模型；在训练结束以后再使用正常的温度<script type="math/tex">T=1</script>来预测。记新模型产生的分布为q，原模型产生的分布为p，p的logits为<script type="math/tex">v_{i}</script>(下面的推导只需要把T设为1，p设为one-hot向量，就是平时用数据集从头训练模型时的softmax+交叉熵得到的损失函数)</p>
 <p>需要最小化的损失函数为C：</p>
@@ -642,9 +643,7 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
@@ -671,9 +670,7 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
