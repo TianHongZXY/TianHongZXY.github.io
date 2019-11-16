@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="TianHongZXY">
 <meta property="og:description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。  q_{i}=\frac{\exp \left(z_{i} &#x2F; T\right)}{\sum_{j} \exp \left(z_{j} &#x2F; T\r">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T03:16:30.109Z">
+<meta property="og:updated_time" content="2019-11-16T03:18:40.255Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -413,7 +413,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 11:16:30" itemprop="dateModified" datetime="2019-11-16T11:16:30+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-16 11:18:40" itemprop="dateModified" datetime="2019-11-16T11:18:40+08:00">2019-11-16</time>
               
             
           </span>
@@ -464,7 +464,7 @@
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
             <span class="post-meta-divider">|</span>
-            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.2k</span>
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 1.1k</span>
             <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：6 分钟</span>
           
 
@@ -506,18 +506,16 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
 <script type="math/tex; mode=display">
 \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}=\left\{\begin{array}{ll}{\frac{1}{T} \exp \left(z_{i} / T\right),} & {\text { if } i=j} \\ {0,} & {\text { if } i \neq j}\end{array}\right.</script><p>代入上式得：</p>
 <script type="math/tex; mode=display">
-\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &=\left\{\begin{array}{ll}{\frac{1}{T}\left(\frac{\exp \left(z_{i} / T\right)}{Z}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j} \\ {\frac{1}{T}\left(q_{i}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j}\end{array}\right.\end{aligned}</script><p>所以$$<br>\partial q / \partial z</p>
-<script type="math/tex; mode=display">等于：</script><p>\frac{\partial q}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} &amp; {-q_{1} q_{2}} &amp; {\cdots} &amp; {-q_{1} q_{n}} \ {-q_{2} q_{1}} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {-q_{n} q_{1}} &amp; {-q_{n} q_{2}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right]</p>
+\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &=\left\{\begin{array}{ll}{\frac{1}{T}\left(\frac{\exp \left(z_{i} / T\right)}{Z}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j} \\ {\frac{1}{T}\left(q_{i}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j}\end{array}\right.\end{aligned}</script><p>所以$<br>\partial q / \partial z<br>$等于：</p>
 <script type="math/tex; mode=display">
-这里就是为什么softmax函数对其输入的偏导是下列形式的原因，$$g(·)$$函数为softmax函数，$$x$$为输入向量，维度为$$d$$。</script><p>\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\operatorname{diag}(\hat{\mathbf{y}})-\hat{\mathbf{y}} \hat{\mathbf{y}}^{\top} \quad \in \mathbb{R}^{d \times d}</p>
+\frac{\partial q}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} & {-q_{1} q_{2}} & {\cdots} & {-q_{1} q_{n}} \\ {-q_{2} q_{1}} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {-q_{n} q_{1}} & {-q_{n} q_{2}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right]</script><p>这里就是为什么softmax函数对其输入的偏导是下列形式的原因，$g(·)$函数为softmax函数，$x$为输入向量，维度为$d$。</p>
 <script type="math/tex; mode=display">
-</script><p>\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\left[\begin{array}{cccc}{\hat{y}_{1}} &amp; {0} &amp; {\cdots} &amp; {0} \ {0} &amp; {\hat{y}_{2}} &amp; {\cdots} &amp; {0} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {0} &amp; {0} &amp; {\cdots} &amp; {\hat{y}_{d}}\end{array}\right]-\left[\begin{array}{cccc}{\hat{y}_{1}^{2}} &amp; {\hat{y}_{1} \hat{y}_{2}} &amp; {\cdots} &amp; {\hat{y}_{1} \hat{y}_{d}} \ {\hat{y}_{2} \hat{y}_{1}} &amp; {\hat{y}_{2}^{2}} &amp; {\cdots} &amp; {\hat{y}_{2} \hat{y}_{d}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {\hat{y}_{d} \hat{y}_{1}} &amp; {\hat{y}_{d} \hat{y}_{2}} &amp; {\cdots} &amp; {\hat{y}_{d}^{2}}\end{array}\right]</p>
+\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\operatorname{diag}(\hat{\mathbf{y}})-\hat{\mathbf{y}} \hat{\mathbf{y}}^{\top} \quad \in \mathbb{R}^{d \times d}</script><script type="math/tex; mode=display">
+\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\left[\begin{array}{cccc}{\hat{y}_{1}} & {0} & {\cdots} & {0} \\ {0} & {\hat{y}_{2}} & {\cdots} & {0} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {0} & {0} & {\cdots} & {\hat{y}_{d}}\end{array}\right]-\left[\begin{array}{cccc}{\hat{y}_{1}^{2}} & {\hat{y}_{1} \hat{y}_{2}} & {\cdots} & {\hat{y}_{1} \hat{y}_{d}} \\ {\hat{y}_{2} \hat{y}_{1}} & {\hat{y}_{2}^{2}} & {\cdots} & {\hat{y}_{2} \hat{y}_{d}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {\hat{y}_{d} \hat{y}_{1}} & {\hat{y}_{d} \hat{y}_{2}} & {\cdots} & {\hat{y}_{d}^{2}}\end{array}\right]</script><p>回到我们的问题，继续推导，可以得到：</p>
 <script type="math/tex; mode=display">
-
-回到我们的问题，继续推导，可以得到：</script><p>\begin{aligned} \frac{\partial C}{\partial z}=&amp; \frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} &amp; {-q_{1} q_{2}} &amp; {\cdots} &amp; {-q_{1} q_{n}} \ {-q_{2} q_{1}} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {q_{2}-q_{2}^{2}} &amp; {\cdots} &amp; {-q_{2} q_{n}} \ {\vdots} &amp; {\vdots} &amp; {\ddots} &amp; {\vdots} \ {-q_{n} q_{1}} &amp; {-q_{n} q_{2}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right]\left[\begin{array}{c}{-\frac{p_{1}}{q_{2}}} \ {-\frac{p_{2}}{q_{2}}} \ {\vdots} \ {-\frac{p_{n}}{q_{n}}}\end{array}\right] \ &amp;=\frac{1}{T}\left[\begin{array}{ccc}{-p_{1}+\sum_{k} p_{k} q_{1}} &amp; {\cdots} &amp; {q_{n}-q_{n}^{2}}\end{array}\right] \ &amp;=\frac{1}{T}\left[\begin{array}{c}{-p_{2}+} &amp; {p_{k} q_{2}} \ {-p_{2}} &amp; {+q_{2}} \ {-p_{2}} &amp; {+q_{2}} \ {-p_{2}} &amp; {+q_{2}} \ {-p_{n}+q_{n}}\end{array}\right] \ &amp;=\frac{1}{T}(q-p) \end{aligned}</p>
+\begin{aligned} \frac{\partial C}{\partial z}=& \frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} & {-q_{1} q_{2}} & {\cdots} & {-q_{1} q_{n}} \\ {-q_{2} q_{1}} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {-q_{n} q_{1}} & {-q_{n} q_{2}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right]\left[\begin{array}{c}{-\frac{p_{1}}{q_{2}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right] \\ &=\frac{1}{T}\left[\begin{array}{ccc}{-p_{1}+\sum_{k} p_{k} q_{1}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right] \\ &=\frac{1}{T}\left[\begin{array}{c}{-p_{2}+} & {p_{k} q_{2}} \\ {-p_{2}} & {+q_{2}} \\ {-p_{2}} & {+q_{2}} \\ {-p_{2}} & {+q_{2}} \\ {-p_{n}+q_{n}}\end{array}\right] \\ &=\frac{1}{T}(q-p) \end{aligned}</script><p>所以：</p>
 <script type="math/tex; mode=display">
-所以：</script><p>\frac{\partial C}{\partial z_{i}}=\frac{1}{T}\left(q_{i}-p_{i}\right)<br>$$</p>
-
+\frac{\partial C}{\partial z_{i}}=\frac{1}{T}\left(q_{i}-p_{i}\right)</script>
       
     </div>
 
