@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="TianHongZXY">
 <meta property="og:description" content="Softmax + 交叉熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;90049906 考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T04:18:42.571Z">
+<meta property="og:updated_time" content="2019-11-16T11:11:05.341Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 12:18:42" itemprop="dateModified" datetime="2019-11-16T12:18:42+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-16 19:11:05" itemprop="dateModified" datetime="2019-11-16T19:11:05+08:00">2019-11-16</time>
               
             
           </span>
@@ -498,7 +498,10 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
 \frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\operatorname{diag}(\hat{\mathbf{y}})-\hat{\mathbf{y}} \hat{\mathbf{y}}^{\top} \quad \in \mathbb{R}^{d \times d}</script><script type="math/tex; mode=display">
 \frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\left[\begin{array}{cccc}{\hat{y}_{1}} & {0} & {\cdots} & {0} \\ {0} & {\hat{y}_{2}} & {\cdots} & {0} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {0} & {0} & {\cdots} & {\hat{y}_{d}}\end{array}\right]-\left[\begin{array}{cccc}{\hat{y}_{1}^{2}} & {\hat{y}_{1} \hat{y}_{2}} & {\cdots} & {\hat{y}_{1} \hat{y}_{d}} \\ {\hat{y}_{2} \hat{y}_{1}} & {\hat{y}_{2}^{2}} & {\cdots} & {\hat{y}_{2} \hat{y}_{d}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {\hat{y}_{d} \hat{y}_{1}} & {\hat{y}_{d} \hat{y}_{2}} & {\cdots} & {\hat{y}_{d}^{2}}\end{array}\right]</script><p>回到我们的问题，继续推导，可以得到：</p>
 <script type="math/tex; mode=display">
-\begin{aligned} \frac{\partial C}{\partial z}=& \frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} & {-q_{1} q_{2}} & {\cdots} & {-q_{1} q_{n}} \\ {-q_{2} q_{1}} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {-q_{n} q_{1}} & {-q_{n} q_{2}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right]\left[\begin{array}{c}{-\frac{p_{1}}{q_{2}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right] \\ &=\frac{1}{T}\left[\begin{array}{ccc}{-p_{1}+\sum_{k} p_{k} q_{1}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right] \\ &=\frac{1}{T}\left[\begin{array}{c}{-p_{2}+} & {p_{k} q_{2}} \\ {-p_{2}} & {+q_{2}} \\ {-p_{2}} & {+q_{2}} \\ {-p_{2}} & {+q_{2}} \\ {-p_{n}+q_{n}}\end{array}\right] \\ &=\frac{1}{T}(q-p) \end{aligned}</script><p>所以：</p>
+\frac{\partial C}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} & {-q_{1} q_{2}} & {\cdots} & {-q_{1} q_{n}} \\ {-q_{2} q_{1}} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {-q_{n} q_{1}} & {-q_{n} q_{2}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right]\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</script><script type="math/tex; mode=display">
+\begin{aligned} =\frac{1}{T}\left[\begin{array}{c}{-p_{1}+\sum_{k} p_{k} q_{1}} \\ {-p_{2}+\sum_{k} p_{k} q_{2}} \\ {\vdots} \\ {-p_{n}+\sum_{k} p_{k} q_{n}}\end{array}\right]
+=\frac{1}{T}\left[\begin{array}{c}{-p_{1}+q_{1}} \\ {-p_{2}+q_{2}} \\ {\vdots} \\ {-p_{n}+q_{n}}\end{array}\right] \end{aligned}</script><script type="math/tex; mode=display">
+=\frac{1}{T}(q-p)</script><p>所以：</p>
 <script type="math/tex; mode=display">
 \frac{\partial C}{\partial z_{i}}=\frac{1}{T}\left(q_{i}-p_{i}\right)</script>
       
