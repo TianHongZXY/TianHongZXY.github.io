@@ -478,7 +478,9 @@
         
           
             <p>
-              Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为$$z_{i}$$其中$$T$$是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度$$T$$趋向0时，softmax输出将收敛为one-hot向量，温度$$T$$趋向无穷时，输出更「软」。$$q_{i}=
+              Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。
+
+q_{i}=\frac{\exp \left
               ...
             </p>
           <!--noindex-->
@@ -671,7 +673,8 @@
           
             <p>
               评价指标参考链接：https://zhuanlan.zhihu.com/p/34079183
-混淆矩阵$$\begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \ \hl
+混淆矩阵
+\begin{array}{|c|c|}\hline \text { True Positive(TP) } & {\text { False Positive(FP) }} \\ \hline 
               ...
             </p>
           <!--noindex-->
@@ -864,7 +867,12 @@
           
             <p>
               信息熵信息量事件发生的概率越小，信息量越大。
-假设$$X$$是一个离散型随机变量，取值集合为$$\chi$$，概率分布函数为$$p(x)=\operatorname{Pr}(X=x), x \in \chi$$则定义事件$$X=x_{0}$$的信息量为：$$I\left(x_{0}\right)=-
+假设$$X
+是一个离散型随机变量，取值集合为\chi
+，概率分布函数为p(x)=\operatorname{Pr}(X=x), x \in \chi
+
+则定义事件X=x_{0}
+的信息量为：I\left(x{0}\right)=-\log \left(p
               ...
             </p>
           <!--noindex-->
@@ -1427,9 +1435,7 @@ Batch size的影响使用mini-batch训练时，batch size的影响，目前可�
           
             <p>
               定义模型Flask-SQLAlchemy是Flask的一个数据库框架。
-创建一个SQLAlchemy类的实例，表示应用使用的数据库，通过它可以获得Flask-SQLAlchemy提供的所有功能。
-
-from flask_sqlalchemy import SQLAlchemyapp = Flask(
+创建一个SQLAlchemy类的实例，表示应用使用的数据库，通过它可以获得Flask-SQLAlchemy提供的所有功能。from flask_sqlalchemy import SQLAlchemyapp = Flask(__
               ...
             </p>
           <!--noindex-->
@@ -1788,7 +1794,7 @@ flasky
 
       
         
-          <h1 id="dbdb学习记录"><a href="#dbdb学习记录" class="headerlink" title="dbdb学习记录"></a>dbdb学习记录</h1><h2 id="关于-all-的用法"><a href="#关于-all-的用法" class="headerlink" title="关于__all__的用法"></a>关于__all__的用法</h2><ol>
+          <h1 id="dbdb学习记录"><a href="#dbdb学习记录" class="headerlink" title="dbdb学习记录"></a>dbdb学习记录</h1><h2 id="关于-all-的用法"><a href="#关于-all-的用法" class="headerlink" title="关于_all_的用法"></a>关于_<em>all_</em>的用法</h2><ol>
 <li><p>在<em>_<em>init_</em>.py</em>文件中，_<em>all_</em>=[“module_a”,”module_b”] </p>
 <p>在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。</p>
           <!--noindex-->
@@ -2547,6 +2553,72 @@ flasky
   
 
   
+  
+
+  
+  
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
 
   
   

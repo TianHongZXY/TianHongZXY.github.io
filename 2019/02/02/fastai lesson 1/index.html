@@ -107,13 +107,13 @@
 
 
 
-  <meta name="description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合 123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compil">
+  <meta name="description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile">
 <meta name="keywords" content="fastai">
 <meta property="og:type" content="article">
 <meta property="og:title" content="fastai lesson 1">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;02&#x2F;02&#x2F;fastai%20lesson%201&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合 123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compil">
+<meta property="og:description" content="读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合123456789101112# 举一个正则表达式的例子pat = r&amp;apos;\\([a-z]+).\d+.jpg$&amp;apos;pat = re.compile">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-02-02T15:20:54.000Z">
 <meta name="twitter:card" content="summary">
@@ -469,11 +469,8 @@
       
 
       
-        <h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><h2 id="利用正则表达式"><a href="#利用正则表达式" class="headerlink" title="利用正则表达式"></a>利用正则表达式</h2><p>利用正则表达式从路径中提取文件名，文件名就作为label<br>get_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 举一个正则表达式的例子</span><br><span class="line">pat = r&apos;\\([a-z]+).\d+.jpg$&apos;</span><br><span class="line">pat = re.compile(pat)</span><br><span class="line">img_path =&apos;\\data\\dog.12247.jpg&apos;</span><br><span class="line">print(pat.search(img_path).group(1))</span><br><span class="line"># output: &apos;dog&apos;</span><br><span class="line"></span><br><span class="line"># 实际使用时</span><br><span class="line">path_img = &apos;C:\\Users\\hp\\.fastai\\data\\images&apos;</span><br><span class="line">fnames = get_image_files(path_img)</span><br><span class="line">data = ImageDataBunch.from_name_re(path_img, fnames, pat, ds_tfms=get_transforms(), size=224,bs=bs)</span><br><span class="line">data.normalize(imagenet_stats)</span><br></pre></td></tr></table></figure>
-
-
-<h2 id="从文件夹中读取文件"><a href="#从文件夹中读取文件" class="headerlink" title="从文件夹中读取文件"></a>从文件夹中读取文件</h2><p>要求文件夹的层次为path下有三个文件夹，分别命名为<em>train<em>，</em>valid<em>，</em>test*，且 *train</em> 和 <em>valid</em> 内文件夹有每个类别的文件夹，里面存着该类别的图片。</p>
+        <h1 id="读取数据"><a href="#读取数据" class="headerlink" title="读取数据"></a>读取数据</h1><h2 id="利用正则表达式"><a href="#利用正则表达式" class="headerlink" title="利用正则表达式"></a>利用正则表达式</h2><p>利用正则表达式从路径中提取文件名，文件名就作为label<br>get_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 举一个正则表达式的例子</span><br><span class="line">pat = r&apos;\\([a-z]+).\d+.jpg$&apos;</span><br><span class="line">pat = re.compile(pat)</span><br><span class="line">img_path =&apos;\\data\\dog.12247.jpg&apos;</span><br><span class="line">print(pat.search(img_path).group(1))</span><br><span class="line"># output: &apos;dog&apos;</span><br><span class="line"></span><br><span class="line"># 实际使用时</span><br><span class="line">path_img = &apos;C:\\Users\\hp\\.fastai\\data\\images&apos;</span><br><span class="line">fnames = get_image_files(path_img)</span><br><span class="line">data = ImageDataBunch.from_name_re(path_img, fnames, pat, ds_tfms=get_transforms(), size=224,bs=bs)</span><br><span class="line">data.normalize(imagenet_stats)</span><br></pre></td></tr></table></figure></p>
+<h2 id="从文件夹中读取文件"><a href="#从文件夹中读取文件" class="headerlink" title="从文件夹中读取文件"></a>从文件夹中读取文件</h2><p>要求文件夹的层次为path下有三个文件夹，分别命名为<em>train</em>，<em>valid</em>，<em>test</em>，且 <em>train</em> 和 <em>valid</em> 内文件夹有每个类别的文件夹，里面存着该类别的图片。</p>
 <ul>
 <li>path<ul>
 <li>train<ul>
@@ -498,11 +495,9 @@
 <h1 id="可视化读取的文件"><a href="#可视化读取的文件" class="headerlink" title="可视化读取的文件"></a>可视化读取的文件</h1><p>将读取的图片展示出来<br><code>data.show_batch(rows=3, figsize=(12,12))</code></p>
 <h1 id="利用预训练好的模型训练自己的任务"><a href="#利用预训练好的模型训练自己的任务" class="headerlink" title="利用预训练好的模型训练自己的任务"></a>利用预训练好的模型训练自己的任务</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">learn = create_cnn(data, models.resnet34, metrics=error_rate)</span><br><span class="line">learn.model</span><br><span class="line">learn.fit_one_cycle(4)</span><br></pre></td></tr></table></figure>
 <h1 id="保存模型"><a href="#保存模型" class="headerlink" title="保存模型"></a>保存模型</h1><p><code>learn.save(path) # path可以直接填想要命名的文件名，模型将被保存到训练数据的model文件夹内</code></p>
-<h1 id="理解模型"><a href="#理解模型" class="headerlink" title="理解模型"></a>理解模型</h1><p>可视化模型在哪里犯的错最多，将哪些类别混淆的次数最多以改进模型</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interp = ClassificationInterpretation.from_learner(learn)</span><br><span class="line">interp.most_confused(min_val=2)</span><br><span class="line">interp.plot_top_losses(9, figsize=(12,12))</span><br><span class="line">interp.plot_confusion_matrix(figsize=(12,12), dpi=60)</span><br></pre></td></tr></table></figure>
+<h1 id="理解模型"><a href="#理解模型" class="headerlink" title="理解模型"></a>理解模型</h1><p>可视化模型在哪里犯的错最多，将哪些类别混淆的次数最多以改进模型<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">interp = ClassificationInterpretation.from_learner(learn)</span><br><span class="line">interp.most_confused(min_val=2)</span><br><span class="line">interp.plot_top_losses(9, figsize=(12,12))</span><br><span class="line">interp.plot_confusion_matrix(figsize=(12,12), dpi=60)</span><br></pre></td></tr></table></figure></p>
+<h1 id="改进模型"><a href="#改进模型" class="headerlink" title="改进模型"></a>改进模型</h1><p>找到最大但不发散的学习率，解冻预训练模型，在自己的任务上继续训练，准确率往往会更进一步。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">learn.lr_find()</span><br><span class="line">learn.recorder.plot()</span><br><span class="line">learn.unfreeze()</span><br><span class="line">learn.fit_one_cycle(2, max_lr=slice(1e-6,1e-4))</span><br></pre></td></tr></table></figure></p>
 
-<h1 id="改进模型"><a href="#改进模型" class="headerlink" title="改进模型"></a>改进模型</h1><p>找到最大但不发散的学习率，解冻预训练模型，在自己的任务上继续训练，准确率往往会更进一步。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">learn.lr_find()</span><br><span class="line">learn.recorder.plot()</span><br><span class="line">learn.unfreeze()</span><br><span class="line">learn.fit_one_cycle(2, max_lr=slice(1e-6,1e-4))</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -957,6 +952,50 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
 
   
   

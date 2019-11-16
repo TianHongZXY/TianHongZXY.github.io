@@ -473,9 +473,8 @@
 <p>学习率衰减可以用以下代码实现<br><code>decayed_learning_rate = learning_rate * np.power(decay_rate,(global_step / decay_steps))</code></p>
 <h2 id="decay-rate是衰减指数，可设为略小于1的值，比如0-98。global-step是当前的迭代轮数，decay-steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay-steps-1000，意味着当global-step达到1000时就给learning-rate乘上0-98的一次方，达到2000就乘上0-98的二次方，以此类推，不断缩小学习率。"><a href="#decay-rate是衰减指数，可设为略小于1的值，比如0-98。global-step是当前的迭代轮数，decay-steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay-steps-1000，意味着当global-step达到1000时就给learning-rate乘上0-98的一次方，达到2000就乘上0-98的二次方，以此类推，不断缩小学习率。" class="headerlink" title="decay_rate是衰减指数，可设为略小于1的值，比如0.98。global_step是当前的迭代轮数，decay_steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay_steps = 1000，意味着当global_step达到1000时就给learning_rate乘上0.98的一次方，达到2000就乘上0.98的二次方，以此类推，不断缩小学习率。"></a><code>decay_rate</code>是<strong>衰减指数</strong>，可设为略小于1的值，比如0.98。<code>global_step</code>是当前的<strong>迭代轮数</strong>，<code>decay_steps</code>是你想要每迭代多少轮就衰减的度量值，可叫作<strong>衰减速度</strong>。比如<code>decay_steps = 1000</code>，意味着当<code>global_step</code>达到1000时就给<code>learning_rate</code>乘上0.98的一次方，达到2000就乘上0.98的二次方，以此类推，不断缩小学习率。</h2><p>TensorFlow提供了一个函数实现了指数衰减学习率，叫做<code>tf.train.exponential_decay</code><br>用法如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">global_step = tf.Variable(0)</span><br><span class="line">learning_rate = tf.train.exponential_decay(0.1, global_step, 1000, 0.98)</span><br><span class="line">optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(cost,\</span><br><span class="line">global_step = global_step)</span><br></pre></td></tr></table></figure>
-<p>初始学习率为1，衰减指数为0.98，衰减速度为1000，global_step会跟着minimize函数自动更新。<br>tf.train.exponential_decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。</p>
-<hr>
-<p>学习率的本质可以说成是，在训练初期，你希望学习的步长在可承受的范围内尽量大一些，随着训练轮数的增加，为了避免梯度下降无法收敛到全局最优点，甚至发散，你希望学习的步长越来越小，逐步逼近最优点，至少是在一个最优的范围内来回震荡。</p>
+<p>初始学习率为1，衰减指数为0.98，衰减速度为1000，global_step会跟着minimize函数自动更新。</p>
+<h2 id="tf-train-exponential-decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。"><a href="#tf-train-exponential-decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。" class="headerlink" title="tf.train.exponential_decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。"></a>tf.train.exponential_decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。</h2><p>学习率的本质可以说成是，在训练初期，你希望学习的步长在可承受的范围内尽量大一些，随着训练轮数的增加，为了避免梯度下降无法收敛到全局最优点，甚至发散，你希望学习的步长越来越小，逐步逼近最优点，至少是在一个最优的范围内来回震荡。</p>
 <p>学习率衰减是非常有用的技巧，通常会和mini_batch的方法一并使用，你也可以手动衰减学习率，虽然这很耗费人力和精力。不过从我学到的知识来看，学习率衰减并不是你要考虑的首要问题，通常，你只需要不断调整学习率，直至一个令人满意的效果即可，并不一定需要用到学习率衰减。因为还有很多更高级的超参数调整和搜索方式值得尝试。</p>
 
       
@@ -717,7 +716,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习率衰减-learning-rate-decay"><span class="nav-number">1.</span> <span class="nav-text">学习率衰减(learning rate decay)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#decay-rate是衰减指数，可设为略小于1的值，比如0-98。global-step是当前的迭代轮数，decay-steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay-steps-1000，意味着当global-step达到1000时就给learning-rate乘上0-98的一次方，达到2000就乘上0-98的二次方，以此类推，不断缩小学习率。"><span class="nav-number">1.1.</span> <span class="nav-text">decay_rate是衰减指数，可设为略小于1的值，比如0.98。global_step是当前的迭代轮数，decay_steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay_steps = 1000，意味着当global_step达到1000时就给learning_rate乘上0.98的一次方，达到2000就乘上0.98的二次方，以此类推，不断缩小学习率。</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#学习率衰减-learning-rate-decay"><span class="nav-number">1.</span> <span class="nav-text">学习率衰减(learning rate decay)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#decay-rate是衰减指数，可设为略小于1的值，比如0-98。global-step是当前的迭代轮数，decay-steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay-steps-1000，意味着当global-step达到1000时就给learning-rate乘上0-98的一次方，达到2000就乘上0-98的二次方，以此类推，不断缩小学习率。"><span class="nav-number">1.1.</span> <span class="nav-text">decay_rate是衰减指数，可设为略小于1的值，比如0.98。global_step是当前的迭代轮数，decay_steps是你想要每迭代多少轮就衰减的度量值，可叫作衰减速度。比如decay_steps = 1000，意味着当global_step达到1000时就给learning_rate乘上0.98的一次方，达到2000就乘上0.98的二次方，以此类推，不断缩小学习率。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tf-train-exponential-decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。"><span class="nav-number">1.2.</span> <span class="nav-text">tf.train.exponential_decay还有一个参数是staircase，默认为False，如果是False，学习率会平滑地衰减，而非每迭代1000轮才衰减一次，如果为True，则会每迭代1000次才衰减一次，这种称为阶梯函数。</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -932,6 +931,50 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
 
   
   

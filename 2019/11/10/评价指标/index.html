@@ -107,13 +107,13 @@
 
 
 
-  <meta name="description" content="评价指标参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;34079183 混淆矩阵$$\begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp;amp; {\text { False Positive(FP) }} \ \hline \text { False Negative(FN) } &amp;amp; {\text { Tr">
+  <meta name="description" content="评价指标参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;34079183 混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negat">
 <meta name="keywords" content="machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="评价指标">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="评价指标参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;34079183 混淆矩阵$$\begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp;amp; {\text { False Positive(FP) }} \ \hline \text { False Negative(FN) } &amp;amp; {\text { Tr">
+<meta property="og:description" content="评价指标参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;34079183 混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negat">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-11-14T15:14:54.875Z">
 <meta name="twitter:card" content="summary">
@@ -464,7 +464,7 @@
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
             <span class="post-meta-divider">|</span>
-            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 985</span>
+            <span title="post.wordcount"><span class="post-meta-item-icon"><i class="fa fa-file-word-o"></i></span>字数： 983</span>
             <span title="post.min2read"><span class="post-meta-divider">|</span><i class="fa fa-clock-o"></i></span> 阅读时长：3 分钟</span>
           
 
@@ -486,8 +486,8 @@
 
       
         <h1 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h1><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/34079183" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34079183</a></p>
-<h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><p>$$<br>\begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \ \hline\end{array}<br>$$</p>
-<p>真阳性TP：prediction为1，且标签也为1，预测正确✅</p>
+<h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><script type="math/tex; mode=display">
+\begin{array}{|c|c|}\hline \text { True Positive(TP) } & {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } & {\text { True Negative(TN) }} \\ \hline\end{array}</script><p>真阳性TP：prediction为1，且标签也为1，预测正确✅</p>
 <p>假阳性FP：prediction为1，而标签为0，预测错误❎</p>
 <p>真阴性TN：prediction为0，且标签也为0，预测正确✅</p>
 <p>假阴性FN：prediction为0，而标签也为1，预测错误❎</p>
@@ -508,8 +508,8 @@
 <p>ROC曲线有个很好的特性：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。而Precision-Recall曲线会变化剧烈，故ROC经常被使用。</p>
 <h2 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h2><p>AUC（Area Under Curve）被定义为ROC曲线下的面积，完全随机的二分类器的AUC为0.5，虽然在不同的阈值下有不同的FPR和TPR，但相对面积更大，更靠近左上角的曲线代表着一个更加稳健的二分类器。</p>
 <p>同时针对每一个分类器的ROC曲线，又能找到一个最佳的概率切分点使得自己关注的指标达到最佳水平。</p>
-<h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><p>$$<br>\mathrm{F} 1=2 \cdot \frac{\text { precision}\cdot \mathrm{ recall }}{\text { precision }+\text { recall }}<br>$$</p>
-<p>F1兼顾了分类模型的准确率和召回率，可以看作是模型准确率和召回率的<strong>调和平均数</strong>，最大值是1，最小值是0。</p>
+<h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><script type="math/tex; mode=display">
+\mathrm{F} 1=2 \cdot \frac{\text { precision}\cdot \mathrm{ recall }}{\text { precision }+\text { recall }}</script><p>F1兼顾了分类模型的准确率和召回率，可以看作是模型准确率和召回率的<strong>调和平均数</strong>，最大值是1，最小值是0。</p>
 
       
     </div>
@@ -965,6 +965,50 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
 
   
   

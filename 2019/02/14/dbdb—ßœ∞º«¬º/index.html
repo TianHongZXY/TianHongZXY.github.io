@@ -107,13 +107,13 @@
 
 
 
-  <meta name="description" content="dbdb学习记录关于__all__的用法 在_init_.py文件中，_all_=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
+  <meta name="description" content="dbdb学习记录关于_all_的用法 在_init_.py文件中，_all_=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
 <meta name="keywords" content="python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="dbdb学习记录">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;02&#x2F;14&#x2F;dbdb%E2%80%94%C3%9F%C5%93%E2%88%9E%C2%BA%C2%AB%C2%AC%C2%BA&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="dbdb学习记录关于__all__的用法 在_init_.py文件中，_all_=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
+<meta property="og:description" content="dbdb学习记录关于_all_的用法 在_init_.py文件中，_all_=[“module_a”,”module_b”]  在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。">
 <meta property="og:locale" content="en">
 <meta property="og:updated_time" content="2019-02-14T13:17:22.000Z">
 <meta name="twitter:card" content="summary">
@@ -469,19 +469,19 @@
       
 
       
-        <h1 id="dbdb学习记录"><a href="#dbdb学习记录" class="headerlink" title="dbdb学习记录"></a>dbdb学习记录</h1><h2 id="关于-all-的用法"><a href="#关于-all-的用法" class="headerlink" title="关于__all__的用法"></a>关于__all__的用法</h2><ol>
+        <h1 id="dbdb学习记录"><a href="#dbdb学习记录" class="headerlink" title="dbdb学习记录"></a>dbdb学习记录</h1><h2 id="关于-all-的用法"><a href="#关于-all-的用法" class="headerlink" title="关于_all_的用法"></a>关于_<em>all_</em>的用法</h2><ol>
 <li><p>在<em>_<em>init_</em>.py</em>文件中，_<em>all_</em>=[“module_a”,”module_b”] </p>
 <p>在使用 from package_name import * 时 , 表示import该package中的两个module及两个module相关的类、方法等。</p>
 <a id="more"></a>
 </li>
 <li><p>在普通py文件中，_<em>all_</em>=[“class_name”,”function_name”] </p>
-<p>在使用 from module_name import * 时,表示import该module中的__all__中所列出的。</p>
+<p>在使用 from module<em>name import * 时,表示import该module中的_<em>all</em></em>中所列出的。</p>
 </li>
 </ol>
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
-<li><p>在普通的<em>.py中, 使用 *all</em> 时,可以使用<em>all</em>列出的 类、函数、变量等,不使用_all_时会使用module中的所有不以下划线开头的成员。</p>
+<li><p>在普通的<em>.py中, 使用 </em>all<em> 时,可以使用</em>all*列出的 类、函数、变量等,不使用<em>all</em>时会使用module中的所有不以下划线开头的成员。</p>
 </li>
-<li><p>__all__只能影响到 from import * 这种import 方式, 对于from … import … 方式没有影响。</p>
+<li><p>_<em>all_</em>只能影响到 from import * 这种import 方式, 对于from … import … 方式没有影响。</p>
 </li>
 <li><p>_<em>all_</em> 的数据类型: <em>list</em></p>
 </li>
@@ -504,7 +504,6 @@
 </ul>
 <h2 id="conclusion"><a href="#conclusion" class="headerlink" title="conclusion"></a>conclusion</h2><p>Built-in <code>open</code> can be implemented using <code>os.open()</code> (to create a file descriptor(文件描述符)) and <code>os.fdopen()</code> (to wrap it in a file object(文件对象)):</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment"># equivalent to f = open(filename, "r")</span></span><br><span class="line">&gt;f = os.fdopen(os.open(filename, os.O_RDONLY))</span><br></pre></td></tr></table></figure>
-
 <p>摘自<a href="https://stackoverflow.com/questions/15039528/what-is-the-difference-between-os-open-and-os-fdopen-in-python" target="_blank" rel="noopener">stackoverflow</a></p>
 </blockquote>
 <h2 id="文件锁"><a href="#文件锁" class="headerlink" title="文件锁"></a>文件锁</h2><p>为了避免在多进程时同时操作文件，需要程序在操作文件前先上锁。</p>
@@ -513,7 +512,6 @@
 <li>LOCK_EX：表示创建一个排他锁，在任意时间内，一个文件的排他锁只能被一个进程拥有；</li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> portalocker</span><br><span class="line">portalocker.lock(file_descriptor, portalocker.LOCK_EX)</span><br></pre></td></tr></table></figure>
-
 <h2 id="定位文件位置"><a href="#定位文件位置" class="headerlink" title="定位文件位置"></a>定位文件位置</h2><h3 id="seek-offset-whence-：移动文件指针"><a href="#seek-offset-whence-：移动文件指针" class="headerlink" title="seek(offset,whence)：移动文件指针"></a>seek(offset,whence)：移动文件指针</h3><ul>
 <li>offset:偏移量,可以是负数代表往前移动指针</li>
 <li>whence:偏移相对位置</li>
@@ -536,7 +534,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span><span class="params">(object)</span>:</span></span><br><span class="line"><span class="meta"> @property</span></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self)</span>:</span></span><br><span class="line">     <span class="keyword">return</span> self._score</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta"> @score.setter</span></span><br><span class="line"> <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, value)</span>:</span></span><br><span class="line">     <span class="keyword">if</span> <span class="keyword">not</span> isinstance(value, int):</span><br><span class="line">         <span class="keyword">raise</span> ValueError(<span class="string">'score must be an integer!'</span>)</span><br><span class="line">     <span class="keyword">if</span> value &lt; <span class="number">0</span> <span class="keyword">or</span> value &gt; <span class="number">100</span>:</span><br><span class="line">         <span class="keyword">raise</span> ValueError(<span class="string">'score must between 0 ~ 100!'</span>)</span><br><span class="line">     self._score = value</span><br></pre></td></tr></table></figure>
 <p>此时，<code>@property</code>本身又创建了另一个装饰器<code>@score.setter</code>，负责把一个setter方法变成属性赋值，如果不设置setter方法就只是一个只读属性</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>s = Student()</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">60</span> <span class="comment"># 实际转化为s.set_score(60)</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score <span class="comment"># 实际转化为s.get_score()</span></span><br><span class="line"><span class="number">60</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>s.score = <span class="number">9999</span></span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  ...</span><br><span class="line">ValueError: score must between <span class="number">0</span> ~ <span class="number">100</span>!</span><br></pre></td></tr></table></figure>
-
 <p>摘自<a href="https://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386820062641f3bcc60a4b164f8d91df476445697b9e000" target="_blank" rel="noopener">廖雪峰的官方网站</a></p>
 </blockquote>
 
@@ -779,7 +776,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dbdb学习记录"><span class="nav-number">1.</span> <span class="nav-text">dbdb学习记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-all-的用法"><span class="nav-number">1.1.</span> <span class="nav-text">关于__all__的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.1.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件打开方式"><span class="nav-number">1.2.</span> <span class="nav-text">文件打开方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#open"><span class="nav-number">1.2.1.</span> <span class="nav-text">open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-open"><span class="nav-number">1.2.2.</span> <span class="nav-text">os.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-fdopen"><span class="nav-number">1.2.3.</span> <span class="nav-text">os.fdopen()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件锁"><span class="nav-number">1.4.</span> <span class="nav-text">文件锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定位文件位置"><span class="nav-number">1.5.</span> <span class="nav-text">定位文件位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#seek-offset-whence-：移动文件指针"><span class="nav-number">1.5.1.</span> <span class="nav-text">seek(offset,whence)：移动文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件指针定位的whence有三种："><span class="nav-number">1.5.2.</span> <span class="nav-text">文件指针定位的whence有三种：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件读写函数"><span class="nav-number">1.6.</span> <span class="nav-text">文件读写函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property使用方法"><span class="nav-number">1.7.</span> <span class="nav-text">@property使用方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#dbdb学习记录"><span class="nav-number">1.</span> <span class="nav-text">dbdb学习记录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于-all-的用法"><span class="nav-number">1.1.</span> <span class="nav-text">关于_all_的用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项"><span class="nav-number">1.1.1.</span> <span class="nav-text">注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件打开方式"><span class="nav-number">1.2.</span> <span class="nav-text">文件打开方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#open"><span class="nav-number">1.2.1.</span> <span class="nav-text">open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-open"><span class="nav-number">1.2.2.</span> <span class="nav-text">os.open()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-fdopen"><span class="nav-number">1.2.3.</span> <span class="nav-text">os.fdopen()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conclusion"><span class="nav-number">1.3.</span> <span class="nav-text">conclusion</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件锁"><span class="nav-number">1.4.</span> <span class="nav-text">文件锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定位文件位置"><span class="nav-number">1.5.</span> <span class="nav-text">定位文件位置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#seek-offset-whence-：移动文件指针"><span class="nav-number">1.5.1.</span> <span class="nav-text">seek(offset,whence)：移动文件指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件指针定位的whence有三种："><span class="nav-number">1.5.2.</span> <span class="nav-text">文件指针定位的whence有三种：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件读写函数"><span class="nav-number">1.6.</span> <span class="nav-text">文件读写函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#property使用方法"><span class="nav-number">1.7.</span> <span class="nav-text">@property使用方法</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -994,6 +991,50 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
 
   
   

@@ -482,14 +482,12 @@
 <h1 id="应用包"><a href="#应用包" class="headerlink" title="应用包"></a>应用包</h1><p>应用包存放应用的所有代码、模板和静态文件。templates和static现在在app包中。数据库模型和电子邮件支持函数也在app包中。</p>
 <h1 id="蓝本"><a href="#蓝本" class="headerlink" title="蓝本"></a>蓝本</h1><p>蓝本和应用类似，也可以定义路由和错误处理程序。不同的是，在蓝本中定义的路由和错误处理程序处于休眠状态，直到蓝本注册到应用上之后，它才真正成为应用的一部分。下面是app/main/_<em>init_</em>.py的代码</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line"></span><br><span class="line">main = Blueprint(<span class="string">'main'</span>, __name__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views, errors</span><br></pre></td></tr></table></figure>
-
 <p>蓝本通过实例化一个Blueprint类对象创建。两个参数：蓝本的名称和蓝本所在的包或模块。</p>
 <p>应用的路由保存在app/main/views.py中，错误处理程序保存在app/main/errors.py中。导入这连个模块就能把路由和错误处理程序与蓝本联系起来。因为在views和errors中也要导入main蓝本，为了避免循环导入依赖，导入views和errors要在</p>
 <p>_<em>init_</em>.py的末尾。</p>
 <hr>
 <p>在蓝本中编写错误处理程序稍有不同，如果使用errorhandler装饰器，那么只有蓝本中的错误才能触发处理程序。要想注册全局的错误处理程序，必须使用app_errorhandler装饰器。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> main</span><br><span class="line"></span><br><span class="line"><span class="meta">@main.app_errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span><span class="params">(e)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'404.html'</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
-
 <hr>
 <p>在蓝本中编写视图函数主要有两点不同：第一，路由装饰器由蓝本提供，因此使用main.route而非app.route。第二，url_for()函数的用法不同。在蓝本中，Flask会为所有蓝本中的全部端点加上一个命名空间，这样就可以在不同的蓝本中使用相同的端点名定义视图函数，而不冲突。命名空间是蓝本的名称(Blueprint构造函数的第一个参数)，而且与端点名之间以一个点号分隔。因此视图函数index()注册的端点名是main.index，其URL用<code>url_for(&#39;main.index&#39;)</code>获取。</p>
 <p>在蓝本中可以省略蓝本名，例如<code>url_for(&#39;.index&#39;)</code>这种写法，使用当前请求的蓝本名补足端点名。这意味着，同一蓝本的重定向可以使用简写，但跨蓝本的重定向必须使用带有蓝本名的完全限定端点名。</p>
@@ -948,6 +946,50 @@
   
 
   
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
 
   
   
