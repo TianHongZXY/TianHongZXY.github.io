@@ -117,7 +117,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;4154d54035332098.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f505b67ee5626183.jpg">
-<meta property="og:updated_time" content="2019-11-17T11:56:00.367Z">
+<meta property="og:updated_time" content="2019-11-17T12:04:40.822Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;4154d54035332098.jpg">
 
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2019-11-17 18:39:27 / Modified: 19:56:00" itemprop="dateCreated datePublished" datetime="2019-11-17T18:39:27+08:00">2019-11-17</time>
+              <time title="Created: 2019-11-17 18:39:27 / Modified: 20:04:40" itemprop="dateCreated datePublished" datetime="2019-11-17T18:39:27+08:00">2019-11-17</time>
             
 
             
@@ -495,7 +495,7 @@ r_{a d v}=\epsilon \cdot \operatorname{sgn}\left(\nabla_{x} L(\theta, x, y)\righ
 <p><img src="http://i1.fuimg.com/703781/f505b67ee5626183.jpg"/></p>
 <p>我们可以看到，面对约束空间 S 内随机采样的十万个扰动，PGD 模型能够得到一个<strong>非常低且集中的 loss 分布</strong>，因此，在论文中，作者称 PGD 为<strong>“一阶最强对抗”</strong>。也就是说，只要能搞定 PGD 对抗，别的一阶对抗就不在话下了。</p>
 <h3 id="Virtual-Adversarial-Training"><a href="#Virtual-Adversarial-Training" class="headerlink" title="Virtual Adversarial Training"></a>Virtual Adversarial Training</h3><p>除了监督训练，对抗训练还可以用在半监督任务中，尤其对于 NLP 任务来说，很多时候输入的无监督文本多的很，但是很难大规模地进行标注，那么就可以参考 [7] 中提到的 Virtual Adversarial Training 进行半监督训练。 </p>
-<p>首先，我们抽取一个随机标准正态扰动 $d~N(0, I) \in R^{d}$ ，加到 embedding 上，并用 KL 散度计算梯度：</p>
+<p>首先，我们抽取一个随机标准正态扰动 $d \sim N(0, I) \in R^{d}$ ，加到 embedding 上，并用 KL 散度计算梯度：</p>
 <script type="math/tex; mode=display">
 \begin{aligned} g &=\nabla_{x^{\prime}} D_{K L}\left(p(\cdot | x ; \theta) \| p\left(\cdot | x^{\prime} ; \theta\right)\right) \\ x^{\prime} &=x+\xi d \end{aligned}</script><p>然后，用得到的梯度，计算对抗扰动，并进行对抗训练：</p>
 <script type="math/tex; mode=display">
