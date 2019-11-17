@@ -115,11 +115,11 @@
 <meta property="og:site_name" content="TianHongZXY">
 <meta property="og:description" content="NLP中的对抗训练参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;zwzl-Tel3Avc4Dm7L5FS5A 什么是对抗训练对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;mmbiz.qpic.cn&#x2F;mmbiz_png&#x2F;VBcD02jFhgkVAGyChnZcj6vF9iaCMcHV1oGcdaQvUHZxSJqTf8uzqnBdZ3m9wKr7Okt0s37UjnvEZ9WZrIKWbEQ&#x2F;640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:image" content="https:&#x2F;&#x2F;mmbiz.qpic.cn&#x2F;mmbiz_jpg&#x2F;VBcD02jFhgkVAGyChnZcj6vF9iaCMcHV1XLa3yLtPfs4c2pzd7ArwfL3fA4Z9vFuNtmCicZfAicbJ9ia6JWMqpMsOQ&#x2F;640?wx_fmt=jpeg&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
-<meta property="og:updated_time" content="2019-11-17T11:50:19.830Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;4154d54035332098.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f505b67ee5626183.jpg">
+<meta property="og:updated_time" content="2019-11-17T11:56:00.367Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;mmbiz.qpic.cn&#x2F;mmbiz_png&#x2F;VBcD02jFhgkVAGyChnZcj6vF9iaCMcHV1oGcdaQvUHZxSJqTf8uzqnBdZ3m9wKr7Okt0s37UjnvEZ9WZrIKWbEQ&#x2F;640?wx_fmt=png&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;4154d54035332098.jpg">
 
 
 
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2019-11-17 18:39:27 / Modified: 19:50:19" itemprop="dateCreated datePublished" datetime="2019-11-17T18:39:27+08:00">2019-11-17</time>
+              <time title="Created: 2019-11-17 18:39:27 / Modified: 19:56:00" itemprop="dateCreated datePublished" datetime="2019-11-17T18:39:27+08:00">2019-11-17</time>
             
 
             
@@ -450,11 +450,12 @@
       
         <h1 id="NLP中的对抗训练"><a href="#NLP中的对抗训练" class="headerlink" title="NLP中的对抗训练"></a>NLP中的对抗训练</h1><p>参考链接：<a href="https://mp.weixin.qq.com/s/zwzl-Tel3Avc4Dm7L5FS5A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zwzl-Tel3Avc4Dm7L5FS5A</a></p>
 <h2 id="什么是对抗训练"><a href="#什么是对抗训练" class="headerlink" title="什么是对抗训练"></a>什么是对抗训练</h2><p>对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：</p>
+<a id="more"></a>
 <script type="math/tex; mode=display">
 \min _{\theta}-\log P\left(y | x+r_{a d v} ; \theta\right)</script><p>意思就是当$x$被$r_{adv}$扰动后，要找到最佳的参数$\theta$使得$P$最大，则上式最小。也就是要让模型参数在被扰动攻击的情况下仍然能够正确地分类样本。</p>
 <p>Goodfellow认为，<strong>神经网络由于其线性的特点，很容易受到线性扰动的攻击。</strong></p>
 <p><em>This linear behavior suggests that cheap, analytical perturbations of a linear model should also damage neural networks.</em></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/VBcD02jFhgkVAGyChnZcj6vF9iaCMcHV1oGcdaQvUHZxSJqTf8uzqnBdZ3m9wKr7Okt0s37UjnvEZ9WZrIKWbEQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1"/></p>
+<p><img src="http://i1.fuimg.com/703781/4154d54035332098.jpg"/></p>
 <p>他提出了 Fast Gradient Sign Method(FGSM)，来计算输入样本的扰动$r_{adv}$。</p>
 <script type="math/tex; mode=display">
 r_{a d v}=\epsilon \cdot \operatorname{sgn}\left(\nabla_{x} L(\theta, x, y)\right)</script><p>其中，sgn为符号函数，L为损失函数。Goodfellow发现，令 ϵ=0.25，能给一个单层分类器造成99.9%的错误率。这个扰动计算的思路也很容易理解：将输入样本向着关于损失的梯度再进一步，得到的对抗样本当然能造成更大的损失，提高模型的错误率。 </p>
@@ -491,7 +492,7 @@ r_{a d v}=\epsilon \cdot \operatorname{sgn}\left(\nabla_{x} L(\theta, x, y)\righ
 <p>使用:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pgd = PGD(model)</span><br><span class="line">K = <span class="number">3</span></span><br><span class="line"><span class="keyword">for</span> batch_input, batch_label <span class="keyword">in</span> data:</span><br><span class="line">    <span class="comment"># 正常训练</span></span><br><span class="line">    loss = model(batch_input, batch_label)</span><br><span class="line">    loss.backward() <span class="comment"># 反向传播，得到正常的grad</span></span><br><span class="line">    pgd.backup_grad()</span><br><span class="line">    <span class="comment"># 对抗训练</span></span><br><span class="line">    <span class="keyword">for</span> t <span class="keyword">in</span> range(K):</span><br><span class="line">        pgd.attack(is_first_attack=(t==<span class="number">0</span>)) <span class="comment"># 在embedding上添加对抗扰动, first attack时备份param.data</span></span><br><span class="line">        <span class="keyword">if</span> t != K<span class="number">-1</span>:</span><br><span class="line">            model.zero_grad()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            pgd.restore_grad()</span><br><span class="line">        loss_adv = model(batch_input, batch_label)</span><br><span class="line">        loss_adv.backward() <span class="comment"># 反向传播，并在正常的grad基础上，累加对抗训练的梯度</span></span><br><span class="line">    pgd.restore() <span class="comment"># 恢复embedding参数</span></span><br><span class="line">    <span class="comment"># 梯度下降，更新参数</span></span><br><span class="line">    optimizer.step()</span><br><span class="line">    model.zero_grad()</span><br></pre></td></tr></table></figure>
 <p>在 [3] 中，作者将这一类通过一阶梯度得到的对抗样本称之为“一阶对抗”，在实验中，作者发现，经过 PGD 训练过的模型，对于所有的一阶对抗都能得到一个低且集中的损失值，如下图所示：</p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_jpg/VBcD02jFhgkVAGyChnZcj6vF9iaCMcHV1XLa3yLtPfs4c2pzd7ArwfL3fA4Z9vFuNtmCicZfAicbJ9ia6JWMqpMsOQ/640?wx_fmt=jpeg&wxfrom=5&wx_lazy=1&wx_co=1"/></p>
+<p><img src="http://i1.fuimg.com/703781/f505b67ee5626183.jpg"/></p>
 <p>我们可以看到，面对约束空间 S 内随机采样的十万个扰动，PGD 模型能够得到一个<strong>非常低且集中的 loss 分布</strong>，因此，在论文中，作者称 PGD 为<strong>“一阶最强对抗”</strong>。也就是说，只要能搞定 PGD 对抗，别的一阶对抗就不在话下了。</p>
 <h3 id="Virtual-Adversarial-Training"><a href="#Virtual-Adversarial-Training" class="headerlink" title="Virtual Adversarial Training"></a>Virtual Adversarial Training</h3><p>除了监督训练，对抗训练还可以用在半监督任务中，尤其对于 NLP 任务来说，很多时候输入的无监督文本多的很，但是很难大规模地进行标注，那么就可以参考 [7] 中提到的 Virtual Adversarial Training 进行半监督训练。 </p>
 <p>首先，我们抽取一个随机标准正态扰动 $d~N(0, I) \in R^{d}$ ，加到 embedding 上，并用 KL 散度计算梯度：</p>
