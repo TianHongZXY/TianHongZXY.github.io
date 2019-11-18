@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="Normalization原文链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;43200897 Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较">
+  <meta name="description" content="NormalizationBatch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。 两种Normalization的位置目">
 <meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Normalization">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;DL%E4%B8%AD%E7%9A%84Normalization&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="Normalization原文链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;43200897 Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较">
+<meta property="og:description" content="NormalizationBatch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。 两种Normalization的位置目">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T03:14:45.872Z">
+<meta property="og:updated_time" content="2019-11-18T15:21:50.194Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 11:14:45" itemprop="dateModified" datetime="2019-11-16T11:14:45+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-18 23:21:50" itemprop="dateModified" datetime="2019-11-18T23:21:50+08:00">2019-11-18</time>
               
             
           </span>
@@ -457,8 +457,7 @@
       
 
       
-        <h1 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h1><p>原文链接：<a href="https://zhuanlan.zhihu.com/p/43200897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/43200897</a></p>
-<h2 id="Batch-size的影响"><a href="#Batch-size的影响" class="headerlink" title="Batch size的影响"></a>Batch size的影响</h2><p>使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。</p>
+        <h1 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h1><h2 id="Batch-size的影响"><a href="#Batch-size的影响" class="headerlink" title="Batch size的影响"></a>Batch size的影响</h2><p>使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。</p>
 <h2 id="两种Normalization的位置"><a href="#两种Normalization的位置" class="headerlink" title="两种Normalization的位置"></a>两种Normalization的位置</h2><p>目前有两种在神经元中插入Normalization操作的地方，第一种是原始BN论文提出的，放在激活函数之前；另外一种是后续研究提出的，放在激活函数之后，不少研究表明将BN放在激活函数之后效果更好。</p>
 <h2 id="规范化函数"><a href="#规范化函数" class="headerlink" title="规范化函数"></a>规范化函数</h2><p>对于神经元的激活值来说，不论哪种Normalization方法，其规范化目标都是一样的，就是将其激活值规整为均值为0，方差为1的正态分布。即规范化函数统一都是如下形式：</p>
 <script type="math/tex; mode=display">
@@ -469,6 +468,7 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
 \mu=\frac{1}{m} \sum_{k=1}^{m} a_{k} \quad k \in S \text { and }\|S\|=m</script><p>为根据均值和集合S中神经元各自激活值求出的激活值标准差：</p>
 <script type="math/tex; mode=display">
 \sigma_{i}=\sqrt{\frac{1}{m} \sum_{k=1}^{m}\left(a_{k}-\mu\right)^{2}+\varepsilon} \quad k \in S \text { and }\|S\|=m</script><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>各种Normalization的适用场景，可以简洁归纳如下：对于RNN的神经网络结构来说，目前只有LayerNorm是相对有效的；如果是GAN等图片生成或图片内容改写类型的任务，可以优先尝试InstanceNorm；如果使用场景约束BatchSize必须设置很小，无疑此时考虑使用GroupNorm；而其它任务情形应该优先考虑使用BatchNorm。</p>
+<p>原文链接：<a href="https://zhuanlan.zhihu.com/p/43200897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/43200897</a></p>
 
       
     </div>

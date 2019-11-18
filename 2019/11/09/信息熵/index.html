@@ -107,16 +107,16 @@
 
 
 
-  <meta name="description" content="信息熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;74075915 信息量事件发生的概率越小，信息量越大。 假设$X$是一个离散型随机变量，取值集合为$\chi$，概率分布函数为">
+  <meta name="description" content="信息熵信息量事件发生的概率越小，信息量越大。 假设$X$是一个离散型随机变量，取值集合为$\chi$，概率分布函数为">
 <meta name="keywords" content="machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="信息熵">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;09&#x2F;%E4%BF%A1%E6%81%AF%E7%86%B5&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="信息熵参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;74075915 信息量事件发生的概率越小，信息量越大。 假设$X$是一个离散型随机变量，取值集合为$\chi$，概率分布函数为">
+<meta property="og:description" content="信息熵信息量事件发生的概率越小，信息量越大。 假设$X$是一个离散型随机变量，取值集合为$\chi$，概率分布函数为">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;40c47de4474fb384.jpg">
-<meta property="og:updated_time" content="2019-11-16T04:19:02.705Z">
+<meta property="og:updated_time" content="2019-11-18T15:21:21.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;40c47de4474fb384.jpg">
 
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 12:19:02" itemprop="dateModified" datetime="2019-11-16T12:19:02+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-18 23:21:21" itemprop="dateModified" datetime="2019-11-18T23:21:21+08:00">2019-11-18</time>
               
             
           </span>
@@ -459,8 +459,7 @@
       
 
       
-        <h1 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h1><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/74075915" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/74075915</a></p>
-<h2 id="信息量"><a href="#信息量" class="headerlink" title="信息量"></a>信息量</h2><p>事件发生的概率越小，信息量越大。</p>
+        <h1 id="信息熵"><a href="#信息熵" class="headerlink" title="信息熵"></a>信息熵</h1><h2 id="信息量"><a href="#信息量" class="headerlink" title="信息量"></a>信息量</h2><p>事件发生的概率越小，信息量越大。</p>
 <p>假设$<br>X<br>$是一个离散型随机变量，取值集合为$<br>\chi<br>$，概率分布函数为</p>
 <a id="more"></a>
 <script type="math/tex; mode=display">
@@ -505,6 +504,7 @@ W\left(P_{0}, P_{1}\right)=|\theta|</script><p>可见KL散度和JS散度都在th
 <p><strong>交叉熵：其用来衡量在给定的真实分布下，使用非真实分布所指定的策略消除系统的不确定性所需要付出的努力的大小</strong>。这也是为什么在机器学习中的分类算法中，我们总是最小化交叉熵，因为交叉熵越低，就证明由算法所产生的策略最接近最优策略，也间接证明我们算法所算出的predicts分布越接近真实分布。</p>
 <p><strong>KL散度（相对熵）：</strong>衡量不同策略之间的差异，所以我们使用KL散度来做模型分布的拟合损失。</p>
 <h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><p>求Wasserstein距离的计算具体操作：Wasserstein距离用对偶形式转成另一个形式（带Lipschitz约束），然后用采样的方式得到一个估计。至于怎么加Lipschitz约束，就有原文章提的gradient clip，后续提出的gradient penalty等方法</p>
+<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/74075915" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/74075915</a></p>
 
       
     </div>

@@ -107,17 +107,17 @@
 
 
 
-  <meta name="description" content="NLP中的对抗训练参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;zwzl-Tel3Avc4Dm7L5FS5A 什么是对抗训练对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：">
+  <meta name="description" content="NLP中的对抗训练什么是对抗训练对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：">
 <meta name="keywords" content="deep learning,NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NLP中的对抗训练">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;17&#x2F;NLP%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8A%97%E8%AE%AD%E7%BB%83&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="NLP中的对抗训练参考链接：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;zwzl-Tel3Avc4Dm7L5FS5A 什么是对抗训练对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：">
+<meta property="og:description" content="NLP中的对抗训练什么是对抗训练对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;4154d54035332098.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f505b67ee5626183.jpg">
-<meta property="og:updated_time" content="2019-11-17T12:04:40.822Z">
+<meta property="og:updated_time" content="2019-11-18T15:21:10.983Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;4154d54035332098.jpg">
 
@@ -382,12 +382,24 @@
                 
               
 
-              <time title="Created: 2019-11-17 18:39:27 / Modified: 20:04:40" itemprop="dateCreated datePublished" datetime="2019-11-17T18:39:27+08:00">2019-11-17</time>
+              <time title="Created: 2019-11-17 18:39:27" itemprop="dateCreated datePublished" datetime="2019-11-17T18:39:27+08:00">2019-11-17</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-18 23:21:10" itemprop="dateModified" datetime="2019-11-18T23:21:10+08:00">2019-11-18</time>
               
             
           </span>
@@ -448,8 +460,7 @@
       
 
       
-        <h1 id="NLP中的对抗训练"><a href="#NLP中的对抗训练" class="headerlink" title="NLP中的对抗训练"></a>NLP中的对抗训练</h1><p>参考链接：<a href="https://mp.weixin.qq.com/s/zwzl-Tel3Avc4Dm7L5FS5A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zwzl-Tel3Avc4Dm7L5FS5A</a></p>
-<h2 id="什么是对抗训练"><a href="#什么是对抗训练" class="headerlink" title="什么是对抗训练"></a>什么是对抗训练</h2><p>对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：</p>
+        <h1 id="NLP中的对抗训练"><a href="#NLP中的对抗训练" class="headerlink" title="NLP中的对抗训练"></a>NLP中的对抗训练</h1><h2 id="什么是对抗训练"><a href="#什么是对抗训练" class="headerlink" title="什么是对抗训练"></a>什么是对抗训练</h2><p>对抗训练(adversarial training)，第一次由GAN之父 Ian Goodfellow在2015年的ICLR [2] 上提出，简单的来说就是在输入样本上加上一个扰动$r_{adv}$得到对抗样本，然后再用它做输入进行训练。用公式描述就是：</p>
 <a id="more"></a>
 <script type="math/tex; mode=display">
 \min _{\theta}-\log P\left(y | x+r_{a d v} ; \theta\right)</script><p>意思就是当$x$被$r_{adv}$扰动后，要找到最佳的参数$\theta$使得$P$最大，则上式最小。也就是要让模型参数在被扰动攻击的情况下仍然能够正确地分类样本。</p>
@@ -500,6 +511,7 @@ r_{a d v}=\epsilon \cdot \operatorname{sgn}\left(\nabla_{x} L(\theta, x, y)\righ
 \begin{aligned} g &=\nabla_{x^{\prime}} D_{K L}\left(p(\cdot | x ; \theta) \| p\left(\cdot | x^{\prime} ; \theta\right)\right) \\ x^{\prime} &=x+\xi d \end{aligned}</script><p>然后，用得到的梯度，计算对抗扰动，并进行对抗训练：</p>
 <script type="math/tex; mode=display">
 \begin{aligned} \min _{\theta} D_{K L}\left(p(\cdot | x ; \theta) \| p\left(\cdot | x^{*} ; \theta\right)\right) \\ x^{*}=x+\epsilon g /\|g\|_{2} \end{aligned}</script><p>实现方法跟 FGM 差不多。</p>
+<p>参考链接：<a href="https://mp.weixin.qq.com/s/zwzl-Tel3Avc4Dm7L5FS5A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zwzl-Tel3Avc4Dm7L5FS5A</a></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] FreeLB: Enhanced Adversarial Training for Language Understanding </p>
 <p><a href="https://arxiv.org/abs/1909.11764" target="_blank" rel="noopener">https://arxiv.org/abs/1909.11764</a> </p>
 <p>[2] Explaining and Harnessing Adversarial Examples</p>

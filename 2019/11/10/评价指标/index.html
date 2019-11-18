@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="评价指标参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;34079183 混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negat">
+  <meta name="description" content="评价指标混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \\ \hline\end{array}真阳性TP：predic">
 <meta name="keywords" content="deep learning,machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="评价指标">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="评价指标参考链接：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;34079183 混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negat">
+<meta property="og:description" content="评价指标混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \\ \hline\end{array}真阳性TP：predic">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T04:20:34.466Z">
+<meta property="og:updated_time" content="2019-11-18T15:21:28.762Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 12:20:34" itemprop="dateModified" datetime="2019-11-16T12:20:34+08:00">2019-11-16</time>
+                <time title="Modified: 2019-11-18 23:21:28" itemprop="dateModified" datetime="2019-11-18T23:21:28+08:00">2019-11-18</time>
               
             
           </span>
@@ -457,8 +457,7 @@
       
 
       
-        <h1 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h1><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/34079183" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34079183</a></p>
-<h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><script type="math/tex; mode=display">
+        <h1 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><script type="math/tex; mode=display">
 \begin{array}{|c|c|}\hline \text { True Positive(TP) } & {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } & {\text { True Negative(TN) }} \\ \hline\end{array}</script><p>真阳性TP：prediction为1，且标签也为1，预测正确✅</p>
 <a id="more"></a>
 <p>假阳性FP：prediction为1，而标签为0，预测错误❎</p>
@@ -483,6 +482,7 @@
 <p>同时针对每一个分类器的ROC曲线，又能找到一个最佳的概率切分点使得自己关注的指标达到最佳水平。</p>
 <h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><script type="math/tex; mode=display">
 \mathrm{F} 1=2 \cdot \frac{\text { precision}\cdot \mathrm{ recall }}{\text { precision }+\text { recall }}</script><p>F1兼顾了分类模型的准确率和召回率，可以看作是模型准确率和召回率的<strong>调和平均数</strong>，最大值是1，最小值是0。</p>
+<p>参考链接：<a href="https://zhuanlan.zhihu.com/p/34079183" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34079183</a></p>
 
       
     </div>
