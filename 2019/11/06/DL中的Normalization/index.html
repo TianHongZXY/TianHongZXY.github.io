@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="NormalizationBatch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。 两种Normalization的位置目">
+  <meta name="description" content="NormalizationBatch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
 <meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Normalization">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;DL%E4%B8%AD%E7%9A%84Normalization&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="NormalizationBatch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。 两种Normalization的位置目">
+<meta property="og:description" content="NormalizationBatch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-18T15:21:50.194Z">
+<meta property="og:updated_time" content="2019-11-19T16:40:24.796Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-18 23:21:50" itemprop="dateModified" datetime="2019-11-18T23:21:50+08:00">2019-11-18</time>
+                <time title="Modified: 2019-11-20 00:40:24" itemprop="dateModified" datetime="2019-11-20T00:40:24+08:00">2019-11-20</time>
               
             
           </span>
@@ -458,6 +458,7 @@
 
       
         <h1 id="Normalization"><a href="#Normalization" class="headerlink" title="Normalization"></a>Normalization</h1><h2 id="Batch-size的影响"><a href="#Batch-size的影响" class="headerlink" title="Batch size的影响"></a>Batch size的影响</h2><p>使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。</p>
+<a id="more"></a>
 <h2 id="两种Normalization的位置"><a href="#两种Normalization的位置" class="headerlink" title="两种Normalization的位置"></a>两种Normalization的位置</h2><p>目前有两种在神经元中插入Normalization操作的地方，第一种是原始BN论文提出的，放在激活函数之前；另外一种是后续研究提出的，放在激活函数之后，不少研究表明将BN放在激活函数之后效果更好。</p>
 <h2 id="规范化函数"><a href="#规范化函数" class="headerlink" title="规范化函数"></a>规范化函数</h2><p>对于神经元的激活值来说，不论哪种Normalization方法，其规范化目标都是一样的，就是将其激活值规整为均值为0，方差为1的正态分布。即规范化函数统一都是如下形式：</p>
 <script type="math/tex; mode=display">
