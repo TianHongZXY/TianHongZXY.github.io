@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="评价指标混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \\ \hline\end{array}真阳性TP：predic">
+  <meta name="description" content="混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \\ \hline\end{array}真阳性TP：prediction">
 <meta name="keywords" content="deep learning,machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="评价指标">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="评价指标混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \\ \hline\end{array}真阳性TP：predic">
+<meta property="og:description" content="混淆矩阵 \begin{array}{|c|c|}\hline \text { True Positive(TP) } &amp; {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } &amp; {\text { True Negative(TN) }} \\ \hline\end{array}真阳性TP：prediction">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-18T15:21:28.762Z">
+<meta property="og:updated_time" content="2019-11-20T09:24:01.008Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-18 23:21:28" itemprop="dateModified" datetime="2019-11-18T23:21:28+08:00">2019-11-18</time>
+                <time title="Modified: 2019-11-20 17:24:01" itemprop="dateModified" datetime="2019-11-20T17:24:01+08:00">2019-11-20</time>
               
             
           </span>
@@ -457,30 +457,30 @@
       
 
       
-        <h1 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h1><h2 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h2><script type="math/tex; mode=display">
+        <h1 id="混淆矩阵"><a href="#混淆矩阵" class="headerlink" title="混淆矩阵"></a>混淆矩阵</h1><script type="math/tex; mode=display">
 \begin{array}{|c|c|}\hline \text { True Positive(TP) } & {\text { False Positive(FP) }} \\ \hline \text { False Negative(FN) } & {\text { True Negative(TN) }} \\ \hline\end{array}</script><p>真阳性TP：prediction为1，且标签也为1，预测正确✅</p>
 <a id="more"></a>
 <p>假阳性FP：prediction为1，而标签为0，预测错误❎</p>
 <p>真阴性TN：prediction为0，且标签也为0，预测正确✅</p>
 <p>假阴性FN：prediction为0，而标签也为1，预测错误❎</p>
 <p>矩阵的列为label，行为prediction</p>
-<h2 id="准确率-Accuracy"><a href="#准确率-Accuracy" class="headerlink" title="准确率 Accuracy"></a>准确率 Accuracy</h2><p>对于给定的测试数据集，分类器正确分类的样本数与总样本数之比. 也就是损失函数是0-1损失时测试数据集上的准确率</p>
-<h2 id="精确率-Precision"><a href="#精确率-Precision" class="headerlink" title="精确率 Precision"></a>精确率 Precision</h2><p>精确率也叫查准率，<strong>accuracy = TP / (TP + FP)</strong>，准确率是模型预测为1的样本中label确实为1的百分比</p>
+<h1 id="准确率-Accuracy"><a href="#准确率-Accuracy" class="headerlink" title="准确率 Accuracy"></a>准确率 Accuracy</h1><p>对于给定的测试数据集，分类器正确分类的样本数与总样本数之比. 也就是损失函数是0-1损失时测试数据集上的准确率</p>
+<h1 id="精确率-Precision"><a href="#精确率-Precision" class="headerlink" title="精确率 Precision"></a>精确率 Precision</h1><p>精确率也叫查准率，<strong>accuracy = TP / (TP + FP)</strong>，准确率是模型预测为1的样本中label确实为1的百分比</p>
 <p>精确率在检索系统中表示检出的<strong>相关</strong>文献与<strong><em>检出</em>的全部文献</strong>的百分比，衡量<strong>检索的信噪比</strong>。</p>
 <p><strong>注意是检索出的全部文献！！这就是和准确率(accuracy)的区别所在，准确率是检出的相关文献与全部文献的百分比，假设全部文献为inf，则准确率应该是0，这明显是不恰当的，所以这时应该用精确率来作为评价指标。</strong></p>
-<h2 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h2><p><strong>recall = TP / (TP + FN)</strong>，召回率是所有label为1的样本中被模型预测成1的百分比。</p>
+<h1 id="召回率"><a href="#召回率" class="headerlink" title="召回率"></a>召回率</h1><p><strong>recall = TP / (TP + FN)</strong>，召回率是所有label为1的样本中被模型预测成1的百分比。</p>
 <p>如果有100个标签为1的样本，模型预测了其中1个为1，只看准确率就是100%了，显然只看准确率是不行的，还得看模型从全为1的样本里找出来了多少个，比如找出来了82个，那么召回率就是82%。</p>
 <p>查全率在检索系统中：检出的<strong>相关</strong>文献与<strong>全部相关</strong>文献的百分比，衡量<strong>检索的覆盖率</strong></p>
 <h2 id="准确率与召回率的权衡"><a href="#准确率与召回率的权衡" class="headerlink" title="准确率与召回率的权衡"></a>准确率与召回率的权衡</h2><p>实际的二分类中，positive-1标签可以代表好也可以代表坏，但一般作为<strong>positive-1</strong>的指标指的是<strong>你更关注的样本表现</strong>，比如“是垃圾邮件”“是恶性肿瘤”“将要发生地震”。</p>
 <p><strong>要求模型有更高的【召回率】recall</strong>，要预测地震或者是检测恶性肿瘤就都得要求模型有较高的召回率，宁可错杀不可放过。</p>
 <p><strong>要求模型有更高的【精确率】precision，</strong>自动放进回收站里的都得确定是垃圾邮件，千万不能把正常的工作通知邮件丢进去。</p>
-<h2 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h2><p>ROC曲线的横坐标为假阳性率false positive rate（FPR）：<strong>FP / (FP + TN)</strong>，即实际无病，但根据筛检被判为有病的百分比。</p>
+<h1 id="ROC"><a href="#ROC" class="headerlink" title="ROC"></a>ROC</h1><p>ROC曲线的横坐标为假阳性率false positive rate（FPR）：<strong>FP / (FP + TN)</strong>，即实际无病，但根据筛检被判为有病的百分比。</p>
 <p>纵坐标为真阳性率true positive rate（TPR）：<strong>TP / (TP + FN)</strong> ，此处即【召回率】recall，即实际有病，但根据筛检被判为有病的百分比。</p>
 <p>所以ROC曲线越往左上角，横坐标越小，误判越小，纵坐标越大，正判越大，模型效果越好。</p>
 <p>ROC曲线有个很好的特性：当测试集中的正负样本的分布变化的时候，ROC曲线能够保持不变。而Precision-Recall曲线会变化剧烈，故ROC经常被使用。</p>
-<h2 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h2><p>AUC（Area Under Curve）被定义为ROC曲线下的面积，完全随机的二分类器的AUC为0.5，虽然在不同的阈值下有不同的FPR和TPR，但相对面积更大，更靠近左上角的曲线代表着一个更加稳健的二分类器。</p>
+<h1 id="AUC"><a href="#AUC" class="headerlink" title="AUC"></a>AUC</h1><p>AUC（Area Under Curve）被定义为ROC曲线下的面积，完全随机的二分类器的AUC为0.5，虽然在不同的阈值下有不同的FPR和TPR，但相对面积更大，更靠近左上角的曲线代表着一个更加稳健的二分类器。</p>
 <p>同时针对每一个分类器的ROC曲线，又能找到一个最佳的概率切分点使得自己关注的指标达到最佳水平。</p>
-<h2 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h2><script type="math/tex; mode=display">
+<h1 id="F1-score"><a href="#F1-score" class="headerlink" title="F1 score"></a>F1 score</h1><script type="math/tex; mode=display">
 \mathrm{F} 1=2 \cdot \frac{\text { precision}\cdot \mathrm{ recall }}{\text { precision }+\text { recall }}</script><p>F1兼顾了分类模型的准确率和召回率，可以看作是模型准确率和召回率的<strong>调和平均数</strong>，最大值是1，最小值是0。</p>
 <p>参考链接：<a href="https://zhuanlan.zhihu.com/p/34079183" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34079183</a></p>
 
@@ -732,7 +732,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#评价指标"><span class="nav-number">1.</span> <span class="nav-text">评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准确率-Accuracy"><span class="nav-number">1.2.</span> <span class="nav-text">准确率 Accuracy</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#精确率-Precision"><span class="nav-number">1.3.</span> <span class="nav-text">精确率 Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#召回率"><span class="nav-number">1.4.</span> <span class="nav-text">召回率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准确率与召回率的权衡"><span class="nav-number">1.5.</span> <span class="nav-text">准确率与召回率的权衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ROC"><span class="nav-number">1.6.</span> <span class="nav-text">ROC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AUC"><span class="nav-number">1.7.</span> <span class="nav-text">AUC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#F1-score"><span class="nav-number">1.8.</span> <span class="nav-text">F1 score</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#混淆矩阵"><span class="nav-number">1.</span> <span class="nav-text">混淆矩阵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#准确率-Accuracy"><span class="nav-number">2.</span> <span class="nav-text">准确率 Accuracy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#精确率-Precision"><span class="nav-number">3.</span> <span class="nav-text">精确率 Precision</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#召回率"><span class="nav-number">4.</span> <span class="nav-text">召回率</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#准确率与召回率的权衡"><span class="nav-number">4.1.</span> <span class="nav-text">准确率与召回率的权衡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ROC"><span class="nav-number">5.</span> <span class="nav-text">ROC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AUC"><span class="nav-number">6.</span> <span class="nav-text">AUC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#F1-score"><span class="nav-number">7.</span> <span class="nav-text">F1 score</span></a></li></ol></div>
             
 
           </div>

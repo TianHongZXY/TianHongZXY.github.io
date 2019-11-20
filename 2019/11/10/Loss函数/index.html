@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
+  <meta name="description" content="考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
 <meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Softmax + 交叉熵">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;Loss%E5%87%BD%E6%95%B0&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="Softmax + 交叉熵考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
+<meta property="og:description" content="考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-18T15:20:59.770Z">
+<meta property="og:updated_time" content="2019-11-20T09:20:34.532Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-18 23:20:59" itemprop="dateModified" datetime="2019-11-18T23:20:59+08:00">2019-11-18</time>
+                <time title="Modified: 2019-11-20 17:20:34" itemprop="dateModified" datetime="2019-11-20T17:20:34+08:00">2019-11-20</time>
               
             
           </span>
@@ -457,7 +457,7 @@
       
 
       
-        <h1 id="Softmax-交叉熵"><a href="#Softmax-交叉熵" class="headerlink" title="Softmax + 交叉熵"></a>Softmax + 交叉熵</h1><p>考虑一个广义的Softmax函数，q的logits为<script type="math/tex">z_{i}</script>其中<script type="math/tex">T</script>是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度<script type="math/tex">T</script>趋向0时，softmax输出将收敛为one-hot向量，温度<script type="math/tex">T</script>趋向无穷时，输出更「软」。</p>
+        <p>考虑一个广义的Softmax函数，q的logits为<script type="math/tex">z_{i}</script>其中<script type="math/tex">T</script>是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度<script type="math/tex">T</script>趋向0时，softmax输出将收敛为one-hot向量，温度<script type="math/tex">T</script>趋向无穷时，输出更「软」。</p>
 <a id="more"></a>
 <script type="math/tex; mode=display">
 q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \left(z_{j} / T\right)}</script><p>因此，在知识蒸馏中，训练新模型的时候，可以使用较高的T，使得softmax产生的分布足够软，这时让新模型的softmax输出近似原模型；在训练结束以后再使用正常的温度<script type="math/tex">T=1</script>来预测。记新模型产生的分布为q，原模型产生的分布为p，p的logits为<script type="math/tex">v_{i}</script>(下面的推导只需要把T设为1，p设为one-hot向量，就是平时用数据集从头训练模型时的softmax+交叉熵得到的损失函数)</p>
@@ -589,17 +589,8 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -728,23 +719,6 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Softmax-交叉熵"><span class="nav-number">1.</span> <span class="nav-text">Softmax + 交叉熵</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
