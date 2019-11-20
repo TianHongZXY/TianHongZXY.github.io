@@ -117,7 +117,11 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;013732d0bd9d1606.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;379b044d9069d189.jpg">
-<meta property="og:updated_time" content="2019-11-19T16:40:35.329Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;5e0a2f81974bb260.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;0d120d973a9796b1.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;7a2cbca134aa300b.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;f60ca21c8b475c12.jpg">
+<meta property="og:updated_time" content="2019-11-20T09:15:16.747Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;013732d0bd9d1606.jpg">
 
@@ -399,7 +403,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-20 00:40:35" itemprop="dateModified" datetime="2019-11-20T00:40:35+08:00">2019-11-20</time>
+                <time title="Modified: 2019-11-20 17:15:16" itemprop="dateModified" datetime="2019-11-20T17:15:16+08:00">2019-11-20</time>
               
             
           </span>
@@ -462,19 +466,68 @@
       
         <h1 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h1><h2 id="Encoder-Decoder"><a href="#Encoder-Decoder" class="headerlink" title="Encoder-Decoder"></a>Encoder-Decoder</h2><p>大多数注意力模型都是在Encoder-Decoder框架下发挥作用，Encoder-Decoder模型一般可以用来做机器翻译、文本摘要生成、问答系统、聊天机器人等。<a id="more"></a>Encoder的输入是Source，Decoder要输出的是Target，一般通过RNN来编码输入的句子，得到一个包含的句子语义信息的Vector $C$。假设句子由$t$个单词组成，即$(w_{1},w_{2},w_{3},···,w_{t-t-1},w_{t})$。那么RNN或Transformer等模型就作为编码句子的Encoder，首先句子经过Embedding层，从one-hot形式变为词向量$(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})$，假设它提取句子的语义信息的函数为$\psi$，则：</p>
 <script type="math/tex; mode=display">
-C = \psi(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})</script><p>对于Decoder来说，它的目标是根据Encoder编码好的句子信息$C$解码出我们想要的结果，这结果可以是对原输入句子的回答，翻译，或摘要等。假设Decoder的输出为$(y_{1},y_{2},y_{3},···,y_{m-1},y_{m})$，$m$和$t$的大小关系并不确定，一般来说Decoder输出<EOS>句子才算结束。</p>
+C = \psi(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})</script><p>对于Decoder来说，它的目标是根据Encoder编码好的句子信息$C$解码出我们想要的结果，这结果可以是对原输入句子的回答，翻译，或摘要等。假设Decoder的输出为$(y_{1},y_{2},y_{3},···,y_{m-1},y_{m})$，$m$和$t$的大小关系并不确定，一般来说Decoder输出<code>&lt;EOS&gt;</code>句子才算结束。</p>
 <p>假设t=i时，我们要输出$y_{i}$，假设Decoder生成单词的函数为$\varphi$则</p>
 <script type="math/tex; mode=display">
 y_{i} = \varphi(C,y_{1},y_{2},y_{3},···,y_{i-1})</script><p>这样就是一个Encoder-Decoder框架运作的基本方式，更直观的可以参见下图。</p>
 <p><img src="http://i2.tiimg.com/703781/013732d0bd9d1606.jpg"/></p>
-<h2 id="Soft-Attention"><a href="#Soft-Attention" class="headerlink" title="Soft Attention"></a>Soft Attention</h2><h3 id="理解Attention"><a href="#理解Attention" class="headerlink" title="理解Attention"></a>理解Attention</h3><p>最常见也应用最广泛的Attention就是Soft Attention，上面的Encoder-Decoder框架，在Decoder生成每一个yi时，对原输入整个句子语义信息C都给予了同等的注意力，即原句中不同的单词对于生成每一个yi的贡献是相同的。这明显是有问题的，比如在中英翻译：“我今天吃了一个苹果”，“I ate an apple today”，在翻译apple这个词时，原句中的“苹果”对其生成apple要比其他词都重要，因此，需要一个给单纯的Encoder-Decoder模型融入更多的知识，那就是Attention。</p>
+<h2 id="Soft-Attention"><a href="#Soft-Attention" class="headerlink" title="Soft Attention"></a>Soft Attention</h2><p>最常见也应用最广泛的Attention就是Soft Attention，上面的Encoder-Decoder框架，在Decoder生成每一个yi时，对原输入整个句子语义信息C都给予了同等的注意力，即原句中不同的单词对于生成每一个yi的贡献是相同的。这明显是有问题的，比如在中英翻译：“我今天吃了一个苹果”，“I ate an apple today”，在翻译apple这个词时，原句中的“苹果”对其生成apple要比其他词都重要，因此，需要一个给单纯的Encoder-Decoder模型融入更多的知识，那就是Attention。</p>
 <p>Attention的有效性和作用是很intuitive的，比如人在读文章、观察物体时也是会有注意力的参与的，不可能读一页书读到第一行，还能同时注意第二十行的句子，注意力肯定是分配在某个局部的句子上的。因此，给Encoder-Decoder添加Attention，就是要让Decoder在生成$y_{i}$时，给输入句子的单词$(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})$分配不同的注意力权重$\alpha_{ij}$，权重代表着单词$x_{j}$对生成$y_{i}$的重要性。</p>
-<p>假设Encoder是RNN，输入每个单词$x_{j}$后都会输出一个隐状态$h_{j}$，那么对生成$y_{i}$时，原先对生成每个yi都是相同的句子语义表示$C$会被替换成根据当前要生成的单词y而不断变化的$C_{i}$。理解Attention模型的关键就是这里，即把固定的句子语义表示$C$变成了根据当前要输出的单词yi来进行调整的、融入注意力知识的、不断变化的$C_{i}$。</p>
+<p>假设Encoder是RNN，输入每个单词$x_{j}$后都会输出一个隐状态$h_{j}$，那么对生成$y_{i}$时，原先对生成每个yi都是相同的句子语义表示$C$会被替换成根据当前要生成的单词yi而不断变化的$C_{i}$。理解Attention模型的关键就是这里，即把固定的句子语义表示$C$变成了根据当前要输出的单词yi来进行调整的、融入注意力知识的、不断变化的$C_{i}$。</p>
 <p>生成yi的式子变为如下：</p>
 <script type="math/tex; mode=display">
-C_{i} = \sum_{j=1}^{t}\alpha_{ij}\cdot h_{j}</script><p>其中，t代表输入句子Source的长度，aij代表在Decoder输出第i个单词时给Source中第j个单词的注意力分配系数，而hj则是Encoder输入第j个单词时输出的隐状态(语义编码)。下图是一个可视化的效果，帮助理解。</p>
+\begin{equation}
+\begin{aligned}
+C_{i} &= \sum_{j=1}^{t}\alpha_{ij}\cdot h_{j} \\
+y_{i} &= \varphi(C_{i},y_{1},y_{2},y_{3},···,y_{i-1})
+\end{aligned}
+\end{equation}</script><p>其中，t代表输入句子Source的长度，aij代表在Decoder输出第i个单词时给Source中第j个单词的注意力分配系数，而hj则是Encoder输入第j个单词时输出的隐状态(语义编码)。下图是一个可视化的效果，帮助理解。</p>
 <p><img src="http://i1.fuimg.com/703781/379b044d9069d189.jpg"/></p>
-<h3 id="计算Attention"><a href="#计算Attention" class="headerlink" title="计算Attention"></a>计算Attention</h3>
+<h2 id="计算Attention"><a href="#计算Attention" class="headerlink" title="计算Attention"></a>计算Attention</h2><p>我们已经知道了attention是什么，有什么作用，下面具体说明到底怎么计算attention。</p>
+<p>假设Encoder输入$x_{j}$后输出的隐状态为$h_{j}$，Decoder在输出$y_{i}$前隐层节点状态为$H_{i-1}$，那么可以用这个时刻的隐层节点状态去一一和输入句子中每个单词对应的RNN隐状态$h_{j}$进行对比，即通过函数$\Gamma(h_{j},H_{i-1})$来获得目标单词yi和每个输入单词对齐的可能性。$\Gamma$函数在不同论文里可能会采取不同的方法，然后$\Gamma$的所有输出经过Softmax进行归一化就得到了注意力分配到每个输入单词上的权重。下图展示了这个计算过程：</p>
+<p><img src="http://i1.fuimg.com/703781/5e0a2f81974bb260.jpg"/></p>
+<p>上面说到不同的论文$\Gamma$函数会采取不同的方法，其中较为普遍的类型有两种，一个是加法Attention，另一个是乘法Attention。</p>
+<h3 id="加法Attention"><a href="#加法Attention" class="headerlink" title="加法Attention"></a>加法Attention</h3><script type="math/tex; mode=display">
+\Gamma\left(\mathbf{h}_{j}, \mathbf{H}_{i-1}\right)=\mathbf{v}_{a}^{\top} \tanh \left(\mathbf{W}_{a}\left[\mathbf{h}_{j} ; \mathbf{H}_{i-1}\right]\right)</script><p>$v_{a}$和$W_{a}$为可训练的参数，h与H之间的分号表示将二者concatenate到一起，产生一个更长的vector。最后再把得到的value一起送往softmax层，进而产生一个概率分布。</p>
+<h3 id="乘法Attention"><a href="#乘法Attention" class="headerlink" title="乘法Attention"></a>乘法Attention</h3><script type="math/tex; mode=display">
+\Gamma\left(h_{j}, H_{i-1}\right)=h_{j}^{\top} \mathbf{W}_{a} H_{i-1}</script><p>在代码实现中，运用矩阵运算，可以大大加速计算，这里的$h_{j}$不再是单个vector，而是$h_{1}\sim h_{t}$组成的一个矩阵$M$，与$H_{i-1}$一同计算后，得到了一个长度为$t$的vector $\alpha_{i}$，它代表着在生成$y_{i}$时，对$h_{1}\sim h_{t}$分配的注意力权重。</p>
+<p>下图展示了在文本生成式摘要时，注意力的分配</p>
+<p><img src="http://i2.tiimg.com/703781/0d120d973a9796b1.jpg"/></p>
+<h2 id="Attention机制的本质思想"><a href="#Attention机制的本质思想" class="headerlink" title="Attention机制的本质思想"></a>Attention机制的本质思想</h2><p><img src='http://i2.tiimg.com/703781/7a2cbca134aa300b.jpg'></p>
+<p>我们可以这样来看待Attention机制：将Source中的构成元素想象成是由一系列的<Key,Value>数据对构成，此时给定Target中的某个元素Query，通过计算Query和各个Key的相似性或者相关性，可以得到每个Key针对该Query，Value的分配到的权重系数，然后对所有Key的Value进行加权求和，便得到了最终的Attention值。所以本质上Attention机制是对Source中元素的Value值进行加权求和，而Query和Key用来计算对应Value的权重系数。即可以将其本质思想改写为如下公式：</p>
+<script type="math/tex; mode=display">
+Attention(Query, Source) = \sum_{i}^{L_{x}}Similarity(Query, Key_{i}) \cdot Value_{i}</script><p>上式，$L_{x}$代表Source的长度。上文所举的机器翻译的例子里，因为在计算Attention的过程中，Source中的Key和Value其实是同一个东西，即输入句子中每个单词对应的语义编码，所以可能不容易看出这种能够体现本质思想的结构。</p>
+<p>当然，从概念上理解，把Attention仍然理解为从大量信息中有选择地筛选出少量重要信息并聚焦到这些重要信息上，忽略大多不重要的信息，这种思路仍然成立。聚焦的过程体现在权重系数的计算上，权重越大越聚焦于其对应的Value值上，即权重代表了信息的重要性，而Value是其对应的信息。</p>
+<p>也可以将Attention机制看作一种软寻址(Soft Addressing)：Source可以看作存储器内存储的内容，元素由地址Key和值Value组成，当前有个Key=Query的查询，目的是取出存储器中对应的Value值，即Attention值。通过Query和存储器内元素Key的地址进行相似性比较来寻址。之所以说是软寻址，是因为不像一般寻址只从存储内容里面找出一条内容，而是从每个Key地址都可能会取出内容，取出内容的重要性根据Query和Key的相似性来决定，之后对Value进行加权求和，这样就可以得到最终的Value值，也即Attention值。</p>
+<p>Attention机制的具体计算过程，如果对目前大多数方法进行抽象的话，可以将其归纳为两个过程：第一个过程是根据Query和Key计算权重系数，第二个过程根据权重系数对Value进行加权求和。而第一个过程又可以细分为两个阶段：第一个阶段根据Query和Key计算两者的相似性或者相关性；第二个阶段对第一阶段的原始分值进行归一化处理；这样，可以将Attention的计算过程抽象为下图展示的三个阶段。</p>
+<p><img src='http://i2.tiimg.com/703781/f60ca21c8b475c12.jpg'></p>
+<p>在第一个阶段，可以引入不同的函数和计算机制，根据Query和某个Keyi，计算两者的相似性或者相关性，最常见的方法包括：求两者的向量点积、求两者的向量Cosine相似性或者通过再引入额外的神经网络来求值，计算公式分别如下：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+Similarity(Query, Key_{i}) &= Query^{\top}\cdot Key_{i} \\
+Similarity(Query, Key_{i}) &= \frac{Query^{\top}\cdot Key_{i}}{||Query||\cdot ||Key_{i}||} \\
+Similarity(Query, Key_{i}) &= MLP(Query，Key_{i})
+\end{aligned}</script><p>接着将得到的数值进行数值转换，一方面可以进行归一化，将原始计算分值整理成所有元素权重之和为1的概率分布；另一方面也可以通过SoftMax的内在机制更加突出重要元素的权重。一般采用如下公式计算：</p>
+<script type="math/tex; mode=display">
+\alpha_{i} = Softmax(Sim_{i}) = \frac{e^{Sim_{i}}}{\sum_{j}^{L_{x}}e^{Sim_{j}}}</script><p>最后得到Query关于Source的加权后的Value值：</p>
+<script type="math/tex; mode=display">
+Value(Query，Source) = \sum_{i}^{L_{x}}\alpha_{i}\cdot Value_{i}</script><h2 id="延伸阅读"><a href="#延伸阅读" class="headerlink" title="延伸阅读"></a>延伸阅读</h2><p>Attention的变体有非常非常多，针对不同任务，不同的Attention机制也有不同的效果，下面最近较火的三种Attention，相信读完上面的内容，理解下面的Attention不再是难题。</p>
+<ul>
+<li><p>Self-Attention</p>
+</li>
+<li><p>Hierarchical-Attention</p>
+</li>
+<li><p>Co-Attention</p>
+</li>
+</ul>
+<p>参考链接：</p>
+<ol>
+<li><p><a href="https://zhuanlan.zhihu.com/p/37601161" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/37601161</a> (插图及Attention本质均来自于该篇文章，其他章节亦有参考，有删改，作者:张俊林)</p>
+</li>
+<li><p><a href="https://www.jianshu.com/p/c94909b835d6" target="_blank" rel="noopener">https://www.jianshu.com/p/c94909b835d6</a></p>
+</li>
+</ol>
+
       
     </div>
 
@@ -717,7 +770,7 @@ C_{i} = \sum_{j=1}^{t}\alpha_{ij}\cdot h_{j}</script><p>其中，t代表输入�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention"><span class="nav-number">1.</span> <span class="nav-text">Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder-Decoder"><span class="nav-number">1.1.</span> <span class="nav-text">Encoder-Decoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Soft-Attention"><span class="nav-number">1.2.</span> <span class="nav-text">Soft Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#理解Attention"><span class="nav-number">1.2.1.</span> <span class="nav-text">理解Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算Attention"><span class="nav-number">1.2.2.</span> <span class="nav-text">计算Attention</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention"><span class="nav-number">1.</span> <span class="nav-text">Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Encoder-Decoder"><span class="nav-number">1.1.</span> <span class="nav-text">Encoder-Decoder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Soft-Attention"><span class="nav-number">1.2.</span> <span class="nav-text">Soft Attention</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算Attention"><span class="nav-number">1.3.</span> <span class="nav-text">计算Attention</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加法Attention"><span class="nav-number">1.3.1.</span> <span class="nav-text">加法Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#乘法Attention"><span class="nav-number">1.3.2.</span> <span class="nav-text">乘法Attention</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Attention机制的本质思想"><span class="nav-number">1.4.</span> <span class="nav-text">Attention机制的本质思想</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#延伸阅读"><span class="nav-number">1.5.</span> <span class="nav-text">延伸阅读</span></a></li></ol></li></ol></div>
             
 
           </div>
