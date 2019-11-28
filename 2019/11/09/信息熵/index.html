@@ -116,7 +116,7 @@
 <meta property="og:description" content="信息量事件发生的概率越小，信息量越大。 假设$X$是一个离散型随机变量，取值集合为$\chi$，概率分布函数为">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;40c47de4474fb384.jpg">
-<meta property="og:updated_time" content="2019-11-20T09:23:29.013Z">
+<meta property="og:updated_time" content="2019-11-28T14:03:04.131Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;40c47de4474fb384.jpg">
 
@@ -398,7 +398,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-20 17:23:29" itemprop="dateModified" datetime="2019-11-20T17:23:29+08:00">2019-11-20</time>
+                <time title="Modified: 2019-11-28 22:03:04" itemprop="dateModified" datetime="2019-11-28T22:03:04+08:00">2019-11-28</time>
               
             
           </span>
@@ -472,7 +472,9 @@ H(X)=-\sum_{i=1}^{n} p\left(x_{i}\right) \log \left(p\left(x_{i}\right)\right)</
 H(X)=-\sum_{i=1}^{n} p\left(x_{i}\right) \log \left(p\left(x_{i}\right)\right)=-p(x) \log (p(x))-(1-p(x)) \log (1-p(x))</script><h1 id="相对熵（KL散度-KL-divergence）"><a href="#相对熵（KL散度-KL-divergence）" class="headerlink" title="相对熵（KL散度/KL divergence）"></a>相对熵（KL散度/KL divergence）</h1><p> 相对熵又叫KL散度，如果我们对于同一个随机变量$X$，有两个单独的概率分布$P(X)$和$Q(X)$，我们可以用KL散度来衡量这两个分布的差异。</p>
 <p>在机器学习中，P分布往往用来表示样本的真实分布，即标签label，Q用来表示模型所预测的分布，那么KL散度就可以计算两个分布的差异，也就是计算损失值Loss。</p>
 <script type="math/tex; mode=display">
-D_{K L}(p \| q)=\sum_{i=1}^{n} p\left(x_{i}\right) \log \left(\frac{p\left(x_{i}\right)}{q\left(x_{i}\right)}\right)</script><p>可以看出，Q的分布越接近P（Q分布越拟合P），那么KL散度越小，即Loss越小，因为对数函数是凸函数，所以KL散度的值为非负数<strong><em>（为啥非负，等我以后推推看）</em></strong>。</p>
+D_{K L}(p \| q)=\sum_{i=1}^{n} p\left(x_{i}\right) \log \left(\frac{p\left(x_{i}\right)}{q\left(x_{i}\right)}\right)</script><p>可以看出，Q的分布越接近P（Q分布越拟合P），那么KL散度越小，即Loss越小，因为对数函数是凸函数，所以KL散度的值为非负数。下面给出KL散度非负的证明，对xi的求和变积分：</p>
+<script type="math/tex; mode=display">
+D_{K L}(p \| q)=\int p(x) \log \frac{p(x)}{q(x)} d x \geq \int p(x)\left(1-\frac{q(x)}{p(x)}\right) d x=\int p(x) d x-\int q(x) d x=0</script><p>上式用到了$\forall x \in(0,+\infty), \log x \leq x-1$，代入$\frac{q(x)}{p(x)}$就可以得到，$\log \frac{p(x)}{q(x)} \geq 1-\frac{q(x)}{p(x)}$</p>
 <p>KL散度有时被称为KL距离，但它不满足距离的性质：</p>
 <ol>
 <li><p>KL散度不对称，$<br>D_{K L}(p | q) ≠ D_{K L}(q | p)<br>$。</p>
