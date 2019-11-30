@@ -107,19 +107,19 @@
 
 
 
-  <meta name="description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。  \begin{aligned} c_{t} &amp;= Wx_{t} + Uh_{t-1} + b \\ h_{t} &amp;= f(c_{t})  \end{align">
+  <meta name="description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。">
 <meta name="keywords" content="deep learning,NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="循环神经网络">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;RNN&amp;LSTM&amp;GRU&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。  \begin{aligned} c_{t} &amp;= Wx_{t} + Uh_{t-1} + b \\ h_{t} &amp;= f(c_{t})  \end{align">
+<meta property="og:description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;b012322f7767cd4d.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f8b6dfd6d87db2d0.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;c914f57163c87cd2.png">
-<meta property="og:updated_time" content="2019-11-30T14:00:37.913Z">
+<meta property="og:updated_time" content="2019-11-30T14:55:39.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
 
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="Created: 2019-11-30 17:51:16 / Modified: 22:00:37" itemprop="dateCreated datePublished" datetime="2019-11-30T17:51:16+08:00">2019-11-30</time>
+              <time title="Created: 2019-11-30 17:51:16 / Modified: 22:55:39" itemprop="dateCreated datePublished" datetime="2019-11-30T17:51:16+08:00">2019-11-30</time>
             
 
             
@@ -453,6 +453,7 @@
         <h1 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h1><p><img src='http://i1.fuimg.com/703781/e60d513e7153b3f2.png'></p>
 <p>简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。</p>
 <p>假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。</p>
+<a id="more"></a>
 <script type="math/tex; mode=display">
 \begin{aligned}
 c_{t} &= Wx_{t} + Uh_{t-1} + b \\
@@ -484,7 +485,7 @@ h_{t} &= o_{t} \odot \tanh \left(c_{t}\right)
 <script type="math/tex; mode=display">
 \begin{aligned} \mathbf{i}_{t} &=\sigma\left(W_{i} \mathbf{x}_{t}+U_{i} \mathbf{h}_{t-1}+\mathbf{b}_{i}\right) \\ \mathbf{f}_{t} &=\sigma\left(W_{f} \mathbf{x}_{t}+U_{f} \mathbf{h}_{t-1}+\mathbf{b}_{f}\right) \\ \mathbf{o}_{t} &=\sigma\left(W_{o} \mathbf{x}_{t}+U_{o} \mathbf{h}_{t-1}+\mathbf{b}_{o}\right) \end{aligned}</script><p>其中$\sigma(·)$为Logistic函数。</p>
 <p><img src='http://i1.fuimg.com/703781/f8b6dfd6d87db2d0.png'></p>
-<p>以上的$W_{<em>}, U_{</em>}, b_{<em>}, </em>\in{i,f,o,c}$皆是可学习的网络参数。</p>
+<p>以上的$W_{<em>}, U_{</em>}, b_{<em>}, </em> \in {i,f,o,c}$皆是可学习的网络参数。</p>
 <h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>一般在深度网络参数学习时，参数初始化的值一般都比较小。但是在训练 LSTM 网络时，过小的值会使得遗忘门的值比较小。这意味着前一时刻的信息大部分都丢失了，这样网络很难捕捉到长距离的依赖信息。并且相邻时间间隔的梯度会非常小，这会导致梯度弥散问题。因此遗忘的参数初始值一般都设得比较大，其偏置向量$b_{f}$设为1或2。</p>
 <h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><img src='http://i2.tiimg.com/703781/c914f57163c87cd2.png'></p>
 <p>门控循环单元(Gated Recurrent Unit, GRU)网络是一种比LSTM更简单的循环神经网络。</p>
@@ -496,7 +497,10 @@ z_{t} = \sigma(W_{z}x_{t} + U_{z}h_{t-1} + b_{z})</script><p>在GRU中，函数$
 <script type="math/tex; mode=display">
 \tilde{h}_{t} = \tanh(W_{h}x_{t} + U_h(r_{t} \odot h_{t-1}) + b_{h})</script><p>其中$\tilde{h}_{t}$表示当前时刻的候选状态，$r_{t}\in[0, 1]$为重置门，用来控制候选状态是否依赖上一个时刻的状态。</p>
 <script type="math/tex; mode=display">
-r_{t} = \sigma(W_{r}x_{t} + U_{r}h_{t-1} + b_{r})</script>
+r_{t} = \sigma(W_{r}x_{t} + U_{r}h_{t-1} + b_{r})</script><p>GRU一共有个两个门：更新门和重置门</p>
+<p>LSTM一共有三个门：遗忘门、输入门和输出门</p>
+<p>门的计算都是类似的。</p>
+
       
     </div>
 
