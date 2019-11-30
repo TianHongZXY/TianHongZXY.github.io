@@ -107,21 +107,28 @@
 
 
 
-  <meta name="description" content="浪漫骑士 行吟诗人 自由思想者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TianHongZXY">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;archives&#x2F;2019&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。  \begin{aligned} c_{t} &amp;= Wx_{t} + Uh_{t-1} + b \\ h_{t} &amp;= f(c_{t})  \end{align">
+<meta name="keywords" content="deep learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="循环神经网络">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;30&#x2F;RNN&amp;LSTM&amp;GRU&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta property="og:description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。  \begin{aligned} c_{t} &amp;= Wx_{t} + Uh_{t-1} + b \\ h_{t} &amp;= f(c_{t})  \end{align">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;b012322f7767cd4d.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f8b6dfd6d87db2d0.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;c914f57163c87cd2.png">
+<meta property="og:updated_time" content="2019-11-30T14:00:06.562Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/archives/2019/page/2/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2019/11/30/RNN&LSTM&GRU/"/>
 
 
 
@@ -131,7 +138,7 @@
   };
 </script>
 
-  <title>Archive | TianHongZXY</title>
+  <title>循环神经网络 | TianHongZXY</title>
   
 
 
@@ -179,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,7 +279,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -293,25 +300,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -337,232 +325,250 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/11/30/RNN&LSTM&GRU/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY"/>
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
+      <meta itemprop="image" content="/images/header.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY"/>
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">循环神经网络
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-11-30 17:51:16 / Modified: 22:00:06" itemprop="dateCreated datePublished" datetime="2019-11-30T17:51:16+08:00">2019-11-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        Um..! 15 posts in total. Keep on posting.
-      </span>
-      
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/14/dbdb%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" itemprop="url">
+          
             
-              <span itemprop="name">dbdb学习记录</span>
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/30/RNN&LSTM&GRU/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/30/RNN&LSTM&GRU/" itemprop="commentCount"></span>
+                </a>
+              </span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-14T21:17:22+08:00"
-              content="2019-02-14" >
-          02-14
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/02/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%A1%B0%E5%87%8F/" itemprop="url">
-            
-              <span itemprop="name">学习率衰减</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-02T23:33:24+08:00"
-              content="2019-02-02" >
-          02-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" itemprop="url">
-            
-              <span itemprop="name">搭成博客的第一篇</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-02T23:33:14+08:00"
-              content="2019-02-02" >
-          02-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
+        <h1 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h1><p><img src='http://i1.fuimg.com/703781/e60d513e7153b3f2.png'></p>
+<p>简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。</p>
+<p>假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+c_{t} &= Wx_{t} + Uh_{t-1} + b \\
+h_{t} &= f(c_{t})
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/02/fastai%20lesson%201/" itemprop="url">
-            
-              <span itemprop="name">fastai lesson 1</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-02T23:20:54+08:00"
-              content="2019-02-02" >
-          02-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+\end{aligned}</script><p>其中$c_{t}$为隐藏层的净输入，$f(·)$是非线性激活函数，通常是Logistic函数或Tanh，U为<strong>状态-状态</strong>权重矩阵，W为<strong>状态-输入</strong>矩阵，b为偏置。上面两个式子也可以合并为一个式子</p>
+<script type="math/tex; mode=display">
+h_{t} = f(Wx_{t} + Uh_{t-1} + b)</script><p>假设句子长度为$T$，一般的分类问题都是利用最后输出的$h_{T}$去做分类，因为它包含了整个句子的语义信息。</p>
+<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><p><img src='http://i1.fuimg.com/703781/b012322f7767cd4d.png'></p>
+<p>长短期记忆(Long Short-Term Memory，LSTM)网络是循环神经网络的一个变体，可以有效地解决简单RNN的梯度爆炸或消失问题。 </p>
+<p>改进主要有两方面：</p>
+<ol>
+<li>新的内部状态 LSTM网络引入一个新的内部状态(internal state)$c$专门进行线性的循环信息传递。</li>
+<li>同时(非线性)输出信息给隐藏层的外部状态 $h_{t}$。</li>
+</ol>
+<script type="math/tex; mode=display">
+\begin{aligned} 
+c_{t} &= f_{t} \odot c_{t-1}+ i_{t} \odot \tilde{c}_{t} \\ 
+h_{t} &= o_{t} \odot \tanh \left(c_{t}\right) 
+\end{aligned}</script><p>$\odot$为element wise相乘；$c_{t-1}$为上一时刻的记忆单元；$\tilde{c}_{t}$是通过非线性函数得到的候选状态</p>
+<script type="math/tex; mode=display">
+\tilde{c}_{t} = \tanh(W_{c}x_{t} + U_{c}h_{t-1} + b_c)</script><p>$f_{t}, i_{t}, o_{t}$分别为遗忘门，输入门和输出门(gate)，用来控制信息传递的路径，它的值越大，表示门开的越大，允许通过的信息越多，1表示完全通过，0表示完全不通过，</p>
+<ul>
+<li>遗忘门$f_{t}$控制上一个时刻的内部状态$c_{t-1}$需要遗忘多少信息。</li>
+<li>输入门$i_{t}$控制当前时刻的候选状态$\tilde{c}_{t}$有多少信息需要保存。</li>
+<li>输出门$o_{t}$控制当前时刻的内部状态有$c_{t}$多少信息需要输出给外部状态$h_{t}$。 </li>
+</ul>
+<p>三个门的计算方式为</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \mathbf{i}_{t} &=\sigma\left(W_{i} \mathbf{x}_{t}+U_{i} \mathbf{h}_{t-1}+\mathbf{b}_{i}\right) \\ \mathbf{f}_{t} &=\sigma\left(W_{f} \mathbf{x}_{t}+U_{f} \mathbf{h}_{t-1}+\mathbf{b}_{f}\right) \\ \mathbf{o}_{t} &=\sigma\left(W_{o} \mathbf{x}_{t}+U_{o} \mathbf{h}_{t-1}+\mathbf{b}_{o}\right) \end{aligned}</script><p>其中$\sigma(·)$为Logistic函数。</p>
+<p><img src='http://i1.fuimg.com/703781/f8b6dfd6d87db2d0.png'></p>
+<p>以上的$W_{<em>}, U_{</em>}, b_{<em>}, </em>\in{i,f,o,c}$皆是可学习的网络参数。</p>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>一般在深度网络参数学习时，参数初始化的值一般都比较小。但是在训练 LSTM 网络时，过小的值会使得遗忘门的值比较小。这意味着前一时刻的信息大部分都丢失了，这样网络很难捕捉到长距离的依赖信息。并且相邻时间间隔的梯度会非常小，这会导致梯度弥散问题。因此遗忘的参数初始值一般都设得比较大，其偏置向量$b_{f}$设为1或2。</p>
+<h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><img src='http://i2.tiimg.com/703781/c914f57163c87cd2.png'></p>
+<p>门控循环单元(Gated Recurrent Unit, GRU)网络是一种比LSTM更简单的循环神经网络。</p>
+<p>和LSTM不同的地方在于，GRU不引入额外的记忆单元，而是引入了一个更新门来控制当前状态需要从历史状态中保留多少信息(不经过非线性变换)，以及需要从候选状态中接受多少信息。</p>
+<script type="math/tex; mode=display">
+h_{t} = z_{t} \odot h_{t-1} + (1 - z_{t}) \odot \tilde{h}_{t}</script><p>其中$z_{t}\in[0, 1]$为更新门</p>
+<script type="math/tex; mode=display">
+z_{t} = \sigma(W_{z}x_{t} + U_{z}h_{t-1} + b_{z})</script><p>在GRU中，函数$\tilde{h}_{t}$的定义为</p>
+<script type="math/tex; mode=display">
+\tilde{h}_{t} = \tanh(W_{h}x_{t} + U_h(r_{t} \odot h_{t-1}) + b_{h})</script><p>其中$\tilde{h}_{t}$表示当前时刻的候选状态，$r_{t}\in[0, 1]$为重置门，用来控制候选状态是否依赖上一个时刻的状态。</p>
+<script type="math/tex; mode=display">
+r_{t} = \sigma(W_{r}x_{t} + U_{r}h_{t-1} + b_{r})</script>
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/02/01/Markdown%E8%AF%AD%E6%B3%95/" itemprop="url">
-            
-              <span itemprop="name">Markdown语法</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-02-01T10:34:29+08:00"
-              content="2019-02-01" >
-          02-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/19/DL%E4%B8%AD%E7%9A%84Attention/" rel="next" title="Attention">
+                <i class="fa fa-chevron-left"></i> Attention
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/">&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/archives/2019/">1</a><span class="page-number current">2</span>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -583,8 +589,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -714,6 +729,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RNN"><span class="nav-number">1.</span> <span class="nav-text">RNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LSTM"><span class="nav-number">2.</span> <span class="nav-text">LSTM</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">2.1.</span> <span class="nav-text">注意</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GRU"><span class="nav-number">3.</span> <span class="nav-text">GRU</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -835,6 +867,10 @@
   
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
