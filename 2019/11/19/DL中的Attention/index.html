@@ -121,7 +121,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;0d120d973a9796b1.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;7a2cbca134aa300b.jpg">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;f60ca21c8b475c12.jpg">
-<meta property="og:updated_time" content="2019-11-20T09:28:47.926Z">
+<meta property="og:updated_time" content="2019-11-30T04:30:05.441Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;013732d0bd9d1606.jpg">
 
@@ -403,7 +403,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-20 17:28:47" itemprop="dateModified" datetime="2019-11-20T17:28:47+08:00">2019-11-20</time>
+                <time title="Modified: 2019-11-30 12:30:05" itemprop="dateModified" datetime="2019-11-30T12:30:05+08:00">2019-11-30</time>
               
             
           </span>
@@ -467,28 +467,37 @@
         <h1 id="Encoder-Decoder"><a href="#Encoder-Decoder" class="headerlink" title="Encoder-Decoder"></a>Encoder-Decoder</h1><p>大多数注意力模型都是在Encoder-Decoder框架下发挥作用，Encoder-Decoder模型一般可以用来做机器翻译、文本摘要生成、问答系统、聊天机器人等。<a id="more"></a>Encoder的输入是Source，Decoder要输出的是Target，一般通过RNN来编码输入的句子，得到一个包含的句子语义信息的Vector $C$。假设句子由$t$个单词组成，即$(w_{1},w_{2},w_{3},···,w_{t-t-1},w_{t})$。那么RNN或Transformer等模型就作为编码句子的Encoder，首先句子经过Embedding层，从one-hot形式变为词向量$(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})$，假设它提取句子的语义信息的函数为$\psi$，则：</p>
 <script type="math/tex; mode=display">
 C = \psi(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})</script><p>对于Decoder来说，它的目标是根据Encoder编码好的句子信息$C$解码出我们想要的结果，这结果可以是对原输入句子的回答，翻译，或摘要等。假设Decoder的输出为$(y_{1},y_{2},y_{3},···,y_{m-1},y_{m})$，$m$和$t$的大小关系并不确定，一般来说Decoder输出<code>&lt;EOS&gt;</code>句子才算结束。</p>
-<p>假设t=i时，我们要输出$y_{i}$，假设Decoder生成单词的函数为$\varphi$则</p>
+<p>假设t=i时，我们要输出$y_{i}$，其实我们生成的是$y_{i}$的概率分布，然后再选取概率最大的那个单词做输出(<strong>贪心search</strong>)，还有另一种方式叫<strong>beam search</strong>，这个不是本文重点就在此不多说了。根据<em>Bahdanau et al. ICLR2014</em>第一次提出的将Attention运用于机器翻译任务的论文中，$y_{i}$的概率分布计算公式如下：</p>
+<script type="math/tex; mode=display">
+p(y_{i}|y_{1},···,y_{i-1},x) = g(y_{i-1},s_{i},C_{i})</script><p>其中$s_{i}$是RNN在$i^{th}$timestep的hidden state，由如下公式计算：</p>
+<script type="math/tex; mode=display">
+s_{i} = f(s_{i-1},y_{i-1},C_{i})</script><p>因此，$y_{i}$实际是一个长度为vocabulary size $|V|$的vector，因此最终根据$y_{i}$生成的单词$word_{q}$可以写成下列形式：</p>
+<script type="math/tex; mode=display">
+word_{q} = \mathop{\arg\max}\limits_{q}{}(y_{i})，y_{i} \in R^{|V|}</script><p>在这里简单地将Decoder整个生成yi的函数用$\varphi$表示：</p>
 <script type="math/tex; mode=display">
 y_{i} = \varphi(C,y_{1},y_{2},y_{3},···,y_{i-1})</script><p>这样就是一个Encoder-Decoder框架运作的基本方式，更直观的可以参见下图。</p>
 <p><img src="http://i2.tiimg.com/703781/013732d0bd9d1606.jpg"/></p>
 <h1 id="Soft-Attention"><a href="#Soft-Attention" class="headerlink" title="Soft Attention"></a>Soft Attention</h1><p>最常见也应用最广泛的Attention就是Soft Attention，上面的Encoder-Decoder框架，在Decoder生成每一个yi时，对原输入整个句子语义信息C都给予了同等的注意力，即原句中不同的单词对于生成每一个yi的贡献是相同的。这明显是有问题的，比如在中英翻译：“我今天吃了一个苹果”，“I ate an apple today”，在翻译apple这个词时，原句中的“苹果”对其生成apple要比其他词都重要，因此，需要一个给单纯的Encoder-Decoder模型融入更多的知识，那就是Attention。</p>
 <p>Attention的有效性和作用是很intuitive的，比如人在读文章、观察物体时也是会有注意力的参与的，不可能读一页书读到第一行，还能同时注意第二十行的句子，注意力肯定是分配在某个局部的句子上的。因此，给Encoder-Decoder添加Attention，就是要让Decoder在生成$y_{i}$时，给输入句子的单词$(x_{1},x_{2},x_{3},···,x_{t-1},x_{t})$分配不同的注意力权重$\alpha_{ij}$，权重代表着单词$x_{j}$对生成$y_{i}$的重要性。</p>
 <p>假设Encoder是RNN，输入每个单词$x_{j}$后都会输出一个隐状态$h_{j}$，那么对生成$y_{i}$时，原先对生成每个yi都是相同的句子语义表示$C$会被替换成根据当前要生成的单词yi而不断变化的$C_{i}$。理解Attention模型的关键就是这里，即把固定的句子语义表示$C$变成了根据当前要输出的单词yi来进行调整的、融入注意力知识的、不断变化的$C_{i}$。</p>
-<p>生成yi的式子变为如下：</p>
+<p>生成yi的式子如下：</p>
 <script type="math/tex; mode=display">
 \begin{aligned}
 C_{i} &= \sum_{j=1}^{t}\alpha_{ij}\cdot h_{j} \\
-y_{i} &= \varphi(C_{i},y_{1},y_{2},y_{3},···,y_{i-1})
+y_{i} &= \varphi(C_{i},y_{1},y_{2},y_{3},···,y_{i-1}) \\
+
+\alpha_{ij} &= \frac{exp(e_{ij})}{\sum_{k=1}^{t}exp(e_{ik})} \\
+e_{ij} &= \Gamma(s_{i-1}, h_{j})
 \end{aligned}</script><p>其中，t代表输入句子Source的长度，aij代表在Decoder输出第i个单词时给Source中第j个单词的注意力分配系数，而hj则是Encoder输入第j个单词时输出的隐状态(语义编码)。下图是一个可视化的效果，帮助理解。</p>
 <p><img src="http://i1.fuimg.com/703781/379b044d9069d189.jpg"/></p>
 <h1 id="计算Attention"><a href="#计算Attention" class="headerlink" title="计算Attention"></a>计算Attention</h1><p>我们已经知道了attention是什么，有什么作用，下面具体说明到底怎么计算attention。</p>
-<p>假设Encoder输入$x_{j}$后输出的隐状态为$h_{j}$，Decoder在输出$y_{i}$前隐层节点状态为$H_{i-1}$，那么可以用这个时刻的隐层节点状态去一一和输入句子中每个单词对应的RNN隐状态$h_{j}$进行对比，即通过函数$\Gamma(h_{j},H_{i-1})$来获得目标单词yi和每个输入单词对齐的可能性。$\Gamma$函数在不同论文里可能会采取不同的方法，然后$\Gamma$的所有输出经过Softmax进行归一化就得到了注意力分配到每个输入单词上的权重。下图展示了这个计算过程：</p>
+<p>假设Encoder输入$x_{j}$后输出的隐状态为$h_{j}$，Decoder在输出$y_{i}$前隐层节点状态为$s_{i-1}$，那么可以用这个时刻的隐层节点状态去一一和输入句子中每个单词对应的RNN隐状态$h_{j}$进行对比，即通过函数$\Gamma(h_{j},s_{i-1})$来获得目标单词yi和每个输入单词对齐的可能性。$\Gamma$函数在不同论文里可能会采取不同的方法，然后$\Gamma$的所有输出经过Softmax进行归一化就得到了注意力分配到每个输入单词上的权重。下图展示了这个计算过程：</p>
 <p><img src="http://i1.fuimg.com/703781/5e0a2f81974bb260.jpg"/></p>
 <p>上面说到不同的论文$\Gamma$函数会采取不同的方法，其中较为普遍的类型有两种，一个是加法Attention，另一个是乘法Attention。</p>
 <h2 id="加法Attention"><a href="#加法Attention" class="headerlink" title="加法Attention"></a>加法Attention</h2><script type="math/tex; mode=display">
-\Gamma\left(\mathbf{h}_{j}, \mathbf{H}_{i-1}\right)=\mathbf{v}_{a}^{\top} \tanh \left(\mathbf{W}_{a}\left[\mathbf{h}_{j} ; \mathbf{H}_{i-1}\right]\right)</script><p>$v_{a}$和$W_{a}$为可训练的参数，h与H之间的分号表示将二者concatenate到一起，产生一个更长的vector。最后再把得到的value一起送往softmax层，进而产生一个概率分布。</p>
+\Gamma\left(\mathbf{h}_{j}, \mathbf{s}_{i-1}\right)=\mathbf{v}_{a}^{\top} \tanh \left(\mathbf{W}_{a}\left[\mathbf{h}_{j} ; \mathbf{s}_{i-1}\right]\right)</script><p>$v_{a}$和$W_{a}$为可训练的参数，h与s之间的分号表示将二者concatenate到一起，产生一个更长的vector。最后再把得到的value一起送往softmax层，进而产生一个概率分布。</p>
 <h2 id="乘法Attention"><a href="#乘法Attention" class="headerlink" title="乘法Attention"></a>乘法Attention</h2><script type="math/tex; mode=display">
-\Gamma\left(h_{j}, H_{i-1}\right)=h_{j}^{\top} \mathbf{W}_{a} H_{i-1}</script><p>在代码实现中，运用矩阵运算，可以大大加速计算，这里的$h_{j}$不再是单个vector，而是$h_{1}\sim h_{t}$组成的一个矩阵$M$，与$H_{i-1}$一同计算后，得到了一个长度为$t$的vector $\alpha_{i}$，它代表着在生成$y_{i}$时，对$h_{1}\sim h_{t}$分配的注意力权重。</p>
+\Gamma\left(h_{j}, s_{i-1}\right)=h_{j}^{\top} \mathbf{W}_{a} s_{i-1}</script><p>在代码实现中，运用矩阵运算，可以大大加速计算，这里的$h_{j}$不再是单个vector，而是$h_{1}\sim h_{t}$组成的一个矩阵$M$，与$s_{i-1}$一同计算后，得到了一个长度为$t$的vector $\alpha_{i}$，它代表着在生成$y_{i}$时，对$h_{1}\sim h_{t}$分配的注意力权重。</p>
 <p>下图展示了在文本生成式摘要时，注意力的分配</p>
 <p><img src="http://i2.tiimg.com/703781/0d120d973a9796b1.jpg"/></p>
 <h1 id="Attention机制的本质思想"><a href="#Attention机制的本质思想" class="headerlink" title="Attention机制的本质思想"></a>Attention机制的本质思想</h1><p><img src='http://i2.tiimg.com/703781/7a2cbca134aa300b.jpg'></p>
