@@ -119,7 +119,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;b012322f7767cd4d.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f8b6dfd6d87db2d0.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;c914f57163c87cd2.png">
-<meta property="og:updated_time" content="2019-12-01T04:06:33.910Z">
+<meta property="og:updated_time" content="2019-12-01T04:12:29.304Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
 
@@ -401,7 +401,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-12-01 12:06:33" itemprop="dateModified" datetime="2019-12-01T12:06:33+08:00">2019-12-01</time>
+                <time title="Modified: 2019-12-01 12:12:29" itemprop="dateModified" datetime="2019-12-01T12:12:29+08:00">2019-12-01</time>
               
             
           </span>
@@ -497,8 +497,8 @@ h_{t} &= o_{t} \odot \tanh \left(c_{t}\right)
 <script type="math/tex; mode=display">
 \begin{aligned} \mathbf{i}_{t} &=\sigma\left(W_{i} \mathbf{x}_{t}+U_{i} \mathbf{h}_{t-1}+\mathbf{b}_{i}\right) \\ \mathbf{f}_{t} &=\sigma\left(W_{f} \mathbf{x}_{t}+U_{f} \mathbf{h}_{t-1}+\mathbf{b}_{f}\right) \\ \mathbf{o}_{t} &=\sigma\left(W_{o} \mathbf{x}_{t}+U_{o} \mathbf{h}_{t-1}+\mathbf{b}_{o}\right) \end{aligned}</script><p>其中$\sigma(·)$为Logistic函数。</p>
 <p><img src='http://i1.fuimg.com/703781/f8b6dfd6d87db2d0.png'></p>
-<p>以上的$W_{<em>}$, $U_{</em>}$, $b_{<em>}$, $</em> \in {i,f,o,c}$ 皆是可学习的网络参数。</p>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>一般在深度网络参数学习时，参数初始化的值一般都比较小。但是在训练 LSTM 网络时，过小的值会使得遗忘门的值比较小。这意味着前一时刻的信息大部分都丢失了，这样网络很难捕捉到长距离的依赖信息。并且相邻时间间隔的梯度会非常小，这会导致梯度弥散问题。因此遗忘的参数初始值一般都设得比较大，其偏置向量$b_{f}$设为1或2。</p>
+<script type="math/tex; mode=display">
+W_{*}, U_{*}, b_{*}, * \in {i,f,o,c} 皆是可学习的网络参数。</script><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>一般在深度网络参数学习时，参数初始化的值一般都比较小。但是在训练 LSTM 网络时，过小的值会使得遗忘门的值比较小。这意味着前一时刻的信息大部分都丢失了，这样网络很难捕捉到长距离的依赖信息。并且相邻时间间隔的梯度会非常小，这会导致梯度弥散问题。因此遗忘的参数初始值一般都设得比较大，其偏置向量$b_{f}$设为1或2。</p>
 <h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><img src='http://i2.tiimg.com/703781/c914f57163c87cd2.png'></p>
 <p>门控循环单元(Gated Recurrent Unit, GRU)网络是一种比LSTM更简单的循环神经网络。</p>
 <p>和LSTM不同的地方在于，GRU不引入额外的记忆单元，而是引入了一个更新门来控制当前状态需要从历史状态中保留多少信息(不经过非线性变换)，以及需要从候选状态中接受多少信息。</p>
