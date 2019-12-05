@@ -119,7 +119,8 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;c74093062c0f7f01.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;5e0a17681d55195f.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;278f7bdb941922d0.png">
-<meta property="og:updated_time" content="2019-12-05T14:15:09.598Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;959ec2e2ea15efbc.png">
+<meta property="og:updated_time" content="2019-12-05T15:48:10.371Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 
@@ -384,7 +385,7 @@
                 
               
 
-              <time title="Created: 2019-12-05 20:39:47 / Modified: 22:15:09" itemprop="dateCreated datePublished" datetime="2019-12-05T20:39:47+08:00">2019-12-05</time>
+              <time title="Created: 2019-12-05 20:39:47 / Modified: 23:48:10" itemprop="dateCreated datePublished" datetime="2019-12-05T20:39:47+08:00">2019-12-05</time>
             
 
             
@@ -488,23 +489,25 @@
 <li>对话者的目的，意图，依赖关系(Poria et al., 2019)</li>
 <li>主要说话者的定位，抽帧的方式可能难以捕捉说话者的面部表情和手势的变化</li>
 </ol>
-<h1 id="Reasoning-with-Sarcasm-by-Reading-In-between"><a href="#Reasoning-with-Sarcasm-by-Reading-In-between" class="headerlink" title="Reasoning with Sarcasm by Reading In-between"></a>Reasoning with Sarcasm by Reading In-between</h1><p>第二篇读的是Reasoning with Sarcasm by Reading In-between，ACL 2018的一篇反讽检测论文，这篇论文不同于上一篇，使用的是上下文无关的方式，且只针对文本来做检测。提出了一个能够 look <em>in-between</em> 的 attention-based 的神经网络，使得模型能够较准确地对反讽语句中常见的矛盾/不协调(contrast and incongruity)进行建模，在 Twitter, Reddit 和 IAC数据集上达到了 state-of-the-art，并且拥有提升的可解释性。</p>
+<h1 id="Reasoning-with-Sarcasm-by-Reading-In-between"><a href="#Reasoning-with-Sarcasm-by-Reading-In-between" class="headerlink" title="Reasoning with Sarcasm by Reading In-between"></a>Reasoning with Sarcasm by Reading In-between</h1><p>第二篇读的是Reasoning with Sarcasm by Reading In-between，ACL 2018的一篇反讽检测论文，这篇论文不同于上一篇，使用的是上下文无关的方式，且只针对文本来做检测。提出了一个能够 look <em>in-between</em> 的 attention-based 的神经网络，使得模型能够较准确地对反讽语句中常见的矛盾/不协调(contrast and incongruity)进行建模，在 Twitter, Reddit 和 Internet Argument Corpus 数据集上达到了 state-of-the-art，并且提升了可解释性。</p>
 <p>论文中提到了反讽检测可以给 opinion mining applications 带来巨大的 benefits。</p>
-<p>反讽通常出现在两种情况：1.明显的矛盾、冲突的情感。2.作者表达的情感与其境况悬殊的差异。</p>
-<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><ol>
-<li><p>提出反讽语句中通常具有矛盾的word pairs，并列地表达两种相反的情绪，例如</p>
+<p>反讽通常出现在两种情况：1.明显的矛盾、冲突的情感，比如“一部优秀的催眠影片”。2.作者表达的情感与其境况悬殊的差异，比如“我车被偷了，真棒！”。</p>
+<p>提出反讽语句中通常具有矛盾的word pairs，表达两种冲突、相反的情绪，例如</p>
 <ul>
-<li><p>I absolutely <strong><em>love</em></strong> to be <strong><em>ignored</em></strong>! </p>
-</li>
-<li><p>Yay!!! The <strong><em>best</em></strong> thing to wake up to is my </p>
-<p>neighbor’s <strong><em>drilling</em></strong>. </p>
-</li>
-<li><p>Perfect <strong><em>movie</em></strong> for people who can’t fall <strong><em>asleep</em></strong>. </p>
-</li>
+<li>I absolutely <strong><em>love</em></strong> to be <strong><em>ignored</em></strong>! </li>
+<li>Yay!!! The <strong><em>best</em></strong> thing to wake up to is my neighbor’s <strong><em>drilling</em></strong>. </li>
+<li>Perfect <strong><em>movie</em></strong> for people who can’t fall <strong><em>asleep</em></strong>. </li>
 </ul>
-<p>因此作者认为捕捉语句中的word pairs之间的关系很有用，即<em>looking in-between</em></p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><ol>
+<li><p>基于上述原因，作者认为捕捉语句中的word pairs之间的关系很有用，即<em>looking in-between</em>，所以提出了一个 Multi-dimensional Intra-Attention Recurrent Network (MIARN)  来对句子中的每个 word pair 进行建模，作者说他们的模型可以被当做一个 self-targeted co-attention (Xiong et al., 2016)，不仅可以捕捉词间关系(word-word relation)，还可以捕捉长程依赖关系(long-range dependencies)</p>
 </li>
-<li></li>
+<li><p>MIARN 在 Twitter, Reddit 和 IAC数据集上达到了 SOTA，且截至发表时是第一个在反讽检测任务上可以提供可解释性结果的 attention 模型</p>
+</li>
+</ol>
+<h2 id="论文的主要方法-1"><a href="#论文的主要方法-1" class="headerlink" title="论文的主要方法"></a>论文的主要方法</h2><p><img src='http://i1.fuimg.com/703781/959ec2e2ea15efbc.png'></p>
+<ol>
+<li>计算 word pair relation，对两个word $w_{i}$,$w_{j}$，使用线性变换计算二者的关系，得到一个 scalar score<script type="math/tex; mode=display">
+s_{ij} = W_{a}([w_{i};w_{j}]) + b_{a}</script>$W_{a} \in \mathbb{R}^{2n\times 1},b_{a} \in \mathbb{R}$是这层的参数，[.;.]表示 vector concatenation，$s_{ij}$是一个 scalar，表示 word pairs$(w_{i}, w_{j})$的相关性 score</li>
 </ol>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Santiago Castro, Devamanyu Hazarika, Verónica Pérez-Rosas, Roger Zimmermann, Rada Mihalcea and Soujanya Poria. 2019. Towards Multimodal Sarcasm Detection (An <em>Obviously</em> Perfect Paper) . <em>ACL 2019</em></p>
 <p>Yi Tay, Luu Anh Tuan, Siu Cheung Hui and Jian Su. 2018. Reasoning with Sarcasm by Reading In-between . <em>ACL 2018</em></p>
@@ -753,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Towards-Multimodal-Sarcasm-Detection"><span class="nav-number">1.</span> <span class="nav-text">Towards Multimodal Sarcasm Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文主要的贡献"><span class="nav-number">1.1.</span> <span class="nav-text">论文主要的贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法"><span class="nav-number">1.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出的改进方向"><span class="nav-number">1.4.</span> <span class="nav-text">提出的改进方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来研究方向"><span class="nav-number">1.5.</span> <span class="nav-text">未来研究方向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reasoning-with-Sarcasm-by-Reading-In-between"><span class="nav-number">2.</span> <span class="nav-text">Reasoning with Sarcasm by Reading In-between</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要贡献"><span class="nav-number">2.1.</span> <span class="nav-text">论文的主要贡献</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Towards-Multimodal-Sarcasm-Detection"><span class="nav-number">1.</span> <span class="nav-text">Towards Multimodal Sarcasm Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文主要的贡献"><span class="nav-number">1.1.</span> <span class="nav-text">论文主要的贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法"><span class="nav-number">1.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出的改进方向"><span class="nav-number">1.4.</span> <span class="nav-text">提出的改进方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来研究方向"><span class="nav-number">1.5.</span> <span class="nav-text">未来研究方向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reasoning-with-Sarcasm-by-Reading-In-between"><span class="nav-number">2.</span> <span class="nav-text">Reasoning with Sarcasm by Reading In-between</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要贡献"><span class="nav-number">2.1.</span> <span class="nav-text">论文的主要贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法-1"><span class="nav-number">2.2.</span> <span class="nav-text">论文的主要方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
