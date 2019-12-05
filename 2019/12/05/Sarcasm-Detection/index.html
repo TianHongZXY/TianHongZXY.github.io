@@ -107,19 +107,19 @@
 
 
 
-  <meta name="description" content="最近在看反讽检测的文章，才读了几篇，写一下小结，因为是没接触过的领域，看得还是挺费劲，也挺懵的，写个阅读笔记，尝试通过给别人讲的方式，让自己好好再重新理解一下。">
+  <meta name="description" content="最近在看反讽检测的文章，才读了几篇，写一下小结，因为是没接触过的领域，看得还是挺费劲，也挺懵的，写个阅读笔记，再琢磨琢磨，让自己好好重新理解一下。">
 <meta name="keywords" content="deep learning,NLP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Sarcasm Detection">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;12&#x2F;05&#x2F;Sarcasm-Detection&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="最近在看反讽检测的文章，才读了几篇，写一下小结，因为是没接触过的领域，看得还是挺费劲，也挺懵的，写个阅读笔记，尝试通过给别人讲的方式，让自己好好再重新理解一下。">
+<meta property="og:description" content="最近在看反讽检测的文章，才读了几篇，写一下小结，因为是没接触过的领域，看得还是挺费劲，也挺懵的，写个阅读笔记，再琢磨琢磨，让自己好好重新理解一下。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;c74093062c0f7f01.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;5e0a17681d55195f.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;278f7bdb941922d0.png">
-<meta property="og:updated_time" content="2019-12-05T13:40:37.467Z">
+<meta property="og:updated_time" content="2019-12-05T14:15:09.598Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 
@@ -384,7 +384,7 @@
                 
               
 
-              <time title="Created: 2019-12-05 20:39:47 / Modified: 21:40:37" itemprop="dateCreated datePublished" datetime="2019-12-05T20:39:47+08:00">2019-12-05</time>
+              <time title="Created: 2019-12-05 20:39:47 / Modified: 22:15:09" itemprop="dateCreated datePublished" datetime="2019-12-05T20:39:47+08:00">2019-12-05</time>
             
 
             
@@ -450,21 +450,21 @@
       
 
       
-        <p>最近在看反讽检测的文章，才读了几篇，写一下小结，因为是没接触过的领域，看得还是挺费劲，也挺懵的，写个阅读笔记，尝试通过给别人讲的方式，让自己好好再重新理解一下。</p>
+        <p>最近在看反讽检测的文章，才读了几篇，写一下小结，因为是没接触过的领域，看得还是挺费劲，也挺懵的，写个阅读笔记，再琢磨琢磨，让自己好好重新理解一下。</p>
 <a id="more"></a>
 <h1 id="Towards-Multimodal-Sarcasm-Detection"><a href="#Towards-Multimodal-Sarcasm-Detection" class="headerlink" title="Towards Multimodal Sarcasm Detection"></a>Towards Multimodal Sarcasm Detection</h1><p>第一篇读的是Towards Multimodal Sarcasm Detection (An <em>Obviously</em> Perfect Paper) ，标题就很有意思，斜体的<em>Obviously</em>就是在这就带有自嘲，反语的含义，也切合了本文的主题，反讽检测。</p>
 <p>这篇文章提出了一个数据集叫做<a href="https://github. com/soujanyaporia/MUStARD" target="_blank" rel="noopener">Multimodal Sarcasm Detection Dataset</a> (简称MUStARD), 数据集来源于流行的TV shows，不仅包含了最基本的文本信息，还包含了视觉和听觉的信息，文章用的是audiovisual utterance来表示一条数据，每个utterance都包含了它的context of historical utterances，这篇论文提出用多模态的方法来做反讽检测，因为多模态能提供更多的有利信息。</p>
 <p><img src='http://i2.tiimg.com/703781/e127e5e07b1312e8.png'></p>
-<h2 id="论文主要的贡献："><a href="#论文主要的贡献：" class="headerlink" title="论文主要的贡献："></a>论文主要的贡献：</h2><ol>
+<h2 id="论文主要的贡献"><a href="#论文主要的贡献" class="headerlink" title="论文主要的贡献"></a>论文主要的贡献</h2><ol>
 <li>创建了一个新的数据集MUStARD，包含了多模态(mutlimodal)和会话语境(conversational context)的特征。</li>
 <li>举了些在某些特定场景下不同的模态中反讽中特有的矛盾or不协调很明显的例子，强调使用多模态方法的重要性。</li>
 <li>和一些baseline对比，多模态比单模态表现出明显的优势。</li>
 <li>提供了对话的前几轮，作为上下文信息。可能会引申出新的sub-task：基于上下文语境的反讽检测(类似的好像之前就已经有了，比如SARC，不过这篇论文强调他们提供了每个说话者之前说的话，SARC只是提供了当前评论的上一条评论)</li>
 </ol>
-<p>论文谈了一些related work，Sarcasm in Text就不谈了，最基本的，Sarcasm in Speech里说到了Rockwell (2000)  发现较慢的语速和强力的语调大概率是反讽的一个标志，这篇论文也是从这些工作中获得的motivation，加入了语音的信息。</p>
+<p>论文谈了一些related work，Sarcasm in Text就不谈了，Sarcasm in Speech里说到了Rockwell (2000)  发现较慢的语速和强力的语调大概率是反讽的一个标志，这篇论文也是从这些工作中获得的motivation，加入了语音的信息。</p>
 <p><img src='http://i1.fuimg.com/703781/c74093062c0f7f01.png'></p>
 <h2 id="论文的主要方法"><a href="#论文的主要方法" class="headerlink" title="论文的主要方法"></a>论文的主要方法</h2><ol>
-<li><p>文本特征使用了BERT，一条utterance用一个dim=768的vector表示，上下文语境是由average每个句子得到的。论文也尝试了pre-trained ddim=300的GloVe，不过表现比较差。</p>
+<li><p>文本特征使用了BERT，一条utterance用一个dim=768的vector表示，上下文语境是由average每个句子得到的。论文也尝试了pre-trained dim=300的GloVe，不过表现比较差。</p>
 </li>
 <li><p>语音特征提取的方法用了Librosa库，因为我本人没有语音方面的知识，因此在这不班门弄斧了。</p>
 </li>
@@ -488,7 +488,26 @@
 <li>对话者的目的，意图，依赖关系(Poria et al., 2019)</li>
 <li>主要说话者的定位，抽帧的方式可能难以捕捉说话者的面部表情和手势的变化</li>
 </ol>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Santiago Castro，Devamanyu Hazarika et al. 2019. Towards Multimodal Sarcasm Detection (An <em>Obviously</em> Perfect Paper) . ACL 2019</p>
+<h1 id="Reasoning-with-Sarcasm-by-Reading-In-between"><a href="#Reasoning-with-Sarcasm-by-Reading-In-between" class="headerlink" title="Reasoning with Sarcasm by Reading In-between"></a>Reasoning with Sarcasm by Reading In-between</h1><p>第二篇读的是Reasoning with Sarcasm by Reading In-between，ACL 2018的一篇反讽检测论文，这篇论文不同于上一篇，使用的是上下文无关的方式，且只针对文本来做检测。提出了一个能够 look <em>in-between</em> 的 attention-based 的神经网络，使得模型能够较准确地对反讽语句中常见的矛盾/不协调(contrast and incongruity)进行建模，在 Twitter, Reddit 和 IAC数据集上达到了 state-of-the-art，并且拥有提升的可解释性。</p>
+<p>论文中提到了反讽检测可以给 opinion mining applications 带来巨大的 benefits。</p>
+<p>反讽通常出现在两种情况：1.明显的矛盾、冲突的情感。2.作者表达的情感与其境况悬殊的差异。</p>
+<h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><ol>
+<li><p>提出反讽语句中通常具有矛盾的word pairs，并列地表达两种相反的情绪，例如</p>
+<ul>
+<li><p>I absolutely <strong><em>love</em></strong> to be <strong><em>ignored</em></strong>! </p>
+</li>
+<li><p>Yay!!! The <strong><em>best</em></strong> thing to wake up to is my </p>
+<p>neighbor’s <strong><em>drilling</em></strong>. </p>
+</li>
+<li><p>Perfect <strong><em>movie</em></strong> for people who can’t fall <strong><em>asleep</em></strong>. </p>
+</li>
+</ul>
+<p>因此作者认为捕捉语句中的word pairs之间的关系很有用，即<em>looking in-between</em></p>
+</li>
+<li></li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Santiago Castro, Devamanyu Hazarika, Verónica Pérez-Rosas, Roger Zimmermann, Rada Mihalcea and Soujanya Poria. 2019. Towards Multimodal Sarcasm Detection (An <em>Obviously</em> Perfect Paper) . <em>ACL 2019</em></p>
+<p>Yi Tay, Luu Anh Tuan, Siu Cheung Hui and Jian Su. 2018. Reasoning with Sarcasm by Reading In-between . <em>ACL 2018</em></p>
 
       
     </div>
@@ -734,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Towards-Multimodal-Sarcasm-Detection"><span class="nav-number">1.</span> <span class="nav-text">Towards Multimodal Sarcasm Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文主要的贡献："><span class="nav-number">1.1.</span> <span class="nav-text">论文主要的贡献：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法"><span class="nav-number">1.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出的改进方向"><span class="nav-number">1.4.</span> <span class="nav-text">提出的改进方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来研究方向"><span class="nav-number">1.5.</span> <span class="nav-text">未来研究方向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Towards-Multimodal-Sarcasm-Detection"><span class="nav-number">1.</span> <span class="nav-text">Towards Multimodal Sarcasm Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文主要的贡献"><span class="nav-number">1.1.</span> <span class="nav-text">论文主要的贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法"><span class="nav-number">1.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出的改进方向"><span class="nav-number">1.4.</span> <span class="nav-text">提出的改进方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来研究方向"><span class="nav-number">1.5.</span> <span class="nav-text">未来研究方向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reasoning-with-Sarcasm-by-Reading-In-between"><span class="nav-number">2.</span> <span class="nav-text">Reasoning with Sarcasm by Reading In-between</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要贡献"><span class="nav-number">2.1.</span> <span class="nav-text">论文的主要贡献</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
