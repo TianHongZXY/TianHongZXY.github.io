@@ -120,7 +120,11 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;5e0a17681d55195f.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;278f7bdb941922d0.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;959ec2e2ea15efbc.png">
-<meta property="og:updated_time" content="2019-12-05T15:48:10.371Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;ce9b15167e02bc3f.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;12e9517e3a55a79c.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;1a57389a2ff83ebe.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;92ca79fa1ec2e18d.png">
+<meta property="og:updated_time" content="2019-12-06T03:54:25.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 
@@ -385,12 +389,24 @@
                 
               
 
-              <time title="Created: 2019-12-05 20:39:47 / Modified: 23:48:10" itemprop="dateCreated datePublished" datetime="2019-12-05T20:39:47+08:00">2019-12-05</time>
+              <time title="Created: 2019-12-05 20:39:47" itemprop="dateCreated datePublished" datetime="2019-12-05T20:39:47+08:00">2019-12-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-12-06 11:54:25" itemprop="dateModified" datetime="2019-12-06T11:54:25+08:00">2019-12-06</time>
               
             
           </span>
@@ -499,16 +515,41 @@
 <li>Perfect <strong><em>movie</em></strong> for people who can’t fall <strong><em>asleep</em></strong>. </li>
 </ul>
 <h2 id="论文的主要贡献"><a href="#论文的主要贡献" class="headerlink" title="论文的主要贡献"></a>论文的主要贡献</h2><ol>
-<li><p>基于上述原因，作者认为捕捉语句中的word pairs之间的关系很有用，即<em>looking in-between</em>，所以提出了一个 Multi-dimensional Intra-Attention Recurrent Network (MIARN)  来对句子中的每个 word pair 进行建模，作者说他们的模型可以被当做一个 self-targeted co-attention (Xiong et al., 2016)，不仅可以捕捉词间关系(word-word relation)，还可以捕捉长程依赖关系(long-range dependencies)</p>
+<li><p>基于上述原因，作者认为捕捉语句中的word pairs之间的关系很有用，即<em>looking in-between</em>，所以提出了一个 Multi-dimensional Intra-Attention Recurrent Network (MIARN)  来对句子中的每个 word pair 进行建模，作者说他们的Intra-attention可以被当做一个 self-targeted co-attention (Xiong et al., 2016)，不仅可以捕捉词间关系(word-word relation)，还可以捕捉长程依赖关系(long-range dependencies)</p>
 </li>
-<li><p>MIARN 在 Twitter, Reddit 和 IAC数据集上达到了 SOTA，且截至发表时是第一个在反讽检测任务上可以提供可解释性结果的 attention 模型</p>
+<li><p>MIARN 在 Twitter, Reddit 和 IAC数据集上达到了 SOTA，且截至发表时是第一个在反讽检测任务上能够提供可解释性结果的 attention 模型</p>
 </li>
 </ol>
 <h2 id="论文的主要方法-1"><a href="#论文的主要方法-1" class="headerlink" title="论文的主要方法"></a>论文的主要方法</h2><p><img src='http://i1.fuimg.com/703781/959ec2e2ea15efbc.png'></p>
 <ol>
-<li>计算 word pair relation，对两个word $w_{i}$,$w_{j}$，使用线性变换计算二者的关系，得到一个 scalar score<script type="math/tex; mode=display">
-s_{ij} = W_{a}([w_{i};w_{j}]) + b_{a}</script>$W_{a} \in \mathbb{R}^{2n\times 1},b_{a} \in \mathbb{R}$是这层的参数，[.;.]表示 vector concatenation，$s_{ij}$是一个 scalar，表示 word pairs$(w_{i}, w_{j})$的相关性 score</li>
+<li><p>计算 word pair relation，对两个word $w_{i}$,$w_{j}$，使用线性变换计算二者的关系，得到一个 scalar score</p>
+<script type="math/tex; mode=display">
+s_{ij} = W_{a}([w_{i};w_{j}]) + b_{a}</script><p>$W_{a} \in \mathbb{R}^{2n\times 1},b_{a} \in \mathbb{R}$是这层的参数，[.;.]表示 vector concatenation，$s_{ij}$是一个 scalar，表示 word pairs$(w_{i}, w_{j})$的相关性 score，很明显$s$是一个对称矩阵，接着在行上进行max-pooling，再经过softmax，得到</p>
+<script type="math/tex; mode=display">
+a=\operatorname{softmax}\left(\max _{row} s\right)</script><p>$a \in \mathbb{R}^{l}$是学到的 intra-attention 权重，然后原句$\left({w_{1},w_{2},\cdots,w_{l}}\right)$根据$a$加权求和，得到输入句子 intra-attentive 表示</p>
+<script type="math/tex; mode=display">
+v_a = \sum_{i=1}^{l}w_{i}a_{i}</script><p>$v_a \in \mathbb{R}^{n}$，n是embedding dim。</p>
+<p>作者提到为什么用max-pooling，原因是他们认为既然要强调句子中的冲突词对，而 attention 能够学会一个词对所有其他词的 score，就必须把最具有辨别性的，即最大的值作为特征提取出来，因此 max-pooling 是一个适合的选择。</p>
+<p>这里还补充说了在$i = j$ 处的score是被mask掉的，毕竟一个词和自身的 score 可能会较大，从而影响 attention 的结果。这个模型其实应该叫SIARN(Single Intra Attention Recurrent Network)</p>
+<p>作者说，因为他们想要建模的是 raw word representations之间的关系，而非被操作过的结果，例如LSTM中间输出的hidden state，其中不仅包含了当前词，还有之前的词的信息，所以是在输入句子经过embeding layer后直接进行求 intra-attention 的操作。<em>这里就有一个词的歧义性问题，因为在没有上下文的情况下，这样直接对 raw embedding 进行求 intra-attention，会丢失很多信息，而且不是所有反讽的意味都需要通过冲突的词对来表达，如果没有这种冲突的词对的话，intra attention 究竟能学到什么是个问题。</em></p>
+</li>
+<li><p>作者们也发现了这个问题，他们说 <em>the relationships between two words is often not straightforward, words are complex and often hold more than one meanings or word senses</em>，所以又提出了对两个词之间进行 <em>multiple views</em> 的建模，这样两个词之间的交互得到的不再是一个 scalar，而是一个 vector</p>
+<script type="math/tex; mode=display">
+s_{ij} = W_{p}(ReLU(W_{q}([w_{i};w_{j}])+b_{q})) + b_{p}</script><p>这里的维度我认为原论文写错了，我自己认为这里$W_{q} \in \mathbb{R}^{k\times 2n},b_{q} \in \mathbb{R}^{k\times 1},W_{p } \in \mathbb{R}^{1\times k}, b_{p} \in \mathbb{R}$，其实就是多了一层non-linear layer，接下来求 intra-attention的操作和上面一样。</p>
+</li>
+<li><p>因为仅仅的 intra-attention 难以编码整个句子的语义信息，因此又添加了一个LSTM，用来 encode 整句话，将最后输出的$h_{l}$当做整句话的 representation $v_c$。和上面得到的$v_a$ concatenation到一起，输入到一个 Dense layer 里，softmax 输出得到分类结果。</p>
+<script type="math/tex; mode=display">
+v = ReLU(W_{z}([v_{a};v_{c}]) + b_{z}) \\
+\hat{y} = \operatorname{softmax}(W_{f}v + b_{f})</script><p> 这才是真正的MIARN。</p>
+</li>
 </ol>
+<h2 id="实验结果-1"><a href="#实验结果-1" class="headerlink" title="实验结果"></a>实验结果</h2><p>作者在 Twitter, Reddit 和 IAC数据集上和几个 baseline 作了对比。</p>
+<p><img src='http://i2.tiimg.com/703781/ce9b15167e02bc3f.png'></p>
+<p><img src='http://i2.tiimg.com/703781/12e9517e3a55a79c.png'></p>
+<p><img src='http://i2.tiimg.com/703781/1a57389a2ff83ebe.png'></p>
+<p>可以看到SIARN和MIARN基本超越了所有 baseline，在长句较多数据集IAC上的提升更明显，MIARN表现基本是优于SIARN的。</p>
+<p><img src='http://i1.fuimg.com/703781/92ca79fa1ec2e18d.png'></p>
+<p>可视化 attention 的 weights 可以看到，intra-attention 要比普通的 attention 更能准确地捕捉句子中的冲突词对，这展现了模型能够提供良好的可解释性。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Santiago Castro, Devamanyu Hazarika, Verónica Pérez-Rosas, Roger Zimmermann, Rada Mihalcea and Soujanya Poria. 2019. Towards Multimodal Sarcasm Detection (An <em>Obviously</em> Perfect Paper) . <em>ACL 2019</em></p>
 <p>Yi Tay, Luu Anh Tuan, Siu Cheung Hui and Jian Su. 2018. Reasoning with Sarcasm by Reading In-between . <em>ACL 2018</em></p>
 
@@ -756,7 +797,7 @@ s_{ij} = W_{a}([w_{i};w_{j}]) + b_{a}</script>$W_{a} \in \mathbb{R}^{2n\times 1}
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Towards-Multimodal-Sarcasm-Detection"><span class="nav-number">1.</span> <span class="nav-text">Towards Multimodal Sarcasm Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文主要的贡献"><span class="nav-number">1.1.</span> <span class="nav-text">论文主要的贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法"><span class="nav-number">1.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出的改进方向"><span class="nav-number">1.4.</span> <span class="nav-text">提出的改进方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来研究方向"><span class="nav-number">1.5.</span> <span class="nav-text">未来研究方向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reasoning-with-Sarcasm-by-Reading-In-between"><span class="nav-number">2.</span> <span class="nav-text">Reasoning with Sarcasm by Reading In-between</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要贡献"><span class="nav-number">2.1.</span> <span class="nav-text">论文的主要贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法-1"><span class="nav-number">2.2.</span> <span class="nav-text">论文的主要方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Towards-Multimodal-Sarcasm-Detection"><span class="nav-number">1.</span> <span class="nav-text">Towards Multimodal Sarcasm Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文主要的贡献"><span class="nav-number">1.1.</span> <span class="nav-text">论文主要的贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法"><span class="nav-number">1.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果"><span class="nav-number">1.3.</span> <span class="nav-text">实验结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提出的改进方向"><span class="nav-number">1.4.</span> <span class="nav-text">提出的改进方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未来研究方向"><span class="nav-number">1.5.</span> <span class="nav-text">未来研究方向</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reasoning-with-Sarcasm-by-Reading-In-between"><span class="nav-number">2.</span> <span class="nav-text">Reasoning with Sarcasm by Reading In-between</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要贡献"><span class="nav-number">2.1.</span> <span class="nav-text">论文的主要贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#论文的主要方法-1"><span class="nav-number">2.2.</span> <span class="nav-text">论文的主要方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验结果-1"><span class="nav-number">2.3.</span> <span class="nav-text">实验结果</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
