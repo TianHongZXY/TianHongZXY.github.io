@@ -124,7 +124,7 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;12e9517e3a55a79c.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;1a57389a2ff83ebe.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;92ca79fa1ec2e18d.png">
-<meta property="og:updated_time" content="2019-12-06T04:00:30.883Z">
+<meta property="og:updated_time" content="2019-12-06T04:01:52.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 
@@ -406,7 +406,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-12-06 12:00:30" itemprop="dateModified" datetime="2019-12-06T12:00:30+08:00">2019-12-06</time>
+                <time title="Modified: 2019-12-06 12:01:52" itemprop="dateModified" datetime="2019-12-06T12:01:52+08:00">2019-12-06</time>
               
             
           </span>
@@ -530,7 +530,7 @@ a=\operatorname{softmax}\left(\max _{row} s\right)</script><p>$a \in \mathbb{R}^
 <script type="math/tex; mode=display">
 v_a = \sum_{i=1}^{l}w_{i}a_{i}</script><p>$v_a \in \mathbb{R}^{n}$，n是embedding dim。</p>
 <p>作者提到为什么用max-pooling，原因是他们认为既然要强调句子中的冲突词对，而 attention 能够学会一个词对所有其他词的 score，就必须把最具有辨别性的，即最大的值作为特征提取出来，因此 max-pooling 是一个适合的选择。</p>
-<p>这里还补充说了在$i = j$ 处的score是被mask掉的，毕竟一个词和自身的 score 可能会较大，从而影响 attention 的结果。这个模型其实应该叫SIARN(Single Intra Attention Recurrent Network)</p>
+<p>这里还补充说了在$i = j$ 处的score是被mask掉的，毕竟一个词和自身的 score 可能会较大，从而影响 attention 的结果。这个模型其实应该叫SIARN(Single-dimensional Intra-Attention Recurrent Network)</p>
 <p>作者说，因为他们想要建模的是 raw word representations之间的关系，而非被操作过的结果，例如LSTM中间输出的hidden state，其中不仅包含了当前词，还有之前的词的信息，所以是在输入句子经过embeding layer后直接进行求 intra-attention 的操作。<em>这里就有一个词的歧义性问题，因为在没有上下文的情况下，这样直接对 raw embedding 进行求 intra-attention，会丢失很多信息，而且不是所有反讽的意味都需要通过冲突的词对来表达，如果没有这种冲突的词对的话，intra attention 究竟能学到什么是个问题。</em></p>
 </li>
 <li><p>作者们也发现了这个问题，他们说 <em>the relationships between two words is often not straightforward, words are complex and often hold more than one meanings or word senses</em>，所以又提出了对两个词之间进行 <em>multiple views</em> 的建模，这样两个词之间的交互得到的不再是一个 scalar，而是一个 vector，<em>我觉得这里其实没有解决词的多义性的问题，因为用的embedding依旧是固定的，至于这个 multiple views 到底解决了哪个问题，还有待继续研究</em></p>
