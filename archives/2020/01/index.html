@@ -107,15 +107,13 @@
 
 
 
-  <meta name="description" content="Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
-<meta name="keywords" content="deep learning">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Normalization">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;DL%E4%B8%AD%E7%9A%84Normalization&#x2F;index.html">
+  <meta name="description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TianHongZXY">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;archives&#x2F;2020&#x2F;01&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
+<meta property="og:description" content="浪漫骑士 行吟诗人 自由思想者">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-20T09:24:26.113Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -123,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/11/06/DL中的Normalization/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/archives/2020/01/"/>
 
 
 
@@ -133,7 +131,7 @@
   };
 </script>
 
-  <title>Normalization | TianHongZXY</title>
+  <title>Archive | TianHongZXY</title>
   
 
 
@@ -181,7 +179,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -274,7 +272,7 @@
         
         
           
-          <li class="menu-item menu-item-archives">
+          <li class="menu-item menu-item-archives menu-item-active">
 
     
     
@@ -295,6 +293,25 @@
 
   
     
+
+    
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+      
+      
+    
+    
+
+  
+
 
   
 
@@ -320,233 +337,80 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
-  
+      
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        Um..! 17 posts in total. Keep on posting.
+      </span>
+      
 
-  
-  
-  
+      
 
-  
+        
+        
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2020">2020</h1>
+          </div>
+        
+        
+
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/"/>
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TianHongZXY"/>
-      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
-      <meta itemprop="image" content="/images/header.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TianHongZXY"/>
-    </span>
-
-    
-      <header class="post-header">
-
+      <h2 class="post-title">
         
+          <a class="post-title-link" href="/2020/01/01/%E5%9F%9F%E5%90%8D%E5%8F%98%E6%9B%B4%E9%80%9A%E7%9F%A5/" itemprop="url">
+            
+              <span itemprop="name">域名变更通知</span>
+            
+          </a>
         
-          <h1 class="post-title" itemprop="name headline">Normalization
+      </h2>
 
-              
-            
-          </h1>
-        
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2020-01-01T15:05:10+08:00"
+              content="2020-01-01" >
+          01-01
+        </time>
+      </div>
 
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-11-06 16:35:24" itemprop="dateCreated datePublished" datetime="2019-11-06T16:35:24+08:00">2019-11-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-20 17:24:26" itemprop="dateModified" datetime="2019-11-20T17:24:26+08:00">2019-11-20</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <h1 id="Batch-size的影响"><a href="#Batch-size的影响" class="headerlink" title="Batch size的影响"></a>Batch size的影响</h1><p>使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。</p>
-<a id="more"></a>
-<h1 id="两种Normalization的位置"><a href="#两种Normalization的位置" class="headerlink" title="两种Normalization的位置"></a>两种Normalization的位置</h1><p>目前有两种在神经元中插入Normalization操作的地方，第一种是原始BN论文提出的，放在激活函数之前；另外一种是后续研究提出的，放在激活函数之后，不少研究表明将BN放在激活函数之后效果更好。</p>
-<h1 id="规范化函数"><a href="#规范化函数" class="headerlink" title="规范化函数"></a>规范化函数</h1><p>对于神经元的激活值来说，不论哪种Normalization方法，其规范化目标都是一样的，就是将其激活值规整为均值为0，方差为1的正态分布。即规范化函数统一都是如下形式：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \tau &=\frac{a_{i}-\mu}{\sigma_{i}} \\ a_{i}^{\text {norm }} &=\gamma_{i} \cdot \tau+\beta_{i} \end{aligned}</script><p>如果写成一体的形式，则是如下形式：</p>
-<script type="math/tex; mode=display">
-a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</script><p>其中，ai为某个神经元原始激活值， ai_norm为经过规范化操作后的规范后值。整个规范化过程可以分解为两步，第一步参考公式（1），是对激活值规整到均值为0，方差为1的正态分布范围内。其中， u是通过神经元集合S（中包含的m个神经元各自的激活值求出的均值，即：</p>
-<script type="math/tex; mode=display">
-\mu=\frac{1}{m} \sum_{k=1}^{m} a_{k} \quad k \in S \text { and }\|S\|=m</script><p>为根据均值和集合S中神经元各自激活值求出的激活值标准差：</p>
-<script type="math/tex; mode=display">
-\sigma_{i}=\sqrt{\frac{1}{m} \sum_{k=1}^{m}\left(a_{k}-\mu\right)^{2}+\varepsilon} \quad k \in S \text { and }\|S\|=m</script><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>各种Normalization的适用场景，可以简洁归纳如下：对于RNN的神经网络结构来说，目前只有LayerNorm是相对有效的；如果是GAN等图片生成或图片内容改写类型的任务，可以优先尝试InstanceNorm；如果使用场景约束BatchSize必须设置很小，无疑此时考虑使用GroupNorm；而其它任务情形应该优先考虑使用BatchNorm。</p>
-<p>原文链接：<a href="https://zhuanlan.zhihu.com/p/43200897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/43200897</a></p>
-
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/10/27/pytorch%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" rel="next" title="使用pytorch和torchtext进行文本分类">
-                <i class="fa fa-chevron-left"></i> 使用pytorch和torchtext进行文本分类
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/09/%E4%BF%A1%E6%81%AF%E7%86%B5/" rel="prev" title="信息熵">
-                信息熵 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
+
+      
+
+    </div>
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-
-  
-
-
 
         </div>
         
@@ -567,17 +431,8 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -707,23 +562,6 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch-size的影响"><span class="nav-number">1.</span> <span class="nav-text">Batch size的影响</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两种Normalization的位置"><span class="nav-number">2.</span> <span class="nav-text">两种Normalization的位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规范化函数"><span class="nav-number">3.</span> <span class="nav-text">规范化函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
 
@@ -845,10 +683,6 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
   
 
   
-  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
-<script src="/js/src/post-details.js?v=6.7.0"></script>
-
-
 
   
 
