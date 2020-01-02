@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css"/>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文记录我大三寒假找NLP算法实习岗位的面试(被暴打)经历，整个期末考试周上午考试下午面试，连着面了五六天，每次两小时左右，一通下来被虐得很厉害，算是知道自己到底有多辣鸡了，有的面试官人很好，也有令人很不爽的面试官。写下此篇给找ai&#x2F;nlp方向实习工作的同学当作复习参考。">
+<meta name="keywords" content="NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NLP实习面试总结">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;12&#x2F;22&#x2F;NLP%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93&#x2F;index.html">
+<meta property="og:site_name" content="TianHongZXY">
+<meta property="og:description" content="本文记录我大三寒假找NLP算法实习岗位的面试(被暴打)经历，整个期末考试周上午考试下午面试，连着面了五六天，每次两小时左右，一通下来被虐得很厉害，算是知道自己到底有多辣鸡了，有的面试官人很好，也有令人很不爽的面试官。写下此篇给找ai&#x2F;nlp方向实习工作的同学当作复习参考。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-01-02T11:36:52.274Z">
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+  <link rel="canonical" href="https://TianHongZXY.github.io/2019/12/22/NLP实习面试总结/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>NLP实习面试总结 | TianHongZXY</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TianHongZXY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">那时我们一无所有，也没有什么能妨碍我们享受静夜</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/12/22/NLP%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY"/>
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
+      <meta itemprop="image" content="/images/header.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">NLP实习面试总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-12-22 14:20:49" itemprop="dateCreated datePublished" datetime="2019-12-22T14:20:49+08:00">2019-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-01-02 19:36:52" itemprop="dateModified" datetime="2020-01-02T19:36:52+08:00">2020-01-02</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/12/22/NLP%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/12/22/NLP%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文记录我大三寒假找NLP算法实习岗位的面试(被暴打)经历，整个期末考试周上午考试下午面试，连着面了五六天，每次两小时左右，一通下来被虐得很厉害，算是知道自己到底有多辣鸡了，有的面试官人很好，也有令人很不爽的面试官。写下此篇给找ai/nlp方向实习工作的同学当作复习参考。</p>
+<a id="more"></a>
+<h1 id="赛舵智能"><a href="#赛舵智能" class="headerlink" title="赛舵智能"></a>赛舵智能</h1><p>2019.12.23，周日下午两点第一个面的公司是上海赛舵智能科技有限公司，今年7月融了一千万成立的，之前本来说是CEO来面我，然后CEO出差鸽了我一次，今天又说CEO感冒生病了，最后换了一个技术leader来面我。</p>
+<h2 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h2><h3 id="python基础"><a href="#python基础" class="headerlink" title="python基础"></a>python基础</h3><ol>
+<li><p>问了python在定义函数时的 (<em>)和(*</em>)的作用</p>
+<p>没答出来，fluent python看过给忘了，回去搜了才知道（<em>）会把接收到的参数形成一个元组，而（*</em>）则会把接收到的参数存入一个字典</p>
+</li>
+<li><p>python常见的数据结构</p>
+<p>list， set， dict，tuple，name_tuple，organized_dict</p>
+</li>
+<li><p>多线程，协程</p>
+<p>爬虫学过，全忘了</p>
+</li>
+<li><p>面向对象的初始化方法？</p>
+<p>我说有双下划线init,len,getattr,str</p>
+</li>
+<li><p>问我class里怎么定义私有变量，公有变量？</p>
+<p>我又跪了，平常都是在init里传入后就self.变量名=值，乱说了个在init里用self.定义的就是私有，在外边定义的就是共有。其实真实答案应该是单下划线开头的变量是semi-private变量，可以通过<code>实例._attrname</code>访问，双下划线开头的是super-private，无法访问，不过可以通过<code>实例._类名__attrname</code>访问，semi-private被存储在<code>__dict__</code>里，而super-private不在。</p>
+</li>
+</ol>
+<h3 id="数据结构算法"><a href="#数据结构算法" class="headerlink" title="数据结构算法"></a>数据结构算法</h3><ol>
+<li><p>学过哪些排序？</p>
+<p>我说了冒泡，选择，归并，快排</p>
+</li>
+<li><p>问了我冒泡复杂度</p>
+<p>$O(n^{2})$，开始说成了$O(\frac{n^{2}}{2})$</p>
+</li>
+<li><p>快排原理，快排比冒泡的优势在哪?</p>
+<p>大概说出来了</p>
+</li>
+<li><p>学过哪些搜索算法？</p>
+<p>我说深度优先搜索、二分搜索，就让我选一个讲讲，我讲了二分搜索，其实我对dfs也不算太熟悉</p>
+</li>
+<li><p>问我学过b树和b+树，红黑树</p>
+<p>全不会，后来看了下<a href="https://www.jianshu.com/p/1f2560f0e87f" target="_blank" rel="noopener">b+树</a></p>
+</li>
+</ol>
+<p><strong>面到这面试官说我python基础比较薄弱，感觉凉了一大半</strong></p>
+<h3 id="NLP基础"><a href="#NLP基础" class="headerlink" title="NLP基础"></a>NLP基础</h3><ol>
+<li><p>自然语言处理要解决的问题有哪些？ </p>
+<p>我说了有好多，balabala，但我主要做的是分类，发现问题主要出在词的多义、歧义性上。</p>
+</li>
+<li><p>问我怎么解决词的多义性</p>
+<p>我特么嘴贱说了动态词向量，就被追着问什么是动态词向量，还好我没继续吹ELMO，我都没看过论文，就瞎扯了用多层双向LSTM抽取特征，还顺便和静态词向量对比了下。</p>
+</li>
+<li><p>怎么判断两个词向量的相似性？</p>
+<p>我说余弦相似度，还有用奇异值分解，降维到二维或者三维再看两个词在空间中的位置关系。</p>
+</li>
+<li><p>人工智能中语音信号处理是用来做什么的？</p>
+<p>我说先把语音转成文本，再用NLP去处理抽取人的指令，再送到后台</p>
+</li>
+</ol>
+<p>小结：不要夸口说自己不太懂，只了解名称和大概的东西，一说多了就会被追着问，比如我多嘴说了动态词向量。电话面了20分钟，感觉简历上的都没被问到，就是考察了各个基础知识，我面试前复习的都是nlp的，结果啥都没问到，还好花了一上午看了下排序又自己写了一遍，不然绝对都聊不下去了。HR说帮我问问能不能进复试，然后一晚上都没回话，应该是挂了吧，哎，第一次找实习的面试以失败告终。基础太差！</p>
+<h2 id="CEO面"><a href="#CEO面" class="headerlink" title="CEO面"></a>CEO面</h2><ol>
+<li>如何搭建一个垃圾邮件分类器，假如邮件内容的语言是从未见过的语种</li>
+<li>如果邮件分类器的效果很差，能获得的数据量也不多，如何有效提高准确率</li>
+<li>每行读取数据，读入非常大的数据量，如何把重复的行去掉，要求占内存小且速度快(面试官提醒我在unix系统下有一些命令可以做到，可惜我并不会)</li>
+</ol>
+<p>其他的都忘了，问的我基本都没答上来，之后hr委婉地告诉我挂了。</p>
+<h1 id="扇贝"><a href="#扇贝" class="headerlink" title="扇贝"></a>扇贝</h1><p>面试官先问我是怎么学的ai，我说都是自学的。问我做的NLP项目是学校有的，还是我自己找的，当然是我自己找老师搞的了，然后让我说说我做的文本细粒度情感分类的工作，我就把复现论文的算法和过程大概说了说，面试官说我搞的这个和他现在在做的工作还挺像的。</p>
+<h2 id="算法题"><a href="#算法题" class="headerlink" title="算法题"></a>算法题</h2><p>然后就给了邮件发了两道算法题，让我一个半小时内发解答回去，一道简单一道难。</p>
+<p>第一题：</p>
+<blockquote>
+<p>Given a list of intervals, remove all intervals that are covered by another interval in the list. Interval <code>[a,b)</code> is covered by interval <code>[c,d)</code> if and only if <code>c &lt;= a</code> and <code>b &lt;= d</code>.<br>After doing so, return the number of remaining intervals.</p>
+<p> <strong>Example 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;Input: intervals = [[1,4],[3,6],[2,8]]</span><br><span class="line">Output: 2</span><br><span class="line">Explanation: Interval [3,6] is covered by [2,8], therefore it is removed.</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>我看着就觉得像leetcode上之前写过的No.56合并区间就去搜了搜，发现真是原题，题号No.1272，不过是会员可见。之前合并区间用了按区间的左边界排序，这次也用到了，还用到了左边界相等情况下的右边界降序排列，这样如果两个相邻的区间，左边界相等，那么左边的那个区间一定包含了右边的区间，我改造了下快排写了个函数sortlist，然后再判断边界条件是否覆盖，就解决了。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">removeCoveredIntervals</span><span class="params">(self, intervals: List[List[int]])</span> -&gt; int:</span></span><br><span class="line">      <span class="comment"># 将list按照左边界升序排，若左边界相同，按右边界降序排</span></span><br><span class="line">      intervals = self.sortlist(intervals)</span><br><span class="line">      i = <span class="number">0</span></span><br><span class="line">      <span class="keyword">while</span>(i + <span class="number">1</span> &lt; len(intervals)):</span><br><span class="line">          l = intervals[i]</span><br><span class="line">          r = intervals[i+<span class="number">1</span>]</span><br><span class="line">          <span class="comment"># 如果左右区间相等，pop</span></span><br><span class="line">          <span class="keyword">if</span> l[<span class="number">0</span>] == l[<span class="number">1</span>]:</span><br><span class="line">              intervals.pop(i)</span><br><span class="line">              <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">          <span class="comment"># 如果左边界相同，则l的右边界必大于等于r的右边界，pop r</span></span><br><span class="line">          <span class="keyword">if</span> l[<span class="number">0</span>] == r[<span class="number">0</span>]:</span><br><span class="line">              intervals.pop(i+<span class="number">1</span>)</span><br><span class="line">              <span class="keyword">continue</span></span><br><span class="line">          <span class="comment"># 如果l的右边界小于r的右边界，不覆盖</span></span><br><span class="line">          <span class="keyword">if</span> l[<span class="number">1</span>] &lt; r[<span class="number">1</span>]:</span><br><span class="line">              i += <span class="number">1</span></span><br><span class="line">              <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">              intervals.pop(i+<span class="number">1</span>)</span><br><span class="line">              <span class="keyword">continue</span></span><br><span class="line">      <span class="keyword">return</span> len(intervals)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sortlist</span><span class="params">(self, intervals)</span>:</span></span><br><span class="line">      n = len(intervals)</span><br><span class="line">      <span class="keyword">if</span> n &lt;= <span class="number">1</span>:</span><br><span class="line">          <span class="keyword">return</span> intervals</span><br><span class="line">      <span class="keyword">else</span>:</span><br><span class="line">          part = intervals.pop(<span class="number">0</span>)</span><br><span class="line">          partl, partr = part[<span class="number">0</span>], part[<span class="number">1</span>]</span><br><span class="line">          left = []</span><br><span class="line">          right = []</span><br><span class="line">          <span class="keyword">for</span> l <span class="keyword">in</span> intervals:</span><br><span class="line">              <span class="keyword">if</span> l[<span class="number">0</span>] &gt; partl:</span><br><span class="line">                  right.append(l)</span><br><span class="line">              <span class="keyword">elif</span> l[<span class="number">0</span>] == partl:</span><br><span class="line">                  <span class="keyword">if</span> l[<span class="number">1</span>] &lt; partr:</span><br><span class="line">                      right.append(l)</span><br><span class="line">                  <span class="keyword">else</span>:</span><br><span class="line">                      left.append(l)</span><br><span class="line">              <span class="keyword">else</span>:</span><br><span class="line">                  left.append(l)</span><br><span class="line">          <span class="keyword">return</span> self.sortlist(left) + [part] + self.sortlist(right)</span><br></pre></td></tr></table></figure></p>
+<p>第二题：</p>
+<blockquote>
+<p>给定一个整型的方形矩阵，定义一种路径为从上往下每行取一个元素但相邻两个元素不得取自同一列。<br>路径的和定义为路径上所有元素的总和。<br>求所有这样的路径的和当中的最小者。<br>例如：<br>  arr = [[1,2,3],[4,5,6],[7,8,9]]<br>所有可能的路径是：<br>  [1,5,9], [1,5,7], [1,6,7], [1,6,8],<br>  [2,4,8], [2,4,9], [2,6,7], [2,6,8],<br>  [3,4,8], [3,4,9], [3,5,7], [3,5,9]<br>最小的和是13（ [1,5,7] ）</p>
+</blockquote>
+<p>我还剩30分钟写的这道题，没写出来面试官就给我打电话让我交题了，上一题因为太紧张，试 图 作 弊 浪费了大量时间，mmp，我想着可以用递归，<br>遍历第一行所有数字：选完第一行的数字后添加到列表path [1]，记录所选数字所在的列col，开始递归剩余的行，选第一行中所有非col列的数字，与上一层path合并，得到 [1, 5], [1, 6]，再重复到最后一行得到 [1, 5, 7], [1, 5, 9], [1, 6, 7], [1,6 8]。然后开始遍历2。<br>时间复杂度O(n^2)，空间复杂度好像到了阶乘级别？面试官看完我写的第一题说我写得还不错，然后问我第二题的思路，我就说了，他说耗时太久了，然后跟我说用动态规划，woc我倒是知道可以用，可我没想到怎么写啊。。<br>解答先欠着，复习期末要紧。。。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">minFallingPathSum</span><span class="params">(self, arr: List[List[int]])</span> -&gt; int:</span></span><br></pre></td></tr></table></figure>
+<p>两天后如愿拿到了offer：自然语言处理算法工程师实习</p>
+<h1 id="百度NLP部翻译组"><a href="#百度NLP部翻译组" class="headerlink" title="百度NLP部翻译组"></a>百度NLP部翻译组</h1><h2 id="一面-1"><a href="#一面-1" class="headerlink" title="一面"></a>一面</h2><p>问简历项目，重点是在seq2seq，attention那一块，被问得千疮百孔，毕竟我生成任务做的不多，写过一个简陋的英语翻译成越南语的练习。</p>
+<p>算法题：</p>
+<blockquote>
+<p>file1: 一个中文的文本文件，已分词，词语之间用空格隔开，有10万行<br>file2: 一个中文的文本文件，已分词，词语中间用空格隔开，有100行<br>例如，file1的第一行：<br>我 来自 中国 ， 我 是 龙 的 传人 。<br>词频的定义：<br>假设词语A后可能出现B、C、D三个词<br>三个词出现的频次分别是3，5，2。那么，此时<br>p(B|A)=0.3、P(C|A)=0.5、P(D|A)=0.2<br>句子概率的定义：<br>现在有一个句子是ABCD，那么，我们定义句子概率为<br><code>P(ABCD)=P(B|A)*P(C|BA)*P(D|ABC)=P(B|A)*P(C|B)*P(D|C)</code><br>要求如下：根据file1统计词频，然后计算file2每个句子的概率并输出。</p>
+</blockquote>
+<p>面试官让我先想想思路，然后我就说用字典的嵌套，比如<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 第一个字典的key是出现的第一个词，它的value是一个&#123;他后面出现的词:出现次数&#125;的字典</span></span><br><span class="line">dict&#123;</span><br><span class="line">  <span class="string">'a'</span> : dict&#123;<span class="string">'b'</span>:<span class="number">10</span>, <span class="string">'c'</span>:<span class="number">4</span>&#125; </span><br><span class="line">  <span class="string">'b'</span> : dict&#123;<span class="string">'c'</span>:<span class="number">7</span>, <span class="string">'d'</span>:<span class="number">4</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>面试官说嵌套字典内存消耗太大，然后给我指点把里面的字典变成list，也就是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dict&#123;</span><br><span class="line">  <span class="string">'a'</span> : [ [<span class="string">'b'</span>, <span class="number">10</span>], [<span class="string">'c'</span>, <span class="number">4</span>] ]</span><br><span class="line">  <span class="string">'b'</span> : [ [<span class="string">'c'</span>, <span class="number">7</span>], [<span class="string">'d'</span>, <span class="number">4</span>] ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>还可以这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dict&#123;</span><br><span class="line">  <span class="string">'a'</span> : [ <span class="number">14</span>, [<span class="string">'b'</span>, <span class="number">10</span>], [<span class="string">'c'</span>, <span class="number">4</span>] ] <span class="comment"># 就是在list开头保存着总数，之后每次算概率不用再求和了</span></span><br><span class="line">  <span class="string">'b'</span> : [ <span class="number">11</span>, [<span class="string">'c'</span>, <span class="number">7</span>], [<span class="string">'d'</span>, <span class="number">4</span>] ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后我在面试官的指点下写了出来，是上述第二种模式，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">file1 = open(sys.argv[<span class="number">1</span>], <span class="string">'r'</span>, encoding=<span class="string">'utf8'</span>)</span><br><span class="line">file2 = open(sys.argv[<span class="number">2</span>], <span class="string">'r'</span>, encoding=<span class="string">'utf8'</span>)</span><br><span class="line"><span class="comment"># create dict</span></span><br><span class="line">DICT = &#123;&#125;  <span class="comment"># key: A value:[["B", 1], ["C", 4]]</span></span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> file1.readlines():</span><br><span class="line">    sentence = l.split(<span class="string">" "</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sentence) - <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">if</span> sentence[i] <span class="keyword">not</span> <span class="keyword">in</span> DICT:</span><br><span class="line">            DICT[sentence[i]] = []</span><br><span class="line">            DICT[sentence[i]].append([sentence[i + <span class="number">1</span>], <span class="number">1</span>])</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(DICT[sentence[i]])):</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> sentence[i + <span class="number">1</span>] == DICT[sentence[i]][j][<span class="number">0</span>]:</span><br><span class="line">                DICT[sentence[i]][j][<span class="number">1</span>] += <span class="number">1</span></span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            DICT[sentence[i]].append([sentence[i + <span class="number">1</span>], <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># calu prob</span></span><br><span class="line">    <span class="keyword">for</span> l <span class="keyword">in</span> file2.readlines():</span><br><span class="line">        sentence = l.split(<span class="string">" "</span>)</span><br><span class="line">        p = <span class="number">1</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(sentence) - <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> sentence[i] <span class="keyword">not</span> <span class="keyword">in</span> DICT:</span><br><span class="line">                DICT[sentence[i]] = []</span><br><span class="line">                DICT[sentence[i]].append([sentence[i + <span class="number">1</span>], <span class="number">1</span>])</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            sum_num = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(DICT[sentence[i]])):</span><br><span class="line">                <span class="keyword">if</span> sentence[i + <span class="number">1</span>] == DICT[sentence[i]][j][<span class="number">0</span>]:</span><br><span class="line">                    appear_num = DICT[sentence[i]][j][<span class="number">1</span>]</span><br><span class="line">                sum_num += DICT[sentence[i]][j][<span class="number">1</span>]</span><br><span class="line">            p *= appear_num / sum_num</span><br><span class="line">        print(<span class="string">"sentence's prob = "</span>, p)</span><br></pre></td></tr></table></figure>
+<p>面完后跟我说，一会儿通知我是否二面，两分钟后得到通知，十分钟后二面。</p>
+<h2 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h2><p>又问了我seq2seq，attention，面试官要求比上一个高，直接和我说感觉我不太熟悉这方面，然后要直接考察我代码工程能力。</p>
+<p>题目很简单，有序数组被旋转，例如[1,2,3,4,5] -&gt; [4,5,1,2,3]，找出旋转的位置index</p>
+<p>这就是leetcode 153原题<a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/" target="_blank" rel="noopener">寻找旋转排序数组中的最小值</a>，因为旋转的位置必定是最小值，我当时看到是我做过的原题很兴奋，开始尝试回想写过的代码，然而我失算了，我不但没回想起来，还把自己逻辑搞的一团糟，边界条件判断完全失去理智，导致我写的很辣鸡，面试官指出好几处我写的错误。最后面试就结束了，我复制了我写的代码到ide上跑，发现漏洞百出。下面是我找到的之前看的人家的解答</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># [1,2,3,4,5] -&gt; [4,5,1,2,3]</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(nums)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">        left = <span class="number">0</span></span><br><span class="line">        right = len(nums) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> nums[right] &gt; nums[<span class="number">0</span>]:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> right &gt;= left:</span><br><span class="line">            mid = (left + right) &gt;&gt; <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[mid + <span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">return</span> mid + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> nums[mid - <span class="number">1</span>] &gt; nums[mid]:</span><br><span class="line">                <span class="keyword">return</span> mid</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[<span class="number">0</span>]:</span><br><span class="line">                left = mid + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                right = mid - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>过了一周也没收到通知，应该是挂了，二面发挥的很不好，这么简单的一道题居然没写出来，所以教训是看到做过的题最好也当成没见过来好好从头分析，不然不但没回想起来，还可能把逻辑搞乱了，彻底写不出来，平常刷题时分析问题的思路一定要有。面试官都会问你有没有思路，如果思路对了，即使代码写不出完整的问题也不是很大，如果思路都一团混乱基本就凉了。</p>
+<h1 id="字节跳动"><a href="#字节跳动" class="headerlink" title="字节跳动"></a>字节跳动</h1><p>面的岗位是aml机器学习平台算法实习生</p>
+<h2 id="一面-2"><a href="#一面-2" class="headerlink" title="一面"></a>一面</h2><p>先问了自我介绍，简历项目介绍，然后主要考察了编程 算法 计算机基础，算是除了赛舵CEO那一面里最难的了。</p>
+<p>算法题</p>
+<ol>
+<li><p>如何判断一个单链表是否有环。</p>
+<p>我用set()记录每个节点的id，然后如果发生当前节点的id出现在set里了，即是有环。</p>
+<p>问时间、空间复杂度？</p>
+<p>面试官说有更好的办法，让我回去再看看</p>
+</li>
+<li><p>如何找到环的开头节点？</p>
+<p>线性扫描，我判断当前节点的next是否在set里，如果是，那么当前节点就是环的开头</p>
+<p>面试官说这样也行吧，说我这道题没思路的话确实也想不出来更好的办法</p>
+<p>后来网上搜了可以用两个速度不一样的指针，如果快指针从后面追上了慢指针就说明有环，如果快指针到了null还没追上就是无环。</p>
+</li>
+<li><p>学过什么排序算法？</p>
+<p>我说快排，归并，然后让我写了下快排。</p>
+<p>问时间、空间复杂度？</p>
+</li>
+<li><p>能不能优化快排，把空间复杂度降下来？</p>
+<p>让我原地做快排，我之前写过可因为递归的方法写起来很方便就没写过原地快排了，憋了半天没写出完整的，最后时间到了。回头我复习了下，应该是这么写</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort_in_place</span><span class="params">(array, lo, hi)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> lo &gt;= hi:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    left = lo</span><br><span class="line">    right = hi</span><br><span class="line">    pivot = array[lo]</span><br><span class="line">    <span class="keyword">while</span> left &lt; right:</span><br><span class="line">        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> array[right] &gt; pivot:</span><br><span class="line">            right -= <span class="number">1</span></span><br><span class="line">        array[left] = array[right]</span><br><span class="line">        <span class="keyword">while</span> left &lt; right <span class="keyword">and</span> array[left] &lt; pivot:</span><br><span class="line">            left += <span class="number">1</span></span><br><span class="line">        array[right] = array[left]</span><br><span class="line">    array[left] = pivot</span><br><span class="line"></span><br><span class="line">    quick_sort_in_place(array, lo, left<span class="number">-1</span>)</span><br><span class="line">    quick_sort_in_place(array, left+<span class="number">1</span>, hi)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol>
+<li><p>学没学过计算机网络，了解tcp，http协议吗？</p>
+<p>这个我真不会</p>
+</li>
+<li><p>python的值传递和引用传递？</p>
+<p>答出来了，然后他指出我上面写的原地快排就是只传递了值，没法改变原本的list，这时候我才发现。。还得加上左边界和右边界的索引。</p>
+</li>
+</ol>
+<p>时间差不多一个小时了，最后问我有什么想问的，我感觉我基本没了，就问了问我投的这个岗位主要做什么，然后结束了。</p>
+<h2 id="二面-1"><a href="#二面-1" class="headerlink" title="二面"></a>二面</h2><p>没想到还有二面，面试官很和蔼，打开视频的时候还说：“哎，你真人比照片帅很多嘛！”，hhhh就喜欢听这种实话，对西电似乎印象很好，跟我说这边有很多我的学长，然后就开始正题了。</p>
+<p>算法题：</p>
+<p>给一个head，翻转单链表</p>
+<p>我用了三个指针，p1 p2 p3，开始把head的next指向None，然后把p2的next指向p1，然后把三个指针右移，p3是为了防止p2的next指向p1后找不到原本的next了，如果将p2指向p1后当前的p3为None，那就大功告成，可以直接跳出循环了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, item)</span>:</span></span><br><span class="line">        self.item = item</span><br><span class="line">        self.next = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reverselist</span><span class="params">(head)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> head <span class="keyword">is</span> <span class="keyword">None</span> <span class="keyword">or</span> head.next <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">        <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line">    p1 = head</span><br><span class="line">    p2 = p1.next</span><br><span class="line">    p3 = p2.next</span><br><span class="line">    head.next = <span class="keyword">None</span></span><br><span class="line">    <span class="keyword">while</span> p2:</span><br><span class="line">        p2.next = p1</span><br><span class="line">        p1 = p2</span><br><span class="line">        p2 = p3</span><br><span class="line">        <span class="keyword">if</span> p3 <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        p3 = p3.next</span><br><span class="line">    <span class="keyword">return</span> p1</span><br></pre></td></tr></table></figure>
+<p>后来在网上看到一个用递归的解法如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">revervelist</span><span class="params">(head)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> head == <span class="keyword">None</span> <span class="keyword">or</span> head.next == <span class="keyword">None</span>:</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line">  </span><br><span class="line">  newhead = reverselist(head.next)</span><br><span class="line">  t1 = head.next</span><br><span class="line">  t1.next = head</span><br><span class="line">  head.next = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> newhead</span><br></pre></td></tr></table></figure>
+<p>接着问了很多东西，只能写些我还记得的：</p>
+<ol>
+<li><p>L1和L2正则化，为什么能减少过拟合？</p>
+<p> 我说能惩罚参数，让参数变小或置零，降低模型复杂度，阻止模型完全拟合训练集，他又问为什么参数变小了就能减小过拟合，我没答出来</p>
+</li>
+<li><p>layernorm有什么用？</p>
+<p>答：均值归零，方差归一，加快训练速度</p>
+</li>
+<li><p>self-attention运算过程</p>
+<p>写过，答出来了</p>
+</li>
+<li><p>手写lstm</p>
+<p>写出来了</p>
+</li>
+<li><p>loss.backward()是怎么把梯度反向传播回去的</p>
+<p>答：根据计算图的边进行链式求导。又接着问我每一步运算它通过什么机制，怎么就知道该跟谁求导，我没答出来</p>
+</li>
+<li><p>当用pytorch生成一个tensor时底层如何分配空间</p>
+<p>不会。。。</p>
+</li>
+<li><p>pytorch里的矩阵相乘底层是如何实现的</p>
+<p>不会。。。</p>
+</li>
+<li><p>python底层是怎么用c实现的</p>
+<p>不会。。。然后面试官问我学过编译原理没，我说我学电子的，没学过这个。。。</p>
+</li>
+<li><p>python的多线程，多进程，GIL锁</p>
+<p>学过皮毛，忘掉了，没答出来</p>
+</li>
+<li><p>为什么激活函数很多用relu不用tanh和sigmoid</p>
+<p>tanh和sigmoid在W*x值很大时，梯度几乎为0，无法进行梯度下降。接着问我relu为什么要把小于0的就砍掉，我不知道了。</p>
+</li>
+<li><p>为什么会发生梯度消失</p>
+<p>层数多了之后，很多小于1的grad连乘，数值下溢</p>
+</li>
+<li><p>残差层有什么作用</p>
+<p>方便梯度的反向传播，防止梯度消失</p>
+</li>
+</ol>
+<p>我记得问得不止这些，不过我不记得了，当时已经被问晕了，过了一段时间我才写了这篇文章。</p>
+<p>二面面了也有四五十分钟，结束后hr跟我说，他们讨论过了，要让我再去面一下NLP岗，综合讨论一下，我？？？我当时投的就是nlp岗，他说技术团队评估后给我面的岗位是aml机器学习平台算法实习生，我认了，这岗位说是做机器学习中台，感觉比较像后端+提供算法模型？面完发现我不太会计算机的底层和网络，还是偏向nlp模型和算法稍微熟悉些，觉得我可能还是更适合去面nlp岗吧。</p>
+<h2 id="NLP岗"><a href="#NLP岗" class="headerlink" title="NLP岗"></a>NLP岗</h2><p>算法题：求sqrt(x)</p>
+<p>我用暴力求解出来之后，面试官问我能不能用牛顿迭代法解，我不会，他就给我讲了讲让我写，我一时半会还是没听懂，我不知道到底是我理解出了问题还是他说的不够清晰，反正然后面试官就很不耐烦地挂了，嘴角挂着不屑和讥讽的笑容跟我说今天的面试到此结束，谢谢参加我们的面试，全程不到35分钟，这是我挂得最快也最惨的一次，wtf？？？面试问问题本来就很随机，他一没问项目经历，二没问NLP，三没问ML，四没问常见数据结构算法，问了个数学方法，刚好是我的知识盲区就直接挂了我？别的面试官都还问到不会的再继续问问其他的，多方面考察一下，我因为个牛顿迭代法没写出来就直接挂了，这真是最憋屈的一次面试，我面完心里骂了1w句脏话都没解气，我好好复习了几天nlp，ml和算法，结果最后死在了一道数学题上，我恨！！！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/05/Sarcasm-Detection/" rel="next" title="Sarcasm Detection">
+                <i class="fa fa-chevron-left"></i> Sarcasm Detection
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/01/%E5%9F%9F%E5%90%8D%E5%8F%98%E6%9B%B4%E9%80%9A%E7%9F%A5/" rel="prev" title="域名变更通知">
+                域名变更通知 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="TianHongZXY"/>
+            
+              <p class="site-author-name" itemprop="name">TianHongZXY</p>
+              <p class="site-description motion-element" itemprop="description">浪漫骑士 行吟诗人 自由思想者</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">18</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/TianHongZXY" title="GitHub &rarr; https://github.com/TianHongZXY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/mailto:zhuxinyu886@outlook.com" title="E-Mail &rarr; mailto:zhuxinyu886@outlook.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/tian-qian-bu-dang-hong-zhi" title="知乎 &rarr; https://www.zhihu.com/people/tian-qian-bu-dang-hong-zhi" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#赛舵智能"><span class="nav-number">1.</span> <span class="nav-text">赛舵智能</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一面"><span class="nav-number">1.1.</span> <span class="nav-text">一面</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python基础"><span class="nav-number">1.1.1.</span> <span class="nav-text">python基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据结构算法"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据结构算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NLP基础"><span class="nav-number">1.1.3.</span> <span class="nav-text">NLP基础</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CEO面"><span class="nav-number">1.2.</span> <span class="nav-text">CEO面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扇贝"><span class="nav-number">2.</span> <span class="nav-text">扇贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法题"><span class="nav-number">2.1.</span> <span class="nav-text">算法题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#百度NLP部翻译组"><span class="nav-number">3.</span> <span class="nav-text">百度NLP部翻译组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一面-1"><span class="nav-number">3.1.</span> <span class="nav-text">一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二面"><span class="nav-number">3.2.</span> <span class="nav-text">二面</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字节跳动"><span class="nav-number">4.</span> <span class="nav-text">字节跳动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一面-2"><span class="nav-number">4.1.</span> <span class="nav-text">一面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二面-1"><span class="nav-number">4.2.</span> <span class="nav-text">二面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NLP岗"><span class="nav-number">4.3.</span> <span class="nav-text">NLP岗</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <!-- <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span> -->
+  <span class="author" itemprop="copyrightHolder"><span class="with-love"><i class="fa fa-heart-o"></i></span>TianHongZXY</span>
+
+  
+
+  
+</div>
+<!--
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'fNjvG519rNMQCRTez4XP1aGe-gzGzoHsz',
+      appKey: 'DY0fa7oCKanbyW5J4UoxG9ug',
+      placeholder: 'Say something',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/click.js"></script>
+</body>
+</html>
