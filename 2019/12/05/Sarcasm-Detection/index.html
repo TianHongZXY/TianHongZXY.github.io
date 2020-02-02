@@ -118,14 +118,14 @@
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;c74093062c0f7f01.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;5e0a17681d55195f.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;278f7bdb941922d0.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;959ec2e2ea15efbc.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;02&#x2F;02&#x2F;1JWjCq.md.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;02&#x2F;02&#x2F;1JfpKU.md.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;ce9b15167e02bc3f.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;12e9517e3a55a79c.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;1a57389a2ff83ebe.png">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;92ca79fa1ec2e18d.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
-<meta property="og:updated_time" content="2020-01-30T10:59:06.801Z">
+<meta property="og:updated_time" content="2020-02-02T03:36:43.416Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;e127e5e07b1312e8.png">
 
@@ -407,7 +407,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-01-30 18:59:06" itemprop="dateModified" datetime="2020-01-30T18:59:06+08:00">2020-01-30</time>
+                <time title="Modified: 2020-02-02 11:36:43" itemprop="dateModified" datetime="2020-02-02T11:36:43+08:00">2020-02-02</time>
               
             
           </span>
@@ -492,8 +492,7 @@
 <p>融合特征的方式就是简单的concatenate(这应该将来有更好的办法融合)。</p>
 <h2 id="实验结果"><a href="#实验结果" class="headerlink" title="实验结果"></a>实验结果</h2><p>依赖speaker</p>
 <p><img src='http://i1.fuimg.com/703781/5e0a17681d55195f.png'></p>
-<p>不依赖speaker，表现明显相比上面下降，而且多模态相比单模态提升也很小。</p>
-<p><img src='http://i1.fuimg.com/703781/278f7bdb941922d0.png'></p>
+<p>不依赖speaker，表现明显相比上面下降，而且多模态相比单模态提升也很小。<br><img src="https://s2.ax1x.com/2020/02/02/1JWjCq.md.png" alt="1JWjCq.png" border="0" /></p>
 <h2 id="提出的改进方向"><a href="#提出的改进方向" class="headerlink" title="提出的改进方向"></a>提出的改进方向</h2><ol>
 <li>分析音频信道的时间位置</li>
 <li>捕捉说话者的面部表情和他正在说的话之间的mismatches</li>
@@ -521,7 +520,7 @@
 <li><p>MIARN 在 Twitter, Reddit 和 IAC数据集上达到了 SOTA，且截至发表时是第一个在反讽检测任务上能够提供可解释性结果的 attention 模型</p>
 </li>
 </ol>
-<h2 id="论文的主要方法-1"><a href="#论文的主要方法-1" class="headerlink" title="论文的主要方法"></a>论文的主要方法</h2><p><img src='http://i1.fuimg.com/703781/959ec2e2ea15efbc.png'></p>
+<h2 id="论文的主要方法-1"><a href="#论文的主要方法-1" class="headerlink" title="论文的主要方法"></a>论文的主要方法</h2><p><img src="https://s2.ax1x.com/2020/02/02/1JfpKU.md.png" alt="1JfpKU.png" border="0" /></p>
 <ol>
 <li><p>计算 word pair relation，对两个word $w_{i}$,$w_{j}$，使用线性变换计算二者的关系，得到一个 scalar score</p>
 <script type="math/tex; mode=display">
@@ -553,7 +552,7 @@ v = ReLU(W_{z}([v_{a};v_{c}]) + b_{z}) \\
 <p>可视化 attention 的 weights 可以看到，intra-attention 要比普通的 attention 更能准确地捕捉句子中的冲突词对，这展现了模型能够提供良好的可解释性。</p>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>Santiago Castro, Devamanyu Hazarika, Verónica Pérez-Rosas, Roger Zimmermann, Rada Mihalcea and Soujanya Poria. 2019. Towards Multimodal Sarcasm Detection (An <em>Obviously</em> Perfect Paper) . <em>ACL 2019</em></p>
 <p>Yi Tay, Luu Anh Tuan, Siu Cheung Hui and Jian Su. 2018. Reasoning with Sarcasm by Reading In-between . <em>ACL 2018</em></p>
-<p><a href="https://imgchr.com/i/11FjxS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11FjxS.md.jpg" width="200" height="230" align="center" alt="11FjxS.jpg" border="0"  /></a></p>
+<p><img src="https://s2.ax1x.com/2020/01/30/11FjxS.md.jpg" width="200" height="230" align="center" alt="11FjxS.jpg" border="0"  /></p>
 
       
     </div>
