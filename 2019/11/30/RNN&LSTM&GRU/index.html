@@ -116,11 +116,11 @@
 <meta property="og:description" content="RNN 简单循环神经网络是一个很简单，只有一个隐藏层的神经网络。 假设在时刻t，输入为$x_{t}$，隐藏层状态（又称隐层神经元激活值）为$h_{t}$，$h_{t}$不仅和当前输入相关，还和上一个时刻的隐藏层状态$h_{t-1}$相关。">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;b012322f7767cd4d.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;f8b6dfd6d87db2d0.png">
-<meta property="og:image" content="http:&#x2F;&#x2F;i2.tiimg.com&#x2F;703781&#x2F;c914f57163c87cd2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;006tNbRwgy1gbhwirxz09j31q10nbag0.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;006tNbRwgy1gbihg2utksj30pl0bk401.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;006tNbRwgy1gbihh6cuy4j30pn0cpwg6.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
-<meta property="og:updated_time" content="2020-01-30T10:59:12.034Z">
+<meta property="og:updated_time" content="2020-02-02T15:41:17.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;i1.fuimg.com&#x2F;703781&#x2F;e60d513e7153b3f2.png">
 
@@ -402,7 +402,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-01-30 18:59:12" itemprop="dateModified" datetime="2020-01-30T18:59:12+08:00">2020-01-30</time>
+                <time title="Modified: 2020-02-02 23:41:17" itemprop="dateModified" datetime="2020-02-02T23:41:17+08:00">2020-02-02</time>
               
             
           </span>
@@ -475,7 +475,7 @@ h_{t} &= f(c_{t})
 \end{aligned}</script><p>其中$c_{t}$为隐藏层的净输入，$f(·)$是非线性激活函数，通常是Logistic函数或Tanh，U为<strong>状态-状态</strong>权重矩阵，W为<strong>状态-输入</strong>矩阵，b为偏置。上面两个式子也可以合并为一个式子</p>
 <script type="math/tex; mode=display">
 h_{t} = f(Wx_{t} + Uh_{t-1} + b)</script><p>假设句子长度为$T$，一般的分类问题都是利用最后输出的$h_{T}$去做分类，因为它包含了整个句子的语义信息。</p>
-<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><p><img src='http://i1.fuimg.com/703781/b012322f7767cd4d.png'></p>
+<h1 id="LSTM"><a href="#LSTM" class="headerlink" title="LSTM"></a>LSTM</h1><p><img src='https://tva1.sinaimg.cn/large/006tNbRwgy1gbhwirxz09j31q10nbag0.jpg'></p>
 <p>长短期记忆(Long Short-Term Memory，LSTM)网络是循环神经网络的一个变体，可以有效地解决简单RNN的梯度爆炸或消失问题。 </p>
 <p>改进主要有两方面：</p>
 <ol>
@@ -497,10 +497,10 @@ h_{t} &= o_{t} \odot \tanh \left(c_{t}\right)
 <p>三个门的计算方式为</p>
 <script type="math/tex; mode=display">
 \begin{aligned} \mathbf{i}_{t} &=\sigma\left(W_{i} \mathbf{x}_{t}+U_{i} \mathbf{h}_{t-1}+\mathbf{b}_{i}\right) \\ \mathbf{f}_{t} &=\sigma\left(W_{f} \mathbf{x}_{t}+U_{f} \mathbf{h}_{t-1}+\mathbf{b}_{f}\right) \\ \mathbf{o}_{t} &=\sigma\left(W_{o} \mathbf{x}_{t}+U_{o} \mathbf{h}_{t-1}+\mathbf{b}_{o}\right) \end{aligned}</script><p>其中$\sigma(·)$为Logistic函数。</p>
-<p><img src='http://i1.fuimg.com/703781/f8b6dfd6d87db2d0.png'></p>
+<p><img src='https://tva1.sinaimg.cn/large/006tNbRwgy1gbihg2utksj30pl0bk401.jpg'></p>
 <script type="math/tex; mode=display">
 W_{*}, U_{*}, b_{*}, * \in {i,f,o,c} 皆是可学习的网络参数。</script><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>一般在深度网络参数学习时，参数初始化的值一般都比较小。但是在训练 LSTM 网络时，过小的值会使得遗忘门的值比较小。这意味着前一时刻的信息大部分都丢失了，这样网络很难捕捉到长距离的依赖信息。并且相邻时间间隔的梯度会非常小，这会导致梯度弥散问题。因此遗忘的参数初始值一般都设得比较大，其偏置向量$b_{f}$设为1或2。</p>
-<h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><img src='http://i2.tiimg.com/703781/c914f57163c87cd2.png'></p>
+<h1 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h1><p><img src='https://tva1.sinaimg.cn/large/006tNbRwgy1gbihh6cuy4j30pn0cpwg6.jpg'></p>
 <p>门控循环单元(Gated Recurrent Unit, GRU)网络是一种比LSTM更简单的循环神经网络。</p>
 <p>和LSTM不同的地方在于，GRU不引入额外的记忆单元，而是引入了一个更新门来控制当前状态需要从历史状态中保留多少信息(不经过非线性变换)，以及需要从候选状态中接受多少信息。</p>
 <script type="math/tex; mode=display">
