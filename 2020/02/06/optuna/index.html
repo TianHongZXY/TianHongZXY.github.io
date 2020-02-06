@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="项目结构一般结构有四个顶级文件夹：">
-<meta name="keywords" content="Flask">
+  <meta name="description" content="深度学习调参是一门玄学，有时候想改进自己的模型，比如把LSTM替换为Transformer，好不容易模型框架照着论文搭好了，超参数也和论文一致，照理说acc、auc等各种评价指标应该远远超过LSTM，理想是丰满的，现实却是惨不忍睹的，在自己的数据集上跑时，有时效果反而还不如原本已经fine tune过的简单模型性能好，我要这模型有何用？别急，下面我来教你如何解放双手，让它来帮你找到最优参数。 本文">
+<meta name="keywords" content="deep learning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Flask大型应用结构">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;02&#x2F;18&#x2F;Flask%E5%A4%A7%E5%9E%8B%E5%BA%94%E7%94%A8%E7%BB%93%E6%9E%84&#x2F;index.html">
+<meta property="og:title" content="超参数优化框架Optuna">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;02&#x2F;06&#x2F;optuna&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="项目结构一般结构有四个顶级文件夹：">
+<meta property="og:description" content="深度学习调参是一门玄学，有时候想改进自己的模型，比如把LSTM替换为Transformer，好不容易模型框架照着论文搭好了，超参数也和论文一致，照理说acc、auc等各种评价指标应该远远超过LSTM，理想是丰满的，现实却是惨不忍睹的，在自己的数据集上跑时，有时效果反而还不如原本已经fine tune过的简单模型性能好，我要这模型有何用？别急，下面我来教你如何解放双手，让它来帮你找到最优参数。 本文">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-16T04:21:00.885Z">
+<meta property="og:updated_time" content="2020-02-06T16:14:20.134Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/02/18/Flask大型应用结构/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/02/06/optuna/"/>
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>Flask大型应用结构 | TianHongZXY</title>
+  <title>超参数优化框架Optuna | TianHongZXY</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/18/Flask%E5%A4%A7%E5%9E%8B%E5%BA%94%E7%94%A8%E7%BB%93%E6%9E%84/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/02/06/optuna/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Flask大型应用结构
+          <h1 class="post-title" itemprop="name headline">超参数优化框架Optuna
 
               
             
@@ -379,7 +379,7 @@
                 
               
 
-              <time title="Created: 2019-02-18 21:18:44" itemprop="dateCreated datePublished" datetime="2019-02-18T21:18:44+08:00">2019-02-18</time>
+              <time title="Created: 2020-02-06 21:54:01" itemprop="dateCreated datePublished" datetime="2020-02-06T21:54:01+08:00">2020-02-06</time>
             
 
             
@@ -396,7 +396,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-16 12:21:00" itemprop="dateModified" datetime="2019-11-16T12:21:00+08:00">2019-11-16</time>
+                <time title="Modified: 2020-02-07 00:14:20" itemprop="dateModified" datetime="2020-02-07T00:14:20+08:00">2020-02-07</time>
               
             
           </span>
@@ -413,7 +413,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Flask/" itemprop="url" rel="index"><span itemprop="name">Flask</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
 
                 
                 
@@ -428,8 +428,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/18/Flask%E5%A4%A7%E5%9E%8B%E5%BA%94%E7%94%A8%E7%BB%93%E6%9E%84/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/18/Flask%E5%A4%A7%E5%9E%8B%E5%BA%94%E7%94%A8%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+                <a href="/2020/02/06/optuna/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/02/06/optuna/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -457,29 +457,27 @@
       
 
       
-        <h1 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h1><p>一般结构有四个顶级文件夹：</p>
-<a id="more"></a>
+        <p>深度学习调参是一门玄学，有时候想改进自己的模型，比如把LSTM替换为Transformer，好不容易模型框架照着论文搭好了，超参数也和论文一致，照理说acc、auc等各种评价指标应该远远超过LSTM，理想是丰满的，现实却是惨不忍睹的，在自己的数据集上跑时，有时效果反而还不如原本已经fine tune过的简单模型性能好，我要这模型有何用？别急，下面我来教你如何解放双手，让它来帮你找到最优参数。</p>
+<p>本文介绍超参数优化框架Optuna，并用示例代码简要展示其在pytorch上的使用。</p>
+<p>首先简单介绍下Optuna，Optuna是一种自动超参优化框架，专为机器学习而设计。它具有命令式，按运行定义的用户API。使用Optuna编写的代码具有很高的模块性，Optuna的用户可以动态构建超参数的搜索空间。</p>
+<p>它目前支持的部分库有(全部请参见官网<a href="https://optuna.org)：" target="_blank" rel="noopener">https://optuna.org)：</a></p>
 <ul>
-<li>Flask应用一般保存在名为app的包中；</li>
-<li>数据库迁移脚本在migrations文件夹中；</li>
-<li>单元测试在tests包中；</li>
-<li>python虚拟环境在venv中。</li>
+<li>XGBoost</li>
+<li>LightGBM</li>
+<li>Sklearn</li>
+<li>Keras</li>
+<li>TensorFlow</li>
+<li>tf.keras</li>
+<li>MXNet</li>
+<li>PyTorch</li>
+<li>FastAI</li>
 </ul>
-<p>除此之外还有config.py存储配置。</p>
-<p>requirements.txt列出所有依赖包。</p>
-<p>flasky.py作为主脚本，定义Flask应用实例，同时还有一些辅助管理应用的任务。</p>
-<h1 id="应用包"><a href="#应用包" class="headerlink" title="应用包"></a>应用包</h1><p>应用包存放应用的所有代码、模板和静态文件。templates和static现在在app包中。数据库模型和电子邮件支持函数也在app包中。</p>
-<h1 id="蓝本"><a href="#蓝本" class="headerlink" title="蓝本"></a>蓝本</h1><p>蓝本和应用类似，也可以定义路由和错误处理程序。不同的是，在蓝本中定义的路由和错误处理程序处于休眠状态，直到蓝本注册到应用上之后，它才真正成为应用的一部分。下面是app/main/__init__.py的代码</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Blueprint</span><br><span class="line"></span><br><span class="line">main = Blueprint(<span class="string">'main'</span>, __name__)</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views, errors</span><br></pre></td></tr></table></figure>
-<p>蓝本通过实例化一个Blueprint类对象创建。两个参数：蓝本的名称和蓝本所在的包或模块。</p>
-<p>应用的路由保存在app/main/views.py中，错误处理程序保存在app/main/errors.py中。导入这连个模块就能把路由和错误处理程序与蓝本联系起来。因为在views和errors中也要导入main蓝本，为了避免循环导入依赖，导入views和errors要在</p>
-<p>__init__.py的末尾。</p>
-<hr>
-<p>在蓝本中编写错误处理程序稍有不同，如果使用errorhandler装饰器，那么只有蓝本中的错误才能触发处理程序。要想注册全局的错误处理程序，必须使用app_errorhandler装饰器。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> render_template</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> main</span><br><span class="line"></span><br><span class="line"><span class="meta">@main.app_errorhandler(404)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">page_not_found</span><span class="params">(e)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> render_template(<span class="string">'404.html'</span>), <span class="number">404</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p>在蓝本中编写视图函数主要有两点不同：第一，路由装饰器由蓝本提供，因此使用main.route而非app.route。第二，url_for()函数的用法不同。在蓝本中，Flask会为所有蓝本中的全部端点加上一个命名空间，这样就可以在不同的蓝本中使用相同的端点名定义视图函数，而不冲突。命名空间是蓝本的名称(Blueprint构造函数的第一个参数)，而且与端点名之间以一个点号分隔。因此视图函数index()注册的端点名是main.index，其URL用<code>url_for(&#39;main.index&#39;)</code>获取。</p>
-<p>在蓝本中可以省略蓝本名，例如<code>url_for(&#39;.index&#39;)</code>这种写法，使用当前请求的蓝本名补足端点名。这意味着，同一蓝本的重定向可以使用简写，但跨蓝本的重定向必须使用带有蓝本名的完全限定端点名。</p>
+<p>它的安装就一步：<code>pip install optuna</code></p>
+<p>下面我通过代码示例，简要展示其如何使用，数据的加载、训练等函数都将略去，只需要添加两个函数<code>define_model</code>和<code>objective</code>就能将Optuna框架零感地插入到我们现有的代码中去。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> optuna</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> optim, nn</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string"># 这个定义的model只是个示例，实际并没什么用</span></span><br><span class="line"><span class="string">class model(nn.Module):</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    def __init__(self, input_size, output_size, hidden_size=200, dropout=p):</span></span><br><span class="line"><span class="string">        super(model, self).__init__()</span></span><br><span class="line"><span class="string">        self.embedding = nn.Embedding(num_embeddings=input_size,</span></span><br><span class="line"><span class="string">                                      embedding_dim=hidden_size)</span></span><br><span class="line"><span class="string">        self.linear = nn.Linear(in_features=hidden_size, out_features=output_size)</span></span><br><span class="line"><span class="string">        self.dropout = nn.Dropout(dropout)</span></span><br><span class="line"><span class="string">    def forward(self, x):</span></span><br><span class="line"><span class="string">    	x = self.dropout(self.embedding(x))</span></span><br><span class="line"><span class="string">        outputs = self.linear(x)</span></span><br><span class="line"><span class="string">        return outputs</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">define_model</span><span class="params">(trial)</span>:</span></span><br><span class="line">    <span class="comment"># 在100到200之间搜索hidden_size</span></span><br><span class="line">    hidden_size = trial.suggest_int(<span class="string">'hidden_size'</span>, <span class="number">100</span>, <span class="number">200</span>)</span><br><span class="line">    <span class="comment"># 在0.2到0.5之间搜索dropout rate</span></span><br><span class="line">    p = trial.suggest_uniform(<span class="string">'dropout'</span>, <span class="number">0.2</span>, <span class="number">0.5</span>)</span><br><span class="line">    <span class="comment"># 假设vocab_size, output_size都已经定义了</span></span><br><span class="line">    m = model(input_size=vocab_size, output_size=output_size, </span><br><span class="line">              hidden_size=hiddensize, dropout=p)</span><br><span class="line">    <span class="keyword">return</span> m</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">objective</span><span class="params">(trial)</span>:</span></span><br><span class="line">    <span class="comment"># 尝试不同的optimizer</span></span><br><span class="line">    optimizer_name = trial.suggest_categorical(<span class="string">'optimizer'</span>, </span><br><span class="line">                                               [<span class="string">'Adam'</span>, <span class="string">'RMSprop'</span>, <span class="string">'SGD'</span>])</span><br><span class="line">    <span class="comment"># 搜索学习率</span></span><br><span class="line">    lr = trial.suggest_uniform(<span class="string">'lr'</span>, <span class="number">1e-5</span>, <span class="number">1e-1</span>)</span><br><span class="line">    m = define_model(trial)</span><br><span class="line">    optimizer = getattr(optim, optimizer_name)(m.parameters(), lr=lr)</span><br><span class="line">    <span class="comment"># 这里省略了run函数，内部应该将数据喂给model训练，训练完成后在验证集上测试，计算并返回acc</span></span><br><span class="line">    acc = run(m, optimizer=optimizer)</span><br><span class="line">    <span class="keyword">return</span> acc</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 创建一个学习实例，因为objective返回的评价指标是acc，因此目标是最大化，如果是loss就该是minimize</span></span><br><span class="line">    study = optuna.create_study(direction=<span class="string">'maximize'</span>)</span><br><span class="line">    <span class="comment"># n_trials代表搜索100种，n_jobs是并行搜索的个数，-1代表使用所有的cpu核心</span></span><br><span class="line">    study.optimize(objective, n_trials=<span class="number">100</span>, n_jobs=<span class="number">-1</span>)</span><br><span class="line">    print(<span class="string">'Number of finished trials: '</span>, len(study.trials))</span><br><span class="line">    print(<span class="string">'Best trial:'</span>)</span><br><span class="line">    trial = study.best_trial</span><br><span class="line">    print(<span class="string">'  Value: '</span>, trial.value)</span><br><span class="line">    print(<span class="string">'  Params: '</span>)</span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> trial.params.items():</span><br><span class="line">        print(<span class="string">'    &#123;&#125;: &#123;&#125;'</span>.format(key, value))</span><br></pre></td></tr></table></figure>
+<p>这里只是简单地展示了一下如何在pytorch中使用optuna，以此来解放调参师的双手，更详细的使用请参见官方网站。</p>
+<p>答应我，别再用手调参了。（前提是你得有好的GPU来搜，逃。。。</p>
+<p>祝大家都能超参最优！</p>
 
       
     </div>
@@ -503,7 +501,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Flask/" rel="tag"><i class="fa fa-tag"></i> Flask</a>
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
           
         </div>
       
@@ -516,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/14/dbdb%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" rel="next" title="dbdb学习记录">
-                <i class="fa fa-chevron-left"></i> dbdb学习记录
+              <a href="/2019/12/22/NLP%E5%AE%9E%E4%B9%A0%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" rel="next" title="NLP实习面试总结">
+                <i class="fa fa-chevron-left"></i> NLP实习面试总结
               </a>
             
           </div>
@@ -525,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/18/Flask%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AF%87/" rel="prev" title="Flask数据库篇">
-                Flask数据库篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -577,17 +571,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -716,23 +701,6 @@
         </div>
       </div>
 
-      
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#项目结构"><span class="nav-number">1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#应用包"><span class="nav-number">2.</span> <span class="nav-text">应用包</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#蓝本"><span class="nav-number">3.</span> <span class="nav-text">蓝本</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
       
 
       
