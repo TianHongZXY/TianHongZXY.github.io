@@ -107,25 +107,26 @@
 
 
 
-  <meta name="description" content="考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
-<meta name="keywords" content="deep learning">
+  <meta name="description" content="起因最近在修改上一个同事加载和预处理数据的代码，原版的代码使用tf1.4.1写的，数据加载也是完全就是for循环读取+预处理，每读入并预处理好一个batch就返回丢给模型训练，如此往复，我觉得速度实在太慢了，而且我新写的代码都是基于pytorch，虽然预处理的过程很复杂，我还是下决心自己改写。 用pytorch加载预处理数据，最常用的就是torch.utils.data.Dataset和torch">
+<meta name="keywords" content="deep learning,pytorch">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Softmax + 交叉熵">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;10&#x2F;Loss%E5%87%BD%E6%95%B0&#x2F;index.html">
+<meta property="og:title" content="【Pytorch排坑记】:1.内存泄漏">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;02&#x2F;11&#x2F;Pytorch%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="考虑一个广义的Softmax函数，q的logits为z_{i}其中T是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度T趋向0时，softmax输出将收敛为one-hot向量，温度T趋向无穷时，输出更「软」。">
+<meta property="og:description" content="起因最近在修改上一个同事加载和预处理数据的代码，原版的代码使用tf1.4.1写的，数据加载也是完全就是for循环读取+预处理，每读入并预处理好一个batch就返回丢给模型训练，如此往复，我觉得速度实在太慢了，而且我新写的代码都是基于pytorch，虽然预处理的过程很复杂，我还是下决心自己改写。 用pytorch加载预处理数据，最常用的就是torch.utils.data.Dataset和torch">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
-<meta property="og:updated_time" content="2020-01-30T10:59:40.600Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;0082zybpgy1gbtvmp4e4mj31ik0u0the.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;0082zybpgy1gbtvrzpnehj31k60u0qbm.jpg">
+<meta property="og:updated_time" content="2020-02-12T15:02:24.659Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;0082zybpgy1gbtvmp4e4mj31ik0u0the.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/11/10/Loss函数/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/02/11/Pytorch内存泄漏/"/>
 
 
 
@@ -135,7 +136,7 @@
   };
 </script>
 
-  <title>Softmax + 交叉熵 | TianHongZXY</title>
+  <title>【Pytorch排坑记】:1.内存泄漏 | TianHongZXY</title>
   
 
 
@@ -338,7 +339,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/11/10/Loss%E5%87%BD%E6%95%B0/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/02/11/Pytorch%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -355,7 +356,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Softmax + 交叉熵
+          <h1 class="post-title" itemprop="name headline">【Pytorch排坑记】:1.内存泄漏
 
               
             
@@ -381,7 +382,7 @@
                 
               
 
-              <time title="Created: 2019-11-10 22:17:27" itemprop="dateCreated datePublished" datetime="2019-11-10T22:17:27+08:00">2019-11-10</time>
+              <time title="Created: 2020-02-11 12:19:39" itemprop="dateCreated datePublished" datetime="2020-02-11T12:19:39+08:00">2020-02-11</time>
             
 
             
@@ -398,7 +399,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-01-30 18:59:40" itemprop="dateModified" datetime="2020-01-30T18:59:40+08:00">2020-01-30</time>
+                <time title="Modified: 2020-02-12 23:02:24" itemprop="dateModified" datetime="2020-02-12T23:02:24+08:00">2020-02-12</time>
               
             
           </span>
@@ -430,8 +431,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/10/Loss%E5%87%BD%E6%95%B0/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/10/Loss%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
+                <a href="/2020/02/11/Pytorch%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/02/11/Pytorch%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -459,42 +460,22 @@
       
 
       
-        <p>考虑一个广义的Softmax函数，q的logits为<script type="math/tex">z_{i}</script>其中<script type="math/tex">T</script>是温度，这是从统计力学中的玻尔兹曼分布中借用的概念。容易证明，当温度<script type="math/tex">T</script>趋向0时，softmax输出将收敛为one-hot向量，温度<script type="math/tex">T</script>趋向无穷时，输出更「软」。</p>
-<a id="more"></a>
-<script type="math/tex; mode=display">
-q_{i}=\frac{\exp \left(z_{i} / T\right)}{\sum_{j} \exp \left(z_{j} / T\right)}</script><p>因此，在知识蒸馏中，训练新模型的时候，可以使用较高的T，使得softmax产生的分布足够软，这时让新模型的softmax输出近似原模型；在训练结束以后再使用正常的温度<script type="math/tex">T=1</script>来预测。记新模型产生的分布为q，原模型产生的分布为p，p的logits为<script type="math/tex">v_{i}</script>(下面的推导只需要把T设为1，p设为one-hot向量，就是平时用数据集从头训练模型时的softmax+交叉熵得到的损失函数)</p>
-<p>需要最小化的损失函数为C：</p>
-<script type="math/tex; mode=display">
-C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial z}=\frac{\partial q}{\partial z} \frac{\partial C}{\partial q}</script><p>p是原模型产生的softmax输出，与q无关。</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial q_{i}}=-\frac{p_{i}}{q_{i}}</script><p>$\frac{\partial C}{\partial q}$是一个n维向量：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial q}=\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</script><p>$\frac{\partial q}{\partial z}$是一个$n \times n$的方阵，记$Z=\sum_{k} \exp \left(z_{k} / T\right)$，可以求得$q_{i}$关于$z_{j}$的偏导为：</p>
-<script type="math/tex; mode=display">
-\frac{\partial q_{i}}{\partial z_{j}}=\frac{1}{Z^{2}}\left(Z \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\exp \left(z_{i} / T\right)\left[\frac{\partial Z}{\partial z_{j}}\right]\right)</script><p>右侧方框部分可以展开为</p>
-<script type="math/tex; mode=display">
-\frac{\partial Z}{\partial z_{j}}=\frac{1}{T} \exp \left(z_{j} / T\right)</script><p>代入上式将括号展开，可以得到：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T Z^{2}} \exp \left(z_{i} / T\right) \exp \left(z_{j} / T\right) \\ &=\frac{1}{Z} \frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}-\frac{1}{T} \frac{\exp \left(z_{i} / T\right)}{Z} \frac{\exp \left(z_{j} / T\right)}{Z} \\ &=\frac{1}{Z}\left[\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}\right]-\frac{1}{T} q_{i} q_{j} \end{aligned}</script><p>左侧方框分类讨论得：</p>
-<script type="math/tex; mode=display">
-\frac{\partial \exp \left(z_{i} / T\right)}{\partial z_{j}}=\left\{\begin{array}{ll}{\frac{1}{T} \exp \left(z_{i} / T\right),} & {\text { if } i=j} \\ {0,} & {\text { if } i \neq j}\end{array}\right.</script><p>代入上式得：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \frac{\partial q_{i}}{\partial z_{j}} &=\left\{\begin{array}{ll}{\frac{1}{T}\left(\frac{\exp \left(z_{i} / T\right)}{Z}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j} \\ {\frac{1}{T}\left(q_{i}-q_{i} q_{j}\right),} & {\text { if } i=j} \\ {-\frac{1}{T} q_{i} q_{j},} & {\text { if } i \neq j}\end{array}\right.\end{aligned}</script><p>所以$<br>\partial q / \partial z<br>$等于：</p>
-<script type="math/tex; mode=display">
-\frac{\partial q}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} & {-q_{1} q_{2}} & {\cdots} & {-q_{1} q_{n}} \\ {-q_{2} q_{1}} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {-q_{n} q_{1}} & {-q_{n} q_{2}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right]</script><p>这里就是为什么softmax函数对其输入的偏导是下列形式的原因，$g(·)$函数为softmax函数，$x$为输入向量，维度为$d$。</p>
-<script type="math/tex; mode=display">
-\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\operatorname{diag}(\hat{\mathbf{y}})-\hat{\mathbf{y}} \hat{\mathbf{y}}^{\top} \quad \in \mathbb{R}^{d \times d}</script><script type="math/tex; mode=display">
-\frac{\partial g(\mathbf{x})}{\partial \mathbf{x}}=\left[\begin{array}{cccc}{\hat{y}_{1}} & {0} & {\cdots} & {0} \\ {0} & {\hat{y}_{2}} & {\cdots} & {0} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {0} & {0} & {\cdots} & {\hat{y}_{d}}\end{array}\right]-\left[\begin{array}{cccc}{\hat{y}_{1}^{2}} & {\hat{y}_{1} \hat{y}_{2}} & {\cdots} & {\hat{y}_{1} \hat{y}_{d}} \\ {\hat{y}_{2} \hat{y}_{1}} & {\hat{y}_{2}^{2}} & {\cdots} & {\hat{y}_{2} \hat{y}_{d}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {\hat{y}_{d} \hat{y}_{1}} & {\hat{y}_{d} \hat{y}_{2}} & {\cdots} & {\hat{y}_{d}^{2}}\end{array}\right]</script><p>回到我们的问题，继续推导，可以得到：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial z}=\frac{1}{T}\left[\begin{array}{cccc}{q_{1}-q_{1}^{2}} & {-q_{1} q_{2}} & {\cdots} & {-q_{1} q_{n}} \\ {-q_{2} q_{1}} & {q_{2}-q_{2}^{2}} & {\cdots} & {-q_{2} q_{n}} \\ {\vdots} & {\vdots} & {\ddots} & {\vdots} \\ {-q_{n} q_{1}} & {-q_{n} q_{2}} & {\cdots} & {q_{n}-q_{n}^{2}}\end{array}\right]\left[\begin{array}{c}{-\frac{p_{1}}{q_{1}}} \\ {-\frac{p_{2}}{q_{2}}} \\ {\vdots} \\ {-\frac{p_{n}}{q_{n}}}\end{array}\right]</script><script type="math/tex; mode=display">
-\begin{aligned} =\frac{1}{T}\left[\begin{array}{c}{-p_{1}+\sum_{k} p_{k} q_{1}} \\ {-p_{2}+\sum_{k} p_{k} q_{2}} \\ {\vdots} \\ {-p_{n}+\sum_{k} p_{k} q_{n}}\end{array}\right]
-=\frac{1}{T}\left[\begin{array}{c}{-p_{1}+q_{1}} \\ {-p_{2}+q_{2}} \\ {\vdots} \\ {-p_{n}+q_{n}}\end{array}\right] \end{aligned}</script><script type="math/tex; mode=display">
-=\frac{1}{T}(q-p)</script><p>所以：</p>
-<script type="math/tex; mode=display">
-\frac{\partial C}{\partial z_{i}}=\frac{1}{T}\left(q_{i}-p_{i}\right)</script><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/90049906" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/90049906</a></p>
-<p><a href="https://imgchr.com/i/11FjxS" target="_blank" rel="noopener"><img src="https://s2.ax1x.com/2020/01/30/11FjxS.md.jpg" width="200" height="230" align="center" alt="11FjxS.jpg" border="0"  /></a></p>
+        <h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>最近在修改上一个同事加载和预处理数据的代码，原版的代码使用tf1.4.1写的，数据加载也是完全就是for循环读取+预处理，每读入并预处理好一个batch就返回丢给模型训练，如此往复，我觉得速度实在太慢了，而且我新写的代码都是基于pytorch，虽然预处理的过程很复杂，我还是下决心自己改写。</p>
+<p>用pytorch加载预处理数据，最常用的就是<code>torch.utils.data.Dataset</code>和<code>torch.utils.data.DataLoader</code>组合起来，把数据预处理都在Dataset里写好，再在DataLoader里设定batch_size, shuffle等参数去加载数据，网上的教程非常多，这里我就不展开讲了。</p>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h1><p>现在我已经获得了<code>train_loader</code>和<code>test_loader</code>，可以从它们里面每次读取一个batch出来训练，可照理说加载Dataset时占用了大量内存是正常的，因为数据都预加载好了，就只需要用DataLoader读取就行了，但在训练的过程中，内存不应该随着训练而逐渐增加。我眼睁睁看着内存占用从8、9个g，逐渐涨到了25个g，程序最终因为占满内存而崩溃。检查了半天自己的代码都没找出问题所在，后来用<code>memory_profiler</code>查看内存占用情况，发现问题主要出现在这一行代码：<code>actual_labels += list(correctness)</code>，<code>correctness</code>的类型是<code>torch.FloatTensor</code>，<code>actual_labels</code>是python原生的list。</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbtvmp4e4mj31ik0u0the.jpg" alt=""></p>
+<p><code>pred</code>和<code>correctness</code>是同类型同长度的tensor，在将其转换为list再添加到已有的list中时，占用的内存相差了约5个Mb，于是我将上面代码改写为：</p>
+<p><img src="https://tva1.sinaimg.cn/large/0082zybpgy1gbtvrzpnehj31k60u0qbm.jpg" alt=""></p>
+<p>问题解决了！</p>
+<p>为什么下面的代码就没事，上面直接将Tensor转为list就会发生这种奇怪的现象？我去github和知乎看到了遇到类似问题的issue与文章，下面是链接</p>
+<ol>
+<li><a href="https://github.com/pytorch/pytorch/issues/13246" target="_blank" rel="noopener">https://github.com/pytorch/pytorch/issues/13246</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/86286137" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86286137</a></li>
+<li><a href="https://github.com/pytorch/pytorch/issues/17499" target="_blank" rel="noopener">https://github.com/pytorch/pytorch/issues/17499</a></li>
+</ol>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>目前得到的结论大概是python list的design有问题，导致了这种情况发生，pytorch团队虽然竭力修复，但他们表示因为这是python设计的缺陷，超出了他们的能力范围，上面第一个issue主要是针对<code>DataLoader</code>里<code>num_workers&gt;0</code>时会导致内存泄漏，里面也提到了list与tensor互转亦会发生内存泄漏，这个issue已经一年多了还没能close。</p>
+<p>因此，在使用pytorch时，应该尽力避免list的使用，一定不能让tensor和list直接互相转换，如果一定要做，应该将tensor从cuda转到cpu上，转为numpy.array，最后转为list，反之亦然。</p>
+<p>在学校时写一些小项目，复现论文的小demo什么的，觉得pytorch写起来简单易用，现在接触工作，面对百万用户数据量，发现坑还是很多的，稳定性方面确实tensorflow还要更胜一筹。这个【Pytorch排坑记】专栏将持续记录我在使用pytorch过程中遇到的各种奇奇怪怪的问题以及解决办法，如果你在使用pytorch时遇到什么奇怪的问题，也欢迎留言与大家一起分享交流哦~</p>
 
       
     </div>
@@ -520,6 +501,8 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
           
             <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
           
+            <a href="/tags/pytorch/" rel="tag"><i class="fa fa-tag"></i> pytorch</a>
+          
         </div>
       
 
@@ -531,8 +514,8 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/10/%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87/" rel="next" title="评价指标">
-                <i class="fa fa-chevron-left"></i> 评价指标
+              <a href="/2020/02/06/optuna/" rel="next" title="超参数优化框架Optuna">
+                <i class="fa fa-chevron-left"></i> 超参数优化框架Optuna
               </a>
             
           </div>
@@ -540,10 +523,6 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/17/NLP%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8A%97%E8%AE%AD%E7%BB%83/" rel="prev" title="NLP中的对抗训练">
-                NLP中的对抗训练 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -592,8 +571,17 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -724,6 +712,23 @@ C=-p^{\top} \log q</script><p>下面求C关于z的偏导数，由链式法则得
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#起因"><span class="nav-number">1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">3.</span> <span class="nav-text">结论</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
