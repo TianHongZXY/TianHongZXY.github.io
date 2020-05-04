@@ -107,15 +107,15 @@
 
 
 
-  <meta name="description" content="TianHongZXY’s Blog2019-1-31以后就在这写点随笔，技术博客，欢迎留言交流或者给我发邮件~">
-<meta name="keywords" content="随笔">
+  <meta name="description" content="Enhanced LSTM for Natural Language Inference本文根据ESIM原文以及zms老师的代码实现对ESIM模型进行总结。 Introduction自然语言推断NLINLI任务主要是关于给定前提premise和假设hypothesis，要求判断p和h的关系，二者的关系有三种：1.不相干neural，2.冲突contradiction，即p和h有矛盾，3.蕴含(en">
+<meta name="keywords" content="deep learning,NLP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭成博客的第一篇">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;02&#x2F;02&#x2F;%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2&#x2F;index.html">
+<meta property="og:title" content="Enhanced LSTM for Natural Language Inference笔记">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;05&#x2F;04&#x2F;ESIM%E7%AC%94%E8%AE%B0&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="TianHongZXY’s Blog2019-1-31以后就在这写点随笔，技术博客，欢迎留言交流或者给我发邮件~">
+<meta property="og:description" content="Enhanced LSTM for Natural Language Inference本文根据ESIM原文以及zms老师的代码实现对ESIM模型进行总结。 Introduction自然语言推断NLINLI任务主要是关于给定前提premise和假设hypothesis，要求判断p和h的关系，二者的关系有三种：1.不相干neural，2.冲突contradiction，即p和h有矛盾，3.蕴含(en">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-18T13:22:01.105Z">
+<meta property="og:updated_time" content="2020-05-04T12:42:22.075Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -123,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/02/02/我的博客/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/05/04/ESIM笔记/"/>
 
 
 
@@ -133,7 +133,7 @@
   };
 </script>
 
-  <title>搭成博客的第一篇 | TianHongZXY</title>
+  <title>Enhanced LSTM for Natural Language Inference笔记 | TianHongZXY</title>
   
 
 
@@ -336,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/05/04/ESIM%E7%AC%94%E8%AE%B0/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -353,7 +353,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭成博客的第一篇
+          <h1 class="post-title" itemprop="name headline">Enhanced LSTM for Natural Language Inference笔记
 
               
             
@@ -379,24 +379,12 @@
                 
               
 
-              <time title="Created: 2019-02-02 23:33:14" itemprop="dateCreated datePublished" datetime="2019-02-02T23:33:14+08:00">2019-02-02</time>
+              <time title="Created: 2020-05-04 20:39:43 / Modified: 20:42:22" itemprop="dateCreated datePublished" datetime="2020-05-04T20:39:43+08:00">2020-05-04</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-18 21:22:01" itemprop="dateModified" datetime="2019-11-18T21:22:01+08:00">2019-11-18</time>
               
             
           </span>
@@ -413,7 +401,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/NLP/" itemprop="url" rel="index"><span itemprop="name">NLP</span></a></span>
 
                 
                 
@@ -428,8 +416,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" itemprop="commentCount"></span>
+                <a href="/2020/05/04/ESIM%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/05/04/ESIM%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -457,7 +445,23 @@
       
 
       
-        <h1 id="TianHongZXY’s-Blog"><a href="#TianHongZXY’s-Blog" class="headerlink" title="TianHongZXY’s Blog"></a>TianHongZXY’s Blog</h1><h2 id="2019-1-31"><a href="#2019-1-31" class="headerlink" title="2019-1-31"></a>2019-1-31</h2><p>以后就在这写点随笔，技术博客，欢迎留言交流或者给我发邮件~</p>
+        <h1 id="Enhanced-LSTM-for-Natural-Language-Inference"><a href="#Enhanced-LSTM-for-Natural-Language-Inference" class="headerlink" title="Enhanced LSTM for Natural Language Inference"></a>Enhanced LSTM for Natural Language Inference</h1><p>本文根据ESIM原文以及zms老师的代码实现对ESIM模型进行总结。</p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="自然语言推断NLI"><a href="#自然语言推断NLI" class="headerlink" title="自然语言推断NLI"></a>自然语言推断NLI</h3><p>NLI任务主要是关于给定前提premise和假设hypothesis，要求判断p和h的关系，二者的关系有三种：1.不相干neural，2.冲突contradiction，即p和h有矛盾，3.蕴含(entailment)，即能从p推断出h或两者表达的是一个意思。</p>
+<h2 id="Models"><a href="#Models" class="headerlink" title="Models"></a>Models</h2><h3 id="Input-Encoding"><a href="#Input-Encoding" class="headerlink" title="Input Encoding"></a>Input Encoding</h3><p>输入两个句子，从one-hot经过embedding层，有两个embedding层，分别是initial embedding(<strong>ie</strong>) 和 pretrained embedding(<strong>pe</strong>)，都使用预训练好的词向量初始化，词向量维度为$l$，不同的是 ie 的词表规模是训练集语料的单词个数，pe 的词表规模就是预训练文件所包含的单词数，且 pe 参数被冻结，ie中没被包含在预训练文件的OOV单词使用高斯分布随机生成，且所有embedding的方差都被normalize到1，得到$premise = a = (a_{1}, …, a_{l_{a}})$和$hypothesis = b = (b_{1},…,b_{l_{b}})$，每个单词的表示是一个 $R^{2l}$ 的向量，由其在 ie 和 pe 中对应的词向量 concat 得到，$l$ 为预训练词向量维度，之后使用双向LSTM分别对a和b进行encoding，得到两个句子的隐层状态表示，论文中隐层向量的维度等于预训练词向量的维度，因为是bidirectional = True，所以 $\overline{\mathbf{a}_{i}},\overline{\mathbf{b}_{j}} \in R^{2l}$。</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}\overline{\mathbf{a}}_{i}=\operatorname{BiLSTM}(\mathbf{a}, i), \forall i \in\left[1, \ldots, \ell_{a}\right] \\ \overline{\mathbf{b}}_{j}=\operatorname{BiLSTM}(\mathbf{b}, j), \forall j \in\left[1, \ldots, \ell_{b}\right]\end{array}</script><h3 id="Locality-of-inference"><a href="#Locality-of-inference" class="headerlink" title="Locality of inference"></a>Locality of inference</h3><p>使用attention建立p和h之间的联系，即进行对齐操作，a和b中两个单词的注意力权重由向量内积得到。</p>
+<script type="math/tex; mode=display">
+\begin{array}{l} e_{ij} = \overline{\mathbf{a}}_{i}^{T}\overline{\mathbf{b}}_{j} \end{array}</script><h3 id="Local-inference-collected-over-sequences"><a href="#Local-inference-collected-over-sequences" class="headerlink" title="Local inference collected over sequences"></a>Local inference collected over sequences</h3><p>接着利用得到的注意力权重，对b进行加权求和，即从b中选取与$\overline{a}_{i}$相关的部分来得到表示$\tilde{a}_{i}$，对b同理</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \tilde{\mathbf{a}}_{i} &=\sum_{j=1}^{\ell_{b}} \frac{\exp \left(e_{i j}\right)}{\sum_{k=1}^{\ell_{b}} \exp \left(e_{i k}\right)} \overline{\mathbf{b}}_{j}, \forall i \in\left[1, \ldots, \ell_{a}\right] \\ \tilde{\mathbf{b}}_{j} &=\sum_{i=1}^{\ell_{a}} \frac{\exp \left(e_{i j}\right)}{\sum_{k=1}^{\ell_{a}} \exp \left(e_{k j}\right)} \overline{\mathbf{a}}_{i}, \forall j \in\left[1, \ldots, \ell_{b}\right] \end{aligned}</script><h3 id="Enhancement-of-local-inference-information"><a href="#Enhancement-of-local-inference-information" class="headerlink" title="Enhancement of local inference information"></a>Enhancement of local inference information</h3><p>现在a的每个单词有两个vector表示，分别是$\overline{\mathbf{a}}_{i}$和$\tilde{\mathbf{a}}_{i}$，b亦然，再对两个vector分别做element-wise的减法与乘法，并把它们 concat 到一起，得到维度为原来四倍长的vector，</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}\mathbf{m}_{a}=[\overline{\mathbf{a}} ; \tilde{\mathbf{a}} ; \overline{\mathbf{a}}-\tilde{\mathbf{a}} ; \overline{\mathbf{a}} \odot \tilde{\mathbf{a}}] \\ \mathbf{m}_{b}=[\overline{\mathbf{b}} ; \tilde{\mathbf{b}} ; \overline{\mathbf{b}}-\tilde{\mathbf{b}} ; \overline{\mathbf{b}} \odot \tilde{\mathbf{b}}]\end{array}</script><h3 id="Inference-Composition"><a href="#Inference-Composition" class="headerlink" title="Inference Composition"></a>Inference Composition</h3><p>继续使用LSTM提取特征，得到两个句子因果关系表示。因为 concat 操作会使得参数量数倍增长，为了防止参数过多导致的过拟合，把$\mathbf{m}_{a}$和$\mathbf{m}_{b}$经过一个激活函数为ReLU的全连接层，将维度从$4<em>2</em>hidden~size$投影到$hidden~size$，这样之后再经过一个BiLSTM层，得到</p>
+<script type="math/tex; mode=display">
+\begin{array}{l}\mathbf{v}_{a,i}=\operatorname{BiLSTM}(\mathbf{m}_{a, i}), \forall i \in\left[1, \ldots, \ell_{a}\right] \\ \mathbf{v}_{m,j}=\operatorname{BiLSTM}(\mathbf{m}_{b, j}), \forall j \in\left[1, \ldots, \ell_{b}\right]\end{array}</script><h3 id="Pooling"><a href="#Pooling" class="headerlink" title="Pooling"></a>Pooling</h3><p>将组成整句话的sequence vectors分别通过 average pooling 和 max pooling(element-wise)，变成单独的一个vector，并将它们再次 concat 起来，得到能完整表示p和h以及两者之间关系的final向量v</p>
+<script type="math/tex; mode=display">
+\begin{aligned} \mathbf{v}_{a, \text { ave }}=& \sum_{i=1}^{\ell_{a}} \frac{\mathbf{v}_{a, i}}{\ell_{a}}, \quad \mathbf{v}_{a, \max }=\max _{i=1}^{\ell_{a}} \mathbf{v}_{a, i} \\ \mathbf{v}_{b, \mathrm{ave}}=& \sum_{j=1}^{\ell_{b}} \frac{\mathbf{v}_{b, j}}{\ell_{b}}, \quad \mathbf{v}_{b, \max }=\max _{j=1} \mathbf{v}_{b, j} \\ \mathbf{v} &=\left[\mathbf{v}_{a, \mathrm{ave}} ; \mathbf{v}_{a, \max } ; \mathbf{v}_{b, \mathrm{ave}} ; \mathbf{v}_{b, \max }\right] \end{aligned}</script><p>最后将他们送入分类层，分类层包括两个全连接层，中间是tanh激活函数，输出维度为标签种类个数。</p>
+<h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><h3 id="Data"><a href="#Data" class="headerlink" title="Data"></a>Data</h3><p>数据集使用的是Stanford Natural Language Inference (SNLI) corpus，每条数据是三个句子，分别代表premise, hypothesis和tag</p>
+<h3 id="Training"><a href="#Training" class="headerlink" title="Training"></a>Training</h3><p>使用Adam优化函数，lr=0.0004，batch_size=32，所有LSTM的隐层状态维度皆为300，dropout也被在各个层中使用且p=0.5，预训练词向量使用的是glove.840B.300d，在SNLI数据集上达到了88%的acc。</p>
 
       
     </div>
@@ -481,7 +485,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/%E9%9A%8F%E7%AC%94/" rel="tag"><i class="fa fa-tag"></i> 随笔</a>
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
           
         </div>
       
@@ -494,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/02/fastai%20lesson%201/" rel="next" title="fastai lesson 1">
-                <i class="fa fa-chevron-left"></i> fastai lesson 1
+              <a href="/2020/04/22/%E6%B7%B1%E5%BA%A6%E7%9F%A5%E8%AF%86%E8%BF%BD%E8%B8%AA/" rel="next" title="深度知识追踪入门">
+                <i class="fa fa-chevron-left"></i> 深度知识追踪入门
               </a>
             
           </div>
@@ -503,10 +509,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/02/02/%E5%AD%A6%E4%B9%A0%E7%8E%87%E8%A1%B0%E5%87%8F/" rel="prev" title="学习率衰减">
-                学习率衰减 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -707,7 +709,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TianHongZXY’s-Blog"><span class="nav-number">1.</span> <span class="nav-text">TianHongZXY’s Blog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-1-31"><span class="nav-number">1.1.</span> <span class="nav-text">2019-1-31</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Enhanced-LSTM-for-Natural-Language-Inference"><span class="nav-number">1.</span> <span class="nav-text">Enhanced LSTM for Natural Language Inference</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.1.</span> <span class="nav-text">Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自然语言推断NLI"><span class="nav-number">1.1.1.</span> <span class="nav-text">自然语言推断NLI</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Models"><span class="nav-number">1.2.</span> <span class="nav-text">Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Input-Encoding"><span class="nav-number">1.2.1.</span> <span class="nav-text">Input Encoding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Locality-of-inference"><span class="nav-number">1.2.2.</span> <span class="nav-text">Locality of inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Local-inference-collected-over-sequences"><span class="nav-number">1.2.3.</span> <span class="nav-text">Local inference collected over sequences</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Enhancement-of-local-inference-information"><span class="nav-number">1.2.4.</span> <span class="nav-text">Enhancement of local inference information</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Inference-Composition"><span class="nav-number">1.2.5.</span> <span class="nav-text">Inference Composition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling"><span class="nav-number">1.2.6.</span> <span class="nav-text">Pooling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiments"><span class="nav-number">1.3.</span> <span class="nav-text">Experiments</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data"><span class="nav-number">1.3.1.</span> <span class="nav-text">Data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training"><span class="nav-number">1.3.2.</span> <span class="nav-text">Training</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
