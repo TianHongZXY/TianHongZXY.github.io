@@ -107,13 +107,15 @@
 
 
 
-  <meta name="description" content="浪漫骑士 行吟诗人 自由思想者">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TianHongZXY">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;page&#x2F;3&#x2F;index.html">
+  <meta name="description" content="L2正则化为什么有效无论是学过机器学习还是深度学习的同学一定知道正则化可以缓解过拟合，最常用的就是L2正则化，即在损失函数$J(\theta)$上加上参数的L2范数$\lambda||\theta||_{2}$，不过一般也不开根号了，也就是直接加$\lambda\sum\limits_{i}\theta_{i}^{2}$，$\lambda$是正则化因子，它的大小决定了你有多想让参数向0靠近。 如果">
+<meta name="keywords" content="deep learning,machine learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈L2正则化为什么有效">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;06&#x2F;08&#x2F;%E6%B5%85%E8%B0%88L2%E6%AD%A3%E5%88%99%E5%8C%96&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="浪漫骑士 行吟诗人 自由思想者">
+<meta property="og:description" content="L2正则化为什么有效无论是学过机器学习还是深度学习的同学一定知道正则化可以缓解过拟合，最常用的就是L2正则化，即在损失函数$J(\theta)$上加上参数的L2范数$\lambda||\theta||_{2}$，不过一般也不开根号了，也就是直接加$\lambda\sum\limits_{i}\theta_{i}^{2}$，$\lambda$是正则化因子，它的大小决定了你有多想让参数向0靠近。 如果">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-06-08T05:27:56.691Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/page/3/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/06/08/浅谈L2正则化/"/>
 
 
 
@@ -131,7 +133,7 @@
   };
 </script>
 
-  <title>TianHongZXY</title>
+  <title>浅谈L2正则化为什么有效 | TianHongZXY</title>
   
 
 
@@ -179,8 +181,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -318,9 +319,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -335,7 +336,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/06/08/%E6%B5%85%E8%B0%88L2%E6%AD%A3%E5%88%99%E5%8C%96/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -352,10 +353,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" class="post-title-link" itemprop="url">搭成博客的第一篇</a>
+          <h1 class="post-title" itemprop="name headline">浅谈L2正则化为什么有效
+
               
             
           </h1>
@@ -380,24 +379,12 @@
                 
               
 
-              <time title="Created: 2019-02-02 23:33:14" itemprop="dateCreated datePublished" datetime="2019-02-02T23:33:14+08:00">2019-02-02</time>
+              <time title="Created: 2020-06-08 00:18:25 / Modified: 13:27:56" itemprop="dateCreated datePublished" datetime="2020-06-08T00:18:25+08:00">2020-06-08</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-18 21:22:01" itemprop="dateModified" datetime="2019-11-18T21:22:01+08:00">2019-11-18</time>
               
             
           </span>
@@ -414,7 +401,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/%E9%9A%8F%E7%AC%94/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/machine-learning/" itemprop="url" rel="index"><span itemprop="name">machine learning</span></a></span>
 
                 
                 
@@ -429,8 +416,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/" itemprop="commentCount"></span>
+                <a href="/2020/06/08/%E6%B5%85%E8%B0%88L2%E6%AD%A3%E5%88%99%E5%8C%96/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/06/08/%E6%B5%85%E8%B0%88L2%E6%AD%A3%E5%88%99%E5%8C%96/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -458,23 +445,45 @@
       
 
       
-        
-          
-            <p>
-              TianHongZXY’s Blog2019-1-31以后就在这写点随笔，技术博客，欢迎留言交流或者给我发邮件~
+        <h1 id="L2正则化为什么有效"><a href="#L2正则化为什么有效" class="headerlink" title="L2正则化为什么有效"></a>L2正则化为什么有效</h1><p>无论是学过机器学习还是深度学习的同学一定知道正则化可以缓解过拟合，最常用的就是L2正则化，即在损失函数$J(\theta)$上加上参数的L2范数$\lambda||\theta||_{2}$，不过一般也不开根号了，也就是直接加$\lambda\sum\limits_{i}\theta_{i}^{2}$，$\lambda$是正则化因子，它的大小决定了你有多想让参数向0靠近。</p>
+<p>如果被问到缓解过拟合的方法，那么L2正则化肯定是要知道的。如果继续追问为什么L2正则化有效呢？也许可以回答：因为把参数加到了损失函数里，可以在梯度下降时让参数变得更小，防止模型能够拟合特别复杂的函数。但又要问了，那为什么参数小得接近0就有效呢？仅仅是intuition所以大家都这样做也这样认为吗？事实上这是可以从概率论的角度来解释的，下面用最简单的线性回归来介绍，我们用下标$j$表示第$j$个特征，上标$\left(i\right)$表示数据集中的第$i$条数据。</p>
+<h1 id="高斯分布"><a href="#高斯分布" class="headerlink" title="高斯分布"></a>高斯分布</h1><p>设模型参数为$\theta$（bias包含在$\theta_{0}=b,x_{0}=1$里了），模型的hypothesis为</p>
+<script type="math/tex; mode=display">
+\hat{y} = \theta^{T}x</script><p>$\hat{y}$就是我们模型做出的预测，$y$是现实世界真实的标签，不过$y$是带有噪音的，真实世界的数据不可能是完美的，其中大都夹杂着噪音信号，我们假设</p>
+<script type="math/tex; mode=display">
+y = \theta^{T}x + \epsilon</script><p>其中$\epsilon$代表着噪音，假设它属于高斯分布$\epsilon \sim \mathcal{N}\left(0, \sigma^{2}\right)$，即均值为0，方差为$\sigma^{2}$，这个假设其实是符合实际的，因为现实世界中我们遇到的大部分的数据或噪音的分布其实都是高斯分布，那么我们就可以得到$y$的分布了</p>
+<script type="math/tex; mode=display">
+y=\theta^{T} x +\epsilon \Rightarrow y \sim \mathcal{N}\left(\theta^{T}x, \sigma^{2}\right)</script><p>本科的概率论课程告诉我们正态分布$x\sim \mathcal{N}\left(\mu,\sigma^{2}\right)$的公式是</p>
+<script type="math/tex; mode=display">
+p(x)=\frac{1}{\sqrt{2 \pi }\sigma} \exp \left(-\frac{(x-\mu)^{2}}{2 \sigma^{2}}\right)</script><h1 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h1><p>假设我们有一堆数据$(x^{(i)},y^{(i)}),i=1,2…,m$，频率学派认为$\theta$是客观存在的，只是我们不知道罢了，真实的$\theta$一定是最优的，能让这组数据集$S$出现的概率最大，我们要去手上已知的$S$去估计真实的$\theta$，也就要求$\theta$的极大似然估计$\hat\theta$</p>
+<script type="math/tex; mode=display">
+\hat\theta=\underset{\theta}{\operatorname{argmax}} ~p(S|\theta)=\underset{\theta}{\operatorname{argmax}}\prod_{i=1}^{m} p\left(y^{(i)} | x^{(i)};\theta\right)</script><p>这等价于求对数极大似然，即</p>
+<script type="math/tex; mode=display">
+\hat\theta=\underset{\theta}{\operatorname{argmax}}\sum_{i=1}^{m}\text{log}~p\left(y^{(i)} | x^{(i)};\theta\right)</script><p>将数据集代入上式，求导取一阶导数为0，就可以得到一个local optimal，在线性回归或logistic回归里也可以确定这就是全局唯一的optimal，即最优解。如果我们将上面的$y^{(i)} | x^{(i)};\theta \sim \mathcal{N}(\theta^{T}x^{(i)},\sigma^{2})$与正态分布公式代入，可以得到</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat\theta &= \underset{\theta}{\operatorname{argmax}}\sum_{i=1}^{m}\text{log}~\frac{1}{\sqrt{2 \pi }\sigma} \exp \left(-\frac{(y^{(i)}-\theta^{T}x^{(i)})^{2}}{2 \sigma^{2}}\right) \\
+&=\underset{\theta}{\operatorname{argmax}}~m\text{log}{\frac{1}{\sqrt{2\pi}\sigma}}+\sum_{i=1}^{m}-\frac{(y^{(i)}-\theta^{T}x^{(i)})^{2}}{2 \sigma^{2}}\\
+&=\underset{\theta}{\operatorname{argmin}}\sum_{i=1}^{m}(y^{(i)}-\theta^{T}x^{(i)})^{2}
+\end{align}</script><p>由于我们所求的是$argmax$，即要找到能使式子最大或最小的$\theta$，所以常数项和系数都不会影响结果，因此第三步将它们略去后我们就得到了熟悉的最小均方误差，也就是线性回归中的最小二乘法！不过要注意，虽然得到的结果与最小二乘法是一致的，但出发点和理论基础都完全不一样。</p>
+<p>从频率学派的假设出发，我们得到的是不带正则化项的线性回归，而从贝叶斯学派的角度来看，却有些不同。</p>
+<h1 id="极大后验概率估计"><a href="#极大后验概率估计" class="headerlink" title="极大后验概率估计"></a>极大后验概率估计</h1><p>贝叶斯学派则是先给$\theta$的分布来一个假设$\theta \sim \text{some distribution}$，叫做”prior”即先验，颇有点全知全能的上帝的感觉(误，那么我们现在已经看到了数据$S$，也有了$\theta$分布的假设，就可以去求在已知当前数据情况下，$\theta$是什么的概率，并找出最可能的$\theta$，根据贝叶斯定理可得</p>
+<script type="math/tex; mode=display">
+p(\theta|S) = \frac{p(S|\theta)p(\theta)}{p(S)}</script><p>右式的分母是个常数，可以省去，它被称为”evidence”，左式被称为”posterior”即后验，剩下的$p(S|\theta)$是我们熟悉的”likelihood”即似然，那么接下来就是通过求最大后验概率，来获得我们想要的$\hat{\theta}$，在这里我们假设先验分布$\theta \sim \mathcal{N}\left(0, \sigma^{2}\right)$，</p>
+<script type="math/tex; mode=display">
+\begin{align}
+\hat\theta = \underset{\theta}{\operatorname{argmax}}~p(\theta|S) &= \underset{\theta}{\operatorname{argmax}}~{p(S|\theta)p(\theta)} \\
+&=\underset{\theta}{\operatorname{argmax}}~\text{log}~p(S|\theta) + \text{log}~p(\theta)\\
+&=\underset{\theta}{\operatorname{argmax}}~\sum_{i=1}^{m}\text{log}~\frac{1}{\sqrt{2 \pi }\sigma} \exp \left(-\frac{(y^{(i)}-\theta^{T}x^{(i)})^{2}}{2 \sigma^{2}}\right) + \text{log}~\frac{1}{\sqrt{2 \pi }\sigma} \exp \left(-\frac{(\theta-0)^{2}}{2 \sigma^{2}}\right)\\
+&=\underset{\theta}{\operatorname{argmin}}\sum_{i=1}^{m}(y^{(i)}-\theta^{T}x^{(i)})^{2} + \theta^{2}
+\end{align}</script><p>这样我们就得到了最小均方误差+L2正则化的线性回归了！注意上式的两个分布的方差是不同的，不过由于方差无关紧要，也就没有特意区分了（其实是码公式太累不想区分了_(:з」∠)_</p>
+<p>原来从概率论的角度来看，L2正则化其实就是假设了参数的分布属于高斯分布，再想想由于高斯分布的均值为0，自然也就解释了为什么参数都会接近0，毕竟0的概率最大。如果你给$\theta$假设不同的先验分布，比如拉普拉斯分布</p>
+<script type="math/tex; mode=display">
+f(x)=\frac{1}{2 \lambda} e^{-\frac{|x-\mu|}{\lambda}}</script><p>那你得到的就是<strong>L1正则化</strong>，这里就不再推导了。</p>
+<h1 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h1><p>这样我们得到了结论，最小均方误差其实等价于<strong>极大似然估计</strong>，<strong>L2正则化</strong>+最小均方误差等价于<strong>最大后验估计</strong>。</p>
+<h1 id="进一步思考"><a href="#进一步思考" class="headerlink" title="进一步思考"></a>进一步思考</h1><p>可能有人会问，假设参数确实不属于高斯分布，那我这么假设岂不是从开头就错了，确实，如果参数的真实分布与我们的先验假设有很大差别，会导致模型的预测效果很差，这点在cs229的Gaussian Discriminant Analysis(GDA, 高斯判别分析)一课有讲过，当你的数据量很少时，加一个先验假设可以帮助模型更好的拟合数据，因为你给模型提供了更多信息，前提是你的假设是对的，当你的数据量很多时，先验假设就不那么重要了，因为模型可以自己去从数据中发现信息，这也就解释了为什么数据量越大，越不容易过拟合。如果数据量很小，直接使用极大似然估计，就会导致参数只适用于当前的数据集，导致过拟合，泛化能力较差。不过，就像Andrew Ng所说，这个世界大部分的数据分布都是高斯分布，大量论文实验也证明了L2正则化确实有效，所以我们基本上任何时候都可以大胆地使用L2正则化，只需要调节正则化因子$\lambda$的大小，当模型欠拟合时调小它甚至置零，过拟合时调大它，就能够很好地在high bias(欠拟合)与high variance(过拟合)之间进行trade off。</p>
+<p>参考资料: cs229 by Andrew Ng</p>
 
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/02/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
@@ -495,376 +504,38 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/02/fastai%20lesson%201/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TianHongZXY"/>
-      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
-      <meta itemprop="image" content="/images/header.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TianHongZXY"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/02/fastai%20lesson%201/" class="post-title-link" itemprop="url">fastai lesson 1</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-02 23:20:54" itemprop="dateCreated datePublished" datetime="2019-02-02T23:20:54+08:00">2019-02-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-16 12:21:08" itemprop="dateModified" datetime="2019-11-16T12:21:08+08:00">2019-11-16</time>
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
           
-
+            <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/02/fastai%20lesson%201/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/02/fastai%20lesson%201/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-            <p>
-              读取数据利用正则表达式利用正则表达式从路径中提取文件名，文件名就作为labelget_transforms()的作用是 data augmentation，例如rotation, zoom, translation等其他方法，防止过拟合# 举一个正则表达式的例子pat = r&apos;\\([a-
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/02/fastai%20lesson%201/#more" rel="contents">
-                Read more &raquo;
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/04/ESIM%E7%AC%94%E8%AE%B0/" rel="next" title="Enhanced LSTM for Natural Language Inference笔记">
+                <i class="fa fa-chevron-left"></i> Enhanced LSTM for Natural Language Inference笔记
               </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/02/01/Markdown%E8%AF%AD%E6%B3%95/"/>
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="TianHongZXY"/>
-      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
-      <meta itemprop="image" content="/images/header.jpg"/>
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="TianHongZXY"/>
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/01/Markdown%E8%AF%AD%E6%B3%95/" class="post-title-link" itemprop="url">Markdown语法</a>
-              
             
-          </h1>
-        
+          </div>
 
-        <div class="post-meta">
-          <span class="post-time">
+          <span class="post-nav-divider"></span>
 
+          <div class="post-nav-prev post-nav-item">
             
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-02-01 10:34:29" itemprop="dateCreated datePublished" datetime="2019-02-01T10:34:29+08:00">2019-02-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-11-16 12:19:58" itemprop="dateModified" datetime="2019-11-16T12:19:58+08:00">2019-11-16</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/02/01/Markdown%E8%AF%AD%E6%B3%95/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/02/01/Markdown%E8%AF%AD%E6%B3%95/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h1 id="Markdown语法"><a href="#Markdown语法" class="headerlink" title="Markdown语法"></a>Markdown语法</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><hr>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/Markdown%E8%AF%AD%E6%B3%95/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -874,18 +545,19 @@
   </article>
 
 
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/">&lt;i class=&quot;fa fa-angle-left&quot; aria-label=&quot;Previous page&quot;&gt;&lt;&#x2F;i&gt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
-
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -906,8 +578,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1039,6 +720,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#L2正则化为什么有效"><span class="nav-number">1.</span> <span class="nav-text">L2正则化为什么有效</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高斯分布"><span class="nav-number">2.</span> <span class="nav-text">高斯分布</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#极大似然估计"><span class="nav-number">3.</span> <span class="nav-text">极大似然估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#极大后验概率估计"><span class="nav-number">4.</span> <span class="nav-text">极大后验概率估计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结论"><span class="nav-number">5.</span> <span class="nav-text">结论</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进一步思考"><span class="nav-number">6.</span> <span class="nav-text">进一步思考</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -1160,6 +858,10 @@
   
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1228,14 +930,6 @@
   
 
   
-  
-    
-      
-    
-      
-    
-      
-    
   
 
   
