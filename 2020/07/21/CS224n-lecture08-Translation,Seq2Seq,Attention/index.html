@@ -107,25 +107,35 @@
 
 
 
-  <meta name="description" content="Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
-<meta name="keywords" content="deep learning">
+  <meta name="description" content="CS224n-Lecture08-Translation, Seq2Seq, Attention Seq2SeqBeam Search 使用greedy search，当模型输出\时结束 使用beam search，不同的假设可能会在不同的timestep输出\，将已输出\的句子放在一边，继续在其他假设上使用beam search 何时停止beam search？ 已到达timestep T，T由">
+<meta name="keywords" content="deep learning,NLP,CS224n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Normalization">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;DL%E4%B8%AD%E7%9A%84Normalization&#x2F;index.html">
+<meta property="og:title" content="CS224n-Lecture08-Translation, Seq2Seq, Attention">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;07&#x2F;21&#x2F;CS224n-lecture08-Translation,Seq2Seq,Attention&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
+<meta property="og:description" content="CS224n-Lecture08-Translation, Seq2Seq, Attention Seq2SeqBeam Search 使用greedy search，当模型输出\时结束 使用beam search，不同的假设可能会在不同的timestep输出\，将已输出\的句子放在一边，继续在其他假设上使用beam search 何时停止beam search？ 已到达timestep T，T由">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
-<meta property="og:updated_time" content="2020-02-02T15:44:57.701Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyvrfcwmdj30vz03mwfl.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyvucknr6j30fy03ymxr.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggztoec3suj30ot01ywei.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggztorwelzj304f01fa9v.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggztozpr8gj307q02ljra.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggztp77ap1j307n036dfr.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyxvhixp9j30wk0ocae1.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyxw2rbzaj30wh0o90xd.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyxurrxs8j30w20ny0wu.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyybcf5wbj30wf0oa7a5.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;images2017.cnblogs.com&#x2F;blog&#x2F;1042406&#x2F;201707&#x2F;1042406-20170727105752968-819608237.png">
+<meta property="og:updated_time" content="2020-07-24T06:39:37.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyvrfcwmdj30vz03mwfl.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/11/06/DL中的Normalization/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/07/21/CS224n-lecture08-Translation,Seq2Seq,Attention/"/>
 
 
 
@@ -135,7 +145,7 @@
   };
 </script>
 
-  <title>Normalization | TianHongZXY</title>
+  <title>CS224n-Lecture08-Translation, Seq2Seq, Attention | TianHongZXY</title>
   
 
 
@@ -338,7 +348,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/07/21/CS224n-lecture08-Translation,Seq2Seq,Attention/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -355,7 +365,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Normalization
+          <h1 class="post-title" itemprop="name headline">CS224n-Lecture08-Translation, Seq2Seq, Attention
 
               
             
@@ -381,7 +391,7 @@
                 
               
 
-              <time title="Created: 2019-11-06 16:35:24" itemprop="dateCreated datePublished" datetime="2019-11-06T16:35:24+08:00">2019-11-06</time>
+              <time title="Created: 2020-07-21 20:37:17" itemprop="dateCreated datePublished" datetime="2020-07-21T20:37:17+08:00">2020-07-21</time>
             
 
             
@@ -398,7 +408,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-02-02 23:44:57" itemprop="dateModified" datetime="2020-02-02T23:44:57+08:00">2020-02-02</time>
+                <time title="Modified: 2020-07-24 14:39:37" itemprop="dateModified" datetime="2020-07-24T14:39:37+08:00">2020-07-24</time>
               
             
           </span>
@@ -415,7 +425,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS224n/" itemprop="url" rel="index"><span itemprop="name">CS224n</span></a></span>
 
                 
                 
@@ -430,8 +440,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/" itemprop="commentCount"></span>
+                <a href="/2020/07/21/CS224n-lecture08-Translation,Seq2Seq,Attention/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/07/21/CS224n-lecture08-Translation,Seq2Seq,Attention/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -459,20 +469,78 @@
       
 
       
-        <h1 id="Batch-size的影响"><a href="#Batch-size的影响" class="headerlink" title="Batch size的影响"></a>Batch size的影响</h1><p>使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。</p>
+        <h1 id="CS224n-Lecture08-Translation-Seq2Seq-Attention"><a href="#CS224n-Lecture08-Translation-Seq2Seq-Attention" class="headerlink" title="CS224n-Lecture08-Translation, Seq2Seq, Attention"></a>CS224n-Lecture08-Translation, Seq2Seq, Attention</h1><hr>
+<h1 id="Seq2Seq"><a href="#Seq2Seq" class="headerlink" title="Seq2Seq"></a>Seq2Seq</h1><h2 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h2><ul>
+<li>使用greedy search，当模型输出\<END\>时结束</li>
+<li>使用beam search，不同的假设可能会在不同的timestep输出\<END\>，将已输出\<END\>的句子放在一边，继续在其他假设上使用beam search</li>
+<li>何时停止beam search？<ol>
+<li>已到达timestep T，T由事先设定</li>
+<li>生成\<END\>的假设数达到n个，n由事先设定</li>
+</ol>
+</li>
+</ul>
 <a id="more"></a>
-<h1 id="两种Normalization的位置"><a href="#两种Normalization的位置" class="headerlink" title="两种Normalization的位置"></a>两种Normalization的位置</h1><p>目前有两种在神经元中插入Normalization操作的地方，第一种是原始BN论文提出的，放在激活函数之前；另外一种是后续研究提出的，放在激活函数之后，不少研究表明将BN放在激活函数之后效果更好。</p>
-<h1 id="规范化函数"><a href="#规范化函数" class="headerlink" title="规范化函数"></a>规范化函数</h1><p>对于神经元的激活值来说，不论哪种Normalization方法，其规范化目标都是一样的，就是将其激活值规整为均值为0，方差为1的正态分布。即规范化函数统一都是如下形式：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggyvrfcwmdj30vz03mwfl.jpg" alt="image-20200721204554690"></p>
+<ul>
+<li>最后选取句子时，从上式可见，短句子的分数会更高，因为分数都是负的，长句子越加分数越低，所以根据句子长度对其分数做normalize后，选取分数最高的假设</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggyvucknr6j30fy03ymxr.jpg" alt="image-20200721204808367"></p>
+<h2 id="BLEU-Bilingual-Evaluation-Understudy"><a href="#BLEU-Bilingual-Evaluation-Understudy" class="headerlink" title="BLEU(Bilingual Evaluation Understudy)"></a>BLEU(<strong>B</strong>i<strong>l</strong>ingual <strong>E</strong>valuation <strong>U</strong>nderstudy)</h2><p>BLEU根据以下两个方面来计算机器翻译出的句子与人类翻译的句子之间的相似度分数(similarity score)</p>
+<ol>
+<li>n-gram precision(通常使用1,2,3,4-grams)，即机翻句子中出现的所有n-gram，它们中有多少至少在人类翻译的句子中出现一次</li>
+<li>如果机翻的句子比人类翻译的句子短很多，加一个惩罚项，即分数会更低</li>
+</ol>
+<p><strong>计算公式：</strong></p>
+<p>matched n-grams为机翻句子的n-grams在人类提供的参考翻译中出现的次数(若在机翻中出现2次，而参考翻译中出现1次，只记1次)</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggztoec3suj30ot01ywei.jpg" alt="image-20200722161927318"></p>
+<p>Wn为n-grams的precision的一个几何权重</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggztorwelzj304f01fa9v.jpg" alt="image-20200722161950368"></p>
+<p>β为brevity penalty，用来惩罚过短的机翻句子</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggztozpr8gj307q02ljra.jpg" alt="image-20200722162003107"></p>
+<p>k为长度最大的n-grams的长度</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggztp77ap1j307n036dfr.jpg" alt="image-20200722162016861"></p>
+<p><strong>存在的问题</strong></p>
+<ol>
+<li><p>有很多种方式优雅地翻译同一个句子</p>
+</li>
+<li><p>一个很好的翻译有可能因为与人类翻译的句子n-gram重合很低，而得分过低</p>
+</li>
+<li><p>任何一个n-grams得分为0，则整个BLEU分数为0</p>
+</li>
+<li><p>它只计算了与一条参考翻译的相似度分数，而不能和多个参考翻译比对</p>
+</li>
+</ol>
+<h2 id="机器翻译待解决的问题"><a href="#机器翻译待解决的问题" class="headerlink" title="机器翻译待解决的问题"></a>机器翻译待解决的问题</h2><ol>
+<li>Out-of-vocabulary</li>
+<li>训练集和测试集的domain mismatch</li>
+<li>在长文本中顾及上下文</li>
+<li>平行句对资源少</li>
+<li>难以翻译common sense(常识)</li>
+<li>NMT会保留训练集中存在的bias(偏见)</li>
+<li>缺乏解释性的模型有时会做出奇怪的行为</li>
+</ol>
+<hr>
+<h1 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h1><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggyxvhixp9j30wk0ocae1.jpg" alt="image-20200721215908439"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggyxw2rbzaj30wh0o90xd.jpg" alt="image-20200721215942620"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggyxurrxs8j30w20ny0wu.jpg" alt="image-20200721215826875"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ggyybcf5wbj30wf0oa7a5.jpg" alt="image-20200721221422091"></p>
+<p>更详细的attention机制详解写在我的这篇<a href="https://tianhongzxy.top/2019/11/19/DL中的Attention/" target="_blank" rel="noopener">博客</a></p>
+<hr>
+<h1 id="Hierarchical-Softmax"><a href="#Hierarchical-Softmax" class="headerlink" title="Hierarchical Softmax"></a>Hierarchical Softmax</h1><p>每次预测下一个单词时使用softmax的计算代价过大，因此Morin et al.2005提出使用二叉树结构来更有效地计算’softmax’。</p>
+<ol>
+<li><p>首先我们建立二叉树，这里使用霍夫曼树，叶子节点为单词表中的单词$w_{1},w_{2},…,w_{V}$，按照出现的频率作为权重给叶子节点编码，高权重节点编码值较短，而低权重值编码值较长，在word2vec中，编码方式约定左子树编码为1，右子树编码为0，同时约定左子树的权重不小于右子树的权重，这样每个单词都有其单独的编码，$w_{2}$的编码为110。</p>
+<p><img src="https://images2017.cnblogs.com/blog/1042406/201707/1042406-20170727105752968-819608237.png" alt="img"></p>
+</li>
+<li><p>如上图，从根节点走到$w_{2}$要经过3个节点$n(w_{2},i),i=1,2,3$，对每一个单词$w$，其对应的词向量为$x_{w}$，且每个节点都有一个对应的参数$\theta_{i}^{w}$，我们定义向右走为正类(霍夫曼编码为0)，向左走为负类(霍夫曼编码为1)，$P(+)=\sigma(x_{w}^{T}\theta),~P(-)=1-P(+)=\sigma(-x_{w}^{T}\theta)$，则每次往下走哪边是根据P(+)与P(-)哪个概率大，我们希望正确的路径概率最大，对于$w_{2}$是走左左右的路线，即负负正，要其概率最大，即要最大化下式</p>
 <script type="math/tex; mode=display">
-\begin{aligned} \tau &=\frac{a_{i}-\mu}{\sigma_{i}} \\ a_{i}^{\text {norm }} &=\gamma_{i} \cdot \tau+\beta_{i} \end{aligned}</script><p>如果写成一体的形式，则是如下形式：</p>
-<script type="math/tex; mode=display">
-a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</script><p>其中，ai为某个神经元原始激活值， ai_norm为经过规范化操作后的规范后值。整个规范化过程可以分解为两步，第一步参考公式（1），是对激活值规整到均值为0，方差为1的正态分布范围内。其中， u是通过神经元集合S（中包含的m个神经元各自的激活值求出的均值，即：</p>
-<script type="math/tex; mode=display">
-\mu=\frac{1}{m} \sum_{k=1}^{m} a_{k} \quad k \in S \text { and }\|S\|=m</script><p>为根据均值和集合S中神经元各自激活值求出的激活值标准差：</p>
-<script type="math/tex; mode=display">
-\sigma_{i}=\sqrt{\frac{1}{m} \sum_{k=1}^{m}\left(a_{k}-\mu\right)^{2}+\varepsilon} \quad k \in S \text { and }\|S\|=m</script><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>各种Normalization的适用场景，可以简洁归纳如下：对于RNN的神经网络结构来说，目前只有LayerNorm是相对有效的；如果是GAN等图片生成或图片内容改写类型的任务，可以优先尝试InstanceNorm；如果使用场景约束BatchSize必须设置很小，无疑此时考虑使用GroupNorm；而其它任务情形应该优先考虑使用BatchNorm。</p>
-<p>原文链接：<a href="https://zhuanlan.zhihu.com/p/43200897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/43200897</a></p>
-<p><img src="https://s2.ax1x.com/2020/01/30/11FjxS.md.jpg" width="200" height="230" align="center" alt="11FjxS.jpg" border="0"  /></p>
+\prod_{i=1}^{3} P\left(n\left(w_{2},~i\right)\right)=\left(1-\frac{1}{1+e^{-x_{w}^{T} \theta_{1}}}\right)\left(1-\frac{1}{1+e^{-x_{w}^{T} \theta_{2}}}\right) \frac{1}{1+e^{-x_{w}^{T} \theta_{3}}}</script></li>
+<li><p>因为每次往下走时，选择左右的概率之和为1，所以最后达到任一单词$w_{i}$的概率之和也为1。</p>
+</li>
+<li><p>将上述公式一般化推广及详细的梯度推导见该<a href="https://www.cnblogs.com/pinard/p/7243513.html" target="_blank" rel="noopener">博客</a>。</p>
+</li>
+<li><p>该方法的限制在于，只能在训练时使用，在test阶段，每次只能使用origin softmax计算整个词表的概率来做预测。</p>
+</li>
+</ol>
 
       
     </div>
@@ -498,6 +566,10 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
           
             <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
           
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+            <a href="/tags/CS224n/" rel="tag"><i class="fa fa-tag"></i> CS224n</a>
+          
         </div>
       
 
@@ -509,8 +581,8 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/27/pytorch%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" rel="next" title="PyTorch文本分类">
-                <i class="fa fa-chevron-left"></i> PyTorch文本分类
+              <a href="/2020/06/08/%E6%B5%85%E8%B0%88L2%E6%AD%A3%E5%88%99%E5%8C%96/" rel="next" title="浅谈L2正则化为什么有效">
+                <i class="fa fa-chevron-left"></i> 浅谈L2正则化为什么有效
               </a>
             
           </div>
@@ -519,8 +591,8 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/09/%E4%BF%A1%E6%81%AF%E7%86%B5/" rel="prev" title="信息熵">
-                信息熵 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/07/23/CS224n-lecture10-Question-Answering/" rel="prev" title="CS224n-lecture10-Question Answering">
+                CS224n-lecture10-Question Answering <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -726,7 +798,7 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch-size的影响"><span class="nav-number">1.</span> <span class="nav-text">Batch size的影响</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两种Normalization的位置"><span class="nav-number">2.</span> <span class="nav-text">两种Normalization的位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规范化函数"><span class="nav-number">3.</span> <span class="nav-text">规范化函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CS224n-Lecture08-Translation-Seq2Seq-Attention"><span class="nav-number">1.</span> <span class="nav-text">CS224n-Lecture08-Translation, Seq2Seq, Attention</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Seq2Seq"><span class="nav-number">2.</span> <span class="nav-text">Seq2Seq</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Beam-Search"><span class="nav-number">2.1.</span> <span class="nav-text">Beam Search</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BLEU-Bilingual-Evaluation-Understudy"><span class="nav-number">2.2.</span> <span class="nav-text">BLEU(Bilingual Evaluation Understudy)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器翻译待解决的问题"><span class="nav-number">2.3.</span> <span class="nav-text">机器翻译待解决的问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Attention"><span class="nav-number">3.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hierarchical-Softmax"><span class="nav-number">4.</span> <span class="nav-text">Hierarchical Softmax</span></a></li></ol></div>
             
 
           </div>
