@@ -107,13 +107,13 @@
 
 
 
-  <meta name="description" content="CS224n-Lecture08-Translation, Seq2Seq, Attention Seq2SeqBeam Search 使用greedy search，当模型输出\时结束 使用beam search，不同的假设可能会在不同的timestep输出\，将已输出\的句子放在一边，继续在其他假设上使用beam search 何时停止beam search？ 已到达timestep T，T由">
+  <meta name="description" content="CS224n-Lecture08-Translation, Seq2Seq, Attention Seq2SeqBeam Search 使用greedy search，当模型输出&amp;lt;END&amp;gt;时结束 使用beam search，不同的假设可能会在不同的timestep输出&amp;lt;END&amp;gt;，将已输出&amp;lt;END&amp;gt;的句子放在一边，继续在其他假设上使用beam search 何时停">
 <meta name="keywords" content="deep learning,NLP,CS224n">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS224n-Lecture08-Translation, Seq2Seq, Attention">
 <meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;07&#x2F;21&#x2F;CS224n-lecture08-Translation,Seq2Seq,Attention&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="CS224n-Lecture08-Translation, Seq2Seq, Attention Seq2SeqBeam Search 使用greedy search，当模型输出\时结束 使用beam search，不同的假设可能会在不同的timestep输出\，将已输出\的句子放在一边，继续在其他假设上使用beam search 何时停止beam search？ 已到达timestep T，T由">
+<meta property="og:description" content="CS224n-Lecture08-Translation, Seq2Seq, Attention Seq2SeqBeam Search 使用greedy search，当模型输出&amp;lt;END&amp;gt;时结束 使用beam search，不同的假设可能会在不同的timestep输出&amp;lt;END&amp;gt;，将已输出&amp;lt;END&amp;gt;的句子放在一边，继续在其他假设上使用beam search 何时停">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyvrfcwmdj30vz03mwfl.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyvucknr6j30fy03ymxr.jpg">
@@ -126,7 +126,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyxurrxs8j30w20ny0wu.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyybcf5wbj30wf0oa7a5.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;images2017.cnblogs.com&#x2F;blog&#x2F;1042406&#x2F;201707&#x2F;1042406-20170727105752968-819608237.png">
-<meta property="og:updated_time" content="2020-07-24T06:39:37.128Z">
+<meta property="og:updated_time" content="2020-07-24T06:43:43.871Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ggyvrfcwmdj30vz03mwfl.jpg">
 
@@ -408,7 +408,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-07-24 14:39:37" itemprop="dateModified" datetime="2020-07-24T14:39:37+08:00">2020-07-24</time>
+                <time title="Modified: 2020-07-24 14:43:43" itemprop="dateModified" datetime="2020-07-24T14:43:43+08:00">2020-07-24</time>
               
             
           </span>
@@ -471,11 +471,11 @@
       
         <h1 id="CS224n-Lecture08-Translation-Seq2Seq-Attention"><a href="#CS224n-Lecture08-Translation-Seq2Seq-Attention" class="headerlink" title="CS224n-Lecture08-Translation, Seq2Seq, Attention"></a>CS224n-Lecture08-Translation, Seq2Seq, Attention</h1><hr>
 <h1 id="Seq2Seq"><a href="#Seq2Seq" class="headerlink" title="Seq2Seq"></a>Seq2Seq</h1><h2 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h2><ul>
-<li>使用greedy search，当模型输出\<END\>时结束</li>
-<li>使用beam search，不同的假设可能会在不同的timestep输出\<END\>，将已输出\<END\>的句子放在一边，继续在其他假设上使用beam search</li>
+<li>使用greedy search，当模型输出<code>&lt;END&gt;</code>时结束</li>
+<li>使用beam search，不同的假设可能会在不同的timestep输出<code>&lt;END&gt;</code>，将已输出<code>&lt;END&gt;</code>的句子放在一边，继续在其他假设上使用beam search</li>
 <li>何时停止beam search？<ol>
 <li>已到达timestep T，T由事先设定</li>
-<li>生成\<END\>的假设数达到n个，n由事先设定</li>
+<li>生成<code>&lt;END&gt;</code>的假设数达到n个，n由事先设定</li>
 </ol>
 </li>
 </ul>

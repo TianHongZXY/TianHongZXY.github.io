@@ -595,7 +595,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-07-24 14:39:37" itemprop="dateModified" datetime="2020-07-24T14:39:37+08:00">2020-07-24</time>
+                <time title="Modified: 2020-07-24 14:43:43" itemprop="dateModified" datetime="2020-07-24T14:43:43+08:00">2020-07-24</time>
               
             
           </span>
@@ -659,11 +659,11 @@
         
           <h1 id="CS224n-Lecture08-Translation-Seq2Seq-Attention"><a href="#CS224n-Lecture08-Translation-Seq2Seq-Attention" class="headerlink" title="CS224n-Lecture08-Translation, Seq2Seq, Attention"></a>CS224n-Lecture08-Translation, Seq2Seq, Attention</h1><hr>
 <h1 id="Seq2Seq"><a href="#Seq2Seq" class="headerlink" title="Seq2Seq"></a>Seq2Seq</h1><h2 id="Beam-Search"><a href="#Beam-Search" class="headerlink" title="Beam Search"></a>Beam Search</h2><ul>
-<li>使用greedy search，当模型输出\<END\>时结束</li>
-<li>使用beam search，不同的假设可能会在不同的timestep输出\<END\>，将已输出\<END\>的句子放在一边，继续在其他假设上使用beam search</li>
+<li>使用greedy search，当模型输出<code>&lt;END&gt;</code>时结束</li>
+<li>使用beam search，不同的假设可能会在不同的timestep输出<code>&lt;END&gt;</code>，将已输出<code>&lt;END&gt;</code>的句子放在一边，继续在其他假设上使用beam search</li>
 <li>何时停止beam search？<ol>
 <li>已到达timestep T，T由事先设定</li>
-<li>生成\<END\>的假设数达到n个，n由事先设定</li>
+<li>生成<code>&lt;END&gt;</code>的假设数达到n个，n由事先设定</li>
 </ol>
 </li>
 </ul>
