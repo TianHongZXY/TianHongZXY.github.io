@@ -116,8 +116,8 @@
 <meta property="og:description" content="1. 前置知识标准化流(Normalizing Flow)能够将简单的概率分布转换为极其复杂的概率分布，可以用在生成式模型、强化学习、变分推断等领域，构建它所需要的工具是：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)，下面先简单介绍这三个工具。 1.1 行列式行列式的求法不再赘述，我们主要需要理解的是行列式的物理">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20200728143736053.png">
-<meta property="og:updated_time" content="2020-07-30T09:18:59.632Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh94f9ut99j30cf0byt8p.jpg">
+<meta property="og:updated_time" content="2020-07-30T09:21:28.776Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2020-07-30 17:15:21 / Modified: 17:18:59" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
+              <time title="Created: 2020-07-30 17:15:21 / Modified: 17:21:28" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
             
 
             
@@ -450,7 +450,7 @@
       
         <h1 id="1-前置知识"><a href="#1-前置知识" class="headerlink" title="1. 前置知识"></a>1. 前置知识</h1><p>标准化流(Normalizing Flow)能够将简单的概率分布转换为极其复杂的概率分布，可以用在生成式模型、强化学习、变分推断等领域，构建它所需要的工具是：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)，下面先简单介绍这三个工具。</p>
 <h2 id="1-1-行列式"><a href="#1-1-行列式" class="headerlink" title="1.1 行列式"></a>1.1 行列式</h2><p>行列式的求法不再赘述，我们主要需要理解的是行列式的物理意义。一个矩阵的行列式的值表示的是该矩阵对空间所做的变换，将原来的空间放大或缩小了多少倍，比如二维空间在原点有一个边长为1的正方形a，对它做变换得到新的正方形b，$b = Wa$，$W=\left[\begin{matrix} 2 &amp; 0 \ 0 &amp; 2\end{matrix}\right]$，新的正方形边长被放大为原来的2倍，面积为原来的4倍，$det(W) = 4$，</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg" style="zoom:50%;" align="left" />                                     <img src="/Users/tianhongzxy/Library/Application Support/typora-user-images/image-20200728143736053.png" alt="image-20200728143736053" style="zoom:50%;" align="right" /></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg" style="zoom:50%;" align="left" />                                     <img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh94f9ut99j30cf0byt8p.jpg" alt="image-20200728143736053" style="zoom:50%;" align="right" /></p>
 <p>​                </p>
 <p>​                                        $a \Longrightarrow b = Wa$</p>
 <p>三维以及更高维空间亦同理</p>
