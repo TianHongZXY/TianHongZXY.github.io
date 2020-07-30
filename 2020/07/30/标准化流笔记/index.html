@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css"/>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="1. 前置知识标准化流(Normalizing Flow)能够将简单的概率分布转换为极其复杂的概率分布，可以用在生成式模型、强化学习、变分推断等领域，构建它所需要的工具是：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)，下面先简单介绍这三个工具。 1.1 行列式行列式的求法不再赘述，我们主要需要理解的是行列式的物理">
+<meta name="keywords" content="deep learning,machine learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Normalizing Flows for Probabilistic Modeling and Inference》论文笔记">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;07&#x2F;30&#x2F;%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%AC%94%E8%AE%B0&#x2F;index.html">
+<meta property="og:site_name" content="TianHongZXY">
+<meta property="og:description" content="1. 前置知识标准化流(Normalizing Flow)能够将简单的概率分布转换为极其复杂的概率分布，可以用在生成式模型、强化学习、变分推断等领域，构建它所需要的工具是：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)，下面先简单介绍这三个工具。 1.1 行列式行列式的求法不再赘述，我们主要需要理解的是行列式的物理">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20200728143736053.png">
+<meta property="og:updated_time" content="2020-07-30T09:18:59.632Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/07/30/标准化流笔记/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>《Normalizing Flows for Probabilistic Modeling and Inference》论文笔记 | TianHongZXY</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TianHongZXY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">那时我们一无所有，也没有什么能妨碍我们享受静夜</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/07/30/%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%AC%94%E8%AE%B0/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY"/>
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
+      <meta itemprop="image" content="/images/header.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《Normalizing Flows for Probabilistic Modeling and Inference》论文笔记
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2020-07-30 17:15:21 / Modified: 17:18:59" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/07/30/%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/07/30/%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-前置知识"><a href="#1-前置知识" class="headerlink" title="1. 前置知识"></a>1. 前置知识</h1><p>标准化流(Normalizing Flow)能够将简单的概率分布转换为极其复杂的概率分布，可以用在生成式模型、强化学习、变分推断等领域，构建它所需要的工具是：行列式(Determinant)、雅可比矩阵(Jacobi)、变量替换定理(Change of Variable Theorem)，下面先简单介绍这三个工具。</p>
+<h2 id="1-1-行列式"><a href="#1-1-行列式" class="headerlink" title="1.1 行列式"></a>1.1 行列式</h2><p>行列式的求法不再赘述，我们主要需要理解的是行列式的物理意义。一个矩阵的行列式的值表示的是该矩阵对空间所做的变换，将原来的空间放大或缩小了多少倍，比如二维空间在原点有一个边长为1的正方形a，对它做变换得到新的正方形b，$b = Wa$，$W=\left[\begin{matrix} 2 &amp; 0 \ 0 &amp; 2\end{matrix}\right]$，新的正方形边长被放大为原来的2倍，面积为原来的4倍，$det(W) = 4$，</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg" style="zoom:50%;" align="left" />                                     <img src="/Users/tianhongzxy/Library/Application Support/typora-user-images/image-20200728143736053.png" alt="image-20200728143736053" style="zoom:50%;" align="right" /></p>
+<p>​                </p>
+<p>​                                        $a \Longrightarrow b = Wa$</p>
+<p>三维以及更高维空间亦同理</p>
+<h2 id="1-2-雅可比矩阵"><a href="#1-2-雅可比矩阵" class="headerlink" title="1.2 雅可比矩阵"></a>1.2 雅可比矩阵</h2><p>设有一个二维向量$z=\left[\begin{matrix} z_{1} \ z_{2} \end{matrix}\right]$，给定变换$f$，$x=f(z)=\left[\begin{matrix} z_{1}+z_{2} \ 2z_{1}\end{matrix}\right]$，那么变换$f$的雅可比矩阵$J_{f}$</p>
+<script type="math/tex; mode=display">
+J_{f}=\left[\begin{array}{ccc}
+\frac{\partial x_{1}}{\partial z_{1}} & \frac{\partial x_{1}}{\partial z_{2}} \\
+\frac{\partial x_{2}}{\partial z_{1}} & \frac{\partial x_{2}}{\partial z_{2}}
+\end{array}\right]
+=\left[\begin{array}{ccc}
+1 & 1 \\
+2 & 0
+\end{array}\right] \tag{1}</script><p>变换$f$的逆变换$f^{-1}$，$z=f^{-1}(x)=\left[\begin{matrix} \frac{1}{2}x_{2} \ x_{1}-\frac{1}{2}x_{2} \end{matrix}\right]$，$f^{-1}$的雅可比矩阵$J_{f^{-1}}$</p>
+<script type="math/tex; mode=display">
+J_{f^{-1}}=\left[\begin{array}{ccc}
+\frac{\partial z_{1}}{\partial x_{1}} & \frac{\partial z_{1}}{\partial x_{2}} \\
+\frac{\partial z_{2}}{\partial x_{1}} & \frac{\partial z_{2}}{\partial x_{2}}
+\end{array}\right]
+=\left[\begin{array}{ccc}
+0 & \frac{1}{2} \\
+1 & -\frac{1}{2}
+\end{array}\right] \tag{2}</script><p>可以发现$J_{f}$与$J_{f^{-1}}$互为逆矩阵，事实上互为逆变换的$f$与$f^{-1}$，其二者对应的雅可比矩阵也互为逆阵，因此又由行列式的性质可得它们的雅可比行列式互为倒数，即</p>
+<script type="math/tex; mode=display">
+\lvert \mathbf{det} J_{f} \rvert = \lvert \mathbf{det} J_{f^{-1}} \rvert^{-1} \tag{3}</script><p>变换$f$可以不仅仅是矩阵变换，也可以任意的函数，将D维的向量$z$变换为D’维的$x$，$f: \mathbb{R}^{D} \rightarrow \mathbb{R}^{D’}$。</p>
+<h2 id="1-3-Change-of-Variable-Theorem"><a href="#1-3-Change-of-Variable-Theorem" class="headerlink" title="1.3 Change of Variable Theorem"></a>1.3 Change of Variable Theorem</h2><p>假设有一变量$\mathbf{u}$，服从分布$\mathbf{u} \sim p_{u}(\mathbf{u})$，有一变换$T$，$\mathbf{x}=T(\mathbf{u})$，$p_{u}(\mathbf{u})$是已知的一种简单分布，变换$T$可逆，且$T$与$T^{-1}$都可微分，现在要求$p_{x}(\mathbf{x})$，即随机变量$\mathbf{x}$的概率密度函数，因为概率之和相等</p>
+<script type="math/tex; mode=display">
+\int_{x} p_{x}\left(\mathbf{x}\right) d \mathbf{x}=1=\int_{z} p_{z}\left(\mathbf{z}\right) d \mathbf{z} \tag{4}</script><p>因为x与u一一对应，所以从du体积映射到dx体积时，体积内包含的概率之和不变，那么被积分的部分绝对值必定处处相等，由于概率p必大于等于0，可去掉其两边的绝对值号，即得</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\left| p_{x}\left(\mathbf{x}\right) d \mathbf{x} \right| &=& \left| p_{z}\left(\mathbf{z}\right) d \mathbf{z} \right| \tag{5} \\ 
+p_{x}\left(\mathbf{x}\right)  &=& p_{z}\left(\mathbf{z}\right) \left| \frac{d \mathbf{z}}{d \mathbf{x}} \right| \tag{6}\\
+p_{x}\left(\mathbf{x}\right)  &=& p_{z}\left(\mathbf{z}\right) \left| \frac {\partial T^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right| \tag{7}\\
+p_{x}\left(\mathbf{x}\right)  &=& p_{z}\left(T^{-1}{(\mathbf{x})}\right) \left| \mathbf{det} J_{T^{-1}}(\mathbf{x}) \right| \tag{8}
+\end{eqnarray}</script><p>第(8)式也可写为</p>
+<script type="math/tex; mode=display">
+p_{x}\left(\mathbf{x}\right) = p_{z}\left(\mathbf{z}\right) \tag{9} \left| \mathbf{det} J_{T}(\mathbf{z}) \right|^{-1}</script><p>(5)~(8)式的直观理解：两边都是概率密度乘以空间的大小，得到是一个标量，即随机变量落在该空间的概率大小，将变换$T$写入$\left| \frac{d \mathbf{z}}{d \mathbf{x}} \right|$，即将其写为$\left| \frac {\partial T^{-1}(\mathbf{x})}{\partial \mathbf{x}} \right|$，但x为向量而非标量，这里$\left| \frac{d \mathbf{z}}{d \mathbf{x}} \right|$要表示的是空间变化的大小关系，我们由雅可比矩阵的定义可知$\frac {\partial T^{-1}(\mathbf{x})}{\partial \mathbf{x}} = J_{T^{-1}}(\mathbf{x})$，又由行列式的物理意义，知道$J_{T}(\mathbf{z})$的绝对值为$T$将z映射到x时，空间大小放缩的倍数，即为概率密度放缩的倍数倒数，又因$\mathbf{det}J_{T^{-1}}(\mathbf{x}) = \mathbf{det}J_{T}(\mathbf{z})^{-1}$，因此可得(8)式。</p>
+<p>论文原文的解释大意是：<strong><em>我们可以认为T在通过expand或contract R^D空间来使得pz变得和px相近。雅可比行列式detT的绝对值量化了原向量z附近的体积由于经过T变换后，体积相对变化的大小，即当z附近一块无穷小的体积dz，经过T后被map到了x附近的一块无穷小的体积dx处，那么detT等于dx除以dz，即映射后的体积是原来的几倍，因为dz中包含的概率等于dx中包含的概率，因此如果dz的体积被放大了，那么dx里的概率密度应该缩小</em></strong></p>
+<p>举个例子，假设随机变量z属于0-1均匀分布，在取值空间$C_{1}$=(0, 1)上，p(z)=1，有变换T，T(z)=2z，令x=T(z)，则x必是$C_{2}$=(0, 2)上的均匀分布，但此时p(x)不再是1了，否则在(0, 2)上都有p(x)=1，积分可得概率之和为2，明显错误，因为变换T将原空间中z可取值的范围放大了一倍，从(0, 1)变为了(0, 2)，即可取值空间从$C_{1}$变为$C_{2}$，空间放大的倍数为$\left| \mathbf{det} J_{T}(\mathbf{z}) \right|=2$，那概率密度缩小的倍数为$\left| \mathbf{det} J_{T^{-1}}(\mathbf{x}) \right| = \frac{1}{2}$，即相应的x概率密度应该缩小一倍，因此</p>
+<script type="math/tex; mode=display">
+0.5 = p_{x}\left(\mathbf{x}\right)  = p_{z}\left(\mathbf{z}\right) \cdot \left| \mathbf{det} J_{T^{-1}}(\mathbf{x}) \right|  = 1 \cdot \frac{1}{2} \tag{10}</script><h1 id="2-标准化流的定义和基础"><a href="#2-标准化流的定义和基础" class="headerlink" title="2. 标准化流的定义和基础"></a>2. 标准化流的定义和基础</h1><p>我们的目标是使用简单的概率分布来建立我们想要的更为复杂更有表达能力的概率分布，使用的方法就是Normalizing Flow，flow的字面意思是一长串的T，即很多的transformation。让简单的概率分布，通过这一系列的transformation，一步一步变成complex、expressive的概率分布，like a fluid flowing through a set of tubes，fluid就是说概率分布像水一样，是可塑的易变形的，我们把它通过一系列tubes，即变换T们，塑造成我们想要的样子——最终的概率分布。下面开始使用的符号尽量与原论文保持一致。</p>
+<h2 id="2-1-Normalizing-Flow’s-properties"><a href="#2-1-Normalizing-Flow’s-properties" class="headerlink" title="2.1 Normalizing Flow’s properties"></a>2.1 Normalizing Flow’s properties</h2><ol>
+<li><p>x与u必须维度相同，因为只有维度相同，下面的变换T才可能可逆</p>
+</li>
+<li><p>变换T必须可逆，且T和T的逆必须可导</p>
+</li>
+<li><p>变换T可以由多个符合条件2的变换Ti组合而成</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\left(T_{2} \circ T_{1}\right)^{-1} &=T_{1}^{-1} \circ T_{2}^{-1} \\
+\operatorname{det} J_{T_{2} \circ T_{1}}(\mathbf{u}) &=\operatorname{det} J_{T_{2}}\left(T_{1}(\mathbf{u})\right) \cdot \operatorname{det} J_{T_{1}}(\mathbf{u})
+\end{aligned}</script></li>
+</ol>
+<p>从使用角度来说，一个flow-based model提供了两个操作，一是sampling，即从pu中sample出u，经过变换T得到x，$\mathbf{x}=T(\mathbf{u}) ~~where ~~\mathbf{u}\sim p_{u}(\mathbf{u})$，另一个是evaluating模型的概率分布，使用公式 $p_{\mathrm{x}}(\mathbf{x})=p_{\mathrm{u}}\left(T^{-1}(\mathbf{x})\right)\left|\operatorname{det} J_{T^{-1}}(\mathbf{x})\right|$。</p>
+<p>两种操作有不同的计算要求，sampling需要能够sample from pu 以及计算变换T，evaluating需要能够计算T的逆与雅可比行列式，并evaluate pu，因此计算时的效率与难度对应用来说至关重要</p>
+<h2 id="2-2-Flow-based-models有多强的表达能力？"><a href="#2-2-Flow-based-models有多强的表达能力？" class="headerlink" title="2.2 Flow-based models有多强的表达能力？"></a>2.2 Flow-based models有多强的表达能力？</h2><p>我们知道p(u)是很简单的一个概率分布，那么通过flow，我们能将p(u)转换为任意的概率分布p(x)吗？假设x为D维向量，p(x)&gt;0，$x_{i}$的概率分布只依赖i之前的元素$x_{&lt;i}$，那么可以将$p_{x}(x)$分解为条件概率的乘积</p>
+<script type="math/tex; mode=display">
+p_{\mathrm{x}}(\mathbf{x})=\prod_{i=1}^{D} p_{\mathrm{x}}\left(\mathrm{x}_{i} \mid \mathbf{x}_{<i}\right)</script><p>假设变换F将x映射为z，zi的值由xi的累积分布函数(cdf)确定</p>
+<script type="math/tex; mode=display">
+\mathrm{z}_{i}=F_{i}\left(\mathrm{x}_{i}, \mathbf{x}_{<i}\right)=\int_{-\infty}^{\mathrm{x}_{i}} p_{\mathrm{x}}\left(\mathrm{x}_{i}^{\prime} \mid \mathbf{x}_{<i}\right) d \mathrm{x}_{i}^{\prime}=\operatorname{Pr}\left(\mathrm{x}_{i}^{\prime} \leq \mathrm{x}_{i} \mid \mathbf{x}_{<i}\right)</script><p>很明显F是可微分的，其微分就等于$p_{x}(\mathbf{x}_{i}|\mathbf{x}_{<i})$，由于Fi对xj的偏微分当j > i时等于0，因此$J_{F}(\mathbf{x})$是一个下三角矩阵，那么其行列式就等于其对角线元素的乘积，即</p>
+<script type="math/tex; mode=display">
+\operatorname{det} J_{F}(\mathbf{x})=\prod_{i=1}^{D} \frac{\partial F_{i}}{\partial \mathrm{x}_{i}}=\prod_{i=1}^{D} p_{\mathrm{x}}\left(\mathrm{x}_{i} \mid \mathbf{x}_{<i}\right)=p_{\mathrm{x}}(\mathbf{x})>0</script><p>由于p(x)&gt;0，所以雅可比行列式也&gt;0，那么变换F的逆必存在，由(9)式，将x与z对调，T改为F，可得</p>
+<script type="math/tex; mode=display">
+p_{z}\left(\mathbf{z}\right) = p_{x}\left(\mathbf{x}\right) \left| \mathbf{det} J_{F}(\mathbf{x}) \right|^{-1} = 1</script><p>即z是D维空间中(0, 1)之间的均匀分布。</p>
+<p>上述对p(x)的限制仅仅是$x_{i}$依赖于$x_{<i}$的条件概率对$(x_{i}, x_{<i})$可微，且$p_{x}(\mathbf{x})>0  ~\forall~\mathbf{x}\in \mathbb{R}^{D}$，我们就使用变换F将它变为了最简单的(0, 1)均匀分布，又因为F可逆，所以我们可以使用F的逆将p(z)转换为任意满足上述条件的概率分布p(x)。我们再推广到任意的base distribution，假设p(u)满足上述p(x)满足的条件，那么我们可以使用变换G将任意的概率分布p(u)转换为p(z)，再用F逆将p(z)转换为任意的概率分布p(x)，即 使用变换$T = F^{-1} \circ G$，可将$p_u{\mathbf{u}}$变为$p_{x}(\mathbf{x})$。</p>
+<h2 id="2-3-使用flows来建模和推断"><a href="#2-3-使用flows来建模和推断" class="headerlink" title="2.3 使用flows来建模和推断"></a>2.3 使用flows来建模和推断</h2><p>为了拟合一个概率模型，我们要拟合一个flow-based model $p_{x}(\mathbf{x};\theta)$去近似目标分布$p_{x}^{*}(\mathbf{x})$，$\theta$代表$(\phi,\psi)$ ，$\phi$和$\psi$分别是T与p(u)的参数，可以通过最小化KL散度和最大似然估计做到</p>
+<h3 id="2-3-1-正向KL散度与最大似然估计"><a href="#2-3-1-正向KL散度与最大似然估计" class="headerlink" title="2.3.1 正向KL散度与最大似然估计"></a>2.3.1 正向KL散度与最大似然估计</h3><script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{L}(\boldsymbol{\theta}) &=D_{\mathrm{KL}}\left[p_{\mathrm{x}}^{*}(\mathbf{x}) \| p_{\mathrm{x}}(\mathbf{x} ; \boldsymbol{\theta})\right] \\
+&=-\mathbb{E}_{p_{\mathrm{x}}^{*}(\mathbf{x})}\left[\log p_{\mathrm{x}}(\mathbf{x} ; \boldsymbol{\theta})\right]+\mathrm{const.} \\
+&=-\mathbb{E}_{p_{\mathrm{x}}^{*}(\mathbf{x})}\left[\log p_{\mathrm{u}}\left(T^{-1}(\mathbf{x} ; \boldsymbol{\phi}) ; \boldsymbol{\psi}\right)+\log \left|\operatorname{det} J_{T^{-1}}(\mathbf{x} ; \boldsymbol{\phi})\right|\right]+\mathrm{const.}
+\end{aligned}</script><p>假设现在我们手上有N条真实的数据，即来自于$p_{x}^{*}(\mathbf{x})$的samples，那么可以使用蒙特卡罗法来近似上面的期望值</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(\boldsymbol{\theta}) \approx-\frac{1}{N} \sum_{n=1}^{N} \log p_{\mathrm{u}}\left(T^{-1}\left(\mathbf{x}_{n} ; \boldsymbol{\phi}\right) ; \boldsymbol{\psi}\right)+\log \left|\operatorname{det} J_{T^{-1}}\left(\mathbf{x}_{n} ; \boldsymbol{\phi}\right)\right|+\text { const. }</script><p>最小化上式等价于求模型在该N条数据上的最大似然估计，我们一般使用随机梯度下降来优化上式的参数。</p>
+<p>可见，为了使用正向KL散度或最大似然估计来拟合目标分布，我们需要计算$T^{-1}$、它的雅可比行列式， evaluate base分布 $p_{u}(\mathbf{u};\psi)$，以及关于它们参数的导数。</p>
+<h3 id="2-3-2-反向KL散度"><a href="#2-3-2-反向KL散度" class="headerlink" title="2.3.2 反向KL散度"></a>2.3.2 反向KL散度</h3><script type="math/tex; mode=display">
+\begin{aligned}
+\mathcal{L}(\boldsymbol{\theta}) &=D_{\mathrm{KL}}\left[p_{\mathrm{x}}(\mathbf{x} ; \boldsymbol{\theta}) \| p_{\mathrm{x}}^{*}(\mathbf{x})\right] \\
+&=\mathbb{E}_{p_{\mathrm{x}}(\mathbf{x} ; \boldsymbol{\theta})}\left[\log p_{\mathrm{x}}(\mathbf{x} ; \boldsymbol{\theta})-\log p_{\mathrm{x}}^{*}(\mathbf{x})\right] \\
+&=\mathbb{E}_{p_{\mathrm{u}}(\mathbf{u} ; \boldsymbol{\psi})}\left[\log p_{\mathrm{u}}(\mathbf{u} ; \boldsymbol{\psi})-\log \left|\operatorname{det} J_{T}(\mathbf{u} ; \boldsymbol{\phi})\right|-\log p_{\mathrm{x}}^{*}(T(\mathbf{u} ; \boldsymbol{\phi}))\right]
+\end{aligned}</script><p>当我们能够计算T，它的雅可比行列式，evaluate 目标分布p*以及从p(u)中sample时，使用反向KL散度是合适的，事实上，即使我们只能evaluate 目标分布乘以某个正则化常数，也可以最小化上式，$p_{\mathrm{x}}^{*}(\mathbf{x})=\widetilde{p}_{\mathrm{x}}(\mathbf{x}) / C$，$\widetilde{p}_{\mathrm{x}}(\mathbf{x})$是一个更好处理的概率分布，重写上式为</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(\boldsymbol{\theta})=\mathbb{E}_{p_{\mathrm{u}}(\mathbf{u} ; \boldsymbol{\psi})}\left[\log p_{\mathrm{u}}(\mathbf{u} ; \boldsymbol{\psi})-\log \left|\operatorname{det} J_{T}(\mathbf{u} ; \boldsymbol{\phi})\right|-\log \widetilde{p}_{\mathrm{x}}(T(\mathbf{u} ; \boldsymbol{\phi}))\right]+\text { const. }</script><p>当我们有N条来自于$p_{u}(\mathbf{u;\psi})$的samples，为了最小化上式，使用蒙特卡罗法，并对变换T的参数$\phi$求偏导，可得</p>
+<script type="math/tex; mode=display">
+\nabla_{\phi} \mathcal{L}(\boldsymbol{\theta}) \approx-\frac{1}{N} \sum_{n=1}^{N} \nabla_{\boldsymbol{\phi}} \log \left|\operatorname{det} J_{T}\left(\mathbf{u}_{n} ; \boldsymbol{\phi}\right)\right|+\nabla_{\boldsymbol{\phi}} \log \widetilde{p}_{\mathbf{x}}\left(T\left(\mathbf{u}_{n} ; \boldsymbol{\phi}\right)\right)</script><h1 id="3-构建标准化流-一-：有限组合的变换"><a href="#3-构建标准化流-一-：有限组合的变换" class="headerlink" title="3. 构建标准化流(一)：有限组合的变换"></a>3. 构建标准化流(一)：有限组合的变换</h1><p>我们通过组合K个transformation得到T变换，令$\mathbf{z}_{0} = \mathbf{u}$，$\mathbf{z}_{K} = \mathbf{x}$</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+T &=& T_{K} \circ \cdots \circ T_{1} \\
+\mathbf{z}_{k} &=& T_{k}(\mathbf{z}_{k-1}) ~~for ~ k = 1:K \\
+\mathbf{z}_{k-1} &=& T_{k}^{-1}(\mathbf{z}_{k}) ~~for ~ k = K:1 \\
+\log \left|J_{T}(\mathbf{z})\right|&=&\log \left|\prod_{k=1}^{K} J_{T_{k}}\left(\mathbf{z}_{k-1}\right)\right|=\sum_{k=1}^{K} \log \left|J_{T_{k}}\left(\mathbf{z}_{k-1}\right)\right|
+\end{eqnarray}</script><p>我们可以将每个$T_{k}$或$T_{k}^{-1}$都设为一个参数为$\phi_{k}$的神经网络，下面用$f_{\phi_{k}}$来统一表示这两者，但是这带来的问题是，我们必须保证该神经网络是可逆的，并且能够容易计算，否则，上述的正向KL散度需要变换$T_{k}$来做sampling，逆向KL散度需要$T_{k}^{-1}$来evaluating desity，如果变换$f_{\phi_{k}}$的逆不存在或不易求，则density evaluation或sampling将是效率极低的，甚至无法处理的。至于是否要求$f_{\phi_{k}}$有高效的求逆方法、$f_{\phi_{k}}$到底是使用$T_{k}$还是$T_{k}^{-1}$，则由具体的使用目的决定。下面忽略下标k，使用$f_{\phi}$表示神经网络，$\mathbf{z}$表示输入，$\mathbf{z}^{\prime}$表示输出。</p>
+<h2 id="3-1-自回归流-Autoregressive-flows"><a href="#3-1-自回归流-Autoregressive-flows" class="headerlink" title="3.1 自回归流 Autoregressive flows"></a>3.1 自回归流 Autoregressive flows</h2><p>2.2节我们知道了在合理的情况下，我们可以使用一个下三角雅可比矩阵将任意的概率分布$p_{x}(\mathbf{x})$变换为均匀分布，自回归流就是这样的一种构建方法</p>
+<script type="math/tex; mode=display">
+\mathrm{z}_{i}^{\prime}=\tau\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right) \quad \text { where } \quad \boldsymbol{h}_{i}=c_{i}\left(\mathbf{z}_{<i}\right)</script><p>$\tau$就是我们的transformer，$c_{i}$是第i个conditioner，该变换是严格单调函数，因此必可逆。变换$\tau$的参数为$h_{i}$，$h_{i}$由conditioner决定，描述当输入的$\mathbf{z}_{i}$变化时，输出$\mathbf{z}_{i}^{\prime}$如何变。conditioner唯一的限制就是它只能将$\mathbf{z}_{&lt;i}$作为输入，因此它可以是任意一个复杂的神经网络，不必关心是否可逆等问题。因此，可以看出，$f_{\phi}$的参数$\phi$其实就是conditioner的参数，但有时变换$\tau$也有它自己的额外参数(除了$h_{i}$)。上述变换的逆变换为</p>
+<script type="math/tex; mode=display">
+\mathrm{z}_{i}=\tau ^{-1}\left(\mathrm{z}_{i}^{\prime} ; \boldsymbol{h}_{i}\right) \quad \text { where } \quad \boldsymbol{h}_{i}=c_{i}\left(\mathbf{z}_{<i}\right)</script><p>在正向计算中，因为输入$\mathbf{z}$是完全已知的，那么所有的$h_{i}$可以同时一次性求出来，因此$\mathbf{z}^{\prime}$也可以同时求出来，但是在求逆变换的计算时，要计算$\mathbf{z}_{i}$前必须先把$\mathbf{z}_{<i}$都计算出来，因为$\mathbf{z}_{<i}$是$h_{i}$的输入。
+很明显，自回归流的雅可比矩阵是下三角形的，因为任意的$\mathbf{z}_{i}^{\prime}$都不依赖$\mathbf{z}_{>i}$，那么$\mathbf{z}_{<i}$关于$\mathbf{z}_{>i}$的偏导都为0，因此雅可比矩阵可写为</p>
+<script type="math/tex; mode=display">
+J_{f_{\phi}}(\mathbf{z})=\left[\begin{array}{ccc}
+\frac{\partial \tau}{\partial z_{1}}\left(z_{1} ; \boldsymbol{h}_{1}\right) &  & \mathbf{0} \\
+& \ddots & \\
+\mathbf{L}(\mathbf{z}) & & \frac{\partial \tau}{\partial z_{D}}\left(\mathrm{z}_{D} ; \boldsymbol{h}_{D}\right)
+\end{array}\right]</script><p>它的行列式就是对角线元素乘积，因此也非常好求</p>
+<script type="math/tex; mode=display">
+\log \left|\operatorname{det} J_{f_{\phi}}(\mathbf{z})\right|=\log \left|\prod_{i=1}^{D} \frac{\partial \tau}{\partial \mathrm{z}_{i}}\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right)\right|=\sum_{i=1}^{D} \log \left|\frac{\partial \tau}{\partial \mathrm{z}_{i}}\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right)\right|</script><h3 id="3-1-1-各种-Transformer-tau-的实现"><a href="#3-1-1-各种-Transformer-tau-的实现" class="headerlink" title="3.1.1 各种 Transformer$~\tau~$的实现"></a>3.1.1 各种 Transformer$~\tau~$的实现</h3><h4 id="仿射自回归流-Affine-autoregressive-flows"><a href="#仿射自回归流-Affine-autoregressive-flows" class="headerlink" title="仿射自回归流(Affine autoregressive flows)"></a>仿射自回归流(Affine autoregressive flows)</h4><p>令$\tau$为下式</p>
+<script type="math/tex; mode=display">
+\tau\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right)=\alpha_{i} \mathrm{z}_{i}+\beta_{i} \quad \text { where } \quad \boldsymbol{h}_{i}=\left\{\alpha_{i}, \beta_{i}\right\}</script><p>只要$\alpha_{i}$不为0，$\tau$变换的逆就存在，我们可以令$\alpha_{i}=\text{exp}(\tilde{\alpha_{i}})$，这样$\tilde{\alpha_{i}}$就是一个不受限制的参数了，该变换的雅可比行列式为</p>
+<script type="math/tex; mode=display">
+\log \left|\operatorname{det} J_{f_{\phi}}(\mathbf{z})\right|=\sum_{i=1}^{D} \log \left|\alpha_{i}\right|=\sum_{i=1}^{D} \tilde{\alpha}_{i}</script><p>仿射自回归流虽然很简单，但它的一大缺点是表达能力受限(limited expressivity)，假如z属于高斯分布，那么z’也必属于高斯分布，但可以通过堆叠多个仿射变换来增强表达能力，但仿射自回归流是否是一个普遍的概率分布近似器就未知了。</p>
+<h4 id="非仿射神经网络变换-Non-affine-neural-transformers"><a href="#非仿射神经网络变换-Non-affine-neural-transformers" class="headerlink" title="非仿射神经网络变换(Non-affine neural transformers)"></a>非仿射神经网络变换(Non-affine neural transformers)</h4><script type="math/tex; mode=display">
+\tau\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right)=w_{i 0}+\sum_{k=1}^{K} w_{i k} \sigma\left(\alpha_{i k} \mathrm{z}_{i}+\beta_{i k}\right) \quad \text { where } \quad \boldsymbol{h}_{i}=\left\{w_{i 0}, \ldots, w_{i K}, \alpha_{i k}, \beta_{i k}\right\}</script><p>不像上面连续使用K次变换，而是直接使用K个单调增函数$\sigma(\cdot)$的锥组合(conic combinations)，h中的参数皆大于0。其实就是给仿射变换加上一个激活函数，再线性组合K种不同参数下的结果。一般使用反向传播优化参数，缺点是该变换往往不可逆，或者只能不断迭代求逆。</p>
+<h4 id="积分变换-Integration-based-transformers"><a href="#积分变换-Integration-based-transformers" class="headerlink" title="积分变换(Integration-based transformers)"></a>积分变换(Integration-based transformers)</h4><script type="math/tex; mode=display">
+\tau\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right)=\int_{0}^{\mathrm{z}_{i}} g\left(\mathrm{z} ; \boldsymbol{\alpha}_{i}\right) d \mathrm{z}+\beta_{i} \quad \text { where } \quad \boldsymbol{h}_{i}=\left\{\boldsymbol{\alpha}_{i}, \beta_{i}\right\}</script><p>$g(\cdot;\alpha_{i})$可以是任意的正值神经网络，导数很好求，就是$g(\mathbf{z}_{i};\alpha_{i})$，但积分缺乏analytical tractability，一种解决方法是让$g$为一个2L次的正多项式，积分结果就是关于$\mathbf{z}_{i}$的2L+1次的多项式，由于任意的2L次多项式可以写为多个L次多项式的平方之和，我们可以定义$\tau$为K个L次多项式平方之和的积分，如下</p>
+<script type="math/tex; mode=display">
+\tau\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right)=\int_{0}^{\mathrm{z}_{i}} \sum_{k=1}^{K}\left(\sum_{\ell=0}^{L} \alpha_{i k \ell} \mathrm{z}^{\ell}\right)^{2} d \mathrm{z}+\beta_{i}</script><p>参数$\alpha$不受限制，仿射变换为L=0时的特例。由于5次及以上的方程没有根式解，因此当L&gt;=2时，2L+1&gt;=5，则无法直接求$\tau^{-1}$，只能使用二分搜索迭代求解。</p>
+<h4 id="神经样条流-Neural-spline-flows"><a href="#神经样条流-Neural-spline-flows" class="headerlink" title="神经样条流(Neural spline flows)"></a>神经样条流(Neural spline flows)</h4><p>为了克服非仿射变换不易求逆，可以使用K个分段函数作为transformer，每个区间$[\mathbf{z}_{i(k-1)},\mathbf{z}_{ik}]，k=1:K$上$\tau$是一个简单的低次单调函数，要求是在每个区间的端点必须与其相邻的区间连续，整个大区间两端的端点$\mathbf{z}_{i0},\mathbf{z}_{iK}$可以随意。</p>
+<h3 id="3-1-2-各种-conditioner-c-的实现"><a href="#3-1-2-各种-conditioner-c-的实现" class="headerlink" title="3.1.2 各种 conditioner$~c~$的实现"></a>3.1.2 各种 conditioner$~c~$的实现</h3><p>虽然ci可以是任意复杂的函数，比如神经网络，但每个zi都有一个ci的话，计算量和内存占用太大，解决的办法是参数共享</p>
+<h4 id="循环自回归流-Recurrent-autoregressive-flows"><a href="#循环自回归流-Recurrent-autoregressive-flows" class="headerlink" title="循环自回归流(Recurrent autoregressive flows)"></a>循环自回归流(Recurrent autoregressive flows)</h4><p>一种conditioner参数共享的方法是使用循环神经网络RNN/GRU/LSTM来实现，</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\boldsymbol{h}_{i}=c\left(\boldsymbol{s}_{i}\right) ~~ where \quad s_{1}& = & \text{initial state} \\\quad \boldsymbol{s}_{i}&=&\operatorname{RNN}\left(\mathrm{z}_{i-1}, \boldsymbol{s}_{i-1}\right)~ for ~ i>1
+\end{eqnarray}</script><p>这种方法的主要缺点是计算不再能并行化，因为计算$s_{i}$必须先计算$s_{i-1}$，当处理高维数据，比如图片、视频时会很慢</p>
+<h4 id="掩码自回归流-Masked-autoregressive-flows"><a href="#掩码自回归流-Masked-autoregressive-flows" class="headerlink" title="掩码自回归流(Masked autoregressive flows)"></a>掩码自回归流(Masked autoregressive flows)</h4><p>为了让${h}_{i}$不能依赖$\mathbf{z}_{&gt;=i}$，可以通过将神经网络中这些连接给去掉，方式是给矩阵中这些位置乘上0，就像<strong>Transformer</strong>中的self-attention在计算softmax时用负无穷mask掉上三角的注意力权重，达到future blind的目的。但该方法的一大缺点是求逆时的计算量是正向计算的D倍</p>
+<script type="math/tex; mode=display">
+\text{Initialize z to an arbitrary value} \\
+
+\begin{array}{l}
+for ~i=1: D
+\\
+\left(\boldsymbol{h}_{1}, \ldots, \boldsymbol{h}_{D}\right)=c(\mathbf{z}) \\
+\mathrm{z}_{i}=\tau^{-1}\left(\mathrm{z}_{i}^{\prime} ; \boldsymbol{h}_{i}\right)
+\end{array}
+\</script><p>上面的计算过程是：开始不知道z，就随机化，但是z0是任意的，也就是我们可以直接得到h1，然后用z1’与它计算出z1，纠正随机初始化的z的第1个元素，之后以此类推，第D次迭代后，z被完全纠正。Masked conditioner 每次只能使用z(&lt;i)，即只能计算出hi。开始直接能得到h1，计算出z1后，再让z1通过conditioner函数得到h2，再用公式计算z2，以此类推。这里一共计算了D次c，而在正向计算时只用一次，求逆时计算代价是正向的D倍，对高维数据来说无法接受。一种解决办法是类似于牛顿法的更新公式(<em>我们要求使 f(z) = z’成立的 z，即求g(z) = f(z) - z’的零点，那么更新公式 z = z - a \</em> g(z)/g’(z) = z - a * (f(z)-z’)/J)*</p>
+<script type="math/tex; mode=display">
+\mathbf{z}_{k+1}=\mathbf{z}_{k}-\alpha \operatorname{diag}\left(J_{f_{\phi}}\left(\mathbf{z}_{k}\right)\right)^{-1}\left(f_{\phi}\left(\mathbf{z}_{k}\right)-\mathbf{z}^{\prime}\right)</script><p>我们使用$\mathbf{z^\prime}$初始化$\mathbf{z_0}$，$f_{\phi}^{-1}(\mathbf{z^\prime})$是上式唯一的不动点，一般$0&lt;\alpha&lt;2$的情况下$\mathbf{z}_{k}$最终会收敛到某个局部最优点，否则将发散。</p>
+<p>掩码自回归流主要适用于不需要求逆或维度较低的情况。</p>
+<h4 id="Coupling-layers"><a href="#Coupling-layers" class="headerlink" title="Coupling layers"></a>Coupling layers</h4><p>Coupling layers是将z一分为二，前d个元素原封不动，d+1~D的元素依赖于前d的元素，h1~hd是常数，不依赖于z，hd+1~hD依赖于z&lt;=d，计算公式类似上述几种方法</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\mathbf{z}_{\leq d}^{\prime} &=\mathbf{z}_{\leq d} \\
+\left(\boldsymbol{h}_{d+1}, \ldots, \boldsymbol{h}_{D}\right) &=\mathrm{NN}(\mathbf{z}_{\leq d}) \\
+\mathbf{z}_{i}^{\prime} &=\tau\left(\mathbf{z}_{i} ; \boldsymbol{h}_{i}\right) \text { for } i>d
+\end{aligned}</script><p>其雅可比矩阵左上角dxd是单位阵，右下角(D-d)x(D-d)为对角矩阵，其行列式即为右下角对角矩阵的行列式，即对角线乘积。</p>
+<script type="math/tex; mode=display">
+J_{f_{\phi}}=\left[\begin{array}{cc}
+\mathbf{I} & \mathbf{0} \\
+\mathbf{A} & \mathbf{D}
+\end{array}\right]</script><p>虽然coupling layers的计算效率更高，但表达能力受限，但我们可以通过堆叠多个coupling layer并在每层对z的元素进行重新排列来解决这个问题，比如第一层前d个元素被原封不动地copy，后D-d个元素通过神经网络，那第二层就原封不动地copy后D-d个元素，把前d个元素通过神经网络，如此交替多层，</p>
+<h2 id="3-2-线性流-Linear-flows"><a href="#3-2-线性流-Linear-flows" class="headerlink" title="3.2 线性流 Linear flows"></a>3.2 线性流 Linear flows</h2><p>在自回归流中输出zi’只依赖于z&lt;=i，但元素的排列顺序有时是对模型学习有影响的，一种解决输入元素排列组合的方法是线性流，简单来说就是一个矩阵变换</p>
+<script type="math/tex; mode=display">
+\mathbf{z}^\prime = \mathbf{W}\mathbf{z}</script><p>雅可比矩阵就是W自身，我们需要保证W是可逆的，并且易于求逆和求行列式。</p>
+<h2 id="3-3-残差流-Residual-flows"><a href="#3-3-残差流-Residual-flows" class="headerlink" title="3.3 残差流 Residual flows"></a>3.3 残差流 Residual flows</h2><script type="math/tex; mode=display">
+\mathbf{z}^\prime = \mathbf{z} + g_{\phi}(\mathbf{z})</script><p>$g_{\phi}$是一个输出D维向量的神经网络，我们需要对其加以合适的限制，以让其可逆</p>
+<h3 id="3-3-1-Contractive-residual-flows"><a href="#3-3-1-Contractive-residual-flows" class="headerlink" title="3.3.1 Contractive residual flows"></a>3.3.1 Contractive residual flows</h3><p>构建满足Lipschitz连续条件，且Lipschitz常数小于1的变换F</p>
+<h3 id="3-3-2-Residual-flows-based-on-the-matrix-determinant-lemma"><a href="#3-3-2-Residual-flows-based-on-the-matrix-determinant-lemma" class="headerlink" title="3.3.2 Residual flows based on the matrix determinant lemma"></a>3.3.2 Residual flows based on the matrix determinant lemma</h3><p>A为DxD的可逆矩阵，V、W为DxM的矩阵，M&lt;D，有矩阵行列式引理如下</p>
+<script type="math/tex; mode=display">
+\operatorname{det}\left(\mathbf{A}+\mathbf{V} \mathbf{W}^{\top}\right)=\operatorname{det}\left(\mathbf{I}+\mathbf{W}^{\top} \mathbf{A}^{-1} \mathbf{V}\right) \operatorname{det} \mathbf{A}</script><p>如果A是对角阵的话计算量从左式的$\mathcal{O}(D^{3}+D^{2}M)$降到了$\mathcal{O}(M^{3}+M^{2}D)$</p>
+<h4 id="Planar-flow"><a href="#Planar-flow" class="headerlink" title="Planar flow"></a>Planar flow</h4><p>Planar flow是一个单层神经网络，只有一个神经元w</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\mathbf{z}^{\prime}&=&\mathbf{z}+\mathbf{v} \sigma\left(\mathbf{w}^{\top} \mathbf{z}+b\right) \\
+J_{f_{\phi}}(\mathbf{z})&=&\mathbf{I}+\sigma^{\prime}\left(\mathbf{w}^{\top} \mathbf{z}+b\right) \mathbf{v} \mathbf{w}^{\top} \\
+\operatorname{det} J_{f_{\phi}}(\mathbf{z})&=&1+\sigma^{\prime}\left(\mathbf{w}^{\top} \mathbf{z}+b\right) \mathbf{w}^{\top} \mathbf{v}
+\end{eqnarray}</script><p>$\sigma$是一个可微的激活函数例如tanh，假设$\sigma^{\prime}$处处大于0，且有上界S，则当$\mathbf{w}^{\top} \mathbf{v}&gt;-\frac{1}{S}$时，雅可比行列式大于0</p>
+<h4 id="Sylvester-flow"><a href="#Sylvester-flow" class="headerlink" title="Sylvester flow"></a>Sylvester flow</h4><p>将Planar flow推广到有M个神经元W就是Sylvester flow，$\mathbf{V} \in \mathbb{R}^{D \times M}, \mathbf{W} \in \mathbb{R}^{D \times M}$，$\mathbf{b} \in \mathbb{R}^{M}$，S(z)是对角矩阵，元素是$\sigma^{\prime}\left(\mathbf{W}^{\top} \mathbf{z}+\mathbf{b}\right)$的对角线上的元素</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray}
+\mathbf{z}^{\prime}&=&\mathbf{z}+\mathbf{V} \sigma\left(\mathbf{W}^{\top} \mathbf{z}+\mathbf{b}\right) \\
+J_{f_{\phi}}(\mathbf{z})&=&\mathbf{I}+\mathbf{V S}(\mathbf{z}) \mathbf{W}^{\top} \\
+\operatorname{det} J_{f_{\phi}}(\mathbf{z})&=&\operatorname{det}\left(\mathbf{I}+\mathbf{S}(\mathbf{z}) \mathbf{W}^{\top} \mathbf{V}\right)
+\end{eqnarray}</script><h1 id="4-构建标准化流-二-：连续时间的变换"><a href="#4-构建标准化流-二-：连续时间的变换" class="headerlink" title="4. 构建标准化流(二)：连续时间的变换"></a>4. 构建标准化流(二)：连续时间的变换</h1><p>假如标准化流有无数个连续的变换，即经过了无穷多个step的transformer，我们把这个step叫做时间，连续时间流可以通过下式构建</p>
+<script type="math/tex; mode=display">
+\frac{d \mathbf{z}_{t}}{d t}=g_{\phi}\left(t, \mathbf{z}_{t}\right)</script><p>神经网络g接受时间t和状态zt作为输入，输出zt关于t的导数，我们可以通过求积分来得到变换的结果</p>
+<script type="math/tex; mode=display">
+\mathbf{x}=\mathbf{z}_{t_{1}}=\mathbf{u}+\int_{t=t_{0}}^{t_{1}} g_{\phi}\left(t, \mathbf{z}_{t}\right) d t</script><p>逆变换为</p>
+<script type="math/tex; mode=display">
+\mathbf{u}=\mathbf{z}_{t_{0}}=\mathbf{x}+\int_{t=t_{1}}^{t_{0}} g_{\phi}\left(t, \mathbf{z}_{t}\right) d t=\mathbf{x}-\int_{t=t_{0}}^{t_{1}} g_{\phi}\left(t, \mathbf{z}_{t}\right) d t</script><p>log概率密度的导数可写为</p>
+<script type="math/tex; mode=display">
+\frac{d \log p\left(\mathbf{z}_{t}\right)}{d t}=-\operatorname{Tr}\left\{J_{g_{\phi}(t, \cdot)}\left(\mathbf{z}_{t}\right)\right\}</script><p>一种近似求迹的方法如下，v是均值为0，协方差矩阵为单位阵的向量</p>
+<script type="math/tex; mode=display">
+\operatorname{Tr}\left\{J_{g_{\phi}(t, \cdot)}\left(\mathbf{z}_{t}\right)\right\} \approx \mathbf{v}^{\top} J_{g_{\phi}(t, \cdot)}\left(\mathbf{z}_{t}\right) \mathbf{v}</script><p>对log概率密度积分，可以得到px与pu的关系式</p>
+<script type="math/tex; mode=display">
+\log p_{\mathrm{x}}(\mathbf{x})=\log p_{\mathrm{u}}(\mathbf{u})-\int_{t=t_{0}}^{t_{1}} \operatorname{Tr}\left\{J_{g_{\phi}(t, \cdot)}\left(\mathbf{z}_{t}\right)\right\} d t</script>
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
+            <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/29/%E6%A0%87%E5%87%86%E5%8C%96%E6%B5%81(%E4%B8%8A)/" rel="next" title="标准化流(上)">
+                <i class="fa fa-chevron-left"></i> 标准化流(上)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="TianHongZXY"/>
+            
+              <p class="site-author-name" itemprop="name">TianHongZXY</p>
+              <p class="site-description motion-element" itemprop="description">浪漫骑士 行吟诗人 自由思想者</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/TianHongZXY" title="GitHub &rarr; https://github.com/TianHongZXY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/mailto:tianhongzxy@163.com" title="E-Mail &rarr; mailto:tianhongzxy@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/tian-qian-bu-dang-hong-zhi" title="知乎 &rarr; https://www.zhihu.com/people/tian-qian-bu-dang-hong-zhi" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-前置知识"><span class="nav-number">1.</span> <span class="nav-text">1. 前置知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-行列式"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 行列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-雅可比矩阵"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 雅可比矩阵</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Change-of-Variable-Theorem"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 Change of Variable Theorem</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-标准化流的定义和基础"><span class="nav-number">2.</span> <span class="nav-text">2. 标准化流的定义和基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Normalizing-Flow’s-properties"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 Normalizing Flow’s properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Flow-based-models有多强的表达能力？"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 Flow-based models有多强的表达能力？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-使用flows来建模和推断"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 使用flows来建模和推断</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-正向KL散度与最大似然估计"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.3.1 正向KL散度与最大似然估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2-反向KL散度"><span class="nav-number">2.3.2.</span> <span class="nav-text">2.3.2 反向KL散度</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-构建标准化流-一-：有限组合的变换"><span class="nav-number">3.</span> <span class="nav-text">3. 构建标准化流(一)：有限组合的变换</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-自回归流-Autoregressive-flows"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 自回归流 Autoregressive flows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-1-各种-Transformer-tau-的实现"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.1 各种 Transformer$~\tau~$的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#仿射自回归流-Affine-autoregressive-flows"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">仿射自回归流(Affine autoregressive flows)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#非仿射神经网络变换-Non-affine-neural-transformers"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">非仿射神经网络变换(Non-affine neural transformers)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#积分变换-Integration-based-transformers"><span class="nav-number">3.1.1.3.</span> <span class="nav-text">积分变换(Integration-based transformers)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#神经样条流-Neural-spline-flows"><span class="nav-number">3.1.1.4.</span> <span class="nav-text">神经样条流(Neural spline flows)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-各种-conditioner-c-的实现"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.2 各种 conditioner$~c~$的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#循环自回归流-Recurrent-autoregressive-flows"><span class="nav-number">3.1.2.1.</span> <span class="nav-text">循环自回归流(Recurrent autoregressive flows)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#掩码自回归流-Masked-autoregressive-flows"><span class="nav-number">3.1.2.2.</span> <span class="nav-text">掩码自回归流(Masked autoregressive flows)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Coupling-layers"><span class="nav-number">3.1.2.3.</span> <span class="nav-text">Coupling layers</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-线性流-Linear-flows"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 线性流 Linear flows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-残差流-Residual-flows"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 残差流 Residual flows</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-Contractive-residual-flows"><span class="nav-number">3.3.1.</span> <span class="nav-text">3.3.1 Contractive residual flows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-Residual-flows-based-on-the-matrix-determinant-lemma"><span class="nav-number">3.3.2.</span> <span class="nav-text">3.3.2 Residual flows based on the matrix determinant lemma</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Planar-flow"><span class="nav-number">3.3.2.1.</span> <span class="nav-text">Planar flow</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Sylvester-flow"><span class="nav-number">3.3.2.2.</span> <span class="nav-text">Sylvester flow</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-构建标准化流-二-：连续时间的变换"><span class="nav-number">4.</span> <span class="nav-text">4. 构建标准化流(二)：连续时间的变换</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2020</span>
+  <!-- <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span> -->
+  <span class="author" itemprop="copyrightHolder"><span class="with-love"><i class="fa fa-heart-o"></i></span>TianHongZXY</span>
+
+  
+
+  
+</div>
+<!--
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'fNjvG519rNMQCRTez4XP1aGe-gzGzoHsz',
+      appKey: 'DY0fa7oCKanbyW5J4UoxG9ug',
+      placeholder: 'Say something',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/click.js"></script>
+</body>
+</html>
