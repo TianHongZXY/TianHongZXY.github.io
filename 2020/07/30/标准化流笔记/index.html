@@ -117,7 +117,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh94f9ut99j30cf0byt8p.jpg">
-<meta property="og:updated_time" content="2020-07-30T09:21:28.776Z">
+<meta property="og:updated_time" content="2020-07-30T09:25:52.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2020-07-30 17:15:21 / Modified: 17:21:28" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
+              <time title="Created: 2020-07-30 17:15:21 / Modified: 17:25:52" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
             
 
             
@@ -514,7 +514,7 @@ p_{\mathrm{x}}(\mathbf{x})=\prod_{i=1}^{D} p_{\mathrm{x}}\left(\mathrm{x}_{i} \m
 \operatorname{det} J_{F}(\mathbf{x})=\prod_{i=1}^{D} \frac{\partial F_{i}}{\partial \mathrm{x}_{i}}=\prod_{i=1}^{D} p_{\mathrm{x}}\left(\mathrm{x}_{i} \mid \mathbf{x}_{<i}\right)=p_{\mathrm{x}}(\mathbf{x})>0</script><p>由于p(x)&gt;0，所以雅可比行列式也&gt;0，那么变换F的逆必存在，由(9)式，将x与z对调，T改为F，可得</p>
 <script type="math/tex; mode=display">
 p_{z}\left(\mathbf{z}\right) = p_{x}\left(\mathbf{x}\right) \left| \mathbf{det} J_{F}(\mathbf{x}) \right|^{-1} = 1</script><p>即z是D维空间中(0, 1)之间的均匀分布。</p>
-<p>上述对p(x)的限制仅仅是$x_{i}$依赖于$x_{<i}$的条件概率对$(x_{i}, x_{<i})$可微，且$p_{x}(\mathbf{x})>0  ~\forall~\mathbf{x}\in \mathbb{R}^{D}$，我们就使用变换F将它变为了最简单的(0, 1)均匀分布，又因为F可逆，所以我们可以使用F的逆将p(z)转换为任意满足上述条件的概率分布p(x)。我们再推广到任意的base distribution，假设p(u)满足上述p(x)满足的条件，那么我们可以使用变换G将任意的概率分布p(u)转换为p(z)，再用F逆将p(z)转换为任意的概率分布p(x)，即 使用变换$T = F^{-1} \circ G$，可将$p_u{\mathbf{u}}$变为$p_{x}(\mathbf{x})$。</p>
+<p>上述对p(x)的限制仅仅是$x_{i}$依赖于$x_{&lt; i}$的条件概率对$(x_{i}, x_{&lt; i})$可微，且$p_{x}(\mathbf{x})&gt;0  ~\forall~\mathbf{x}\in \mathbb{R}^{D}$，我们就使用变换F将它变为了最简单的(0, 1)均匀分布，又因为F可逆，所以我们可以使用F的逆将p(z)转换为任意满足上述条件的概率分布p(x)。我们再推广到任意的base distribution，假设p(u)满足上述p(x)满足的条件，那么我们可以使用变换G将任意的概率分布p(u)转换为p(z)，再用F逆将p(z)转换为任意的概率分布p(x)，即 使用变换$T = F^{-1} \circ G$，可将$p_u{\mathbf{u}}$变为$p_{x}(\mathbf{x})$。</p>
 <h2 id="2-3-使用flows来建模和推断"><a href="#2-3-使用flows来建模和推断" class="headerlink" title="2.3 使用flows来建模和推断"></a>2.3 使用flows来建模和推断</h2><p>为了拟合一个概率模型，我们要拟合一个flow-based model $p_{x}(\mathbf{x};\theta)$去近似目标分布$p_{x}^{*}(\mathbf{x})$，$\theta$代表$(\phi,\psi)$ ，$\phi$和$\psi$分别是T与p(u)的参数，可以通过最小化KL散度和最大似然估计做到</p>
 <h3 id="2-3-1-正向KL散度与最大似然估计"><a href="#2-3-1-正向KL散度与最大似然估计" class="headerlink" title="2.3.1 正向KL散度与最大似然估计"></a>2.3.1 正向KL散度与最大似然估计</h3><script type="math/tex; mode=display">
 \begin{aligned}
