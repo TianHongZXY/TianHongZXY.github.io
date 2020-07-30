@@ -117,7 +117,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh94f9ut99j30cf0byt8p.jpg">
-<meta property="og:updated_time" content="2020-07-30T12:32:22.268Z">
+<meta property="og:updated_time" content="2020-07-30T14:33:08.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 
@@ -382,7 +382,7 @@
                 
               
 
-              <time title="Created: 2020-07-30 17:15:21 / Modified: 20:32:22" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
+              <time title="Created: 2020-07-30 17:15:21 / Modified: 22:33:08" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
             
 
             
@@ -579,7 +579,7 @@ for ~i=1: D
 \left(\boldsymbol{h}_{1}, \ldots, \boldsymbol{h}_{D}\right)=c(\mathbf{z}) \\
 \mathrm{z}_{i}=\tau^{-1}\left(\mathrm{z}_{i}^{\prime} ; \boldsymbol{h}_{i}\right)
 \end{array}
-\</script><p>上面的计算过程是：开始不知道z，就随机化，但是z0是任意的，也就是我们可以直接得到h1，然后用z1’与它计算出z1，纠正随机初始化的z的第1个元素，之后以此类推，第D次迭代后，z被完全纠正。Masked conditioner 每次只能使用z(&lt;i)，即只能计算出hi。开始直接能得到h1，计算出z1后，再让z1通过conditioner函数得到h2，再用公式计算z2，以此类推。这里一共计算了D次c，而在正向计算时只用一次，求逆时计算代价是正向的D倍，对高维数据来说无法接受。一种解决办法是类似于牛顿法的更新公式(<em>我们要求使 f(z) = z’成立的 z，即求g(z) = f(z) - z’的零点，那么更新公式 z = z - a \</em> g(z)/g’(z) = z - a * (f(z)-z’)/J)*</p>
+\</script><p>上面的计算过程是：开始不知道z，就随机化，但是z0是任意的，也就是我们可以直接得到h1，然后用z1’与它计算出z1，纠正随机初始化的z的第1个元素，之后以此类推，第D次迭代后，z被完全纠正。Masked conditioner 每次只能使用z(&lt;i)，即只能计算出hi。开始直接能得到h1，计算出z1后，再让z1通过conditioner函数得到h2，再用公式计算z2，以此类推。这里一共计算了D次c，而在正向计算时只用一次，求逆时计算代价是正向的D倍，对高维数据来说无法接受。一种解决办法是类似于牛顿法的更新公式(我们要求使 f(z) = z’成立的 z，即求g(z) = f(z) - z’的零点，那么更新公式 z = z - a * g(z)/g’(z) = z - a * (f(z)-z’)/J)</p>
 <script type="math/tex; mode=display">
 \mathbf{z}_{k+1}=\mathbf{z}_{k}-\alpha \operatorname{diag}\left(J_{f_{\phi}}\left(\mathbf{z}_{k}\right)\right)^{-1}\left(f_{\phi}\left(\mathbf{z}_{k}\right)-\mathbf{z}^{\prime}\right)</script><p>我们使用$\mathbf{z^\prime}$初始化$\mathbf{z_0}$，$f_{\phi}^{-1}(\mathbf{z^\prime})$是上式唯一的不动点，一般$0&lt; \alpha&lt; 2$的情况下$\mathbf{z}_{k}$最终会收敛到某个局部最优点，否则将发散。</p>
 <p>掩码自回归流主要适用于不需要求逆或维度较低的情况。</p>
