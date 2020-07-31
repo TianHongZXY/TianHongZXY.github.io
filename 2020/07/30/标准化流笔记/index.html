@@ -117,7 +117,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 <meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh94f9ut99j30cf0byt8p.jpg">
-<meta property="og:updated_time" content="2020-07-30T14:33:08.108Z">
+<meta property="og:updated_time" content="2020-07-31T06:36:38.155Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1gh6ofqbf82j30dw0bngln.jpg">
 
@@ -382,12 +382,24 @@
                 
               
 
-              <time title="Created: 2020-07-30 17:15:21 / Modified: 22:33:08" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
+              <time title="Created: 2020-07-30 17:15:21" itemprop="dateCreated datePublished" datetime="2020-07-30T17:15:21+08:00">2020-07-30</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-07-31 14:36:38" itemprop="dateModified" datetime="2020-07-31T14:36:38+08:00">2020-07-31</time>
               
             
           </span>
@@ -543,7 +555,7 @@ T &=& T_{K} \circ \cdots \circ T_{1} \\
 <script type="math/tex; mode=display">
 \mathrm{z}_{i}^{\prime}=\tau\left(\mathrm{z}_{i} ; \boldsymbol{h}_{i}\right) \quad \text { where } \quad \boldsymbol{h}_{i}=c_{i}\left(\mathbf{z}_{<i}\right)</script><p>$\tau$就是我们的transformer，$c_{i}$是第i个conditioner，该变换是严格单调函数，因此必可逆。变换$\tau$的参数为$h_{i}$，$h_{i}$由conditioner决定，描述当输入的$\mathbf{z}_{i}$变化时，输出$\mathbf{z}_{i}^{\prime}$如何变。conditioner唯一的限制就是它只能将$\mathbf{z}_{&lt; i}$作为输入，因此它可以是任意一个复杂的神经网络，不必关心是否可逆等问题。因此，可以看出，$f_{\phi}$的参数$\phi$其实就是conditioner的参数，但有时变换$\tau$也有它自己的额外参数(除了$h_{i}$)。上述变换的逆变换为</p>
 <script type="math/tex; mode=display">
-\mathrm{z}_{i}=\tau ^{-1}\left(\mathrm{z}_{i}^{\prime} ; \boldsymbol{h}_{i}\right) \quad \text { where } \quad \boldsymbol{h}_{i}=c_{i}\left(\mathbf{z}_{< i}\right)</script><p>在正向计算中，因为输入$\mathbf{z}$是完全已知的，那么所有的$h_{i}$可以同时一次性求出来，因此$\mathbf{z}^{\prime}$也可以同时求出来，但是在求逆变换的计算时，要计算$\mathbf{z}_{i}$前必须先把$\mathbf{z}_{&lt; i}$都计算出来，因为$\mathbf{z}_{&lt; i}$是$h_{i}$的输入。<br>很明显，自回归流的雅可比矩阵是下三角形的，因为任意的$\mathbf{z}_{i}^{\prime}$都不依赖$\mathbf{z}_{&gt;i}$，那么$\mathbf{z}_{&lt; i}$关于$\mathbf{z}_{&gt;i}$的偏导都为0，因此雅可比矩阵可写为</p>
+\mathrm{z}_{i}=\tau ^{-1}\left(\mathrm{z}_{i}^{\prime} ; \boldsymbol{h}_{i}\right) \quad \text { where } \quad \boldsymbol{h}_{i}=c_{i}\left(\mathbf{z}_{< i}\right)</script><p>在正向计算中，因为输入$\mathbf{z}$是完全已知的，那么所有的$h_{i}$可以同时一次性求出来，因此$\mathbf{z}^{\prime}$也可以同时求出来，但是在求逆变换的计算时，要计算$\mathbf{z}_{i}$前必须先把$\mathbf{z}_{&lt; i}$都计算出来，因为$\mathbf{z}_{&lt; i}$是$h_{i}$的输入。<br>很明显，自回归流的雅可比矩阵是下三角形的，因为任意的$\mathbf{z}_{i}^{\prime}$都不依赖$\mathbf{z}_{&gt;i}$，那么$\mathbf{z}^{\prime}_{\leq i}$关于$\mathbf{z}_{&gt;i}$的偏导都为0，因此雅可比矩阵可写为</p>
 <script type="math/tex; mode=display">
 J_{f_{\phi}}(\mathbf{z})=\left[\begin{array}{ccc}
 \frac{\partial \tau}{\partial z_{1}}\left(z_{1} ; \boldsymbol{h}_{1}\right) &  & \mathbf{0} \\
