@@ -107,25 +107,47 @@
 
 
 
-  <meta name="description" content="Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
-<meta name="keywords" content="deep learning">
+  <meta name="description" content="CS224n-lecture15-NLG LMs and Decoding Algorithm前面学过了 greedy decoding 和 beam search decoding，使用不同的k的影响是什么样的？  较小的k，类似于greedy decoding，容易生成不符合语法，不自然，无意义，不正确的句子 较大的k意味着有更多的hypotheses可选 增大k能缓解上述的部分问题 更大的k">
+<meta name="keywords" content="deep learning,NLP,CS224n">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Normalization">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2019&#x2F;11&#x2F;06&#x2F;DL%E4%B8%AD%E7%9A%84Normalization&#x2F;index.html">
+<meta property="og:title" content="CS224n-lecture15-NLG">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2020&#x2F;08&#x2F;06&#x2F;CS224n-lecture15-NLG&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="Batch size的影响使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。">
+<meta property="og:description" content="CS224n-lecture15-NLG LMs and Decoding Algorithm前面学过了 greedy decoding 和 beam search decoding，使用不同的k的影响是什么样的？  较小的k，类似于greedy decoding，容易生成不符合语法，不自然，无意义，不正确的句子 较大的k意味着有更多的hypotheses可选 增大k能缓解上述的部分问题 更大的k">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
-<meta property="og:updated_time" content="2020-02-02T15:44:57.701Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh6og0j0ij30vu0m9gpn.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh6qmi9fgj30vk0nd43d.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh710cpq8j30vn0no0xa.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh7219p8sj30vw0nnaew.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh77ioipej30vm0nrtc6.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh76zbcfzj30vo0npaef.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh78bpvrij30vp0np43m.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh78y1v9fj30vg0nbq76.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh7aal7ojj30vq0nodlb.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh7el450pj30vv0nrn2e.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhji8kyxgj30vl0ngjve.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhjlhdeogj30vu0gyq60.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhjni17joj30vv0nbtcy.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhjqo7i07j30ve0nin13.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhjshybhjj30vn0jjn05.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhjyfq2jxj30v60mqwiq.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhk0ipk4ej30ve0ni0wp.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhk4oycmoj30vg0ntaeu.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhktrhjt0j30vq0nrgqh.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhkx7wdrfj30vm0nlwn2.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhky45b9pj30vo0npgrm.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhkztmidjj30vu0neae0.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghhl036yjwj30vl0nijvi.jpg">
+<meta property="og:updated_time" content="2020-08-06T17:01:16.919Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;s2.ax1x.com&#x2F;2020&#x2F;01&#x2F;30&#x2F;11FjxS.md.jpg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;007S8ZIlgy1ghh6og0j0ij30vu0m9gpn.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2019/11/06/DL中的Normalization/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2020/08/06/CS224n-lecture15-NLG/"/>
 
 
 
@@ -135,7 +157,7 @@
   };
 </script>
 
-  <title>Normalization | TianHongZXY</title>
+  <title>CS224n-lecture15-NLG | TianHongZXY</title>
   
 
 
@@ -338,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2020/08/06/CS224n-lecture15-NLG/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -355,7 +377,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Normalization
+          <h1 class="post-title" itemprop="name headline">CS224n-lecture15-NLG
 
               
             
@@ -381,7 +403,7 @@
                 
               
 
-              <time title="Created: 2019-11-06 16:35:24" itemprop="dateCreated datePublished" datetime="2019-11-06T16:35:24+08:00">2019-11-06</time>
+              <time title="Created: 2020-08-06 16:17:44" itemprop="dateCreated datePublished" datetime="2020-08-06T16:17:44+08:00">2020-08-06</time>
             
 
             
@@ -398,7 +420,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-02-02 23:44:57" itemprop="dateModified" datetime="2020-02-02T23:44:57+08:00">2020-02-02</time>
+                <time title="Modified: 2020-08-07 01:01:16" itemprop="dateModified" datetime="2020-08-07T01:01:16+08:00">2020-08-07</time>
               
             
           </span>
@@ -415,7 +437,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CS224n/" itemprop="url" rel="index"><span itemprop="name">CS224n</span></a></span>
 
                 
                 
@@ -430,8 +452,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/06/DL%E4%B8%AD%E7%9A%84Normalization/" itemprop="commentCount"></span>
+                <a href="/2020/08/06/CS224n-lecture15-NLG/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2020/08/06/CS224n-lecture15-NLG/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -459,20 +481,64 @@
       
 
       
-        <h1 id="Batch-size的影响"><a href="#Batch-size的影响" class="headerlink" title="Batch size的影响"></a>Batch size的影响</h1><p>使用mini-batch训练时，batch size的影响，目前可以实验证实的是：batch size 设置得较小训练出来的模型相对大batch size训练出的模型泛化能力更强，在测试集上的表现更好，而太大的batch size往往不太work，而且泛化能力较差。但是背后是什么原因造成的，目前还未有定论。</p>
-<a id="more"></a>
-<h1 id="两种Normalization的位置"><a href="#两种Normalization的位置" class="headerlink" title="两种Normalization的位置"></a>两种Normalization的位置</h1><p>目前有两种在神经元中插入Normalization操作的地方，第一种是原始BN论文提出的，放在激活函数之前；另外一种是后续研究提出的，放在激活函数之后，不少研究表明将BN放在激活函数之后效果更好。</p>
-<h1 id="规范化函数"><a href="#规范化函数" class="headerlink" title="规范化函数"></a>规范化函数</h1><p>对于神经元的激活值来说，不论哪种Normalization方法，其规范化目标都是一样的，就是将其激活值规整为均值为0，方差为1的正态分布。即规范化函数统一都是如下形式：</p>
-<script type="math/tex; mode=display">
-\begin{aligned} \tau &=\frac{a_{i}-\mu}{\sigma_{i}} \\ a_{i}^{\text {norm }} &=\gamma_{i} \cdot \tau+\beta_{i} \end{aligned}</script><p>如果写成一体的形式，则是如下形式：</p>
-<script type="math/tex; mode=display">
-a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</script><p>其中，ai为某个神经元原始激活值， ai_norm为经过规范化操作后的规范后值。整个规范化过程可以分解为两步，第一步参考公式（1），是对激活值规整到均值为0，方差为1的正态分布范围内。其中， u是通过神经元集合S（中包含的m个神经元各自的激活值求出的均值，即：</p>
-<script type="math/tex; mode=display">
-\mu=\frac{1}{m} \sum_{k=1}^{m} a_{k} \quad k \in S \text { and }\|S\|=m</script><p>为根据均值和集合S中神经元各自激活值求出的激活值标准差：</p>
-<script type="math/tex; mode=display">
-\sigma_{i}=\sqrt{\frac{1}{m} \sum_{k=1}^{m}\left(a_{k}-\mu\right)^{2}+\varepsilon} \quad k \in S \text { and }\|S\|=m</script><h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>各种Normalization的适用场景，可以简洁归纳如下：对于RNN的神经网络结构来说，目前只有LayerNorm是相对有效的；如果是GAN等图片生成或图片内容改写类型的任务，可以优先尝试InstanceNorm；如果使用场景约束BatchSize必须设置很小，无疑此时考虑使用GroupNorm；而其它任务情形应该优先考虑使用BatchNorm。</p>
-<p>原文链接：<a href="https://zhuanlan.zhihu.com/p/43200897" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/43200897</a></p>
-<p><img src="https://s2.ax1x.com/2020/01/30/11FjxS.md.jpg" width="200" height="230" align="center" alt="11FjxS.jpg" border="0"  /></p>
+        <h1 id="CS224n-lecture15-NLG"><a href="#CS224n-lecture15-NLG" class="headerlink" title="CS224n-lecture15-NLG"></a>CS224n-lecture15-NLG</h1><hr>
+<h1 id="LMs-and-Decoding-Algorithm"><a href="#LMs-and-Decoding-Algorithm" class="headerlink" title="LMs and Decoding Algorithm"></a>LMs and Decoding Algorithm</h1><p>前面学过了 greedy decoding 和 beam search decoding，使用不同的k的影响是什么样的？</p>
+<ul>
+<li>较小的k，类似于greedy decoding，容易生成不符合语法，不自然，无意义，不正确的句子</li>
+<li>较大的k意味着有更多的hypotheses可选<ul>
+<li>增大k能缓解上述的部分问题</li>
+<li>更大的k意味着对算力要求更高</li>
+<li>对神经机器翻译任务来说，更大的k会导致更低的BLEU分数，因为更大的k生成了过短的翻译，即使已经加了score normalization</li>
+<li>对开放性问题，比如闲聊机器人，更大的k会让输出的回答变得generic(正确但普遍、平庸、乏味、答非所问)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh6og0j0ij30vu0m9gpn.jpg" alt="image-20200806164354225"></p>
+<p>有一种叫sampling-based decoding，不像beam search需要同时跟踪多个假设，耗费几倍的计算，而是和greedy decoding一样，只计算一条hypothesis，但是却更有随机性，不像greedy decoding每次选argmax导致生成的句子很不好。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh6qmi9fgj30vk0nd43d.jpg" alt="image-20200806164601383"></p>
+<p>还有一个技巧可以应用于sampling-based decoding是给softmax升温，使得概率分布更均匀平滑（在知识蒸馏里很常用），但是这对greedy decoding和beam search decoding都没有用，因为二者一个是选argmax，一个是选top-k max，使分布更均匀并不会改变大小次序。</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh710cpq8j30vn0no0xa.jpg" alt="image-20200806165600434"></p>
+<p>总结：</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh7219p8sj30vw0nnaew.jpg" alt="image-20200806165659856"></p>
+<h1 id="NLG-tasks-and-neural-approaches-to-them"><a href="#NLG-tasks-and-neural-approaches-to-them" class="headerlink" title="NLG tasks and neural approaches to them"></a>NLG tasks and neural approaches to them</h1><h2 id="文本摘要"><a href="#文本摘要" class="headerlink" title="文本摘要"></a>文本摘要</h2><p>分为单文档摘要和多文档摘要（多个描述同一事件的文档），还有句子简化即使用更简单的方式表达句子原意（可用于儿童教育）</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh77ioipej30vm0nrtc6.jpg" alt="image-20200806170216285"></p>
+<p>主要有两个策略，一个是抽取式摘要，另一个是生成式摘要</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh76zbcfzj30vo0npaef.jpg" alt="image-20200806170145107"></p>
+<p>文本摘要的一种评价指标：ROUGE</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh78bpvrij30vp0np43m.jpg" alt="image-20200806170302407"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh78y1v9fj30vg0nbq76.jpg" alt="image-20200806170339276"></p>
+<p>神经网络摘要有一种copy机制，让模型生成Pgen去决定何时去copy原文，何时自己去生成，这是一种hybrid模型，综合了抽取与生成摘要的方法</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh7aal7ojj30vq0nodlb.jpg" alt="image-20200806170456155"></p>
+<p>但它有很大的缺点：</p>
+<ul>
+<li>copy得太多了！</li>
+<li>摘要模型变成了一个完全的抄写模型</li>
+<li>不擅于总体上的内容选择，特别是文档较长时</li>
+<li>没有总体上的选取内容的策略</li>
+</ul>
+<p>一种改进方法 bottom-up 摘要，先决定哪些词被包含哪些词不被包含，总体上选择内容，之后再在选择的词句上进行摘要</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghh7el450pj30vv0nrn2e.jpg" alt="image-20200806170903522"></p>
+<h2 id="对话"><a href="#对话" class="headerlink" title="对话"></a>对话</h2><p>对话任务主要分为两种：任务型导向对话和社交对话</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhji8kyxgj30vl0ngjve.jpg" alt="image-20200807000745451"></p>
+<p>在神经网络对话模型前，主要的方法是人为预先准备好回答的模板或者从一堆回答语料里检索出一条最贴切的作为输出答案，自从2015年起，很多论文开始使用seq2seq来构建开放性对话系统。但是seq2seq有非常多的问题</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhjlhdeogj30vu0gyq60.jpg" alt="image-20200807001052676"></p>
+<p>为了解决“不相关的回答”的问题，不同于之前seq2seq使用的是极大似然估计，改为最大化互信息，即在给定语境S的条件下，输出的回答T要比原本模型作为LM直接输出的T时增加的概率最大化</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhjni17joj30vv0nbtcy.jpg" alt="image-20200807001249647"></p>
+<p>为了解决普遍、无意义、乏味的回答，解决的方法有：提高罕见词的权重，使用sampling decoding而不是beam search，使用检索再修正的模型而不是从零开始生成回答的模型等</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhjqo7i07j30ve0nin13.jpg" alt="image-20200807001552208"></p>
+<p>为了解决重复的问题，方法有：在beam search时出现重复n-grams时直接截断，更复杂的方法是训练一个能防止模型多次关注相同单词</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhjshybhjj30vn0jjn05.jpg" alt="image-20200807001737875"></p>
+<p>为了解决“不连续一致的人设”的问题，可以训练一个能编码对话方的画像为embedding的seq2seq模型，或用更好的数据集</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhjyfq2jxj30v60mqwiq.jpg" alt="image-20200807002320518"></p>
+<h2 id="讲故事"><a href="#讲故事" class="headerlink" title="讲故事"></a>讲故事</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhk0ipk4ej30ve0ni0wp.jpg" alt="image-20200807002520368"></p>
+<p>有一种简单的看图说故事的方法，先使用COCO数据集学习一个从图片到其对应的描述句子的映射得到embedding，再使用目标风格的语料去学一个LM模型，再训练使用它解码之前的embedding得到原始的文本，组合两个模型到一起</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhk4oycmoj30vg0ntaeu.jpg" alt="image-20200807002920810"></p>
+<h1 id="NLG-evaluation"><a href="#NLG-evaluation" class="headerlink" title="NLG evaluation"></a>NLG evaluation</h1><p>整体上的自动评估的metrics都不够好，需要定义多个不同的足够<strong>明确精细</strong>的自动评估指标才行</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhktrhjt0j30vq0nrgqh.jpg" alt="image-20200807005326360"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhkx7wdrfj30vm0nlwn2.jpg" alt="image-20200807005645572"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhky45b9pj30vo0npgrm.jpg" alt="image-20200807005737436"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhkztmidjj30vu0neae0.jpg" alt="image-20200807005915502"></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1ghhl036yjwj30vl0nijvi.jpg" alt="image-20200807005931359"></p>
 
       
     </div>
@@ -498,6 +564,10 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
           
             <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
           
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+            <a href="/tags/CS224n/" rel="tag"><i class="fa fa-tag"></i> CS224n</a>
+          
         </div>
       
 
@@ -509,8 +579,8 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/27/pytorch%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/" rel="next" title="PyTorch文本分类">
-                <i class="fa fa-chevron-left"></i> PyTorch文本分类
+              <a href="/2020/08/03/CS224n-lecture11-CNN-for-NLP/" rel="next" title="CS224n-lecture11-CNN for NLP">
+                <i class="fa fa-chevron-left"></i> CS224n-lecture11-CNN for NLP
               </a>
             
           </div>
@@ -518,10 +588,6 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/09/%E4%BF%A1%E6%81%AF%E7%86%B5/" rel="prev" title="信息熵">
-                信息熵 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +792,7 @@ a_{i}^{\text {norm }}=\gamma_{i} \cdot \frac{a_{i}-\mu}{\sigma_{i}}+\beta_{i}</s
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch-size的影响"><span class="nav-number">1.</span> <span class="nav-text">Batch size的影响</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#两种Normalization的位置"><span class="nav-number">2.</span> <span class="nav-text">两种Normalization的位置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规范化函数"><span class="nav-number">3.</span> <span class="nav-text">规范化函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CS224n-lecture15-NLG"><span class="nav-number">1.</span> <span class="nav-text">CS224n-lecture15-NLG</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LMs-and-Decoding-Algorithm"><span class="nav-number">2.</span> <span class="nav-text">LMs and Decoding Algorithm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NLG-tasks-and-neural-approaches-to-them"><span class="nav-number">3.</span> <span class="nav-text">NLG tasks and neural approaches to them</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文本摘要"><span class="nav-number">3.1.</span> <span class="nav-text">文本摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对话"><span class="nav-number">3.2.</span> <span class="nav-text">对话</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#讲故事"><span class="nav-number">3.3.</span> <span class="nav-text">讲故事</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NLG-evaluation"><span class="nav-number">4.</span> <span class="nav-text">NLG evaluation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
