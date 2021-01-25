@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css"/>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="ICLR2021的论文《CoCon:A Self-Supervised Approachfor Controlled Text Generation》，提出一种用文本去指导文本生成的无监督方法，是follow了CTRL和PPLM的后续工作。作者设计了一个叫做CoCon的模块，插入transformer中，CoCon结构和正常的transformer encoder一样。 在生成文本时，假设$c$是">
+<meta name="keywords" content="deep learning,NLP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【ICLR2021】CoCon: 一种自监督的可控文本生成方法">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2021&#x2F;01&#x2F;24&#x2F;%E3%80%90ICLR2021%E3%80%91CoCon:%20%E4%B8%80%E7%A7%8D%E8%87%AA%E7%9B%91%E7%9D%A3%E7%9A%84%E5%8F%AF%E6%8E%A7%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95&#x2F;index.html">
+<meta property="og:site_name" content="TianHongZXY">
+<meta property="og:description" content="ICLR2021的论文《CoCon:A Self-Supervised Approachfor Controlled Text Generation》，提出一种用文本去指导文本生成的无监督方法，是follow了CTRL和PPLM的后续工作。作者设计了一个叫做CoCon的模块，插入transformer中，CoCon结构和正常的transformer encoder一样。 在生成文本时，假设$c$是">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gmz57gpiutj318z0oe0x4.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gmz5rrgf4fj31860eptc9.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gmz5s2i3mxj319c0az40m.jpg">
+<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gmzanbk306j31780ab76c.jpg">
+<meta property="og:updated_time" content="2021-01-25T15:13:35.741Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gmz57gpiutj318z0oe0x4.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="https://TianHongZXY.github.io/2021/01/24/【ICLR2021】CoCon: 一种自监督的可控文本生成方法/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>【ICLR2021】CoCon: 一种自监督的可控文本生成方法 | TianHongZXY</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TianHongZXY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">那时我们一无所有，也没有什么能妨碍我们享受静夜</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2021/01/24/%E3%80%90ICLR2021%E3%80%91CoCon:%20%E4%B8%80%E7%A7%8D%E8%87%AA%E7%9B%91%E7%9D%A3%E7%9A%84%E5%8F%AF%E6%8E%A7%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY"/>
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
+      <meta itemprop="image" content="/images/header.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【ICLR2021】CoCon: 一种自监督的可控文本生成方法
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-01-24 22:12:28" itemprop="dateCreated datePublished" datetime="2021-01-24T22:12:28+08:00">2021-01-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-01-25 23:13:35" itemprop="dateModified" datetime="2021-01-25T23:13:35+08:00">2021-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/01/24/%E3%80%90ICLR2021%E3%80%91CoCon:%20%E4%B8%80%E7%A7%8D%E8%87%AA%E7%9B%91%E7%9D%A3%E7%9A%84%E5%8F%AF%E6%8E%A7%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2021/01/24/%E3%80%90ICLR2021%E3%80%91CoCon:%20%E4%B8%80%E7%A7%8D%E8%87%AA%E7%9B%91%E7%9D%A3%E7%9A%84%E5%8F%AF%E6%8E%A7%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>ICLR2021的论文《CoCon:A Self-Supervised Approachfor Controlled Text Generation》，提出一种用文本去指导文本生成的无监督方法，是follow了CTRL和PPLM的后续工作。作者设计了一个叫做CoCon的模块，插入transformer中，CoCon结构和正常的transformer encoder一样。<br><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz57gpiutj318z0oe0x4.jpg" alt="image-20210124221447770"></p>
+<p>在生成文本时，假设$c$是我们想要的内容，即control部分，c的长度为$l_{c}$，句子$x$长度为$l$，被划分为$1:t-1$和$t:l$两个部分，我们使用$c$和$1:t-1$去预测$t:l$部分。具体做法如下：</p>
+<p>首先用一个transformer encoder分别编码$c$和$x_{1:t-1}$，得到了各自的特征$h_c$和$h_{1:t-1}$，然后将他们送入CoCon模块通过self-attention融合，将$h_c$的Key和Value concat到$h_{1:t-1}$的Key和Value前面，Query不变，依旧来自于$h_{1:t-1}$</p>
+<script type="math/tex; mode=display">
+\mathbf{K}^{\prime}=\left[\mathbf{K}^{(\mathbf{c})} ; \mathbf{K}\right], \quad \mathbf{V}^{\prime}=\left[\mathbf{V}^{(\mathbf{c})} ; \mathbf{V}\right], \quad \mathbf{A}=\operatorname{Softmax}\left(\mathbf{Q} \mathbf{K}^{\prime \top}\right) \mathbf{V}^{\prime}=\operatorname{Softmax}(\mathbf{W}) \mathbf{V}^{\prime}</script><script type="math/tex; mode=display">
+\mathbf{h}_{i}^{\prime}=\mathrm{FF}\left(\mathbf{a}_{i}\right), \quad \tilde{\mathbf{o}}_{t}=\operatorname{dec}\left(\left[\mathbf{h}_{: t-2} ; \mathbf{h}_{t-1}^{\prime}\right]\right), \quad p_{\theta, \psi}\left(\tilde{x}_{t} \mid \mathbf{c}, x_{: t-1}\right)=\operatorname{Softmax}\left(\tilde{\mathbf{o}}_{t}\right)</script><script type="math/tex; mode=display">
+\mathbf{h}_{: t-1}^{\prime}=\operatorname{CoCon}\left(\mathbf{h}_{: l_{c}}^{(\mathbf{c})}, \mathbf{h}_{: t-1}\right)</script><p>$\mathbf{A}$经过feed-forward layer后得到了我们要的包含c的信息的隐变量$h’_{t-1}$，普通的transformer就是得到了$h_{1:t-1}$，然后就当作memory输入decoder去指导文本生成了，CoCon这一步就是把$h_c$和$h_{1:t-1}$ concat起来再经过一个transformer encoder，得到了我们要的$h’$</p>
+<p>decoder的生成过程作者写的让我稍微有些困惑，生成$x_t$的时候并不是使用$h’_{1:t-1}$，而是把$h’_{t-1}$和$h_{:t-2}$ concat起来去生成$x_t$，不知道为什么不直接用$h’_{1:t-1}$去生成$x_t$。</p>
+<p>当我们有多个想要的内容时，也就是有多个c，可以把它们一起concat起来，即</p>
+<script type="math/tex; mode=display">
+\mathbf{K}^{\prime}=\left[\mathbf{K}^{\left(\mathbf{c}^{1}\right)} \ldots \mathbf{K}^{\left(\mathbf{c}^{N}\right)} ; \mathbf{K}\right], \quad \mathbf{V}^{\prime}=\left[\mathbf{V}^{\left(\mathbf{c}^{1}\right)} \ldots \mathbf{V}^{\left(\mathbf{c}^{N}\right)} ; \mathbf{V}\right], \quad \mathbf{A}=\operatorname{Softmax}\left(\mathbf{Q} \mathbf{K}^{\prime \top}\right) \mathbf{V}^{\prime}</script><p>训练的过程作者使用了4个loss，首先把长度为$l$的句子$x$分为两个部分，$x^a = {x_1, …,x_{t-1}}$，$x^b = {x_t, …,x_l}$，</p>
+<p>第一个是重构loss，让$c=x^b$，然后让模型condition on $x^a$和$c$去生成$x^b$</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\text {self }}=-\sum_{i=t}^{l} \log p_{\theta, \psi}\left(x_{i} \mid\left(\mathbf{c}=\mathbf{x}^{b}\right),\left\{x_{1}, \ldots, x_{i-1}\right\}\right)</script><p>第二个是叫做Null Content Loss，$c=\varnothing$，模型只condition on $x^a$，让模型学会生成流畅的句子</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\text {null }}=-\sum_{i=t}^{l} \log p_{\theta, \psi}\left(x_{i} \mid(\mathbf{c}=\varnothing),\left\{x_{1}, \ldots, x_{i-1}\right\}\right)</script><p>第三个Cycle loss我觉得是本文最大亮点，不过这个cycle思想应该在以前的很多工作中都有了，作者选出两个句子$x$和$x’$，$\mathbf{x}=\left[\mathbf{x}^{a} ; \mathbf{x}^{b}\right]$, $\mathbf{x}^{\prime}=\left[\mathbf{x}^{\prime a} ; \mathbf{x}^{\prime b}\right]$，先让模型根据$x’^a$和$c=x^b$去生成句子</p>
+<script type="math/tex; mode=display">
+\mathbf{y}_{\mathbf{x}, \mathbf{x}^{\prime}}=f_{\theta, \psi}\left(\left(\mathbf{c}=\mathbf{x}^{b}\right),\left(\mathbf{p}=\mathbf{x}^{\prime a}\right)\right)</script><p>然后让模型根据$x^a$和$c=y_{x,x’}$去生成句子，loss cycle的目的是要使其接近$x^b$</p>
+<script type="math/tex; mode=display">
+\mathbf{y}_{\text {cycle }}=f_{\theta, \psi}\left(\left(\mathbf{c}=\mathbf{y}_{\mathbf{x}, \mathbf{x}^{\prime}}\right),\left(\mathbf{p}=\mathbf{x}^{a}\right)\right)</script><script type="math/tex; mode=display">
+\mathcal{L}_{\text {cycle }}=-\sum_{i=t}^{l} \log p_{\theta, \psi}\left(\mathbf{y}_{\text {cycle }}=\mathbf{x}^{b} \mid\left(\mathbf{c}=\mathbf{y}_{\mathbf{x}, \mathbf{x}^{\prime}}\right),\left(\mathbf{p}=\mathbf{x}^{a}\right)\right)</script><p>这块理解起来还是有点绕的，首先$y_{x,x’}$的生成过程$c=x^b$，那么我们是希望$y_{x,x’}$的内容能包含$x^b$的信息，同时要和$x’^a$的衔接保持流畅，接着使用$c=y_{x,x’}$和$x^a$生成$y_cycle$，那么我们希望$y_cycle$既能包含$y_{x,x’}$的信息，又要和$x^a$衔接流畅，而又因为$y_{x,x’}$包含$x^b$的信息，因此$y_cycle$应该既包含$x^b$的信息，又能和$x^a$衔接流畅，那它不就应该是生成了$x^b$吗？！因此$loss_{cycle}$就是计算$y_cycle$和$x^b$相差多大。作者在这里的intuition是：在现实中给出提示文本$prompt~text = x^a$，可能的衔接文本$x^b$是非常多的，因此我们希望通过给模型一个$target ~content = c$，去生成包含$c$的信息且能和$x^a$衔接流畅的$x^b$。</p>
+<p>最后一个loss是adversarial loss，因为这在其他工作中经常被用，希望模型生成的文本尽可能与真实文本接近</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_{\mathrm{adv}}=\mathbb{E}_{\mathbf{x}}\left[\log f_{\mathrm{disc}}(\operatorname{enc}(\mathbf{x}))\right]+\mathbb{E}_{\mathbf{y}}\left[\log \left(1-f_{\mathrm{disc}}(\mathrm{enc}(\mathbf{y}))\right]\right.</script><p>$f_{disc}$的参数为$\phi$</p>
+<script type="math/tex; mode=display">
+\phi^{*}=\underset{\phi}{\arg \max } \mathcal{L}_{\mathrm{adv}}</script><p>最后整个模型的训练是</p>
+<script type="math/tex; mode=display">
+\theta^{*}=\underset{\theta}{\arg \min }\left(\lambda_{\text {self }} \mathcal{L}_{\text {self }}+\lambda_{\text {null }} \mathcal{L}_{\text {null }}+\lambda_{\text {cycle }} \mathcal{L}_{\text {cycle }}+\lambda_{\text {adv }} \mathcal{L}_{\mathrm{adv}}\right)</script><p>$\lambda$用来控制每个loss的权重。</p>
+<p>作者的实验基于GPT-2，数据选用了openai提供的用GPT-2生成的句子<br><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz5rrgf4fj31860eptc9.jpg" alt="Table 2: Content similarity and quality of generated content-conditioned samples."> </p>
+<p>sentiment和topic classifier用了一个在kaggle数据集上训练得到的分类器，发现CoCon生成的句子能更好地控制topic和sentiment</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmz5s2i3mxj319c0az40m.jpg" alt="Table 3: Evaluation of topic-controlled generations. Topic accuracy report ratio of samples that were classified as their target topic."></p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gmzanbk306j31780ab76c.jpg" alt="Table 4: Evaluation of sentiment-controlled generations. Sentiment accuracy report ratio of samples that were classified as their target sentiment."> </p>
+<p>稍微有些遗憾的是作者还没有开源代码，不过ICLR2021才放榜不久，也许后续作者们会补上代码吧。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/04/%E5%9B%9E%E9%A6%96%E8%BF%87%E5%8E%BB%E7%9A%84%E4%B8%89%E5%B9%B4/" rel="next" title="回首过去的三年">
+                <i class="fa fa-chevron-left"></i> 回首过去的三年
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="TianHongZXY"/>
+            
+              <p class="site-author-name" itemprop="name">TianHongZXY</p>
+              <p class="site-description motion-element" itemprop="description">浪漫骑士 行吟诗人 自由思想者</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/TianHongZXY" title="GitHub &rarr; https://github.com/TianHongZXY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/mailto:tianhongzxy@163.com" title="E-Mail &rarr; mailto:tianhongzxy@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/tianhongzxy" title="知乎 &rarr; https://www.zhihu.com/people/tianhongzxy" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <!-- <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span> -->
+  <span class="author" itemprop="copyrightHolder"><span class="with-love"><i class="fa fa-heart-o"></i></span>TianHongZXY</span>
+
+  
+
+  
+</div>
+<!--
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'fNjvG519rNMQCRTez4XP1aGe-gzGzoHsz',
+      appKey: 'DY0fa7oCKanbyW5J4UoxG9ug',
+      placeholder: 'Say something',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/click.js"></script>
+</body>
+</html>
