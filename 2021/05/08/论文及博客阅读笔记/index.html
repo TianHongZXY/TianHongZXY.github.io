@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css"/>
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-center-atom.min.css?v=1.0.2"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2"/>
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/header-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/header-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="NLPTransformers  A Survey of Transformers arXiv  文本生成  Diverse Beam Search: Decoding Diverse Solutions from Neural Sequence Models, Ashwin K Vijayakumar et al. arxiv, 2016 PDF arXiv (Citations 219) ✅">
+<meta name="keywords" content="deep learning,NLP,machine learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文及博客阅读笔记（持续更新）">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2021&#x2F;05&#x2F;08&#x2F;%E8%AE%BA%E6%96%87%E5%8F%8A%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0&#x2F;index.html">
+<meta property="og:site_name" content="TianHongZXY">
+<meta property="og:description" content="NLPTransformers  A Survey of Transformers arXiv  文本生成  Diverse Beam Search: Decoding Diverse Solutions from Neural Sequence Models, Ashwin K Vijayakumar et al. arxiv, 2016 PDF arXiv (Citations 219) ✅">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20210508152345748.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20210508160701738.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20210514125147621.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20210515213831523.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Containers&#x2F;com.tencent.qq&#x2F;Data&#x2F;Library&#x2F;Application%20Support&#x2F;QQ&#x2F;Users&#x2F;875161083&#x2F;QQ&#x2F;Temp.db&#x2F;738686F5-7511-4722-8485-CA228F13C2FA.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Mobile%20Documents&#x2F;com~apple~CloudDocs&#x2F;论文阅读笔记&#x2F;948A9206-34B0-4EAB-8DDE-3DC9B5C1B9DE.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Mobile%20Documents&#x2F;com~apple~CloudDocs&#x2F;论文阅读笔记&#x2F;0C37633B-16E3-483E-99B9-3518D6C9B6AD.png">
+<meta property="og:updated_time" content="2021-07-21T18:06:16.290Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;Users&#x2F;tianhongzxy&#x2F;Library&#x2F;Application%20Support&#x2F;typora-user-images&#x2F;image-20210508152345748.png">
+
+
+
+
+
+
+  <link rel="canonical" href="https://TianHongZXY.github.io/2021/05/08/论文及博客阅读笔记/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>论文及博客阅读笔记（持续更新） | TianHongZXY</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">TianHongZXY</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">那时我们一无所有，也没有什么能妨碍我们享受静夜</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>About</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br/>Categories</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br/>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2021/05/08/%E8%AE%BA%E6%96%87%E5%8F%8A%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="TianHongZXY"/>
+      <meta itemprop="description" content="浪漫骑士 行吟诗人 自由思想者"/>
+      <meta itemprop="image" content="/images/header.jpg"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TianHongZXY"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">论文及博客阅读笔记（持续更新）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2021-05-08 15:05:07" itemprop="dateCreated datePublished" datetime="2021-05-08T15:05:07+08:00">2021-05-08</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2021-07-22 02:06:16" itemprop="dateModified" datetime="2021-07-22T02:06:16+08:00">2021-07-22</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/05/08/%E8%AE%BA%E6%96%87%E5%8F%8A%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2021/05/08/%E8%AE%BA%E6%96%87%E5%8F%8A%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="NLP"><a href="#NLP" class="headerlink" title="NLP"></a>NLP</h2><h3 id="Transformers"><a href="#Transformers" class="headerlink" title="Transformers"></a>Transformers</h3><hr>
+<ul>
+<li>A Survey of Transformers <a href="https://arxiv.org/abs/2106.04554" target="_blank" rel="noopener">arXiv</a></li>
+</ul>
+<h3 id="文本生成"><a href="#文本生成" class="headerlink" title="文本生成"></a>文本生成</h3><hr>
+<ul>
+<li><p><strong>Diverse Beam Search: Decoding Diverse Solutions from Neural Sequence Models</strong>, Ashwin K Vijayakumar et al. <strong>arxiv, 2016</strong> <a href="/Users/tianhongzxy/Documents/论文及代码/NLP方向/NLP论文/已读/Diverse Beam Search-Decoding Diverse Solutions from Neural Sequence Models.pdf">PDF</a> <a href="https://arxiv.org/abs/1610.02424" target="_blank" rel="noopener">arXiv</a> (Citations <strong>219</strong>) ✅</p>
+<ul>
+<li><p>提出diverse beam search，候选句的分数不但与概率有关，还与其他已经生成的句子的相似度有关。<a href="https://blog.csdn.net/YUFAN_ZHAO/article/details/79132898" target="_blank" rel="noopener">解读博客</a></p>
+<p><img src="/Users/tianhongzxy/Library/Application Support/typora-user-images/image-20210508152345748.png" alt="image-20210508152345748" style="zoom: 33%;" /></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Target Conditioning for One-to-Many Generation</strong>, Marie-Anne Lachaux et al. <strong>EMNLP-findings, 2020</strong> <a href="/Users/tianhongzxy/Documents/论文及代码/NLP方向/NLP论文/已读/Target Conditioning for One-to-Many Generation.pdf">PDF</a> <a href="https://arxiv.org/abs/2009.09758" target="_blank" rel="noopener">arXiv</a> (Citations <strong>0</strong>) ✅</p>
+<ul>
+<li><p>这篇工作借鉴了 discrete autoencoders 的思路，提出将一个 discrete target encoder 引入到翻译模型中，方便将每一个目标语句关联到对应的 variable 或者 domain。其中每一个 domain 对应一个 embedding，这样在测试阶段可以根据每个 domain embedding 来生成多样性的翻译。并且这种离散化的表示方式允许无监督地方式来改变翻译的 domain 信息。<strong>周报2021.04.25中解读</strong></p>
+<p><img src="/Users/tianhongzxy/Library/Application Support/typora-user-images/image-20210508160701738.png" alt="image-20210508160701738" style="zoom: 33%;" /></p>
+</li>
+</ul>
+</li>
+<li><p><a href="https://spaces.ac.cn/archives/7259" target="_blank" rel="noopener">Seq2Seq中Exposure Bias现象的浅析与对策</a> by 苏剑林 ✅</p>
+<ul>
+<li>缓解teacher forcing造成的exposure bias问题，作者提出了两个简单的方法：1. 构建负样本，从target中随机抽取单词并替换decoder使用teacher forcing时的输入词。2. 对抗训练（梯度惩罚）</li>
+</ul>
+</li>
+<li><p><a href="https://spaces.ac.cn/archives/6933" target="_blank" rel="noopener">从语言模型到Seq2Seq：Transformer如戏，全靠Mask</a> by 苏剑林 ✅</p>
+<ul>
+<li>在Transformer中利用不同的attention mask 实现乱序语言模型，论文<a href="https://arxiv.org/abs/1905.02450" target="_blank" rel="noopener">MASS</a>和<a href="https://arxiv.org/abs/1905.03197" target="_blank" rel="noopener">UNILM</a></li>
+</ul>
+</li>
+<li><p><strong>Data Distillation for Controlling Specificity in Dialogue Generation</strong>, Jiwei Li et al. <strong>arxiv, 2017</strong> <a href="https://arxiv.org/pdf/1702.06703.pdf" target="_blank" rel="noopener">PDF</a> <a href="https://arxiv.org/abs/1702.06703" target="_blank" rel="noopener">arXiv</a> (Citations <strong>18</strong>) ✅</p>
+<ul>
+<li>每轮把模型生成的最频繁的句子选出来，然后和训练集的句子计算相似度，去掉这些相似度最高的句子</li>
+<li><div align=center>
+  <img src="/Users/tianhongzxy/Library/Application Support/typora-user-images/image-20210514125147621.png" alt="image-20210514125147621" style="zoom: 67%;" />
+</div>
+</li>
+</ul>
+</li>
+<li><p><strong>Focus-Constrained Attention Mechanism for CVAE-based Response Generation</strong>, Zhi Cui et al. <strong>EMNLP-findings, 2020</strong> <a href="/Users/tianhongzxy/Documents/论文及代码/NLP方向/NLP论文/已读/Focus-Constrained Attention Mechanism for CVAE-based Response Generation.pdf">PDF</a> <a href="https://arxiv.org/abs/2009.12102" target="_blank" rel="noopener">arXiv</a> (Citations <strong>0</strong>) ✅</p>
+<ul>
+<li>把隐变量z和encoder output做attention得到focus，然后把focus和encoder output concat起来输入decoder，并在每一步解码求attention时使用；引入coverage vector，本质是解码时每一步的attention权重累加；设计focus constraint，本质是让focus和coverage vector欧几里得距离最小。<img src="/Users/tianhongzxy/Library/Application Support/typora-user-images/image-20210515213831523.png" alt="image-20210515213831523" style="zoom: 25%;" /></li>
+</ul>
+</li>
+<li><p><a href="https://www.aclweb.org/anthology/P17-1061.pdf" target="_blank" rel="noopener">https://www.aclweb.org/anthology/P17-1061.pdf</a> Learning Discourse-level Diversity for Neural Dialog Models using Conditional Variational Autoencoders</p>
+</li>
+<li><p><a href="https://arxiv.org/pdf/1606.07947.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1606.07947.pdf</a> Sequence-Level Knowledge Distillation</p>
+</li>
+</ul>
+<h2 id="重参数化"><a href="#重参数化" class="headerlink" title="重参数化"></a>重参数化</h2><hr>
+<ul>
+<li><strong>Categorical Reparameterization with Gumbel-Softmax</strong>, Eric Jang et al. <strong>ICLR, 2017</strong> <a href="/Users/tianhongzxy/Documents/论文及代码/NLP方向/NLP论文/已读/Categorical Reparameterization with Gumbel-Softmax.pdf">PDF</a> <a href="https://arxiv.org/abs/1611.01144" target="_blank" rel="noopener">arXiv</a> (Citations <strong>1881</strong>), <a href="https://blog.evjang.com/2016/11/tutorial-categorical-variational.html" target="_blank" rel="noopener">Jang’s blog</a> ✅</li>
+<li><p>Gumbel Max和Gumbel Softmax详细推导参考<a href="https://kexue.fm/archives/6705" target="_blank" rel="noopener">漫谈重参数：从正态分布到Gumbel Softmax</a> by 苏剑林，<a href="https://gabrielhuang.gitbooks.io/machine-learning/content/reparametrization-trick.html" target="_blank" rel="noopener">英文博客</a>，重参数化的作用简易理解参考下面来自<a href="https://www.zhihu.com/question/62631725/answer/201338234" target="_blank" rel="noopener">知乎回答</a>的评论区中Towser的回复 ✅</p>
+</li>
+<li><p><a href="https://arxiv.org/pdf/1308.3432.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1308.3432.pdf</a> Estimating or Propagating Gradients Through Stochastic Neurons for Conditional Computation</p>
+</li>
+<li><a href="https://arxiv.org/abs/1611.00712" target="_blank" rel="noopener">https://arxiv.org/abs/1611.00712</a> The Concrete Distribution: A Continuous Relaxation of Discrete Random Variables</li>
+</ul>
+<h2 id="知识蒸馏"><a href="#知识蒸馏" class="headerlink" title="知识蒸馏"></a>知识蒸馏</h2><hr>
+<ul>
+<li><strong>Distilling the Knowledge in a Neural Network</strong>, Hinton et al. <strong>arxiv, 2015</strong> <a href="https://arxiv.org/pdf/1503.02531.pdf" target="_blank" rel="noopener">PDF</a> <a href="https://arxiv.org/abs/1503.02531" target="_blank" rel="noopener">arXiv</a> (Citations <strong>6051</strong>) ✅<ul>
+<li>使用大模型的输出作为软标签，加上真实标签作为硬标签，一同求loss，指导student model，使用带温度的softmax，注意温度为$T$的softmax的loss需要乘以$T^2$，这是为了让损失函数的两项的梯度大致在一个数量级上，<a href="https://zhuanlan.zhihu.com/p/90049906" target="_blank" rel="noopener">解读博客1</a>，<a href="https://zhuanlan.zhihu.com/p/102038521" target="_blank" rel="noopener">解读博客2</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="VAE"><a href="#VAE" class="headerlink" title="VAE"></a>VAE</h2><hr>
+<ul>
+<li><a href="https://kexue.fm/archives/6760" target="_blank" rel="noopener">VQ-VAE的简明介绍：量子化自编码器</a> ✅ 因为没看过pixel-cnn导致不能完全看懂，其中提到的stop gradient方法可以为很多函数自己定义梯度，实用价值需要具体任务具体分析，有参考启发意义。</li>
+<li><a href="https://blog.evjang.com/2016/08/variational-bayes.html" target="_blank" rel="noopener">vae-tutorial</a></li>
+</ul>
+<h2 id="对抗训练"><a href="#对抗训练" class="headerlink" title="对抗训练"></a>对抗训练</h2><hr>
+<ul>
+<li><a href="https://spaces.ac.cn/archives/7234" target="_blank" rel="noopener">对抗训练浅谈：意义、方法和思考</a> by 苏剑林 ✅<ul>
+<li>快速梯度等价于梯度惩罚，快速梯度是给输入x加上$\Delta x=\epsilon \nabla_{x} L(x, y ; \theta)$，梯度惩罚是给loss加上$\frac{1}{2} \epsilon\left|\nabla_{x} L(x, y ; \theta)\right|^{2}$</li>
+</ul>
+</li>
+<li><a href="https://fyubang.com/2019/10/15/adversarial-train" target="_blank" rel="noopener">功守道：NLP中的对抗训练 + PyTorch实现</a> by 富邦</li>
+<li><a href="https://arxiv.org/abs/1312.6199" target="_blank" rel="noopener">https://arxiv.org/abs/1312.6199</a> Intriguing properties of neural networks (Citations <strong>6912</strong>)</li>
+<li><a href="https://arxiv.org/abs/1706.06083" target="_blank" rel="noopener">https://arxiv.org/abs/1706.06083</a> Towards Deep Learning Models Resistant to Adversarial Attacks (Citations <strong>3192</strong>)</li>
+<li><a href="https://arxiv.org/abs/1412.6572" target="_blank" rel="noopener">https://arxiv.org/abs/1412.6572</a> Explaining and Harnessing Adversarial Examples (Citations <strong>7566</strong>)</li>
+<li><a href="https://arxiv.org/abs/1605.07725" target="_blank" rel="noopener">https://arxiv.org/abs/1605.07725</a> Adversarial Training Methods for Semi-Supervised Text Classification (Citations <strong>439</strong>)</li>
+<li><a href="https://arxiv.org/abs/1711.09404" target="_blank" rel="noopener">https://arxiv.org/abs/1711.09404</a> Improving the Adversarial Robustness and Interpretability of Deep Neural Networks by Regularizing their Input Gradients (Citations <strong>278</strong>)</li>
+<li></li>
+</ul>
+<h2 id="数学相关"><a href="#数学相关" class="headerlink" title="数学相关"></a>数学相关</h2><hr>
+<ul>
+<li><p><a href="https://spaces.ac.cn/archives/3290" target="_blank" rel="noopener">寻求一个光滑的最大值函数</a> by 苏剑林 ✅</p>
+<script type="math/tex; mode=display">
+\max (x, y, z, \ldots)=\lim _{k \rightarrow+\infty} \frac{1}{k} \ln \left(e^{k x}+e^{k y}+e^{k z}+\ldots\right)</script></li>
+<li><p>On Variational Bounds of Mutual Information <a href="https://arxiv.org/abs/1905.06922" target="_blank" rel="noopener">arXiv</a> (Citations <strong>164</strong>)</p>
+</li>
+</ul>
+<h2 id="自监督和无监督学习"><a href="#自监督和无监督学习" class="headerlink" title="自监督和无监督学习"></a>自监督和无监督学习</h2><hr>
+<h3 id="对比学习"><a href="#对比学习" class="headerlink" title="对比学习"></a>对比学习</h3><ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/108625273" target="_blank" rel="noopener">Self-Supervised Learning 入门介绍</a> ✅</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/141141365" target="_blank" rel="noopener">对比学习（Contrastive Learning）相关进展梳理</a> ✅</p>
+</li>
+<li><p><a href="https://kexue.fm/archives/6024" target="_blank" rel="noopener">深度学习的互信息：无监督提取特征 </a> by 苏剑林 ✅</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/72516633" target="_blank" rel="noopener">度量学习中的pair-based loss</a> ✅</p>
+<ul>
+<li>介绍了Contrastive loss、Triplet loss、Triplet center loss、N-pair loss(应该就是infoNCE)、Quadruplet loss、Lifted Structure loss</li>
+<li>N-pair loss中相似度D如果是向量点积，就等价于InfoNCE</li>
+<li><script type="math/tex; mode=display">
+\mathcal{L}=\sum_{y_{i i}=1} \log \left(1+\sum_{y_{i k}=0} \exp \left(D_{i k}-D_{i i}\right)\right)</script></li>
+</ul>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/149517352" target="_blank" rel="noopener">捋一捋 NCE</a> 公式推导比较详细，softmax中的分母计算量太大，NCE是是用一个二分类任务去逼近softmax的训练效果，推导证明了当k足够大时，采样k个负样本，NCE的目标函数和使用了softmax函数的最大似然是等价的。✅</p>
+</li>
+<li><p><a href="https://mp.weixin.qq.com/s/6qqFAQBaOFuXtaeRSmQgsQ" target="_blank" rel="noopener">一文梳理2020年大热的对比学习模型</a> by 李rumor ✅</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/129076690" target="_blank" rel="noopener">理解Contrastive Predictive Coding和NCE Loss</a> ✅</p>
+</li>
+<li><p><a href="https://ankeshanand.com/blog/2020/01/26/contrative-self-supervised-learning.html" target="_blank" rel="noopener">Contrastive Self-Supervised Learning</a> ✅</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/370782081" target="_blank" rel="noopener">利用Contrastive Learning对抗数据噪声：对比学习在微博场景的实践</a> by 张俊林✅</p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/334772391" target="_blank" rel="noopener">Noise Contrastive Estimation 前世今生——从 NCE 到 InfoNCE</a> ✅</p>
+<ul>
+<li><p>InfoNCE中这个式子的意思是说给定条件c，在一堆例子X中发现$x_{pos}$是正例概率，那就应该是$x_{pos}$被当成正例的概率除以所有其他sample被当成正例的概率</p>
+</li>
+<li><script type="math/tex; mode=display">
+p(\operatorname{detect\ x_{pos}\ correctly} \mid X, \mathbf{c})=\frac{p\left(x_{\mathrm{pos}} \mid \mathbf{c}\right) \prod_{i=1, \ldots, N ; i \neq \mathrm{pos}} p\left(\mathbf{x}_{i}\right)}{\sum_{j=1}^{N}\left[p\left(\mathbf{x}_{j} \mid \mathbf{c}\right) \prod_{i=1, \ldots, N ; i \neq j} p\left(\mathbf{x}_{i}\right)\right]}=\frac{\frac{p\left(\mathbf{x}_{\mathrm{pos}} \mid c\right)}{p\left(x_{\mathrm{pos}}\right)}}{\sum_{j=1}^{N} \frac{p\left(\mathbf{x}_{j} \mid \mathbf{c}\right)}{p\left(\mathbf{x}_{\mathbf{j}}\right)}}=\frac{f\left(\mathbf{x}_{\mathrm{pos}}, \mathbf{c}\right)}{\sum_{j=1}^{N} f\left(\mathbf{x}_{j}, \mathbf{c}\right)}</script></li>
+</ul>
+</li>
+<li><p><a href="https://lilianweng.github.io/lil-log/2021/05/31/contrastive-representation-learning.html" target="_blank" rel="noopener">Contrastive Representation Learning</a> by lilian wen ✅</p>
+<ul>
+<li><p>Hard Negative Mining，因为我们并不知道负样本的真实分布概率，因此采样时有可能采样到正样本作为了负样本，即false negative，导致bias，下面的概率公式是对这种bias做了debias <a href="https://arxiv.org/abs/2007.00224" target="_blank" rel="noopener">Chuang et al., 2020</a></p>
+</li>
+<li><script type="math/tex; mode=display">
+p\left(\mathbf{x}^{\prime}\right)=\eta^{+} p_{x}^{+}\left(\mathbf{x}^{\prime}\right)+\eta^{-} p_{x}^{-}\left(\mathbf{x}^{\prime}\right) \\
+g\left(\mathbf{x},\left\{\mathbf{u}_{i}\right\}_{i=1}^{N},\left\{\mathbf{v}_{i}\right\}_{i=1}^{M}\right)=\max \left\{\frac{1}{\eta^{-}}\left(\frac{1}{N} \sum_{i=1}^{N} \exp \left(f(\mathbf{x})^{\top} f\left(\mathbf{u}_{i}\right)\right)-\frac{\eta^{+}}{M} \sum_{i=1}^{M} \exp \left(f(\mathbf{x})^{\top} f\left(\mathbf{v}_{i}\right)\right)\right), \exp (-1 / \tau)\right\}</script></li>
+<li><p>下图源自<a href="https://arxiv.org/abs/2010.04592" target="_blank" rel="noopener">Robinson et al. (2021)</a></p>
+</li>
+<li><p><img src="/Users/tianhongzxy/Library/Containers/com.tencent.qq/Data/Library/Application Support/QQ/Users/875161083/QQ/Temp.db/738686F5-7511-4722-8485-CA228F13C2FA.png" alt="738686F5-7511-4722-8485-CA228F13C2FA"></p>
+</li>
+</ul>
+</li>
+<li><p><strong>Understanding contrastive representation learning through alighment and uniformity on the hypersphere</strong>, Tongzhou Wang et al. <strong>ICML, 2020</strong> <a href="https://arxiv.org/abs/2005.10242" target="_blank" rel="noopener">arXiv</a> (Citations <strong>113</strong>)</p>
+</li>
+<li><p><strong>Understanding the behaviour of contrastive loss</strong>, Feng Wang et al. <strong>CVPR, 2021</strong> <a href="https://arxiv.org/abs/2012.09740" target="_blank" rel="noopener">arXiv</a> (Citations <strong>6</strong>) ✅</p>
+<ul>
+<li><p>首先有</p>
+</li>
+<li><script type="math/tex; mode=display">
+\begin{eqnarray}
+\mathcal{L}\left(x_{i}\right) & = & -\log \left[\frac{\exp \left(s_{i, i} / \tau\right)}{\sum_{k \neq i} \exp \left(s_{i, k} / \tau\right)+\exp \left(s_{i, i} / \tau\right)}\right] \\
+P_{i, j} & = & \frac{\exp \left(s_{i, j} / \tau\right)}{\sum_{k \neq i} \exp \left(s_{i, k} / \tau\right)+\exp \left(s_{i, i} / \tau\right)} \\
+
+\end{eqnarray}</script></li>
+<li><p>求梯度后可以得到</p>
+</li>
+<li><script type="math/tex; mode=display">
+\begin{eqnarray}
+\frac{\partial \mathcal{L}\left(x_{i}\right)}{\partial s_{i, i}}& = & \frac{\partial}{\partial s_{i, i}}\left[-\frac{1}{\tau}s_{i,i}+\log \left[\sum_{k \neq i}\exp (s_{i, k}/\tau) + \exp(s_{i,i}/\tau)\right]\right] \\
+& = & -\frac{1}{\tau} + \frac{1}{\tau}\frac{\exp(s_{i,i}/\tau)}{\left[\sum_{k \neq i}\exp (s_{i, k}/\tau) + \exp(s_{i,i}/\tau)\right]} \\
+& = & -\frac{1}{\tau} \sum_{k \neq i} P_{i, k} \\ 
+& = & \frac{1}{\tau}(P_{i,i}-1) \\
+\frac{\partial \mathcal{L}\left(x_{i}\right)}{\partial s_{i, j}}& = & \frac{1}{\tau} P_{i, j}
+\end{eqnarray}</script></li>
+<li><p>可以发现，如果$P_{i,i}=1$的时候，alignment就做到perfect了，而对于负例的梯度是与$P_{i,j}$正相关的，负例的相似度得分越大，梯度越大，也即对其的惩罚越大。对正例的梯度绝对值等于对所有负例的梯度之和。总结在2021.07.18的周报里，<a href="https://zhuanlan.zhihu.com/p/357071960" target="_blank" rel="noopener">知乎解读博客</a>，</p>
+</li>
+<li><p>如果太注重困难负样本则会破坏网络经过一定训练后已经学到的语义信息，这种情况在训练后期尤其明显。随着训练的进行，网络获取到的信息越来越接近真实语义特性，那么此时的负样本更有可能是潜在的正样本(false negative)，因此一个启示是可以随着迭代的次数增多而增大温度系数</p>
+</li>
+</ul>
+</li>
+<li><p>Theoretical Analysis of Self-Training with Deep Networks on Unlabeled Data</p>
+</li>
+<li><p>Learning representations by maximizing mutual information across views</p>
+</li>
+<li><p>Learning deep representations by mutual information estimation and maximization, <a href="https://github.com/rdevon/DIM" target="_blank" rel="noopener">github</a></p>
+</li>
+<li><p>On mutual information maximization for representation learning</p>
+</li>
+<li><p>A theoretical analysis of contrastive unsupervised representation learning, ICML</p>
+</li>
+<li><p>Representation learning with contrastive predictive coding</p>
+</li>
+<li><p>A SURVEY ON CONTRASTIVE SELF-SUPERVISED LEARNING <a href="https://arxiv.org/abs/2011.00362" target="_blank" rel="noopener">arXiv</a> (Citations <strong>31</strong>)</p>
+</li>
+<li><p>Self-supervised Learning: Generative or Contrastive <a href="https://arxiv.org/abs/2006.08218" target="_blank" rel="noopener">arXiv</a> (Citations <strong>65</strong>)</p>
+</li>
+<li><p><strong>Debiased Contrastive Learning</strong>, <strong>NIPS,2020</strong></p>
+</li>
+</ul>
+<h3 id="文本表征学习"><a href="#文本表征学习" class="headerlink" title="文本表征学习"></a>文本表征学习</h3><ul>
+<li><strong>CLINE: Contrastive Learning with Semantic Negative Examples for Natural Language Understanding</strong>, Dong Wang et al. <strong>ACL, 2021</strong> <a href="https://arxiv.org/abs/2107.00440" target="_blank" rel="noopener">arXiv</a> (Citations <strong>0</strong>) ✅</li>
+<li><a href="https://amitness.com/2020/05/self-supervised-learning-nlp/" target="_blank" rel="noopener">Self Supervised Representation Learning in NLP</a> 总结了11种nlp任务用到的自监督方法，比如CBOW、skip-gram、MLM、NSP等等 ✅</li>
+<li><strong>Self-Guided Contrastive Learning for BERT Sentence Representations</strong>, Taeuk Kim et al. <strong>ACL, 2021</strong> <a href="https://arxiv.org/abs/2106.07345" target="_blank" rel="noopener">arXiv</a> (Citations <strong>0</strong>) ✅</li>
+<li><strong>Representation Learning with Contrastive Predictive Coding</strong> <a href="https://arxiv.org/abs/1807.03748" target="_blank" rel="noopener">arXiv</a> (Citations <strong>1078</strong>)<ul>
+<li>一定窗口内的$x_t$和$x_{t+k}$为positive pair，随机采样一个$x_{t*}$作负例，为了把历史的信息也加入进去，作者提出可以在编码器上面再叠一个自回归模型，比如rnn这种，把编码器的输出$z_t$当作输入，这样可以在表示$c_t$中融入时序信息，拿$c_t$来做对比学习，下游任务既可以用$c_t$也可以用$z_t$，又或者是二者的融合。</li>
+<li><img src="/Users/tianhongzxy/Library/Mobile Documents/com~apple~CloudDocs/论文阅读笔记/948A9206-34B0-4EAB-8DDE-3DC9B5C1B9DE.png" alt="img" style="zoom: 50%;" /></li>
+</ul>
+</li>
+<li><strong>SimCSE: Simple Contrastive Learning of Sentence Embeddings</strong> <a href="https://arxiv.org/abs/2104.08821" target="_blank" rel="noopener">arXiv</a> <a href="https://github.com/princeton-nlp/SimCSE" target="_blank" rel="noopener">github</a> (Citations <strong>3</strong>)✅</li>
+<li>目前semantic textual similarity tasks的 SOTA，支持无监督和有监督，使用对比学习，正例对只使用了两个不同的dropout mask</li>
+<li>Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks</li>
+<li>Evaluating Models’ Local Decision Boundaries via Contrast Sets, AllenAI, EMNLP-findings 2020</li>
+</ul>
+<h3 id="图片表征学习"><a href="#图片表征学习" class="headerlink" title="图片表征学习"></a>图片表征学习</h3><ul>
+<li><p><a href="https://zhuanlan.zhihu.com/p/102573476" target="_blank" rel="noopener">无监督学习: Kaiming一作 动量对比(MoCO)论文笔记 </a> ✅</p>
+</li>
+<li><p><strong>Momentum Contrast for Unsupervised Visual Representation Learning</strong> <a href="https://arxiv.org/abs/1911.05722" target="_blank" rel="noopener">arXiv</a> (Citations <strong>952</strong>)</p>
+</li>
+<li><img src="/Users/tianhongzxy/Library/Mobile Documents/com~apple~CloudDocs/论文阅读笔记/0C37633B-16E3-483E-99B9-3518D6C9B6AD.png" alt="pytorch伪代码" style="zoom: 33%;" /></li>
+<li><a href="https://zhuanlan.zhihu.com/p/107126866" target="_blank" rel="noopener">无监督学习距离监督学习还有多远？Hinton组新作解读</a> ✅</li>
+</ul>
+<ul>
+<li>Learning deep representations by mutual information estimation and maximization <a href="https://arxiv.org/abs/1808.06670" target="_blank" rel="noopener">arXiv</a></li>
+<li>A theoretical analysis of contrastive unsupervised representation learning <a href="https://arxiv.org/abs/1902.09229" target="_blank" rel="noopener">arXiv</a></li>
+<li>NIPS2020: What Makes for Good Views for Contrastive Learning?</li>
+<li>ICLR2021: Self-Supervised Learning From a Multi-View Perspective</li>
+<li>ICLR2021: FAIRFIL: Contrastive Neural Debiasing Method For Pretrained Text Encoders</li>
+<li></li>
+<li></li>
+</ul>
+<h2 id="图神经网络"><a href="#图神经网络" class="headerlink" title="图神经网络"></a>图神经网络</h2><ul>
+<li><strong>Graph Neural Networks for Natural Language Processing: A Survey</strong> <a href="https://arxiv.org/abs/2106.06090" target="_blank" rel="noopener">arXiv</a></li>
+</ul>
+<h2 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h2><hr>
+<ul>
+<li><a href="https://zhuanlan.zhihu.com/p/321449610" target="_blank" rel="noopener">PyTorch 源码解读之 torch.autograd: 梯度计算详解</a> ✅</li>
+<li><a href="https://blog.csdn.net/qq_43328040/article/details/108421469" target="_blank" rel="noopener">Autograd看这一篇就够了</a> ✅</li>
+<li><a href="https://www.zhuanzhi.ai/document/9b1d28ae31d37c2fdf233140b47fbb54" target="_blank" rel="noopener">半小时学会 PyTorch Hook</a></li>
+</ul>
+<h2 id="AllenNLP"><a href="#AllenNLP" class="headerlink" title="AllenNLP"></a>AllenNLP</h2><hr>
+<ul>
+<li><a href="https://medium.com/ai2-blog/tutorial-training-on-larger-batches-with-less-memory-in-allennlp-1cd2047d92ad" target="_blank" rel="noopener">Tutorial: Training on larger batches with less memory in AllenNLP</a></li>
+</ul>
+<h2 id="Transformers-1"><a href="#Transformers-1" class="headerlink" title="Transformers"></a>Transformers</h2><hr>
+<ul>
+<li></li>
+<li></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
+          
+            <a href="/tags/machine-learning/" rel="tag"><i class="fa fa-tag"></i> machine learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/31/%E3%80%90EMNLP2020%E3%80%91%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%AF%9D%E7%94%9F%E6%88%90%E4%B8%AD%E7%9A%84specificity/" rel="next" title="【EMNLP2020】控制对话生成中的specificity">
+                <i class="fa fa-chevron-left"></i> 【EMNLP2020】控制对话生成中的specificity
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/06/20/NCE/" rel="prev" title="《NCE与InfoNCE》">
+                《NCE与InfoNCE》 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/header.jpg"
+                alt="TianHongZXY"/>
+            
+              <p class="site-author-name" itemprop="name">TianHongZXY</p>
+              <p class="site-description motion-element" itemprop="description">浪漫骑士 行吟诗人 自由思想者</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/%20%7C%7C%20archive">
+                
+                    <span class="site-state-item-count">33</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/TianHongZXY" title="GitHub &rarr; https://github.com/TianHongZXY" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="/mailto:tianhongzxy@163.com" title="E-Mail &rarr; mailto:tianhongzxy@163.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/tianhongzxy" title="知乎 &rarr; https://www.zhihu.com/people/tianhongzxy" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NLP"><span class="nav-number">1.</span> <span class="nav-text">NLP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Transformers"><span class="nav-number">1.1.</span> <span class="nav-text">Transformers</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本生成"><span class="nav-number">1.2.</span> <span class="nav-text">文本生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重参数化"><span class="nav-number">2.</span> <span class="nav-text">重参数化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#知识蒸馏"><span class="nav-number">3.</span> <span class="nav-text">知识蒸馏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VAE"><span class="nav-number">4.</span> <span class="nav-text">VAE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对抗训练"><span class="nav-number">5.</span> <span class="nav-text">对抗训练</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数学相关"><span class="nav-number">6.</span> <span class="nav-text">数学相关</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自监督和无监督学习"><span class="nav-number">7.</span> <span class="nav-text">自监督和无监督学习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比学习"><span class="nav-number">7.1.</span> <span class="nav-text">对比学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本表征学习"><span class="nav-number">7.2.</span> <span class="nav-text">文本表征学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片表征学习"><span class="nav-number">7.3.</span> <span class="nav-text">图片表征学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图神经网络"><span class="nav-number">8.</span> <span class="nav-text">图神经网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PyTorch"><span class="nav-number">9.</span> <span class="nav-text">PyTorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AllenNLP"><span class="nav-number">10.</span> <span class="nav-text">AllenNLP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformers-1"><span class="nav-number">11.</span> <span class="nav-text">Transformers</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 – <span itemprop="copyrightYear">2021</span>
+  <!-- <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span> -->
+  <span class="author" itemprop="copyrightHolder"><span class="with-love"><i class="fa fa-heart-o"></i></span>TianHongZXY</span>
+
+  
+
+  
+</div>
+<!--
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.0.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.7.0</div>
+
+-->
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'fNjvG519rNMQCRTez4XP1aGe-gzGzoHsz',
+      appKey: 'DY0fa7oCKanbyW5J4UoxG9ug',
+      placeholder: 'Say something',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+  <script>
+    
+    
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/click.js"></script>
+</body>
+</html>
