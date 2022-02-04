@@ -107,37 +107,22 @@
 
 
 
-  <meta name="description" content="本文介绍一篇2020EMNLP-findings上的论文《Consistent Response Generation with Controlled Specificity》，介绍在对话生成中控制回复的specificity。 所谓specificity，我把它翻译成“具体的程度”，举个例子，我跟机器说：“今天天真冷”，机器可以以三种不同的specificity回答我：  是的 确实挺冷的 哎呀">
-<meta name="keywords" content="deep learning,NLP">
+  <meta name="description" content="2021-我的生活与思考-网球篇🎾来深圳以后打网球的频率比之前高了很多，虽然我们学校没有网球场，但是隔壁哈工大有，基本上是每周开完组会我都会去打，每次都能打上两个小时左右，精疲力尽但也十分满足。 网球教会了我很多东西，用孟岩他们在播客里谈到的话说：它就像一面镜子，映照出那个自己都不认得的自己，身体内隐藏的那些自己讨厌的东西：压抑的怒火、没顶的沮丧、被迅速吞噬的自信、容易自我放弃等等。这些我在打网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【EMNLP2020】控制对话生成中的specificity">
-<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2021&#x2F;01&#x2F;31&#x2F;%E3%80%90EMNLP2020%E3%80%91%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%AF%9D%E7%94%9F%E6%88%90%E4%B8%AD%E7%9A%84specificity&#x2F;index.html">
+<meta property="og:title" content="2021-我的生活与思考-网球篇">
+<meta property="og:url" content="https:&#x2F;&#x2F;tianhongzxy.github.io&#x2F;2022&#x2F;02&#x2F;04&#x2F;2021-%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB%E4%B8%8E%E6%80%9D%E8%80%83-%E7%BD%91%E7%90%83%E7%AF%87&#x2F;index.html">
 <meta property="og:site_name" content="TianHongZXY">
-<meta property="og:description" content="本文介绍一篇2020EMNLP-findings上的论文《Consistent Response Generation with Controlled Specificity》，介绍在对话生成中控制回复的specificity。 所谓specificity，我把它翻译成“具体的程度”，举个例子，我跟机器说：“今天天真冷”，机器可以以三种不同的specificity回答我：  是的 确实挺冷的 哎呀">
+<meta property="og:description" content="2021-我的生活与思考-网球篇🎾来深圳以后打网球的频率比之前高了很多，虽然我们学校没有网球场，但是隔壁哈工大有，基本上是每周开完组会我都会去打，每次都能打上两个小时左右，精疲力尽但也十分满足。 网球教会了我很多东西，用孟岩他们在播客里谈到的话说：它就像一面镜子，映照出那个自己都不认得的自己，身体内隐藏的那些自己讨厌的东西：压抑的怒火、没顶的沮丧、被迅速吞噬的自信、容易自我放弃等等。这些我在打网">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn76hj17l1j309p0axjrq.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn75zxep71j30ib02jwem.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn76x1xgskj30jg02bglm.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn78ykhfq1j30k902oq3d.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn78k80mzdj31cz0l8dku.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn78lki9wkj30m9037wei.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn77ydbhizj30km0293yf.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn77zdqp42j30jq02cdfv.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn783pqf3rj30pf0303yl.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn788yisopj317b0lzn22.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn789oygyhj31330erad3.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn78b1nvfzj317n0u0amb.jpg">
-<meta property="og:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn17ira3q1j31bi0hc76x.jpg">
-<meta property="og:updated_time" content="2021-02-01T07:17:54.734Z">
+<meta property="og:updated_time" content="2022-02-04T15:18:57.352Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;large&#x2F;008eGmZEgy1gn76hj17l1j309p0axjrq.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="https://TianHongZXY.github.io/2021/01/31/【EMNLP2020】控制对话生成中的specificity/"/>
+  <link rel="canonical" href="https://TianHongZXY.github.io/2022/02/04/2021-我的生活与思考-网球篇/"/>
 
 
 
@@ -147,7 +132,7 @@
   };
 </script>
 
-  <title>【EMNLP2020】控制对话生成中的specificity | TianHongZXY</title>
+  <title>2021-我的生活与思考-网球篇 | TianHongZXY</title>
   
 
 
@@ -350,7 +335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2021/01/31/%E3%80%90EMNLP2020%E3%80%91%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%AF%9D%E7%94%9F%E6%88%90%E4%B8%AD%E7%9A%84specificity/"/>
+    <link itemprop="mainEntityOfPage" href="https://TianHongZXY.github.io/2022/02/04/2021-%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB%E4%B8%8E%E6%80%9D%E8%80%83-%E7%BD%91%E7%90%83%E7%AF%87/"/>
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="TianHongZXY"/>
@@ -367,7 +352,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【EMNLP2020】控制对话生成中的specificity
+          <h1 class="post-title" itemprop="name headline">2021-我的生活与思考-网球篇
 
               
             
@@ -393,46 +378,16 @@
                 
               
 
-              <time title="Created: 2021-01-31 20:37:19" itemprop="dateCreated datePublished" datetime="2021-01-31T20:37:19+08:00">2021-01-31</time>
+              <time title="Created: 2022-02-04 23:17:35 / Modified: 23:18:57" itemprop="dateCreated datePublished" datetime="2022-02-04T23:17:35+08:00">2022-02-04</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2021-02-01 15:17:54" itemprop="dateModified" datetime="2021-02-01T15:17:54+08:00">2021-02-01</time>
               
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/deep-learning/" itemprop="url" rel="index"><span itemprop="name">deep learning</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -442,8 +397,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2021/01/31/%E3%80%90EMNLP2020%E3%80%91%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%AF%9D%E7%94%9F%E6%88%90%E4%B8%AD%E7%9A%84specificity/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2021/01/31/%E3%80%90EMNLP2020%E3%80%91%E6%8E%A7%E5%88%B6%E5%AF%B9%E8%AF%9D%E7%94%9F%E6%88%90%E4%B8%AD%E7%9A%84specificity/" itemprop="commentCount"></span>
+                <a href="/2022/02/04/2021-%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB%E4%B8%8E%E6%80%9D%E8%80%83-%E7%BD%91%E7%90%83%E7%AF%87/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">Comments: </span> <span class="post-comments-count valine-comment-count" data-xid="/2022/02/04/2021-%E6%88%91%E7%9A%84%E7%94%9F%E6%B4%BB%E4%B8%8E%E6%80%9D%E8%80%83-%E7%BD%91%E7%90%83%E7%AF%87/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -471,42 +426,15 @@
       
 
       
-        <p>本文介绍一篇2020EMNLP-findings上的论文《Consistent Response Generation with Controlled Specificity》，介绍在对话生成中控制回复的specificity。</p>
-<p>所谓specificity，我把它翻译成“具体的程度”，举个例子，我跟机器说：“今天天真冷”，机器可以以三种不同的specificity回答我：</p>
-<ol>
-<li>是的</li>
-<li>确实挺冷的</li>
-<li><del>哎呀 心疼 喝热水，多穿 快回 外面冷，你忙 好梦 早点睡，早安 晚安 睡了没</del>，确实冷，多喝热水注意保暖别着凉了</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn76hj17l1j309p0axjrq.jpg" alt=""></p>
-<p>谁不想要一个像第3种这么贴心的聊天机器人呢？（</p>
-<p>这篇论文其实是作者发表在2019ACL workshop上的工作《Relevant and Informative Response Generation using Pointwise Mutual Information》的延续，这篇论文提出了一个叫做Positive Pointwise Mutual Information(PPMI)的东西，首先使用PPMI给训练集中的每个word打分，找出keywords，设计了一个loss，鼓励模型生成属于keywords的单词，做法和下面要介绍的论文大同小异。</p>
-<p>PPMI的定义如下，$P_{X}(x)$为单词$x$出现在上句$X={x^1,x^2,…,x^{|X|}}$中的概率，$P_{Y}(y)$为单词$y$出现在回复$Y={y^1,y^2,…,y^{|Y|}}$中的概率，$P(x,y)$是单词$x$和$y$同时分别出现在一对$(X, Y)$中的概率，这些概率P都可以通过对训练集预先的统计得到。由此可以得到PPMI矩阵，PPMI[x][y]就是PPMI(x, y)的值，预先存储好以供后面模型使用。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn75zxep71j30ib02jwem.jpg" alt=""></p>
-<p>作者进一步提出一条数据的MaxPMI，定义如下</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn76x1xgskj30jg02bglm.jpg" alt=""></p>
-<p>通过min-max normalization将每条数据的MaxPMI分数归一化</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn78ykhfq1j30k902oq3d.jpg" alt="image-20210131222903902"></p>
-<script type="math/tex; mode=display">
-\mathrm{MaxPMI}(\mathbf{X,Y})=\frac{\operatorname{MaxPMI}(\mathbf{X,Y})-\min _{(\mathbf{X^{\prime},Y^{\prime})} \in \mathcal{D}}\left(\operatorname{MaxPMI}_{\mathbf{(X^{\prime},Y^{\prime}})}\right)}{\max _{(\mathbf{X^{\prime},Y^{\prime}}) \in \mathcal{D}}\operatorname{MaxPMI}_{\mathbf{(X^{\prime},Y^{\prime}})} -\min _{(\mathbf{X^{\prime},Y^{\prime})} \in \mathcal{D}}\operatorname{MaxPMI}_{\mathbf{(X^{\prime},Y^{\prime}})}}</script><p>模型的整体架构如下</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn78k80mzdj31cz0l8dku.jpg" alt="模型架构"></p>
-<p>首先对于一条数据$(X,Y)$，使用GRU将utterance $X$编码为一个向量$h_{GRU}$，然后把这条数据的MaxPMI分数丢到一个多层全连接网络里(MLP)输出一个vector $h_s$，接着把整个词表$V$上的每一个单词$v$和utterance $X$中所有的单词$x$求PPMI分数之和，得到一个长度和词表大小$|V|$一样的vector $v_f=[d_0,d_1,…,d_{|V|}]$，</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn78lki9wkj30m9037wei.jpg" alt=""></p>
-<p>然后，同样地把$v_f$丢到一个多层全连接网络中输出一个vector $h_v$，把得到的三个向量给concat起来得到$h=[h_{GRU};h_s;h_v]$，把h作为decoder的初始状态，因此decoder应该可以利用PPMI所定义的词与词之间的共现关系，来学习如何生成更具体specific的回复。</p>
-<p>为了直接地提升decoder输出更specific的单词的概率，作者还把$v_f$和decoder在每个timestep i输出的概率$\pi_i$通过加权的方式加在了一起得到</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn77ydbhizj30km0293yf.jpg" alt=""></p>
-<p>$\lambda_i$用于平衡二者，由decoder当前输出的隐状态$h_i$通过一层MLP得出</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn77zdqp42j30jq02cdfv.jpg" alt="image-20210131215524588"></p>
-<p>Inference阶段只需要手动定义MaxPMI的值s，就可以生成不同specificity程度的回复。同时作者还提出inference不手动提供值s的方法，可使用下式自动求出$s_{max}$的值，$V$是整个词表，$X$是给出的问句</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn783pqf3rj30pf0303yl.jpg" alt=""></p>
-<p>作者的实验在DailyDialog和Twitter(Japanese)上进行，对比的模型是SC-Seq2Seq，它出自ACL2018上的《Learning to Control the Specificity in Neural Response Generation》，同样是控制生成的，最大的区别可能在于本文用的是作者定义的PPMI，那篇也是作者定义了一个指标，并提前告诉decoder每个词的得分。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn788yisopj317b0lzn22.jpg" alt=""></p>
-<p>作者发现使用$s_{max}$的效果最好</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn789oygyhj31330erad3.jpg" alt="image-20210131220519252"></p>
-<p>作者也举了一个生成效果的例子，通过控制s的大小可以操控回复的specificity</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn78b1nvfzj317n0u0amb.jpg" alt=""></p>
-<p>有什么想法欢迎在评论区讨论，扫码关注加星标以第一时间获得推送文章～</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn17ira3q1j31bi0hc76x.jpg" alt=""></p>
+        <h1 id="2021-我的生活与思考-网球篇🎾"><a href="#2021-我的生活与思考-网球篇🎾" class="headerlink" title="2021-我的生活与思考-网球篇🎾"></a>2021-我的生活与思考-网球篇🎾</h1><p>来深圳以后打网球的频率比之前高了很多，虽然我们学校没有网球场，但是隔壁哈工大有，基本上是每周开完组会我都会去打，每次都能打上两个小时左右，精疲力尽但也十分满足。</p>
+<p>网球教会了我很多东西，用孟岩他们在播客里谈到的话说：它就像一面镜子，映照出那个自己都不认得的自己，身体内隐藏的那些自己讨厌的东西：压抑的怒火、没顶的沮丧、被迅速吞噬的自信、容易自我放弃等等。这些我在打网球的过程中都深有体会，当我在自己的发球局，局势大好下连送失误被逼到破发，当我即将破掉对手的发球局却被连连反击得手，胜利的果实即将从手中溜走，当我被连续破掉发球局比分来到4:0时，愤怒，沮丧，恐惧，失望，自信流失，自我放弃都席卷而来，每一个都足以压垮我，如果我不能直面这些内心最深处的情绪并做出顽强的抵抗，那么我的下一球一定会非常糟糕，比赛也是必败无疑。</p>
+<p>网球让我体会到了平日生活中不常体会到的各种负面情绪，在这种1V1的游戏下，除了面对对手，我还需要面对自己的所有错误、失败，承受它们带来的各种负面情绪。从某种意义上来说，网球对我心理的磨炼和影响远远大于对我身体的，随着我打网球的次数越来越多，我越发能在不利局面下控制自己的情绪，即使在局势很不利的情况下我也能调整好心态打好下一球，竞技体育从来不只是体力和技术的较量，它在很大程度上是一种心理对抗，谁更能扛住压力，不受外界干扰，不被负面情绪压垮，谁就能获得胜利。</p>
+<p>今年令我最印象深刻的一场比赛是法网决赛，德约科维奇在半决赛打败了纳达尔，最终与西西帕斯会师决赛，开场两盘德约被2:0，作为一个一贯的德约“黑粉”我特别兴奋，想着就算你赢了纳豆也别想在这再拿一个大满贯，结局令我大吃一惊，三十几岁的德约之后竟然连下三盘拿下了二十几岁的西西帕斯，这实在太难以想象了，当时看比赛时我记得西西帕斯明显越往后越体力不支，只能勉强招架，根本无力还击，而对面的德约脸不红心不跳，每一球打得都特别稳定。在这场比赛之前，我因为更喜欢费德勒的华丽和积极进攻的球风，并且不希望看到他被人超越，因而对德约一直比较反感，他又特别擅长在底线跟别人对拉，这种球风我也不是特别喜欢，但这场比赛深深地记在了我的脑海里，那会我还没有到深圳，打的比赛也比较少，到深圳以后，随着经常和球友打比赛，如前所述我品尝了一系列比赛时的负面情绪，我回想起德约当时在大满贯决赛0:2的情况下竟然能扛住压力连下三盘，这简直不可思议，当时就连解说都一致看好西西帕斯，在德约反击拿下一盘时，解说还在调侃西西帕斯想3:0拿下世界第一也是不太可能的，后来的比赛发展又让解说改口夸赞道不愧是世界第一，这种临危不乱绝地反击的能力令人折服。可以说我虽然因为一些原因不那么喜欢德约，但他作为一个伟大的网球选手，他的mental toughness征服了我，用孟岩和张奔斗的话来说“心理素质强的人是什么？是能把负面信息屏蔽的人，不让它们进入你的脑袋。但是德约科维奇的体系很不一样，他会把这些负面信息，转化为正面的信息，转化成自己的能量。他把 mental toughness （心理韧性）上升到了一个新的高度”，德约令我折服的不是他精湛的反拍变直线，不是极其隐蔽的放短球，也不是这个世界上最好的接发球，而是他的mental toughness，之前多次看到别人说德约是心理大师，那时我不明白，现在我终于懂了，也许再多看几场他的比赛我就会转化为他的粉丝了。</p>
+<p>张潇雨说过一句话令我印象深刻：“我盯着球的时候打得就准，盯着目标的时候就会把球打飞”，我发现自己打球也有过相同的经历，当对手回球很浅，落在网前，而我也跑到了击球点，一个绝佳的得分机会摆在我面前，如果我瞄准的是我要打的角，我无一例外地都打出界了，我读到了这句话以后，之后我每次遇到非常好的得分机会，我都会记住要盯着球，稳稳地扎实地将它打回去是最重要的。</p>
+<p>“不管是投资还是打业余网球，都要控制住心里那个没有能力的自己，去学习如何长久地赢得这场游戏。”这句话我也深表认同，职业球员打网球，靠的是自己强大的进攻技巧，主动得分赢得比赛，对我这种业余水平都算不上的，靠的是减少失误来赢得比赛。投资也是一样，超出我自己能力边界的投资就是一种赌博，如果下注太大，那就和自杀无异。</p>
+<p>我发现网球是一项让我从内到外都成为更好自己的运动，巧合的是我关注的这些人，孟岩，张潇雨，一开始我是因为学习投资关注他们的，关注了以后才发现他们竟然都是网球爱好者，从他们那我不但学到了很多投资的事情，还学到了该用怎样一种心态去面对网球比赛，去锻炼自己的心理韧性，它会在我生活的方方面面给我带来巨大的提升。</p>
+<p>非常巧合，这些投资大v也都爱打网球，他们从网球和投资之间悟出了很多共性，我感觉学网球就像是学投资，这真是太有趣了。“网球场上，如果你一直能把球打深，尽管对手能够偶尔回几个让你意料不到的球，但是如果你能持续把球打深，获胜者一定是你。就像投资中，你永远做正确的事情，哪怕一年两年你的账户是亏的，但只要你持续做胜率超过 50% 的事情，你总归能赚钱的”，这里和我在关于认知里说的，做正确的事情，长远来看一定是有回报的，在网球里就是持续把球打深，给对手压力，德约的接发球为什么是世界第一，就是因为他能把别人的发球回得非常深，有时能直接回到对手脚下，让对手还没从发球的动作调整回来球就已经到自己面前了，结果就是要么回球下网，要么给对手打出了非常好的得分机会。</p>
+<p>关于网球，还有很多很多值得学习记录和思考的，在下一年，我关于网球的唯一期望就是能再多打一些，早日迈入3.0（虽然我也不知道自己现在到底在哪个水平，以后有钱了一定要请个专业教练）。</p>
 
       
     </div>
@@ -528,14 +456,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
-          
-            <a href="/tags/NLP/" rel="tag"><i class="fa fa-tag"></i> NLP</a>
-          
-        </div>
-      
 
       
       
@@ -545,8 +465,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/01/24/%E3%80%90ICLR2021%E3%80%91CoCon:%20%E4%B8%80%E7%A7%8D%E8%87%AA%E7%9B%91%E7%9D%A3%E7%9A%84%E5%8F%AF%E6%8E%A7%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90%E6%96%B9%E6%B3%95/" rel="next" title="【ICLR2021】CoCon: 一种自监督的可控文本生成方法">
-                <i class="fa fa-chevron-left"></i> 【ICLR2021】CoCon: 一种自监督的可控文本生成方法
+              <a href="/2021/06/20/NCE/" rel="next" title="《NCE与InfoNCE》">
+                <i class="fa fa-chevron-left"></i> 《NCE与InfoNCE》
               </a>
             
           </div>
@@ -554,10 +474,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/05/08/%E8%AE%BA%E6%96%87%E5%8F%8A%E5%8D%9A%E5%AE%A2%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" rel="prev" title="论文及博客阅读笔记（持续更新）">
-                论文及博客阅读笔记（持续更新） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -606,8 +522,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -744,6 +669,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#2021-我的生活与思考-网球篇🎾"><span class="nav-number">1.</span> <span class="nav-text">2021-我的生活与思考-网球篇🎾</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
